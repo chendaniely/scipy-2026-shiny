@@ -412,9 +412,9 @@ flowchart TD
   Fi --&gt; Pl
   Fi --&gt; Co((count))
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
   linkStyle 0,1,2,3,4 display:none</code></pre>
 </div><div class="column" style="width:50%;">
 <ul>
@@ -439,9 +439,9 @@ flowchart TD
   Fi --&gt; Pl
   Fi --&gt; Co((count)):::active
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
   linkStyle 0,1,2,3,4 display:none</code></pre>
 </div><div class="column" style="width:50%;">
 <p>Both outputs need to render.</p>
@@ -461,9 +461,9 @@ flowchart TD
   Fi --&gt; Pl
   Fi --&gt; Co((count))
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
   linkStyle 0,1,2 display:none</code></pre>
 </div><div class="column" style="width:50%;">
 <p><code>filtered()</code> is called by both outputs.</p>
@@ -487,9 +487,9 @@ flowchart TD
   Fi --&gt; Pl
   Fi --&gt; Co((count))
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold</code></pre>
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
 <p>All dependencies recorded. The full graph is built.</p>
 <p>Shiny now <strong>watches</strong> it — any change triggers only the affected branch.</p>
@@ -508,9 +508,9 @@ flowchart TD
   Fi --&gt; Pl
   Fi --&gt; Co((count)):::invalid
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold</code></pre>
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
 <p>Species changes → <strong>filtered</strong> cache discarded → <strong>plot</strong> and <strong>count</strong> marked stale.</p>
 <p>X Axis and Y Axis are untouched — only the affected branch re-runs.</p>
@@ -588,10 +588,10 @@ flowchart TD
   Fi --&gt; Su
   Su --&gt; Ta((table))
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold</code></pre>
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
 <ul>
 <li><strong>filtered</strong> — species filter (as before)</li>
@@ -617,10 +617,10 @@ flowchart TD
   Fi --&gt; Su
   Su --&gt; Ta((table)):::invalid
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold</code></pre>
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
 <p>Y Axis changes → <strong>plot</strong>, <strong>summary</strong>, and <strong>table</strong> re-run.</p>
 <p><strong>filtered</strong> and <strong>count</strong> are unaffected — Species didn’t change, so that branch stays cached.</p>
@@ -643,10 +643,10 @@ flowchart TD
   Fi --&gt; Su
   Su --&gt; Ta((table)):::invalid
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold</code></pre>
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
 <p>Species changes → <strong>filtered</strong> cache discarded → everything downstream is stale.</p>
 <p><code>filtered()</code> runs <strong>once</strong>. <code>summary()</code> runs <strong>once</strong> using the new filtered result. All four outputs update.</p>

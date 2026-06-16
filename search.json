@@ -1220,35 +1220,35 @@
     "href": "slides/04-reactivity.html#the-apps-reactive-graph",
     "title": "Shiny Reactivity",
     "section": "The app’s reactive graph",
-    "text": "The app’s reactive graph\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  X[X Axis] --&gt; Pl((plot))\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2,3,4 display:none\n\n\n\n\n\n\n\n\nSpecies — checkbox group\nX Axis / Y Axis — dropdowns\nfiltered — @reactive.calc\nplot — @render.plot\ncount — @render.text"
+    "text": "The app’s reactive graph\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  X[X Axis] --&gt; Pl((plot))\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2,3,4 display:none\n\n\n\n\n\n\n\n\nSpecies — checkbox group\nX Axis / Y Axis — dropdowns\nfiltered — @reactive.calc\nplot — @render.plot\ncount — @render.text"
   },
   {
     "objectID": "slides/04-reactivity.html#shiny-is-lazy-nothing-runs-until-needed",
     "href": "slides/04-reactivity.html#shiny-is-lazy-nothing-runs-until-needed",
     "title": "Shiny Reactivity",
     "section": "Shiny is lazy — nothing runs until needed",
-    "text": "Shiny is lazy — nothing runs until needed\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  X[X Axis] --&gt; Pl((plot)):::active\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::active\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2,3,4 display:none\n\n\n\n\n\n\n\nBoth outputs need to render.\nShiny runs them and tracks every reactive value they read."
+    "text": "Shiny is lazy — nothing runs until needed\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  X[X Axis] --&gt; Pl((plot)):::active\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::active\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2,3,4 display:none\n\n\n\n\n\n\n\nBoth outputs need to render.\nShiny runs them and tracks every reactive value they read."
   },
   {
     "objectID": "slides/04-reactivity.html#plot-and-count-both-read-filtered",
     "href": "slides/04-reactivity.html#plot-and-count-both-read-filtered",
     "title": "Shiny Reactivity",
     "section": "plot and count both read filtered",
-    "text": "plot and count both read filtered\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}:::active\n  X[X Axis] --&gt; Pl((plot))\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2 display:none\n\n\n\n\n\n\n\nfiltered() is called by both outputs.\nShiny runs it once, caches the result, and records:\n\nfiltered → plot\nfiltered → count"
+    "text": "plot and count both read filtered\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}:::active\n  X[X Axis] --&gt; Pl((plot))\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2 display:none\n\n\n\n\n\n\n\nfiltered() is called by both outputs.\nShiny runs it once, caches the result, and records:\n\nfiltered → plot\nfiltered → count"
   },
   {
     "objectID": "slides/04-reactivity.html#filtered-reads-species-plot-reads-x-and-y",
     "href": "slides/04-reactivity.html#filtered-reads-species-plot-reads-x-and-y",
     "title": "Shiny Reactivity",
     "section": "filtered reads Species; plot reads X and Y",
-    "text": "filtered reads Species; plot reads X and Y\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}\n  X[X Axis]:::active --&gt; Pl((plot))\n  Y[Y Axis]:::active --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nAll dependencies recorded. The full graph is built.\nShiny now watches it — any change triggers only the affected branch."
+    "text": "filtered reads Species; plot reads X and Y\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}\n  X[X Axis]:::active --&gt; Pl((plot))\n  Y[Y Axis]:::active --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nAll dependencies recorded. The full graph is built.\nShiny now watches it — any change triggers only the affected branch."
   },
   {
     "objectID": "slides/04-reactivity.html#species-changes-invalidation-cascades",
     "href": "slides/04-reactivity.html#species-changes-invalidation-cascades",
     "title": "Shiny Reactivity",
     "section": "Species changes — invalidation cascades",
-    "text": "Species changes — invalidation cascades\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid\n  X[X Axis] --&gt; Pl((plot)):::invalid\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::invalid\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nSpecies changes → filtered cache discarded → plot and count marked stale.\nX Axis and Y Axis are untouched — only the affected branch re-runs.\nfiltered() executes once. Both outputs share the new result."
+    "text": "Species changes — invalidation cascades\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid\n  X[X Axis] --&gt; Pl((plot)):::invalid\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::invalid\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nSpecies changes → filtered cache discarded → plot and count marked stale.\nX Axis and Y Axis are untouched — only the affected branch re-runs.\nfiltered() executes once. Both outputs share the new result."
   },
   {
     "objectID": "slides/04-reactivity.html#the-problem-without-reactive.calc",
@@ -1276,21 +1276,21 @@
     "href": "slides/04-reactivity.html#the-chained-reactive-graph",
     "title": "Shiny Reactivity",
     "section": "The chained reactive graph",
-    "text": "The chained reactive graph\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  Y[Y Axis] --&gt; Pl((plot))\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n  Fi --&gt; Su\n  Su --&gt; Ta((table))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\n\nfiltered — species filter (as before)\nsummary — per-species stats for the selected Y column\ntable — @render.data_frame fed by summary\n\nsummary depends on both filtered and Y Axis."
+    "text": "The chained reactive graph\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  Y[Y Axis] --&gt; Pl((plot))\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n  Fi --&gt; Su\n  Su --&gt; Ta((table))\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\n\nfiltered — species filter (as before)\nsummary — per-species stats for the selected Y column\ntable — @render.data_frame fed by summary\n\nsummary depends on both filtered and Y Axis."
   },
   {
     "objectID": "slides/04-reactivity.html#y-axis-changes-surgical-invalidation",
     "href": "slides/04-reactivity.html#y-axis-changes-surgical-invalidation",
     "title": "Shiny Reactivity",
     "section": "Y Axis changes — surgical invalidation",
-    "text": "Y Axis changes — surgical invalidation\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}:::cached\n  Y[Y Axis]:::active --&gt; Pl((plot)):::invalid\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}:::invalid\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::cached\n  Fi --&gt; Su\n  Su --&gt; Ta((table)):::invalid\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nY Axis changes → plot, summary, and table re-run.\nfiltered and count are unaffected — Species didn’t change, so that branch stays cached.\nShiny re-runs the minimum necessary."
+    "text": "Y Axis changes — surgical invalidation\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}:::cached\n  Y[Y Axis]:::active --&gt; Pl((plot)):::invalid\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}:::invalid\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::cached\n  Fi --&gt; Su\n  Su --&gt; Ta((table)):::invalid\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nY Axis changes → plot, summary, and table re-run.\nfiltered and count are unaffected — Species didn’t change, so that branch stays cached.\nShiny re-runs the minimum necessary."
   },
   {
     "objectID": "slides/04-reactivity.html#species-changes-cascade-through-both-calcs",
     "href": "slides/04-reactivity.html#species-changes-cascade-through-both-calcs",
     "title": "Shiny Reactivity",
     "section": "Species changes — cascade through both calcs",
-    "text": "Species changes — cascade through both calcs\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid\n  Y[Y Axis] --&gt; Pl((plot)):::invalid\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}:::invalid\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::invalid\n  Fi --&gt; Su\n  Su --&gt; Ta((table)):::invalid\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nSpecies changes → filtered cache discarded → everything downstream is stale.\nfiltered() runs once. summary() runs once using the new filtered result. All four outputs update."
+    "text": "Species changes — cascade through both calcs\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid\n  Y[Y Axis] --&gt; Pl((plot)):::invalid\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}:::invalid\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::invalid\n  Fi --&gt; Su\n  Su --&gt; Ta((table)):::invalid\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nSpecies changes → filtered cache discarded → everything downstream is stale.\nfiltered() runs once. summary() runs once using the new filtered result. All four outputs update."
   },
   {
     "objectID": "slides/04-reactivity.html#the-chained-code",
@@ -1769,7 +1769,7 @@
     "href": "workshop/04-reactivity.html#the-apps-reactive-graph",
     "title": "Shiny Reactivity",
     "section": "The app’s reactive graph",
-    "text": "The app’s reactive graph\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  X[X Axis] --&gt; Pl((plot))\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2,3,4 display:none\n\n\nSpecies — checkbox group\nX Axis / Y Axis — dropdowns\nfiltered — @reactive.calc\nplot — @render.plot\ncount — @render.text",
+    "text": "The app’s reactive graph\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  X[X Axis] --&gt; Pl((plot))\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2,3,4 display:none\n\n\nSpecies — checkbox group\nX Axis / Y Axis — dropdowns\nfiltered — @reactive.calc\nplot — @render.plot\ncount — @render.text",
     "crumbs": [
       "Home",
       "Shiny reactivity"
@@ -1780,7 +1780,7 @@
     "href": "workshop/04-reactivity.html#shiny-is-lazy-nothing-runs-until-needed",
     "title": "Shiny Reactivity",
     "section": "Shiny is lazy — nothing runs until needed",
-    "text": "Shiny is lazy — nothing runs until needed\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  X[X Axis] --&gt; Pl((plot)):::active\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::active\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2,3,4 display:none\n\nBoth outputs need to render.\nShiny runs them and tracks every reactive value they read.",
+    "text": "Shiny is lazy — nothing runs until needed\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  X[X Axis] --&gt; Pl((plot)):::active\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::active\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2,3,4 display:none\n\nBoth outputs need to render.\nShiny runs them and tracks every reactive value they read.",
     "crumbs": [
       "Home",
       "Shiny reactivity"
@@ -1791,7 +1791,7 @@
     "href": "workshop/04-reactivity.html#plot-and-count-both-read-filtered",
     "title": "Shiny Reactivity",
     "section": "plot and count both read filtered",
-    "text": "plot and count both read filtered\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}:::active\n  X[X Axis] --&gt; Pl((plot))\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2 display:none\n\nfiltered() is called by both outputs.\nShiny runs it once, caches the result, and records:\n\nfiltered → plot\nfiltered → count",
+    "text": "plot and count both read filtered\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}:::active\n  X[X Axis] --&gt; Pl((plot))\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2 display:none\n\nfiltered() is called by both outputs.\nShiny runs it once, caches the result, and records:\n\nfiltered → plot\nfiltered → count",
     "crumbs": [
       "Home",
       "Shiny reactivity"
@@ -1802,7 +1802,7 @@
     "href": "workshop/04-reactivity.html#filtered-reads-species-plot-reads-x-and-y",
     "title": "Shiny Reactivity",
     "section": "filtered reads Species; plot reads X and Y",
-    "text": "filtered reads Species; plot reads X and Y\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}\n  X[X Axis]:::active --&gt; Pl((plot))\n  Y[Y Axis]:::active --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n\nAll dependencies recorded. The full graph is built.\nShiny now watches it — any change triggers only the affected branch.",
+    "text": "filtered reads Species; plot reads X and Y\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}\n  X[X Axis]:::active --&gt; Pl((plot))\n  Y[Y Axis]:::active --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n\nAll dependencies recorded. The full graph is built.\nShiny now watches it — any change triggers only the affected branch.",
     "crumbs": [
       "Home",
       "Shiny reactivity"
@@ -1813,7 +1813,7 @@
     "href": "workshop/04-reactivity.html#species-changes-invalidation-cascades",
     "title": "Shiny Reactivity",
     "section": "Species changes — invalidation cascades",
-    "text": "Species changes — invalidation cascades\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid\n  X[X Axis] --&gt; Pl((plot)):::invalid\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::invalid\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n\nSpecies changes → filtered cache discarded → plot and count marked stale.\nX Axis and Y Axis are untouched — only the affected branch re-runs.\nfiltered() executes once. Both outputs share the new result.",
+    "text": "Species changes — invalidation cascades\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid\n  X[X Axis] --&gt; Pl((plot)):::invalid\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::invalid\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n\nSpecies changes → filtered cache discarded → plot and count marked stale.\nX Axis and Y Axis are untouched — only the affected branch re-runs.\nfiltered() executes once. Both outputs share the new result.",
     "crumbs": [
       "Home",
       "Shiny reactivity"
@@ -1857,7 +1857,7 @@
     "href": "workshop/04-reactivity.html#the-chained-reactive-graph",
     "title": "Shiny Reactivity",
     "section": "The chained reactive graph",
-    "text": "The chained reactive graph\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  Y[Y Axis] --&gt; Pl((plot))\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n  Fi --&gt; Su\n  Su --&gt; Ta((table))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold\n\n\nfiltered — species filter (as before)\nsummary — per-species stats for the selected Y column\ntable — @render.data_frame fed by summary\n\nsummary depends on both filtered and Y Axis.",
+    "text": "The chained reactive graph\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  Y[Y Axis] --&gt; Pl((plot))\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n  Fi --&gt; Su\n  Su --&gt; Ta((table))\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold\n\n\nfiltered — species filter (as before)\nsummary — per-species stats for the selected Y column\ntable — @render.data_frame fed by summary\n\nsummary depends on both filtered and Y Axis.",
     "crumbs": [
       "Home",
       "Shiny reactivity"
@@ -1868,7 +1868,7 @@
     "href": "workshop/04-reactivity.html#y-axis-changes-surgical-invalidation",
     "title": "Shiny Reactivity",
     "section": "Y Axis changes — surgical invalidation",
-    "text": "Y Axis changes — surgical invalidation\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}:::cached\n  Y[Y Axis]:::active --&gt; Pl((plot)):::invalid\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}:::invalid\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::cached\n  Fi --&gt; Su\n  Su --&gt; Ta((table)):::invalid\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold\n\nY Axis changes → plot, summary, and table re-run.\nfiltered and count are unaffected — Species didn’t change, so that branch stays cached.\nShiny re-runs the minimum necessary.",
+    "text": "Y Axis changes — surgical invalidation\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}:::cached\n  Y[Y Axis]:::active --&gt; Pl((plot)):::invalid\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}:::invalid\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::cached\n  Fi --&gt; Su\n  Su --&gt; Ta((table)):::invalid\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold\n\nY Axis changes → plot, summary, and table re-run.\nfiltered and count are unaffected — Species didn’t change, so that branch stays cached.\nShiny re-runs the minimum necessary.",
     "crumbs": [
       "Home",
       "Shiny reactivity"
@@ -1879,7 +1879,7 @@
     "href": "workshop/04-reactivity.html#species-changes-cascade-through-both-calcs",
     "title": "Shiny Reactivity",
     "section": "Species changes — cascade through both calcs",
-    "text": "Species changes — cascade through both calcs\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid\n  Y[Y Axis] --&gt; Pl((plot)):::invalid\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}:::invalid\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::invalid\n  Fi --&gt; Su\n  Su --&gt; Ta((table)):::invalid\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold\n\nSpecies changes → filtered cache discarded → everything downstream is stale.\nfiltered() runs once. summary() runs once using the new filtered result. All four outputs update.",
+    "text": "Species changes — cascade through both calcs\n\n\n%%| fig-width: 4\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid\n  Y[Y Axis] --&gt; Pl((plot)):::invalid\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}:::invalid\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::invalid\n  Fi --&gt; Su\n  Su --&gt; Ta((table)):::invalid\n\n  classDef default fill:#f0f0f0,color:#333333,stroke:#999999\n  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold\n  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold\n\nSpecies changes → filtered cache discarded → everything downstream is stale.\nfiltered() runs once. summary() runs once using the new filtered result. All four outputs update.",
     "crumbs": [
       "Home",
       "Shiny reactivity"

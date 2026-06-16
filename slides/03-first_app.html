@@ -6,7 +6,7 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <meta name="shinylive:serviceworker_dir" content="..">
 <script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
 <script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
@@ -102,7 +102,7 @@
     code span.vs { color: #e6db74; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-129a604ec049c30856b6f0bc723e18bf.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-44a157fb0331a1520d9859d627e72c37.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XFPBQ3BZ6M"></script>
 
   <script type="text/javascript">
@@ -219,11 +219,11 @@
   }
   </style>
 </head>
-<body class="quarto-dark">
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="../img/bg-night.png" data-background-opacity="0.7" data-background-size="cover" class="quarto-title-block center">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Your First Application</h1>
 
 <div class="quarto-title-authors">
@@ -242,7 +242,7 @@
 </section>
 <section id="step-1-static-plot" class="slide level2">
 <h2>Step 1 — static plot</h2>
-<div id="b4325c30" class="cell" data-execution_count="1">
+<div id="356e09ad" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="cb1-2"><a></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="cb1-3"><a></a></span>
@@ -264,7 +264,7 @@
 </section>
 <section id="step-1b---parameterize-your-output" class="slide level2">
 <h2>Step 1b - parameterize your output</h2>
-<div id="cbfbdec1" class="cell" data-execution_count="2">
+<div id="75f764d1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="cb2-2"><a></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="cb2-3"><a></a></span>
@@ -289,7 +289,7 @@
 </section>
 <section id="step-2-add-shiny-imports" class="slide level2">
 <h2>Step 2 — add Shiny imports</h2>
-<div id="b9d0c2ea" class="cell" data-execution_count="3">
+<div id="17f11bad" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="annotated-cell-3-2"><a href="#annotated-cell-3-2"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
@@ -307,7 +307,7 @@
 </section>
 <section id="step-3-discover-the-axis-choices" class="slide level2">
 <h2>Step 3 — discover the axis choices</h2>
-<div id="48cecaad" class="cell" data-execution_count="4">
+<div id="4e428110" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="annotated-cell-4-2"><a href="#annotated-cell-4-2"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="annotated-cell-4-3"><a href="#annotated-cell-4-3"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>

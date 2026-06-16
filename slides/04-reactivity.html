@@ -6,7 +6,7 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.3">
 
   <title>SciPy 2026: Shiny Dashboards – Shiny Reactivity</title>
@@ -97,7 +97,7 @@
     code span.vs { color: #e6db74; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-129a604ec049c30856b6f0bc723e18bf.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-44a157fb0331a1520d9859d627e72c37.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XFPBQ3BZ6M"></script>
 
   <script type="text/javascript">
@@ -217,11 +217,11 @@
   }
   </style>
 </head>
-<body class="quarto-dark">
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="../img/bg-night.png" data-background-opacity="0.7" data-background-size="cover" class="quarto-title-block center">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Shiny Reactivity</h1>
 
 <div class="quarto-title-authors">
@@ -279,9 +279,9 @@
   Fi --&gt; Pl
   Fi --&gt; Co((count))
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
   linkStyle 0,1,2,3,4 display:none
 </pre>
 </div>
@@ -315,9 +315,9 @@
   Fi --&gt; Pl
   Fi --&gt; Co((count)):::active
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
   linkStyle 0,1,2,3,4 display:none
 </pre>
 </div>
@@ -346,9 +346,9 @@
   Fi --&gt; Pl
   Fi --&gt; Co((count))
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
   linkStyle 0,1,2 display:none
 </pre>
 </div>
@@ -381,9 +381,9 @@
   Fi --&gt; Pl
   Fi --&gt; Co((count))
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -411,9 +411,9 @@
   Fi --&gt; Pl
   Fi --&gt; Co((count)):::invalid
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -504,10 +504,10 @@
   Fi --&gt; Su
   Su --&gt; Ta((table))
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -542,10 +542,10 @@
   Fi --&gt; Su
   Su --&gt; Ta((table)):::invalid
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -577,10 +577,10 @@
   Fi --&gt; Su
   Su --&gt; Ta((table)):::invalid
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold
 </pre>
 </div>
 <p></p></figure><p></p>
