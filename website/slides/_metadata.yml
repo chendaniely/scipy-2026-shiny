@@ -1,0 +1,32 @@
+format:
+  revealjs:
+    footer: "SciPy 2026. chendaniely/scipy-2026-shiny"
+    slide-number: true
+    show-slide-number: all
+    theme: [default, slides-theme.scss]
+    background-color: "#090A28"
+    highlight-style: monokai
+    title-slide-attributes:
+      data-background-image: "../img/bg-night.png"
+      data-background-size: cover
+      data-background-opacity: "0.7"
+    revealjs-plugins:
+      - chat-bubbles
+      - pointer
+      - a11y
+    revealjs-a11y:
+        revealjs-a11y:
+          high-contrast: false
+          alt-text-warnings: true
+          slide-change-cue:
+            visual: true
+            audio: false
+
+execute:
+  echo: true
+
+pointer:
+  key: "q"
+  color: "#ff0000"
+  pointerSize: 16
+  alwaysVisible: false

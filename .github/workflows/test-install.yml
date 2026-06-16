@@ -1,0 +1,104 @@
+name: Test Install
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - requirements.txt
+      - test-install.py
+      - .github/workflows/test-install.yml
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        method: [uv, venv, conda, pixi]
+        python-version: ["3.11", "3.12", "3.13", "3.14", "3.15"]
+    name: test (${{ matrix.method }}, py${{ matrix.python-version }})
+    continue-on-error: ${{ matrix.python-version == '3.15' }}
+
+    steps:
+      - uses: actions/checkout@v6
+
+      # ── uv ──────────────────────────────────────────────────────────────────
+      - name: Set up uv
+        if: matrix.method == 'uv'
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: requirements.txt
+
+      - name: Install and test (uv)
+        if: matrix.method == 'uv'
+        run: |
+          uv python install ${{ matrix.python-version }}
+          uv venv .venv --python ${{ matrix.python-version }}
+          uv pip install -r requirements.txt
+          source .venv/bin/activate
+          playwright install chromium
+          python test-install.py
+          shiny run test-install.py &
+          SHINY_PID=$!
+          trap "kill $SHINY_PID 2>/dev/null || true" EXIT
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8000 > /dev/null 2>&1 && break || sleep 1; done
+          curl -sf http://127.0.0.1:8000
+
+      # ── venv ─────────────────────────────────────────────────────────────────
+      - name: Set up Python (venv)
+        if: matrix.method == 'venv'
+        uses: actions/setup-python@v6
+        with:
+          python-version: "${{ matrix.python-version }}"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install and test (venv)
+        if: matrix.method == 'venv'
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+          playwright install chromium
+          python test-install.py
+          shiny run test-install.py &
+          SHINY_PID=$!
+          trap "kill $SHINY_PID 2>/dev/null || true" EXIT
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8000 > /dev/null 2>&1 && break || sleep 1; done
+          curl -sf http://127.0.0.1:8000
+
+      # ── conda ────────────────────────────────────────────────────────────────
+      - name: Install and test (conda)
+        if: matrix.method == 'conda'
+        run: |
+          conda create -n scipy2026 python=${{ matrix.python-version }} -y
+          conda run -n scipy2026 pip install -r requirements.txt
+          conda run -n scipy2026 playwright install chromium
+          conda run -n scipy2026 python test-install.py
+          conda run -n scipy2026 shiny run test-install.py &
+          SHINY_PID=$!
+          trap "kill $SHINY_PID 2>/dev/null || true" EXIT
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8000 > /dev/null 2>&1 && break || sleep 1; done
+          curl -sf http://127.0.0.1:8000
+
+      # ── pixi ─────────────────────────────────────────────────────────────────
+      - name: Install pixi
+        if: matrix.method == 'pixi'
+        run: |
+          curl -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> $GITHUB_PATH
+
+      - name: Install and test (pixi)
+        if: matrix.method == 'pixi'
+        run: |
+          pixi init .
+          pixi add "python==${{ matrix.python-version }}" pip
+          pixi run python -m pip install -r requirements.txt
+          pixi run playwright install chromium
+          pixi run python test-install.py
+          pixi run shiny run test-install.py &
+          SHINY_PID=$!
+          trap "kill $SHINY_PID 2>/dev/null || true" EXIT
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8000 > /dev/null 2>&1 && break || sleep 1; done
+          curl -sf http://127.0.0.1:8000

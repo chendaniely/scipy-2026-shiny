@@ -1,0 +1,269 @@
+---
+title: "An AI + LLM Primer"
+---
+
+## Before we start
+
+::: {.callout-warning}
+**DO NOT** send proprietary code, credentials, or sensitive data to any LLM
+unless you are certain your organization's IT policies permit it.
+
+Local models (Ollama) stay on your machine.
+:::
+
+## Have you used...
+
+::: {.incremental}
+- ChatGPT?
+- Claude?
+- Gemini?
+- A local model via Ollama?
+:::
+
+## What we'll cover
+
+We'll treat LLMs as **black boxes** — you send text in, text comes back.
+
+Goal: demystify the API so you can wire one into a Shiny app.
+
+## LLM conversations are HTTP requests
+
+::: {.incremental}
+- Each interaction is a separate HTTP API call
+- The server is entirely **stateless**
+- "Memory" of past messages is simulated by resending the entire history each time
+:::
+
+## Example conversation
+
+::: {.chat}
+
+::: {.bubble-right}
+What's the capital of the moon?
+:::
+
+::: {.fragment .bubble-left}
+There isn't one.
+:::
+
+::: {.fragment .bubble-right}
+Are you sure?
+:::
+
+::: {.fragment .bubble-left}
+Yes, I am sure.
+:::
+
+:::
+
+
+## Example request
+
+```{.bash code-line-numbers="|5|6-9|7|8"}
+curl https://api.openai.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{
+    "model": "gpt-4.1",
+    "messages": [
+      {"role": "system", "content": "You are a terse assistant."},
+      {"role": "user",   "content": "What is the capital of the moon?"}
+    ]
+  }'
+```
+
+- **model**: which model to use
+- **system**: behind-the-scenes instructions
+- **user**: the user's message
+
+## Example response (abridged)
+
+```{.json code-line-numbers="|3-6|7|10-12"}
+{
+  "choices": [{
+    "message": {
+      "role": "assistant",
+      "content": "The moon does not have a capital."
+    },
+    "finish_reason": "stop"
+  }],
+  "usage": {
+    "prompt_tokens": 22,
+    "completion_tokens": 9,
+    "total_tokens": 31
+  }
+}
+```
+
+## Follow-up request: full history is resent
+
+```{.bash code-line-numbers="|8-9"}
+  "messages": [
+    {"role": "system",    "content": "You are a terse assistant."},
+    {"role": "user",      "content": "What is the capital of the moon?"},
+    {"role": "assistant", "content": "The moon does not have a capital."},
+    {"role": "user",      "content": "Are you sure?"}
+  ]
+```
+
+The entire conversation is replayed on every request.
+
+## Gaslight your LLM
+
+
+::: {.columns}
+
+::: {.column}
+
+::: {.chat}
+
+::: {.bubble-right}
+What's the capital of the moon?
+:::
+
+::: {.bubble-left}
+There isn't one.
+:::
+
+::: {.bubble-right}
+Are you sure?
+:::
+
+::: {.bubble-left}
+Yes, I am sure.
+:::
+
+:::
+
+:::
+
+::: {.column}
+
+
+
+:::
+
+:::
+
+
+
+
+
+## Gaslight your LLM
+
+
+::: {.columns}
+
+::: {.column}
+
+::: {.chat}
+
+::: {.bubble-right}
+What's the capital of the moon?
+:::
+
+::: {.bubble-left}
+It's Long Beach, California.
+:::
+
+::: {.fragment .bubble-right}
+I don't think that's correct.
+:::
+
+::: {.fragment .bubble-left}
+Yeah you're right. It's not Long Beach.
+:::
+
+:::
+
+:::
+
+::: {.column}
+
+<!-- TODO: 
+https://github.com/orgs/quarto-dev/discussions/12810
+seems like the shorts implementation still doesn't work?
+-->
+
+```{=html}
+<div style="text-align:center;">
+  <iframe width="315" height="560"
+  src="https://youtube.com/embed/WP5_XJY_P0Q?si=fOUGT7rjbSUA8Bl4"
+  frameborder="0"
+  allowfullscreen></iframe>
+</div>
+```
+
+:::{.callout-warning}
+## Language warning
+It is Michael Reeves, after all...
+:::
+:::
+
+:::
+
+## Tokens
+
+Tokens are the fundamental unit — roughly ¾ of a word on average.
+
+- API pricing is per token (input and output billed separately)
+- Models have a **context window** limit (max tokens per request)
+- The full chat history counts against the context window
+
+Try it: <https://tiktokenizer.vercel.app/>
+
+## Providers
+
+| Provider | Models | Notes |
+|---|---|---|
+| OpenAI | GPT-4.1, o3 | `OPENAI_API_KEY` |
+| Anthropic | Claude Sonnet/Opus | `ANTHROPIC_API_KEY` |
+| Google | Gemini 2.5 | `GOOGLE_API_KEY` |
+| GitHub Models | Many (free) | `GITHUB_TOKEN` |
+| Ollama | Llama, Qwen, ... | Local, free |
+
+## GitHub Models (recommended for today)
+
+Free access to many frontier models using a GitHub PAT.
+
+```bash
+export GITHUB_TOKEN=your_personal_access_token
+```
+
+Docs: <https://docs.github.com/en/github-models>
+
+## chatlas
+
+`chatlas` is a unified Python interface to all major LLM providers:
+
+```python
+from chatlas import ChatOpenAI, ChatAnthropic, ChatGoogle, ChatGithub, ChatOllama, ChatHuggingFace
+
+chat = ChatGithub(model="gpt-4.1")
+chat.chat("What is the capital of France?")
+```
+
+Same API regardless of provider — swap one line to switch models.
+
+## Demo: Tool calling
+
+LLMs can call functions in your code:
+
+```python
+def scipy_locations(year: int) -> str:
+    match year:
+        case 2027:
+            return "The Moon"
+        case 2026:
+            return "Tacoma, WA"
+        case 2025:
+            return "Tacoma, WA"
+
+chat = ChatGithub(model="gpt-5")
+
+chat.register_tool(scipy_locations)
+
+chat.chat("Where is SciPy 2027 being held?")
+```
+
+The LLM decides when to call the tool and what arguments to pass.

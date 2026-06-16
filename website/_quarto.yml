@@ -1,0 +1,80 @@
+project:
+  type: website
+  render:
+    - slides
+    - workshop
+    - "*.qmd"
+
+website:
+  #announcement: 
+  #  icon: info-circle
+  #  dismissable: true
+  #  content: "This tutorials site is still a work in progress. Thanks to those who are checking it out early!"
+  #  type: danger
+  #  position: below-navbar
+  title: "SciPy 2026: Shiny Dashboards"
+  google-analytics: "G-XFPBQ3BZ6M"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: exercises.qmd
+        text: Exercises
+      - href: setup.qmd
+        text: Setup
+      - href: cloud.qmd
+        text: Cloud
+      - href: resources.qmd
+        text: Resources
+    right:
+      - href: about.qmd
+        text: About
+      - icon: github
+        href: https://github.com/chendaniely/scipy-2026-shiny
+
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - text: "Workshop Materials"
+      - text: "Welcome + Introduction"
+        href: workshop/01-welcome.qmd
+      - text: "Introduction to Shiny"
+        href: workshop/02-shiny_intro.qmd
+      - text: "Your first application"
+        href: workshop/03-first_app.qmd
+      - text: "Shiny reactivity"
+        href: workshop/04-reactivity.qmd
+      - text: "Deploying your application"
+        href: workshop/05-deploy.qmd
+      - text: "Your next application"
+        href: workshop/06-next_app.qmd
+      - text: "An AI + LLM primer"
+        href: workshop/07-ai_primer.qmd
+      - text: "AI + LLM dashboards"
+        href: workshop/08-ai_dashboards.qmd
+      - text: "Testing"
+        href: workshop/09-testing.qmd
+      - text: "Wrap up"
+        href: workshop/10-wrap_up.qmd
+
+format:
+  html:
+    theme:
+      - darkly
+    highlight-style: monokai
+    toc: true
+    anchor-sections: true
+
+
+custom-callout:
+  exercise:
+    title: "Exercise"
+    icon: true
+    icon-symbol: "🏋️"
+    color: "#F97316"
+
+filters:
+  - shinylive
+  - custom-callout
+  - include-code-files

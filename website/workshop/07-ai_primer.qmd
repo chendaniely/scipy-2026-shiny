@@ -1,0 +1,13 @@
+---
+title: "An AI + LLM Primer"
+---
+
+:::{.column-page-inset-right}
+
+{{< revealjs file="/slides/07-ai_primer.html" height="500px" class="ratio ratio-16x9" >}}
+
+:::
+
+# Slide Contents
+
+{{< include /slides/07-ai_primer.qmd >}}

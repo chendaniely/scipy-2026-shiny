@@ -1,0 +1,37 @@
+---
+title: "Your First Application"
+---
+
+:::{.column-page-inset-right}
+
+{{< revealjs file="/slides/03-first_app.html" height="500px" class="ratio ratio-16x9" >}}
+
+:::
+
+# Slide Contents
+
+{{< include /slides/03-first_app.qmd >}}
+
+# Code
+
+:::{.column-page-inset}
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| viewerHeight: 520
+
+{{< include /../code/demos/app-01-intro.py >}}
+
+```
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| viewerHeight: 520
+
+{{< include /../code/demos/app-02-intro_ui.py >}}
+
+```
+
+:::

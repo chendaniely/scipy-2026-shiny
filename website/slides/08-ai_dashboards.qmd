@@ -1,0 +1,133 @@
+---
+title: "AI + LLM Dashboards"
+---
+
+## Putting LLMs in Shiny apps
+
+Three patterns, increasing complexity:
+
+1. **Chat interface** — a conversational UI (`shinychat`)
+2. **Tool calling** — let the LLM take actions in your app
+3. **Data chat** — query your dataframe with natural language (`querychat`)
+
+## shinychat
+
+`shinychat` provides a ready-made chat UI component for Shiny:
+
+```python
+from shiny.express import ui
+from shinychat import chat_ui, chat_server
+from chatlas import ChatGithub
+
+ui.page_opts(title="My Chatbot")
+
+chat_ui("chat")
+
+@chat_server("chat")
+def _():
+    return ChatGithub(model="gpt-4.1", system_prompt="You are a helpful assistant.")
+```
+
+Docs: <https://posit-dev.github.io/shinychat/py/>
+
+## Demo: shinychat
+
+```{.python filename="code/03-llm/app-shinychat.py"}
+from shiny.express import ui
+from shinychat import chat_ui, chat_server
+from chatlas import ChatGithub
+
+ui.page_opts(title="Shiny Chatbot", fillable=True)
+
+chat_ui("chat", height="100%")
+
+@chat_server("chat")
+def _():
+    return ChatGithub(model="gpt-4.1")
+```
+
+## Chatting with your data
+
+What if users could ask questions about your dataset in plain English?
+
+`querychat` translates natural language → SQL → runs against a DuckDB table:
+
+```python
+import querychat
+import seaborn as sns
+
+tips = sns.load_dataset("tips")
+qc = querychat.init(tips, "tips")
+```
+
+Docs: <https://github.com/posit-dev/querychat>
+
+## Demo: querychat
+
+```python
+import querychat
+import seaborn as sns
+from shiny.express import ui
+
+tips = sns.load_dataset("tips")
+qc = querychat.init(tips, "tips",
+                    greeting="Ask me about the tips dataset!")
+
+ui.page_opts(title="Tips Q&A", fillable=True)
+querychat.chat_ui("chat")
+querychat.dataframe_ui("df")
+
+querychat.chat_server("chat", qc)
+querychat.dataframe_server("df", qc)
+```
+
+## Sidebot pattern
+
+Use an LLM to drive filters in a dashboard via natural language:
+
+- User types "show me only lunch orders over $20"
+- LLM translates to filter parameters
+- Dashboard updates reactively
+
+Template: `shiny create --mode core --github jcheng5/py-databot`
+
+## Demo: LLMs + Chat
+
+Generative AI shiny templates: <https://shiny.posit.co/py/templates/#generative-ai>
+
+- <https://shiny.posit.co/py/templates/basic-chatbot/>
+- <https://shiny.posit.co/py/templates/querychat/>
+- <https://shiny.posit.co/py/templates/sidebot/>
+
+## Exercise
+
+## SQL is a great communication layer
+
+Upcoming tool: ggsql <https://ggsql.org/>
+
+Trt it: <https://ggsql.org/wasm/>
+
+See also: Querychat + Vis docs: <https://posit-dev.github.io/querychat/py/visualize.html>
+
+
+::: {.columns}
+
+::: {.column}
+
+```
+VISUALISE FROM ggsql:penguins
+DRAW point
+    MAPPING
+      bill_dep AS x,
+      body_mass AS y,
+      species AS color
+```
+
+:::
+
+::: {.column}
+![](/img/ggsql-example.png)
+
+:::
+
+:::

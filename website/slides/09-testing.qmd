@@ -1,0 +1,125 @@
+---
+title: "Testing Shiny Apps"
+---
+
+## Why test?
+
+- Manual "click around and check" doesn't scale
+- Catch regressions before users do
+- Document expected behavior as executable code
+
+## Visual check + assert statements
+
+```{python}
+def my_add(x, y):
+    return x + y
+```
+
+```{python}
+my_add(3, 10)
+```
+
+
+```{python}
+assert my_add(3, 10) == 13
+```
+
+```{python}
+#| error: true
+
+assert my_add(3, 10) == 100
+```
+
+
+## Unit testing - pytest
+
+- Need to know a bit of how packages are set up
+
+## Python functions + Shiny
+
+- If you have a normal python function, you can still pass in reactive values as the arguments!
+    - Import your existing functions / modules
+    - Use other packages
+- As long as you don't plan on having reactive calls _inside_ the function body
+    - Remember: reactive things must happen inside a reactive context
+
+- `pytest` is the package / tool to do unit testing
+
+## Playwright - end-to-end testing
+
+Playwright is a modern browser automation library.
+
+Shiny provides a **Playwright controller** that understands Shiny-specific widgets:
+
+```python
+from playwright.sync_api import Page
+from shiny.playwright import controller
+from shiny.run import ShinyAppProc
+```
+
+Docs: <https://shiny.posit.co/py/docs/testing.html>
+
+## Test structure
+
+```python
+from pathlib import Path
+from playwright.sync_api import Page
+from shiny.playwright import controller
+from shiny.run import run_shiny_app
+
+APP = Path(__file__).parent / "app.py"
+
+def test_species_filter(page: Page):
+    with run_shiny_app(str(APP)) as app:
+        page.goto(app.url)
+
+        radio = controller.InputRadioButtons(page, "species")
+        text  = controller.OutputText(page, "n_rows")
+
+        radio.expect_choices(["Adelie", "Chinstrap", "Gentoo"])
+        radio.set("Chinstrap")
+        text.expect_value("68 penguins")
+```
+
+## Running tests
+
+```
+code/demos/testing/
+├── app.py          ← the Shiny app
+└── test_app.py     ← tests
+```
+
+```bash
+cd code/demos/testing
+pytest
+```
+
+Or from the repo root:
+
+```bash
+pytest code/demos/testing/
+```
+
+## Controllers
+
+Shiny provides typed controllers for every input and output type:
+
+```python
+# Inputs
+controller.InputRadioButtons(page, "id")
+controller.InputSlider(page, "id")
+controller.InputSelect(page, "id")
+controller.InputCheckboxGroup(page, "id")
+
+# Outputs
+controller.OutputPlot(page, "id")
+controller.OutputText(page, "id")
+controller.OutputDataFrame(page, "id")
+```
+
+## What to test
+
+- Default state renders without errors
+- Each input change produces the expected output change
+- Edge cases: empty selections, out-of-range values
+- Error messages appear when they should

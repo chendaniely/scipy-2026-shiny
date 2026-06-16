@@ -1,0 +1,209 @@
+---
+title: Exercises
+---
+
+## Exercise 1 - Basic App {#ex1}
+
+::: {.exercise}
+Open `code/demos/app-01-intro.py` file in the [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/demos) and run it.
+
+Before doing the exercise make a copy of the file for your solution.
+
+Try out any one of the following changes:
+
+1. Add a third input — a checkbox group to filter by species — and connect it to the plot
+2. Try `ui.input_slider()` to filter by one of the numeric columns
+3. Add a `@render.text` output showing how many points are currently displayed
+:::
+
+::: {.callout-note collapse="true"}
+## Solution 1a — species checkbox
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+{{< include /../code/exercise_solutions/app-ex01a-species_checkbox.py >}}
+```
+
+:::
+
+::: {.callout-note collapse="true"}
+## Solution 1b — body mass slider
+
+
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+{{< include /../code/exercise_solutions/app-ex01b-slider.py >}}
+```
+
+:::
+
+::: {.callout-note collapse="true"}
+## Solution 1c — full solution (checkbox + count)
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+{{< include /../code/exercise_solutions/app-ex01c-full.py >}}
+```
+
+:::
+
+## Exercise 2 - Reactivity {#ex2}
+
+::: {.exercise}
+
+**Part A** — open `code/demos/app-03-reactivity.py` file in the [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/demos).
+
+Before doing the exercise make a copy of the file for your solution.
+
+1. Run it and confirm the scatter plot and count update together
+2. Add a `print("filtering...")` inside `filtered()` — change Species and verify it prints only once
+
+**Part B** — open `code/demos/app-04-reactivity_chained.py` file in the [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/demos).
+
+Before doing the exercise make a copy of the file for your solution.
+
+1. Run it and explore all three outputs (plot, count, table)
+2. Change Y Axis — notice count does *not* change (filtered is still cached)
+3. Add a `print` to each calc to confirm which ones re-run for each input change
+:::
+
+## Exercise 3 - Tips {#ex3}
+
+::: {.exercise}
+
+Take a look at the `code/exercise/app-ex03-tips.py` file in the [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/exercises).
+
+Before doing the exercise make a copy of the file for your solution.
+
+1. Replace the plotly scatter plot with the altair scatter plot below.
+2. Wrap the scatter plot in a function, `scatterplot()`,
+3. Wse the appropriate output component decorator, `@render_altair`
+
+```{.python}
+data = ____ # use the reactive calc dataframe here
+points = alt.Chart(data).mark_circle().encode(
+    x=alt.X("total_bill", title="Total bill"),
+    y=alt.Y("tip", title="Tip"),
+    tooltip=[
+        alt.Tooltip("total_bill:Q", title="Total bill", format=".2f"),
+        alt.Tooltip("tip:Q", title="Tip", format=".2f"),
+    ],
+)
+trend = points.transform_regression(
+    "total_bill", "tip", method="linear"
+).mark_line()
+zoom = alt.selection_interval(bind="scales")
+return (points + trend).add_params(zoom).properties(width="container")
+```
+
+:::
+
+::: {.callout-note collapse="true"}
+## Solution 3
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+{{< include /../code/exercise_solutions/app-ex03-tips.py >}}
+```
+
+:::
+
+## Exercise 4 - Tips + Button {#ex4}
+
+::: {.exercise}
+
+Take a look at the `code/exercises/app-ex03-tips.py` file in the [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/exercises).
+
+Before doing the exercise make a copy of the file for your solution.
+
+1. Add a `ui.input_action_button()` component for the action button.
+    - You can use the `"action_button"` id.
+2. Create a `reset_filters()` function that uses the `ui.update_slider()` and `ui.update_checkbox_group()` functions to reset the filter values to their default state.
+
+```python
+def reset_filters():
+    ui.update_slider(
+        "slider",
+        value=[tips.total_bill.min(), tips.total_bill.max()],
+    )
+    ui.update_checkbox_group(
+        "checkbox_group",
+        selected=["Lunch", "Dinner"],
+    )
+```
+
+3. Decorate the function with a `@reactive.event(input.action_button)` call.
+4. Decorate the function __again__ with a `@reactive.effect` call.
+
+:::
+
+::: {.callout-note collapse="true"}
+## Solution 4
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+{{< include /../code/exercise_solutions/app-ex04-button.py >}}
+```
+
+:::
+
+
+## Exercise 5 - AI Dashboards {#ex5}
+
+Let's start from the solution in the previous exercise
+`code/exercise_solutions/app-ex04-button.py`.
+You can find the original code in the [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/exercise_solutions).
+
+We are going to convert this app from having multiple filters into an AI Chatbot using `querychat`.
+
+1. Import the querychat library and create the `QueryChat` object using the existing `tips` dataset
+
+```python
+from querychat.express import QueryChat
+
+qc = QueryChat(tips, "tips", client="github/gpt-4.1")
+```
+
+2. Replace all the sidebar UI elements with the filters (including button) with the querychat sidebar
+
+```python
+qc.sidebar()
+```
+
+3. Finally, replace the filtered dataframe object with the filtered dataframe returned from querychat
+
+```python
+qc.df()
+```
+
+::: {.callout-note collapse="true"}
+## Solution 4
+
+Will not work in shinylive, run locally.
+
+```{.python}
+
+{{< include /../code/exercise_solutions/app-ex05-querychat.py >}}
+```
+
+:::

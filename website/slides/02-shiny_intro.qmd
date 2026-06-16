@@ -1,0 +1,97 @@
+---
+title: "Introduction to Shiny"
+---
+
+## What is a Shiny app?
+
+Each Shiny app involves:
+
+1. A web page that users interact with
+2. A Python process that watches the page and responds to user events
+
+The Python process runs your code and sends results back to the browser.
+
+## Components
+
+Each Shiny app consists of:
+
+1. **Input** components — widgets the user can interact with (sliders, dropdowns, checkboxes, ...)
+    - <https://shiny.posit.co/py/components/#inputs/>
+2. **Output** components — things Shiny renders and displays (plots, tables, text, ...)
+    - <https://shiny.posit.co/py/components/#outputs/>
+3. **Layout** — how the components are laid out on the page (columns, sidebar, boxes, cards, ...)
+    - <https://shiny.posit.co/py/layouts/>
+
+## Example application
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 600
+
+{{< include /../code/demos/app-01-intro.py >}}
+```
+
+
+## Reactivity
+
+When an input changes, Shiny reacts by rebuilding the outputs that depend on it —
+and _only those outputs_.
+
+No callbacks. No manual refresh. No cache management.
+
+## Spreadsheet analogy
+
+Think of a spreadsheet:
+
+- **Inputs** = cells you type values into
+- **Outputs** = formula cells
+- **Instructions** = the formulas
+
+When you change a value cell, only the formula cells that depend on it recalculate.
+
+Shiny works the same way.
+
+### Other reactive tools
+
+- Pluto Notebooks: <https://plutojl.org//>
+- Marimo Notebooks: <https://marimo.io/>
+
+## Key features
+
+- Easy enough for prototypes
+- Efficient enough to handle complexity
+- Scales from a quick script to a production-ready app
+
+## Why Shiny for Python?
+
+Shiny lets you build reactive web apps without worrying about:
+
+- cache
+- state
+- callbacks
+- ...or even HTML, CSS, and JavaScript
+
+## Shiny Express vs Shiny Core
+
+::: {.callout-important}
+Shiny for Python has two syntaxes for writing the same apps.
+There is full feature parody between the 2 syntax modes.
+
+1. **Shiny Express** — simpler syntax (think [Streamlit](https://streamlit.io/))
+2. **Shiny Core** — more explicit, closer to [Shiny for R](https://shiny.posit.co/) and [Dash](https://dash.plotly.com/)
+:::
+
+Today we'll use **Shiny Express**.
+
+## Running a Shiny app
+
+```bash
+shiny run app.py
+```
+
+Or in Positron / VS Code: click the **Run App** button in the editor toolbar.
+
+Open URL:Port (e.g., <http://127.0.0.1:8000>) in your browser.
+
+![](/img/positron-shiny-run-annotated.png)

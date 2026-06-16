@@ -1,0 +1,14 @@
+---
+title: "Show off your data"
+subtitle: "Interactive dashboards in Python"
+---
+
+<!-- TODO: Add SciPy 2026 date, time, and room once confirmed -->
+📅 TBD\
+🕘 TBD\
+🏢 TBD\
+🔗 <https://www.scipy2026.scipy.org/>
+
+## Schedule
+
+{{< include /_schedule.qmd >}}

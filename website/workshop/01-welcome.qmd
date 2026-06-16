@@ -1,0 +1,13 @@
+---
+title: "Welcome + Introduction"
+---
+
+:::{.column-page-inset-right}
+
+{{< revealjs file="/slides/01-welcome.html" height="500px" class="ratio ratio-16x9" >}}
+
+:::
+
+# Slide Contents
+
+{{< include /slides/01-welcome.qmd >}}

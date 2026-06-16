@@ -1,0 +1,79 @@
+---
+title: "Deploying Your Application"
+---
+
+## Options
+
+| Platform | Cost | Notes |
+|---|---|---|
+| [Posit Connect Cloud](https://connect.posit.cloud) | Free tier | Easiest, GitHub-based deploy |
+| [Render.com](https://render.com/) | Free tier | PaaS managed web service deployment |
+| [shinyapps.io](https://www.shinyapps.io) | Free tier | Deprecated - Move to Posit Cloud after 2026 |
+| [Posit Connect](https://posit.co/products/enterprise/connect) (self-hosted) | Paid | Enterprise, on-prem |
+| [Shinylive](https://shiny.posit.co/py/docs/shinylive.html) | Free | Runs entirely in the browser (no server) |
+
+## `requirements.txt` is required
+
+Posit Connect Cloud installs packages from `requirements.txt` before running your app.
+
+```{.text filename="requirements.txt"}
+shiny
+palmerpenguins
+plotnine
+pandas
+```
+
+If a package isn't listed, the deployed app will crash with an `ImportError`.
+
+## Deploy to Posit Connect Cloud
+
+1. Go to <https://connect.posit.cloud> and sign in with GitHub
+2. Click **New Content** → **Import from GitHub**
+3. Select your repository and branch
+4. Set the **Entry point** to your `app.py`
+5. Click **Deploy**
+
+That's it. Posit Connect Cloud handles the environment.
+
+## Deploy with the publish button
+
+In Positron or VS Code with the Shiny extension:
+
+1. Open your `app.py`
+2. Click the **Publish** button in the editor toolbar
+3. Follow the prompts to connect your account
+
+## Updating a deployed app
+
+Push to the connected branch — Connect Cloud redeploys automatically.
+
+Or click **Redeploy** in the Connect Cloud dashboard.
+
+## Shinylive: no server required
+
+Compile your app to WebAssembly and host it as a static site:
+
+```bash
+shinylive export app/ site/
+```
+
+Limitations:
+
+- No file I/O, no database connections
+- Package support is limited to what Pyodide supports
+- Startup is slower (downloads Python + packages to browser)
+
+Great for: demos, tutorials, sharing one-off apps.
+
+## Exercise + Break (Back at 11:00)
+
+::: {.exercise}
+
+1. Create a new github repository
+2. Copy your first app code into an app.py file
+1. Make sure your repository has a `requirements.txt` file
+2. Push the `app.py` and `requirements.txt` to GitHub
+3. Deploy it to Posit Connect Cloud
+
+<https://docs.posit.co/connect-cloud/how-to/python/shiny-python.html>
+:::

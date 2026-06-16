@@ -1,0 +1,374 @@
+---
+title: "Shiny Reactivity"
+execute: 
+  echo: false
+---
+
+## Further reading
+
+```{=html}
+<style>
+.nodeLabel > p { white-space: normal; }
+</style>
+```
+
+- [Gordon Shotwell & Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023](https://www.youtube.com/watch?v=9RC8PobU5oQ)
+  - Slides: <https://github.com/gshotwell/shiny-algorithm>
+- [Joe Cheng — Shiny: Data-centric web applications in Python | PyData Seattle 2023](https://www.youtube.com/watch?v=0ovCLxttJGE)
+
+## What makes Shiny special?
+
+**Reactivity** — outputs update automatically when their inputs change, with no callbacks.
+
+### The reactive graph
+
+Shiny builds and maintains a dependency graph for your app:
+
+:::: {.columns}
+::: {.column width="33%"}
+**Rectangle**
+
+Reactive input
+:::
+::: {.column width="33%"}
+**Hexagon**
+
+`@reactive.calc`
+:::
+::: {.column width="33%"}
+**Circle**
+
+Reactive output
+:::
+::::
+
+# Part 1: How Shiny evaluates your app {.center}
+
+## The app's reactive graph
+
+:::: {.columns}
+::: {.column width="50%"}
+```{mermaid}
+%%| fig-width: 4
+flowchart TD
+  Sp[Species] --> Fi{{filtered}}
+  X[X Axis] --> Pl((plot))
+  Y[Y Axis] --> Pl
+  Fi --> Pl
+  Fi --> Co((count))
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  linkStyle 0,1,2,3,4 display:none
+```
+:::
+::: {.column width="50%"}
+- **Species** — checkbox group
+- **X Axis / Y Axis** — dropdowns
+- **filtered** — `@reactive.calc`
+- **plot** — `@render.plot`
+- **count** — `@render.text`
+:::
+::::
+
+## Shiny is lazy — nothing runs until needed
+
+:::: {.columns}
+::: {.column width="50%"}
+```{mermaid}
+%%| fig-width: 4
+flowchart TD
+  Sp[Species] --> Fi{{filtered}}
+  X[X Axis] --> Pl((plot)):::active
+  Y[Y Axis] --> Pl
+  Fi --> Pl
+  Fi --> Co((count)):::active
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  linkStyle 0,1,2,3,4 display:none
+```
+:::
+::: {.column width="50%"}
+Both outputs need to render.
+
+Shiny runs them and tracks every reactive value they read.
+:::
+::::
+
+## plot and count both read filtered
+
+:::: {.columns}
+::: {.column width="50%"}
+```{mermaid}
+%%| fig-width: 4
+flowchart TD
+  Sp[Species] --> Fi{{filtered}}:::active
+  X[X Axis] --> Pl((plot))
+  Y[Y Axis] --> Pl
+  Fi --> Pl
+  Fi --> Co((count))
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  linkStyle 0,1,2 display:none
+```
+:::
+::: {.column width="50%"}
+`filtered()` is called by both outputs.
+
+Shiny runs it **once**, caches the result, and records:
+
+- **filtered → plot**
+- **filtered → count**
+:::
+::::
+
+## filtered reads Species; plot reads X and Y
+
+:::: {.columns}
+::: {.column width="50%"}
+```{mermaid}
+%%| fig-width: 4
+flowchart TD
+  Sp[Species]:::active --> Fi{{filtered}}
+  X[X Axis]:::active --> Pl((plot))
+  Y[Y Axis]:::active --> Pl
+  Fi --> Pl
+  Fi --> Co((count))
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+```
+:::
+::: {.column width="50%"}
+All dependencies recorded. The full graph is built.
+
+Shiny now **watches** it — any change triggers only the affected branch.
+:::
+::::
+
+## Species changes — invalidation cascades
+
+:::: {.columns}
+::: {.column width="50%"}
+```{mermaid}
+%%| fig-width: 4
+flowchart TD
+  Sp[Species]:::active --> Fi{{filtered}}:::invalid
+  X[X Axis] --> Pl((plot)):::invalid
+  Y[Y Axis] --> Pl
+  Fi --> Pl
+  Fi --> Co((count)):::invalid
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+```
+:::
+::: {.column width="50%"}
+Species changes → **filtered** cache discarded → **plot** and **count** marked stale.
+
+X Axis and Y Axis are untouched — only the affected branch re-runs.
+
+`filtered()` executes **once**. Both outputs share the new result.
+:::
+::::
+
+# Part 2: Sharing an intermediate dataframe {.center}
+
+## The problem without `@reactive.calc`
+
+```python
+@render.plot
+def plot():
+    sel = dat[dat["species"].isin(input.species())]  # filter #1
+    return ggplot(sel, aes(x=input.x(), y=input.y(), color="species")) + ...
+
+@render.text
+def count():
+    sel = dat[dat["species"].isin(input.species())]  # filter #2 — redundant!
+    return f"{len(sel)} penguins selected"
+```
+
+Species changes → the filter runs **twice**.
+With more outputs this keeps getting worse.
+
+## The solution: `@reactive.calc`
+
+```python
+from shiny import reactive
+
+@reactive.calc          # <1>
+def filtered():
+    return dat[dat["species"].isin(input.species())]
+
+@render.plot
+def plot():             # <2>
+    return ggplot(filtered(), aes(x=input.x(), y=input.y(), color="species")) + ...
+
+@render.text
+def count():            # <2>
+    return f"{len(filtered())} penguins selected"
+```
+
+1. `@reactive.calc` allows you to create `filtered()` - it runs once per change and caches the result
+2. Both outputs call `filtered()` — they get the cached dataframe
+
+# Part 3: Chaining reactive calcs {.center}
+
+
+## Adding a second calc downstream
+
+What if we also want a **summary table** of per-species statistics?
+
+The summary depends on:
+
+- `filtered()` — which rows to include
+- `input.y()` — which column to summarise
+
+Rather than re-filtering inside the table render, we build a **second calc** that sits downstream of the first.
+
+## The chained reactive graph
+
+:::: {.columns}
+::: {.column width="50%"}
+```{mermaid}
+%%| fig-width: 4
+flowchart TD
+  Sp[Species] --> Fi{{filtered}}
+  Y[Y Axis] --> Pl((plot))
+  X[X Axis] --> Pl
+  Y --> Su{{summary}}
+  Fi --> Pl
+  Fi --> Co((count))
+  Fi --> Su
+  Su --> Ta((table))
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
+```
+:::
+::: {.column width="50%"}
+- **filtered** — species filter (as before)
+- **summary** — per-species stats for the selected Y column
+- **table** — `@render.data_frame` fed by summary
+
+`summary` depends on **both** filtered *and* Y Axis.
+:::
+::::
+
+## Y Axis changes — surgical invalidation
+
+:::: {.columns}
+::: {.column width="50%"}
+```{mermaid}
+%%| fig-width: 4
+flowchart TD
+  Sp[Species] --> Fi{{filtered}}:::cached
+  Y[Y Axis]:::active --> Pl((plot)):::invalid
+  X[X Axis] --> Pl
+  Y --> Su{{summary}}:::invalid
+  Fi --> Pl
+  Fi --> Co((count)):::cached
+  Fi --> Su
+  Su --> Ta((table)):::invalid
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
+```
+:::
+::: {.column width="50%"}
+Y Axis changes → **plot**, **summary**, and **table** re-run.
+
+**filtered** and **count** are unaffected — Species didn't change, so that branch stays cached.
+
+Shiny re-runs the minimum necessary.
+:::
+::::
+
+## Species changes — cascade through both calcs
+
+:::: {.columns}
+::: {.column width="50%"}
+```{mermaid}
+%%| fig-width: 4
+flowchart TD
+  Sp[Species]:::active --> Fi{{filtered}}:::invalid
+  Y[Y Axis] --> Pl((plot)):::invalid
+  X[X Axis] --> Pl
+  Y --> Su{{summary}}:::invalid
+  Fi --> Pl
+  Fi --> Co((count)):::invalid
+  Fi --> Su
+  Su --> Ta((table)):::invalid
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
+```
+:::
+::: {.column width="50%"}
+Species changes → **filtered** cache discarded → everything downstream is stale.
+
+`filtered()` runs **once**. `summary()` runs **once** using the new filtered result. All four outputs update.
+:::
+::::
+
+## The chained code
+
+```python
+@reactive.calc
+def filtered():                            # <1>
+    return dat[dat["species"].isin(input.species())]
+
+@reactive.calc
+def summary():                             # <2>
+    return (
+        filtered()
+        .groupby("species")[input.y()]
+        .agg(Mean="mean", Median="median", SD="std")
+        .round(2)
+        .reset_index()
+    )
+
+@render.plot
+def plot():
+    return ggplot(filtered(), aes(x=input.x(), y=input.y(), color="species")) + ...
+
+@render.text
+def count():
+    return f"{len(filtered())} penguins selected"
+
+@render.data_frame
+def table():
+    return summary()                       # <3>
+```
+
+1. First calc: filters rows
+2. Second calc: derives stats from `filtered()` — reads Y Axis too
+3. Table only calls `summary()` — no filtering logic here
+
+## When to use what
+
+| Need | Tool |
+|---|---|
+| Filter / transform shared by multiple outputs | `@reactive.calc` |
+| Derive from another calc (chain) | `@reactive.calc` calling another calc |
+| Trigger side effects (write file, log, etc.) | `@reactive.effect` |
+| Store mutable state | `reactive.value` |
+| Render a plot / table / text | `@render.*` |
+
+## Demo + Exercises
+
+
+

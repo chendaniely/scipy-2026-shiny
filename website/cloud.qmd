@@ -1,0 +1,60 @@
+---
+title: "Run in the Cloud"
+---
+
+No local install required — pick a platform below and you'll have a working Python environment in minutes.
+
+| Platform | Launch |
+|---|---|
+| GitHub Codespaces | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/chendaniely/scipy-2026-shiny) |
+| MyBinder | [![Launch on Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/chendaniely/scipy-2026-shiny/HEAD) |
+| Posit Cloud | See instructions below |
+
+## GitHub Codespaces
+
+Click the badge above (or go to **Code → Codespaces → Create** on the GitHub repo page).
+The devcontainer installs Python 3.12, Quarto 1.10.3, and all required packages automatically.
+Once ready, run an app from the terminal:
+
+```bash
+shiny run code/app-01-intro.py
+```
+
+The port is forwarded automatically and a browser preview opens.
+
+## MyBinder
+
+Click the Binder badge above. The first launch takes a few minutes to build the image;
+subsequent launches are fast.
+
+Once in JupyterLab, open a terminal (**File → New → Terminal**) and run:
+
+```bash
+shiny run code/app-01-intro.py --host 0.0.0.0 --port 8000
+```
+
+Binder runs on a remote server, so `127.0.0.1` won't work in your browser.
+Take your current Binder URL, drop everything from `/lab` onward, and add `/proxy/8000/`:
+
+```
+# Your Binder URL looks like:
+https://hub.mybinder.ovh/user/some-random-id/lab/tree/...
+
+# Change it to:
+https://hub.mybinder.ovh/user/some-random-id/proxy/8000/
+```
+
+::: {.callout-important}
+Keep the terminal open while viewing the app.
+Closing it stops the server.
+:::
+
+## Posit Cloud
+
+1. Go to [posit.cloud](https://posit.cloud) and create a **New Project → From Git Repository**
+2. Enter `https://github.com/chendaniely/scipy-2026-shiny`
+3. Quarto is pre-installed; install Python packages in the terminal:
+
+```bash
+pip install -r requirements.txt
+```

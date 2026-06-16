@@ -1,0 +1,120 @@
+---
+title: "Your Next Application"
+---
+
+## Beyond the basics
+
+Your first app had one input and one output.
+
+Real dashboards have:
+
+- Layout structure (sidebars, columns, tabs)
+    - `shiny.express.ui.*()`
+- Multiple coordinated outputs
+- Summary statistics (value boxes)
+    - `ui.value_box()`
+- Shared reactive computations
+    - `@reactive.calc`
+- Interactive plots (jupyter widgets)
+    - `shinywidgets.render_*()`
+
+## Example application
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| layout: vertical
+#| viewerHeight: 600
+
+{{< include /../code/demos/app-05-tips.py >}}
+
+## file: requirements.txt
+ridgeplot
+```
+
+## Layout components
+
+```python
+{{< include /../code/demos/app-05a-tips-layout.py >}}
+```
+
+
+
+## Value boxes
+
+<https://shiny.posit.co/py/components/outputs/value-box/>
+
+```python
+from shiny.express import render, ui
+from faicons import icon_svg
+
+with ui.value_box(showcase=icon_svg("dollar-sign")):
+    "Average bill"
+
+    @render.text
+    def avg_bill():
+        return f"${filtered()['total_bill'].mean():.2f}"
+```
+
+## `@reactive.calc` for shared filtering
+
+<https://shiny.posit.co/py/docs/reactive-foundations.html#calculations>
+
+```python
+from shiny import reactive
+
+@reactive.calc
+def filtered():
+    df = tips.copy()
+    df = df[df["total_bill"] <= input.bill()]
+    df = df[df["time"].isin(input.time())]
+    return df
+```
+
+All outputs call `filtered()` — the filter runs once per change.
+
+## Full app structure
+
+```python
+ui.page_opts(title="Tips Dashboard", fillable=True)
+
+with ui.sidebar():
+    # inputs ...
+
+@reactive.calc
+def filtered():
+    # shared data transform ...
+
+with ui.layout_columns():
+    with ui.value_box(...):
+        @render.text
+        def avg_bill(): ...
+
+    with ui.card():
+        @render.plot
+        def scatter(): ...
+
+    with ui.card():
+        @render.data_frame
+        def table(): ...
+```
+
+## Pausing computations
+
+Sometimes you want an action to wait until you say so (e.g., do something when I push a button)
+
+- Using user text input to filter
+- Adjusting multiple filters
+
+We can use a `ui.innput_action_buttion()` input component to trigger a reactive event.
+
+<https://shiny.posit.co/py/components/inputs/action-button/>
+
+## Parts of an action button
+
+1. UI input component: `ui.innput_action_buttion()`
+2. A function that gets called when the button gets clicked
+    - `@reactive.event(input.<ID>)` decorator which button triggers which function
+    - `@reactive.effect` decorator a button click doesn't return a result, it creates a side effect
+
+## Exercise

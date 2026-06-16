@@ -1,0 +1,169 @@
+---
+title: "Your First Application"
+---
+
+## Development approach
+
+Start **static**, then add interactivity.
+
+::: {.incremental}
+1. Write the visualization you want
+2. Identify what the user should be able to change
+3. Wrap inputs around those variables
+4. Connect inputs to outputs
+:::
+
+## Step 1 — static plot
+
+```{python}
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+
+dat = load_penguins().dropna()
+
+(
+    ggplot(dat, aes(x="bill_depth_mm", y="body_mass_g", color="species"))
+    + geom_point(alpha=0.7)
+    + theme_minimal()
+)
+```
+
+## Step 1b - parameterize your output
+
+```{python}
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+
+dat = load_penguins().dropna()
+
+x = "bill_depth_mm"
+y = "body_mass_g"
+
+(
+    ggplot(dat, aes(x=x, y=y, color="species"))
+    + geom_point(alpha=0.7)
+    + theme_minimal()
+)
+```
+
+## Step 2 — add Shiny imports
+
+```{python}
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+from shiny.express import input, render, ui  # <1>
+
+dat = load_penguins().dropna()
+```
+
+1. Import `input`, `render`, and `ui` from `shiny.express`
+
+## Step 3 — discover the axis choices
+
+```{python}
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+from shiny.express import input, render, ui
+
+dat = load_penguins().dropna()
+num_cols = dat.select_dtypes("float64").columns.tolist()  # <1>
+```
+
+1. Automatically finds all numeric columns — no hard-coded list needed
+
+You can still use your normal Python skills!
+
+## Step 4 — add inputs
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+from shiny.express import input, render, ui
+
+dat = load_penguins().dropna()
+num_cols = dat.select_dtypes("float64").columns.tolist()
+
+ui.input_select("x", "", num_cols, selected="bill_depth_mm")
+ui.input_select("y", "", num_cols, selected="body_mass_g")
+```
+
+1. Dropdown for the X axis — input ID is `"x"`
+2. Dropdown for the Y axis — input ID is `"y"`
+
+## Step 5 — make the output reactive
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+from shiny.express import input, render, ui
+
+dat = load_penguins().dropna()
+num_cols = dat.select_dtypes("float64").columns.tolist()
+
+ui.input_select("x", "", num_cols, selected="bill_depth_mm")
+ui.input_select("y", "", num_cols, selected="body_mass_g")
+
+
+@render.plot
+def plot():
+    return (
+        ggplot(dat, aes(x=input.x(), y=input.y(), color="species"))
+        + geom_point(alpha=0.7)
+        + theme_minimal()
+    )
+```
+
+1. `@render.plot` tells Shiny this function produces a plot
+2. `input.x()` and `input.y()` read the current dropdown selections
+
+## What just happened?
+
+- `input.x()` and `input.y()` are **reactive values** — they change when the user picks
+    - `input.*()` - signals reading from an input component
+- `@render.plot` creates a **reactive context** — it re-runs whenever its inputs change
+    - `@render*` - signals an output component
+- Both dropdowns drive the same output with no extra wiring
+
+Shiny tracked both dependencies automatically.
+
+:::{.callout-important}
+Reactive behaviors must stay within a reactive context.
+:::
+
+- We will talk about `@reactive.*()` values for reactive intermediates
+
+## Output without reactive context
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+from shiny.express import input, render, ui
+
+dat = load_penguins().dropna()
+num_cols = dat.select_dtypes("float64").columns.tolist()
+
+ui.input_select("x", "", num_cols, selected="bill_depth_mm")
+ui.input_select("y", "", num_cols, selected="body_mass_g")
+
+
+(
+    ggplot(dat, aes(x=input.x(), y=input.y(), color="species"))
+    + geom_point(alpha=0.7)
+    + theme_minimal()
+)
+```
+
+## The complete app
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+
+{{< include /../code/demos/app-01-intro.py >}}
+```
