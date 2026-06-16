@@ -57,9 +57,9 @@ flowchart TD
   Fi --> Pl
   Fi --> Co((count))
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
   linkStyle 0,1,2,3,4 display:none
 ```
 :::
@@ -85,9 +85,9 @@ flowchart TD
   Fi --> Pl
   Fi --> Co((count)):::active
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
   linkStyle 0,1,2,3,4 display:none
 ```
 :::
@@ -111,9 +111,9 @@ flowchart TD
   Fi --> Pl
   Fi --> Co((count))
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
   linkStyle 0,1,2 display:none
 ```
 :::
@@ -140,9 +140,9 @@ flowchart TD
   Fi --> Pl
   Fi --> Co((count))
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
 ```
 :::
 ::: {.column width="50%"}
@@ -165,9 +165,9 @@ flowchart TD
   Fi --> Pl
   Fi --> Co((count)):::invalid
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
 ```
 :::
 ::: {.column width="50%"}
@@ -249,10 +249,10 @@ flowchart TD
   Fi --> Su
   Su --> Ta((table))
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold
 ```
 :::
 ::: {.column width="50%"}
@@ -280,10 +280,10 @@ flowchart TD
   Fi --> Su
   Su --> Ta((table)):::invalid
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold
 ```
 :::
 ::: {.column width="50%"}
@@ -311,10 +311,10 @@ flowchart TD
   Fi --> Su
   Su --> Ta((table)):::invalid
 
-  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
-  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
+  classDef default fill:#f0f0f0,color:#333333,stroke:#999999
+  classDef active fill:#1976D2,color:#FFFFFF,font-weight:bold
+  classDef invalid fill:#D32F2F,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#7B1FA2,color:#FFFFFF,font-weight:bold
 ```
 :::
 ::: {.column width="50%"}

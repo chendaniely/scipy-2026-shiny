@@ -7,7 +7,7 @@ toc: false
 
 ::: {.column}
 
-![](img/Daniel%20Chen.png){width="90%"}
+![](img/placeholder.png){width="90%"}
 
 :::
 
