@@ -91,300 +91,124 @@
     "text": "Posit Cloud\n\nGo to posit.cloud and create a New Project → From Git Repository\nEnter https://github.com/chendaniely/scipy-2026-shiny\nQuarto is pre-installed; install Python packages in the terminal:\n\npip install -r requirements.txt"
   },
   {
-    "objectID": "workshop/02-shiny_intro.html",
-    "href": "workshop/02-shiny_intro.html",
-    "title": "Introduction to Shiny",
+    "objectID": "workshop/09-testing.html",
+    "href": "workshop/09-testing.html",
+    "title": "Testing",
     "section": "",
     "text": "View slides in full screen",
     "crumbs": [
       "Home",
-      "Introduction to Shiny"
+      "Testing"
     ]
   },
   {
-    "objectID": "workshop/02-shiny_intro.html#title-introduction-to-shiny",
-    "href": "workshop/02-shiny_intro.html#title-introduction-to-shiny",
-    "title": "Introduction to Shiny",
-    "section": "title: “Introduction to Shiny”",
-    "text": "title: “Introduction to Shiny”",
+    "objectID": "workshop/09-testing.html#title-testing-shiny-apps",
+    "href": "workshop/09-testing.html#title-testing-shiny-apps",
+    "title": "Testing",
+    "section": "title: “Testing Shiny Apps”",
+    "text": "title: “Testing Shiny Apps”",
     "crumbs": [
       "Home",
-      "Introduction to Shiny"
+      "Testing"
     ]
   },
   {
-    "objectID": "workshop/02-shiny_intro.html#what-is-a-shiny-app",
-    "href": "workshop/02-shiny_intro.html#what-is-a-shiny-app",
-    "title": "Introduction to Shiny",
-    "section": "What is a Shiny app?",
-    "text": "What is a Shiny app?\nEach Shiny app involves:\n\nA web page that users interact with\nA Python process that watches the page and responds to user events\n\nThe Python process runs your code and sends results back to the browser.",
+    "objectID": "workshop/09-testing.html#why-test",
+    "href": "workshop/09-testing.html#why-test",
+    "title": "Testing",
+    "section": "Why test?",
+    "text": "Why test?\n\nManual “click around and check” doesn’t scale\nCatch regressions before users do\nDocument expected behavior as executable code",
     "crumbs": [
       "Home",
-      "Introduction to Shiny"
+      "Testing"
     ]
   },
   {
-    "objectID": "workshop/02-shiny_intro.html#components",
-    "href": "workshop/02-shiny_intro.html#components",
-    "title": "Introduction to Shiny",
-    "section": "Components",
-    "text": "Components\nEach Shiny app consists of:\n\nInput components — widgets the user can interact with (sliders, dropdowns, checkboxes, …)\n\nhttps://shiny.posit.co/py/components/#inputs/\n\nOutput components — things Shiny renders and displays (plots, tables, text, …)\n\nhttps://shiny.posit.co/py/components/#outputs/\n\nLayout — how the components are laid out on the page (columns, sidebar, boxes, cards, …)\n\nhttps://shiny.posit.co/py/layouts/",
+    "objectID": "workshop/09-testing.html#visual-check-assert-statements",
+    "href": "workshop/09-testing.html#visual-check-assert-statements",
+    "title": "Testing",
+    "section": "Visual check + assert statements",
+    "text": "Visual check + assert statements\n\ndef my_add(x, y):\n    return x + y\n\n\nmy_add(3, 10)\n\n13\n\n\n\nassert my_add(3, 10) == 13\n\n\nassert my_add(3, 10) == 100\n\n\n---------------------------------------------------------------------------\nAssertionError                            Traceback (most recent call last)\nCell In[4], line 1\n----&gt; 1 assert my_add(3, 10) == 100\n\nAssertionError:",
     "crumbs": [
       "Home",
-      "Introduction to Shiny"
+      "Testing"
     ]
   },
   {
-    "objectID": "workshop/02-shiny_intro.html#example-application",
-    "href": "workshop/02-shiny_intro.html#example-application",
-    "title": "Introduction to Shiny",
-    "section": "Example application",
-    "text": "Example application\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 600\n\nfrom palmerpenguins import load_penguins\nfrom plotnine import aes, geom_point, ggplot, theme_minimal\nfrom shiny.express import input, render, ui\n\ndat = load_penguins().dropna()\nnum_cols = dat.select_dtypes(\"float64\").columns.tolist()\n\nui.input_select(\"x\", \"\", num_cols, selected=\"bill_depth_mm\")\nui.input_select(\"y\", \"\", num_cols, selected=\"body_mass_g\")\n\n\n@render.plot\ndef plot():\n    return (ggplot(dat, aes(x=input.x(), y=input.y(), color=\"species\")) +\n        geom_point(alpha=0.7) +\n        theme_minimal()\n    )",
+    "objectID": "workshop/09-testing.html#unit-testing---pytest",
+    "href": "workshop/09-testing.html#unit-testing---pytest",
+    "title": "Testing",
+    "section": "Unit testing - pytest",
+    "text": "Unit testing - pytest\n\nNeed to know a bit of how packages are set up",
     "crumbs": [
       "Home",
-      "Introduction to Shiny"
+      "Testing"
     ]
   },
   {
-    "objectID": "workshop/02-shiny_intro.html#reactivity",
-    "href": "workshop/02-shiny_intro.html#reactivity",
-    "title": "Introduction to Shiny",
-    "section": "Reactivity",
-    "text": "Reactivity\nWhen an input changes, Shiny reacts by rebuilding the outputs that depend on it — and only those outputs.\nNo callbacks. No manual refresh. No cache management.",
+    "objectID": "workshop/09-testing.html#python-functions-shiny",
+    "href": "workshop/09-testing.html#python-functions-shiny",
+    "title": "Testing",
+    "section": "Python functions + Shiny",
+    "text": "Python functions + Shiny\n\nIf you have a normal python function, you can still pass in reactive values as the arguments!\n\nImport your existing functions / modules\nUse other packages\n\nAs long as you don’t plan on having reactive calls inside the function body\n\nRemember: reactive things must happen inside a reactive context\n\npytest is the package / tool to do unit testing",
     "crumbs": [
       "Home",
-      "Introduction to Shiny"
+      "Testing"
     ]
   },
   {
-    "objectID": "workshop/02-shiny_intro.html#spreadsheet-analogy",
-    "href": "workshop/02-shiny_intro.html#spreadsheet-analogy",
-    "title": "Introduction to Shiny",
-    "section": "Spreadsheet analogy",
-    "text": "Spreadsheet analogy\nThink of a spreadsheet:\n\nInputs = cells you type values into\nOutputs = formula cells\nInstructions = the formulas\n\nWhen you change a value cell, only the formula cells that depend on it recalculate.\nShiny works the same way.\n\nOther reactive tools\n\nPluto Notebooks: https://plutojl.org//\nMarimo Notebooks: https://marimo.io/",
+    "objectID": "workshop/09-testing.html#playwright---end-to-end-testing",
+    "href": "workshop/09-testing.html#playwright---end-to-end-testing",
+    "title": "Testing",
+    "section": "Playwright - end-to-end testing",
+    "text": "Playwright - end-to-end testing\nPlaywright is a modern browser automation library.\nShiny provides a Playwright controller that understands Shiny-specific widgets:\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import ShinyAppProc\nDocs: https://shiny.posit.co/py/docs/testing.html",
     "crumbs": [
       "Home",
-      "Introduction to Shiny"
+      "Testing"
     ]
   },
   {
-    "objectID": "workshop/02-shiny_intro.html#key-features",
-    "href": "workshop/02-shiny_intro.html#key-features",
-    "title": "Introduction to Shiny",
-    "section": "Key features",
-    "text": "Key features\n\nEasy enough for prototypes\nEfficient enough to handle complexity\nScales from a quick script to a production-ready app",
+    "objectID": "workshop/09-testing.html#test-structure",
+    "href": "workshop/09-testing.html#test-structure",
+    "title": "Testing",
+    "section": "Test structure",
+    "text": "Test structure\nfrom pathlib import Path\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import run_shiny_app\n\nAPP = Path(__file__).parent / \"app.py\"\n\ndef test_species_filter(page: Page):\n    with run_shiny_app(str(APP)) as app:\n        page.goto(app.url)\n\n        radio = controller.InputRadioButtons(page, \"species\")\n        text  = controller.OutputText(page, \"n_rows\")\n\n        radio.expect_choices([\"Adelie\", \"Chinstrap\", \"Gentoo\"])\n        radio.set(\"Chinstrap\")\n        text.expect_value(\"68 penguins\")",
     "crumbs": [
       "Home",
-      "Introduction to Shiny"
+      "Testing"
     ]
   },
   {
-    "objectID": "workshop/02-shiny_intro.html#why-shiny-for-python",
-    "href": "workshop/02-shiny_intro.html#why-shiny-for-python",
-    "title": "Introduction to Shiny",
-    "section": "Why Shiny for Python?",
-    "text": "Why Shiny for Python?\nShiny lets you build reactive web apps without worrying about:\n\ncache\nstate\ncallbacks\n…or even HTML, CSS, and JavaScript",
+    "objectID": "workshop/09-testing.html#running-tests",
+    "href": "workshop/09-testing.html#running-tests",
+    "title": "Testing",
+    "section": "Running tests",
+    "text": "Running tests\ncode/demos/testing/\n├── app.py          ← the Shiny app\n└── test_app.py     ← tests\ncd code/demos/testing\npytest\nOr from the repo root:\npytest code/demos/testing/",
     "crumbs": [
       "Home",
-      "Introduction to Shiny"
+      "Testing"
     ]
   },
   {
-    "objectID": "workshop/02-shiny_intro.html#shiny-express-vs-shiny-core",
-    "href": "workshop/02-shiny_intro.html#shiny-express-vs-shiny-core",
-    "title": "Introduction to Shiny",
-    "section": "Shiny Express vs Shiny Core",
-    "text": "Shiny Express vs Shiny Core\n\n\n\n\n\n\nImportant\n\n\n\nShiny for Python has two syntaxes for writing the same apps. There is full feature parody between the 2 syntax modes.\n\nShiny Express — simpler syntax (think Streamlit)\nShiny Core — more explicit, closer to Shiny for R and Dash\n\n\n\nToday we’ll use Shiny Express.",
+    "objectID": "workshop/09-testing.html#controllers",
+    "href": "workshop/09-testing.html#controllers",
+    "title": "Testing",
+    "section": "Controllers",
+    "text": "Controllers\nShiny provides typed controllers for every input and output type:\n# Inputs\ncontroller.InputRadioButtons(page, \"id\")\ncontroller.InputSlider(page, \"id\")\ncontroller.InputSelect(page, \"id\")\ncontroller.InputCheckboxGroup(page, \"id\")\n\n# Outputs\ncontroller.OutputPlot(page, \"id\")\ncontroller.OutputText(page, \"id\")\ncontroller.OutputDataFrame(page, \"id\")",
     "crumbs": [
       "Home",
-      "Introduction to Shiny"
+      "Testing"
     ]
   },
   {
-    "objectID": "workshop/02-shiny_intro.html#running-a-shiny-app",
-    "href": "workshop/02-shiny_intro.html#running-a-shiny-app",
-    "title": "Introduction to Shiny",
-    "section": "Running a Shiny app",
-    "text": "Running a Shiny app\nshiny run app.py\nOr in Positron / VS Code: click the Run App button in the editor toolbar.\nOpen URL:Port (e.g., http://127.0.0.1:8000) in your browser.",
+    "objectID": "workshop/09-testing.html#what-to-test",
+    "href": "workshop/09-testing.html#what-to-test",
+    "title": "Testing",
+    "section": "What to test",
+    "text": "What to test\n\nDefault state renders without errors\nEach input change produces the expected output change\nEdge cases: empty selections, out-of-range values\nError messages appear when they should",
     "crumbs": [
       "Home",
-      "Introduction to Shiny"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html",
-    "href": "workshop/07-ai_primer.html",
-    "title": "An AI + LLM Primer",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#before-we-start",
-    "href": "workshop/07-ai_primer.html#before-we-start",
-    "title": "An AI + LLM Primer",
-    "section": "Before we start",
-    "text": "Before we start\n\n\n\n\n\n\nWarning\n\n\n\nDO NOT send proprietary code, credentials, or sensitive data to any LLM unless you are certain your organization’s IT policies permit it.\nLocal models (Ollama) stay on your machine.",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#have-you-used",
-    "href": "workshop/07-ai_primer.html#have-you-used",
-    "title": "An AI + LLM Primer",
-    "section": "Have you used…",
-    "text": "Have you used…\n\n\nChatGPT?\nClaude?\nGemini?\nA local model via Ollama?",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#what-well-cover",
-    "href": "workshop/07-ai_primer.html#what-well-cover",
-    "title": "An AI + LLM Primer",
-    "section": "What we’ll cover",
-    "text": "What we’ll cover\nWe’ll treat LLMs as black boxes — you send text in, text comes back.\nGoal: demystify the API so you can wire one into a Shiny app.",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#llm-conversations-are-http-requests",
-    "href": "workshop/07-ai_primer.html#llm-conversations-are-http-requests",
-    "title": "An AI + LLM Primer",
-    "section": "LLM conversations are HTTP requests",
-    "text": "LLM conversations are HTTP requests\n\n\nEach interaction is a separate HTTP API call\nThe server is entirely stateless\n“Memory” of past messages is simulated by resending the entire history each time",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#example-conversation",
-    "href": "workshop/07-ai_primer.html#example-conversation",
-    "title": "An AI + LLM Primer",
-    "section": "Example conversation",
-    "text": "Example conversation\n\n\nWhat’s the capital of the moon?\n\n\nThere isn’t one.\n\n\nAre you sure?\n\n\nYes, I am sure.",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#example-request",
-    "href": "workshop/07-ai_primer.html#example-request",
-    "title": "An AI + LLM Primer",
-    "section": "Example request",
-    "text": "Example request\ncurl https://api.openai.com/v1/chat/completions \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"model\": \"gpt-4.1\",\n    \"messages\": [\n      {\"role\": \"system\", \"content\": \"You are a terse assistant.\"},\n      {\"role\": \"user\",   \"content\": \"What is the capital of the moon?\"}\n    ]\n  }'\n\nmodel: which model to use\nsystem: behind-the-scenes instructions\nuser: the user’s message",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#example-response-abridged",
-    "href": "workshop/07-ai_primer.html#example-response-abridged",
-    "title": "An AI + LLM Primer",
-    "section": "Example response (abridged)",
-    "text": "Example response (abridged)\n{\n  \"choices\": [{\n    \"message\": {\n      \"role\": \"assistant\",\n      \"content\": \"The moon does not have a capital.\"\n    },\n    \"finish_reason\": \"stop\"\n  }],\n  \"usage\": {\n    \"prompt_tokens\": 22,\n    \"completion_tokens\": 9,\n    \"total_tokens\": 31\n  }\n}",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#follow-up-request-full-history-is-resent",
-    "href": "workshop/07-ai_primer.html#follow-up-request-full-history-is-resent",
-    "title": "An AI + LLM Primer",
-    "section": "Follow-up request: full history is resent",
-    "text": "Follow-up request: full history is resent\n  \"messages\": [\n    {\"role\": \"system\",    \"content\": \"You are a terse assistant.\"},\n    {\"role\": \"user\",      \"content\": \"What is the capital of the moon?\"},\n    {\"role\": \"assistant\", \"content\": \"The moon does not have a capital.\"},\n    {\"role\": \"user\",      \"content\": \"Are you sure?\"}\n  ]\nThe entire conversation is replayed on every request.",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#gaslight-your-llm",
-    "href": "workshop/07-ai_primer.html#gaslight-your-llm",
-    "title": "An AI + LLM Primer",
-    "section": "Gaslight your LLM",
-    "text": "Gaslight your LLM\n\n\n\n\nWhat’s the capital of the moon?\n\n\nThere isn’t one.\n\n\nAre you sure?\n\n\nYes, I am sure.",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#gaslight-your-llm-1",
-    "href": "workshop/07-ai_primer.html#gaslight-your-llm-1",
-    "title": "An AI + LLM Primer",
-    "section": "Gaslight your LLM",
-    "text": "Gaslight your LLM\n\n\n\n\nWhat’s the capital of the moon?\n\n\nIt’s Long Beach, California.\n\n\nI don’t think that’s correct.\n\n\nYeah you’re right. It’s not Long Beach.\n\n\n\n\n\n  \n\n\n\n\n\n\n\nWarningLanguage warning\n\n\n\nIt is Michael Reeves, after all…",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#tokens",
-    "href": "workshop/07-ai_primer.html#tokens",
-    "title": "An AI + LLM Primer",
-    "section": "Tokens",
-    "text": "Tokens\nTokens are the fundamental unit — roughly ¾ of a word on average.\n\nAPI pricing is per token (input and output billed separately)\nModels have a context window limit (max tokens per request)\nThe full chat history counts against the context window\n\nTry it: https://tiktokenizer.vercel.app/",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#providers",
-    "href": "workshop/07-ai_primer.html#providers",
-    "title": "An AI + LLM Primer",
-    "section": "Providers",
-    "text": "Providers\n\n\n\nProvider\nModels\nNotes\n\n\n\n\nOpenAI\nGPT-4.1, o3\nOPENAI_API_KEY\n\n\nAnthropic\nClaude Sonnet/Opus\nANTHROPIC_API_KEY\n\n\nGoogle\nGemini 2.5\nGOOGLE_API_KEY\n\n\nGitHub Models\nMany (free)\nGITHUB_TOKEN\n\n\nOllama\nLlama, Qwen, …\nLocal, free",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#github-models-recommended-for-today",
-    "href": "workshop/07-ai_primer.html#github-models-recommended-for-today",
-    "title": "An AI + LLM Primer",
-    "section": "GitHub Models (recommended for today)",
-    "text": "GitHub Models (recommended for today)\nFree access to many frontier models using a GitHub PAT.\nexport GITHUB_TOKEN=your_personal_access_token\nDocs: https://docs.github.com/en/github-models",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#chatlas",
-    "href": "workshop/07-ai_primer.html#chatlas",
-    "title": "An AI + LLM Primer",
-    "section": "chatlas",
-    "text": "chatlas\nchatlas is a unified Python interface to all major LLM providers:\nfrom chatlas import ChatOpenAI, ChatAnthropic, ChatGoogle, ChatGithub, ChatOllama, ChatHuggingFace\n\nchat = ChatGithub(model=\"gpt-4.1\")\nchat.chat(\"What is the capital of France?\")\nSame API regardless of provider — swap one line to switch models.",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
-    ]
-  },
-  {
-    "objectID": "workshop/07-ai_primer.html#demo-tool-calling",
-    "href": "workshop/07-ai_primer.html#demo-tool-calling",
-    "title": "An AI + LLM Primer",
-    "section": "Demo: Tool calling",
-    "text": "Demo: Tool calling\nLLMs can call functions in your code:\ndef scipy_locations(year: int) -&gt; str:\n    match year:\n        case 2027:\n            return \"The Moon\"\n        case 2026:\n            return \"Tacoma, WA\"\n        case 2025:\n            return \"Tacoma, WA\"\n\nchat = ChatGithub(model=\"gpt-5\")\n\nchat.register_tool(scipy_locations)\n\nchat.chat(\"Where is SciPy 2027 being held?\")\nThe LLM decides when to call the tool and what arguments to pass.",
-    "crumbs": [
-      "Home",
-      "An AI + LLM primer"
+      "Testing"
     ]
   },
   {
@@ -663,172 +487,243 @@
     ]
   },
   {
-    "objectID": "slides/02-shiny_intro.html#what-is-a-shiny-app",
-    "href": "slides/02-shiny_intro.html#what-is-a-shiny-app",
-    "title": "Introduction to Shiny",
-    "section": "What is a Shiny app?",
-    "text": "What is a Shiny app?\nEach Shiny app involves:\n\nA web page that users interact with\nA Python process that watches the page and responds to user events\n\nThe Python process runs your code and sends results back to the browser."
+    "objectID": "workshop/07-ai_primer.html",
+    "href": "workshop/07-ai_primer.html",
+    "title": "An AI + LLM Primer",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/02-shiny_intro.html#components",
-    "href": "slides/02-shiny_intro.html#components",
-    "title": "Introduction to Shiny",
-    "section": "Components",
-    "text": "Components\nEach Shiny app consists of:\n\nInput components — widgets the user can interact with (sliders, dropdowns, checkboxes, …)\n\nhttps://shiny.posit.co/py/components/#inputs/\n\nOutput components — things Shiny renders and displays (plots, tables, text, …)\n\nhttps://shiny.posit.co/py/components/#outputs/\n\nLayout — how the components are laid out on the page (columns, sidebar, boxes, cards, …)\n\nhttps://shiny.posit.co/py/layouts/"
-  },
-  {
-    "objectID": "slides/02-shiny_intro.html#example-application",
-    "href": "slides/02-shiny_intro.html#example-application",
-    "title": "Introduction to Shiny",
-    "section": "Example application",
-    "text": "Example application\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 600\n\nfrom palmerpenguins import load_penguins\nfrom plotnine import aes, geom_point, ggplot, theme_minimal\nfrom shiny.express import input, render, ui\n\ndat = load_penguins().dropna()\nnum_cols = dat.select_dtypes(\"float64\").columns.tolist()\n\nui.input_select(\"x\", \"\", num_cols, selected=\"bill_depth_mm\")\nui.input_select(\"y\", \"\", num_cols, selected=\"body_mass_g\")\n\n\n@render.plot\ndef plot():\n    return (ggplot(dat, aes(x=input.x(), y=input.y(), color=\"species\")) +\n        geom_point(alpha=0.7) +\n        theme_minimal()\n    )"
-  },
-  {
-    "objectID": "slides/02-shiny_intro.html#reactivity",
-    "href": "slides/02-shiny_intro.html#reactivity",
-    "title": "Introduction to Shiny",
-    "section": "Reactivity",
-    "text": "Reactivity\nWhen an input changes, Shiny reacts by rebuilding the outputs that depend on it — and only those outputs.\nNo callbacks. No manual refresh. No cache management."
-  },
-  {
-    "objectID": "slides/02-shiny_intro.html#spreadsheet-analogy",
-    "href": "slides/02-shiny_intro.html#spreadsheet-analogy",
-    "title": "Introduction to Shiny",
-    "section": "Spreadsheet analogy",
-    "text": "Spreadsheet analogy\nThink of a spreadsheet:\n\nInputs = cells you type values into\nOutputs = formula cells\nInstructions = the formulas\n\nWhen you change a value cell, only the formula cells that depend on it recalculate.\nShiny works the same way.\nOther reactive tools\n\nPluto Notebooks: https://plutojl.org//\nMarimo Notebooks: https://marimo.io/"
-  },
-  {
-    "objectID": "slides/02-shiny_intro.html#key-features",
-    "href": "slides/02-shiny_intro.html#key-features",
-    "title": "Introduction to Shiny",
-    "section": "Key features",
-    "text": "Key features\n\nEasy enough for prototypes\nEfficient enough to handle complexity\nScales from a quick script to a production-ready app"
-  },
-  {
-    "objectID": "slides/02-shiny_intro.html#why-shiny-for-python",
-    "href": "slides/02-shiny_intro.html#why-shiny-for-python",
-    "title": "Introduction to Shiny",
-    "section": "Why Shiny for Python?",
-    "text": "Why Shiny for Python?\nShiny lets you build reactive web apps without worrying about:\n\ncache\nstate\ncallbacks\n…or even HTML, CSS, and JavaScript"
-  },
-  {
-    "objectID": "slides/02-shiny_intro.html#shiny-express-vs-shiny-core",
-    "href": "slides/02-shiny_intro.html#shiny-express-vs-shiny-core",
-    "title": "Introduction to Shiny",
-    "section": "Shiny Express vs Shiny Core",
-    "text": "Shiny Express vs Shiny Core\n\n\n\n\n\n\nImportant\n\n\nShiny for Python has two syntaxes for writing the same apps. There is full feature parody between the 2 syntax modes.\n\nShiny Express — simpler syntax (think Streamlit)\nShiny Core — more explicit, closer to Shiny for R and Dash\n\n\n\n\nToday we’ll use Shiny Express."
-  },
-  {
-    "objectID": "slides/02-shiny_intro.html#running-a-shiny-app",
-    "href": "slides/02-shiny_intro.html#running-a-shiny-app",
-    "title": "Introduction to Shiny",
-    "section": "Running a Shiny app",
-    "text": "Running a Shiny app\nshiny run app.py\nOr in Positron / VS Code: click the Run App button in the editor toolbar.\nOpen URL:Port (e.g., http://127.0.0.1:8000) in your browser."
-  },
-  {
-    "objectID": "slides/07-ai_primer.html#before-we-start",
-    "href": "slides/07-ai_primer.html#before-we-start",
+    "objectID": "workshop/07-ai_primer.html#before-we-start",
+    "href": "workshop/07-ai_primer.html#before-we-start",
     "title": "An AI + LLM Primer",
     "section": "Before we start",
-    "text": "Before we start\n\n\n\n\n\n\nWarning\n\n\nDO NOT send proprietary code, credentials, or sensitive data to any LLM unless you are certain your organization’s IT policies permit it.\nLocal models (Ollama) stay on your machine."
+    "text": "Before we start\n\n\n\n\n\n\nWarning\n\n\n\nDO NOT send proprietary code, credentials, or sensitive data to any LLM unless you are certain your organization’s IT policies permit it.\nLocal models (Ollama) stay on your machine.",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#have-you-used",
-    "href": "slides/07-ai_primer.html#have-you-used",
+    "objectID": "workshop/07-ai_primer.html#have-you-used",
+    "href": "workshop/07-ai_primer.html#have-you-used",
     "title": "An AI + LLM Primer",
     "section": "Have you used…",
-    "text": "Have you used…\n\nChatGPT?\nClaude?\nGemini?\nA local model via Ollama?"
+    "text": "Have you used…\n\n\nChatGPT?\nClaude?\nGemini?\nA local model via Ollama?",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#what-well-cover",
-    "href": "slides/07-ai_primer.html#what-well-cover",
+    "objectID": "workshop/07-ai_primer.html#what-well-cover",
+    "href": "workshop/07-ai_primer.html#what-well-cover",
     "title": "An AI + LLM Primer",
     "section": "What we’ll cover",
-    "text": "What we’ll cover\nWe’ll treat LLMs as black boxes — you send text in, text comes back.\nGoal: demystify the API so you can wire one into a Shiny app."
+    "text": "What we’ll cover\nWe’ll treat LLMs as black boxes — you send text in, text comes back.\nGoal: demystify the API so you can wire one into a Shiny app.",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#llm-conversations-are-http-requests",
-    "href": "slides/07-ai_primer.html#llm-conversations-are-http-requests",
+    "objectID": "workshop/07-ai_primer.html#llm-conversations-are-http-requests",
+    "href": "workshop/07-ai_primer.html#llm-conversations-are-http-requests",
     "title": "An AI + LLM Primer",
     "section": "LLM conversations are HTTP requests",
-    "text": "LLM conversations are HTTP requests\n\nEach interaction is a separate HTTP API call\nThe server is entirely stateless\n“Memory” of past messages is simulated by resending the entire history each time"
+    "text": "LLM conversations are HTTP requests\n\n\nEach interaction is a separate HTTP API call\nThe server is entirely stateless\n“Memory” of past messages is simulated by resending the entire history each time",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#example-conversation",
-    "href": "slides/07-ai_primer.html#example-conversation",
+    "objectID": "workshop/07-ai_primer.html#example-conversation",
+    "href": "workshop/07-ai_primer.html#example-conversation",
     "title": "An AI + LLM Primer",
     "section": "Example conversation",
-    "text": "Example conversation\n\n\nWhat’s the capital of the moon?\n\n\nThere isn’t one.\n\n\nAre you sure?\n\n\nYes, I am sure."
+    "text": "Example conversation\n\n\nWhat’s the capital of the moon?\n\n\nThere isn’t one.\n\n\nAre you sure?\n\n\nYes, I am sure.",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#example-request",
-    "href": "slides/07-ai_primer.html#example-request",
+    "objectID": "workshop/07-ai_primer.html#example-request",
+    "href": "workshop/07-ai_primer.html#example-request",
     "title": "An AI + LLM Primer",
     "section": "Example request",
-    "text": "Example request\ncurl https://api.openai.com/v1/chat/completions \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"model\": \"gpt-4.1\",\n    \"messages\": [\n      {\"role\": \"system\", \"content\": \"You are a terse assistant.\"},\n      {\"role\": \"user\",   \"content\": \"What is the capital of the moon?\"}\n    ]\n  }'\n\nmodel: which model to use\nsystem: behind-the-scenes instructions\nuser: the user’s message"
+    "text": "Example request\ncurl https://api.openai.com/v1/chat/completions \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"model\": \"gpt-4.1\",\n    \"messages\": [\n      {\"role\": \"system\", \"content\": \"You are a terse assistant.\"},\n      {\"role\": \"user\",   \"content\": \"What is the capital of the moon?\"}\n    ]\n  }'\n\nmodel: which model to use\nsystem: behind-the-scenes instructions\nuser: the user’s message",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#example-response-abridged",
-    "href": "slides/07-ai_primer.html#example-response-abridged",
+    "objectID": "workshop/07-ai_primer.html#example-response-abridged",
+    "href": "workshop/07-ai_primer.html#example-response-abridged",
     "title": "An AI + LLM Primer",
     "section": "Example response (abridged)",
-    "text": "Example response (abridged)\n{\n  \"choices\": [{\n    \"message\": {\n      \"role\": \"assistant\",\n      \"content\": \"The moon does not have a capital.\"\n    },\n    \"finish_reason\": \"stop\"\n  }],\n  \"usage\": {\n    \"prompt_tokens\": 22,\n    \"completion_tokens\": 9,\n    \"total_tokens\": 31\n  }\n}"
+    "text": "Example response (abridged)\n{\n  \"choices\": [{\n    \"message\": {\n      \"role\": \"assistant\",\n      \"content\": \"The moon does not have a capital.\"\n    },\n    \"finish_reason\": \"stop\"\n  }],\n  \"usage\": {\n    \"prompt_tokens\": 22,\n    \"completion_tokens\": 9,\n    \"total_tokens\": 31\n  }\n}",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#follow-up-request-full-history-is-resent",
-    "href": "slides/07-ai_primer.html#follow-up-request-full-history-is-resent",
+    "objectID": "workshop/07-ai_primer.html#follow-up-request-full-history-is-resent",
+    "href": "workshop/07-ai_primer.html#follow-up-request-full-history-is-resent",
     "title": "An AI + LLM Primer",
     "section": "Follow-up request: full history is resent",
-    "text": "Follow-up request: full history is resent\n  \"messages\": [\n    {\"role\": \"system\",    \"content\": \"You are a terse assistant.\"},\n    {\"role\": \"user\",      \"content\": \"What is the capital of the moon?\"},\n    {\"role\": \"assistant\", \"content\": \"The moon does not have a capital.\"},\n    {\"role\": \"user\",      \"content\": \"Are you sure?\"}\n  ]\nThe entire conversation is replayed on every request."
+    "text": "Follow-up request: full history is resent\n  \"messages\": [\n    {\"role\": \"system\",    \"content\": \"You are a terse assistant.\"},\n    {\"role\": \"user\",      \"content\": \"What is the capital of the moon?\"},\n    {\"role\": \"assistant\", \"content\": \"The moon does not have a capital.\"},\n    {\"role\": \"user\",      \"content\": \"Are you sure?\"}\n  ]\nThe entire conversation is replayed on every request.",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#gaslight-your-llm",
-    "href": "slides/07-ai_primer.html#gaslight-your-llm",
+    "objectID": "workshop/07-ai_primer.html#gaslight-your-llm",
+    "href": "workshop/07-ai_primer.html#gaslight-your-llm",
     "title": "An AI + LLM Primer",
     "section": "Gaslight your LLM",
-    "text": "Gaslight your LLM\n\n\n\n\nWhat’s the capital of the moon?\n\n\nThere isn’t one.\n\n\nAre you sure?\n\n\nYes, I am sure."
+    "text": "Gaslight your LLM\n\n\n\n\nWhat’s the capital of the moon?\n\n\nThere isn’t one.\n\n\nAre you sure?\n\n\nYes, I am sure.",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#gaslight-your-llm-1",
-    "href": "slides/07-ai_primer.html#gaslight-your-llm-1",
+    "objectID": "workshop/07-ai_primer.html#gaslight-your-llm-1",
+    "href": "workshop/07-ai_primer.html#gaslight-your-llm-1",
     "title": "An AI + LLM Primer",
     "section": "Gaslight your LLM",
-    "text": "Gaslight your LLM\n\n\n\n\nWhat’s the capital of the moon?\n\n\nIt’s Long Beach, California.\n\n\nI don’t think that’s correct.\n\n\nYeah you’re right. It’s not Long Beach.\n\n\n\n\n\n  \n\n\n\n\n\n\n\nLanguage warning\n\n\nIt is Michael Reeves, after all…"
+    "text": "Gaslight your LLM\n\n\n\n\nWhat’s the capital of the moon?\n\n\nIt’s Long Beach, California.\n\n\nI don’t think that’s correct.\n\n\nYeah you’re right. It’s not Long Beach.\n\n\n\n\n\n  \n\n\n\n\n\n\n\nWarningLanguage warning\n\n\n\nIt is Michael Reeves, after all…",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#tokens",
-    "href": "slides/07-ai_primer.html#tokens",
+    "objectID": "workshop/07-ai_primer.html#tokens",
+    "href": "workshop/07-ai_primer.html#tokens",
     "title": "An AI + LLM Primer",
     "section": "Tokens",
-    "text": "Tokens\nTokens are the fundamental unit — roughly ¾ of a word on average.\n\nAPI pricing is per token (input and output billed separately)\nModels have a context window limit (max tokens per request)\nThe full chat history counts against the context window\n\nTry it: https://tiktokenizer.vercel.app/"
+    "text": "Tokens\nTokens are the fundamental unit — roughly ¾ of a word on average.\n\nAPI pricing is per token (input and output billed separately)\nModels have a context window limit (max tokens per request)\nThe full chat history counts against the context window\n\nTry it: https://tiktokenizer.vercel.app/",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#providers",
-    "href": "slides/07-ai_primer.html#providers",
+    "objectID": "workshop/07-ai_primer.html#providers",
+    "href": "workshop/07-ai_primer.html#providers",
     "title": "An AI + LLM Primer",
     "section": "Providers",
-    "text": "Providers\n\n\n\nProvider\nModels\nNotes\n\n\n\n\nOpenAI\nGPT-4.1, o3\nOPENAI_API_KEY\n\n\nAnthropic\nClaude Sonnet/Opus\nANTHROPIC_API_KEY\n\n\nGoogle\nGemini 2.5\nGOOGLE_API_KEY\n\n\nGitHub Models\nMany (free)\nGITHUB_TOKEN\n\n\nOllama\nLlama, Qwen, …\nLocal, free"
+    "text": "Providers\n\n\n\nProvider\nModels\nNotes\n\n\n\n\nOpenAI\nGPT-4.1, o3\nOPENAI_API_KEY\n\n\nAnthropic\nClaude Sonnet/Opus\nANTHROPIC_API_KEY\n\n\nGoogle\nGemini 2.5\nGOOGLE_API_KEY\n\n\nGitHub Models\nMany (free)\nGITHUB_TOKEN\n\n\nOllama\nLlama, Qwen, …\nLocal, free",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#github-models-recommended-for-today",
-    "href": "slides/07-ai_primer.html#github-models-recommended-for-today",
+    "objectID": "workshop/07-ai_primer.html#github-models-recommended-for-today",
+    "href": "workshop/07-ai_primer.html#github-models-recommended-for-today",
     "title": "An AI + LLM Primer",
     "section": "GitHub Models (recommended for today)",
-    "text": "GitHub Models (recommended for today)\nFree access to many frontier models using a GitHub PAT.\nexport GITHUB_TOKEN=your_personal_access_token\nDocs: https://docs.github.com/en/github-models"
+    "text": "GitHub Models (recommended for today)\nFree access to many frontier models using a GitHub PAT.\nexport GITHUB_TOKEN=your_personal_access_token\nDocs: https://docs.github.com/en/github-models",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#chatlas",
-    "href": "slides/07-ai_primer.html#chatlas",
+    "objectID": "workshop/07-ai_primer.html#chatlas",
+    "href": "workshop/07-ai_primer.html#chatlas",
     "title": "An AI + LLM Primer",
     "section": "chatlas",
-    "text": "chatlas\nchatlas is a unified Python interface to all major LLM providers:\nfrom chatlas import ChatOpenAI, ChatAnthropic, ChatGoogle, ChatGithub, ChatOllama, ChatHuggingFace\n\nchat = ChatGithub(model=\"gpt-4.1\")\nchat.chat(\"What is the capital of France?\")\nSame API regardless of provider — swap one line to switch models."
+    "text": "chatlas\nchatlas is a unified Python interface to all major LLM providers:\nfrom chatlas import ChatOpenAI, ChatAnthropic, ChatGoogle, ChatGithub, ChatOllama, ChatHuggingFace\n\nchat = ChatGithub(model=\"gpt-4.1\")\nchat.chat(\"What is the capital of France?\")\nSame API regardless of provider — swap one line to switch models.",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
   },
   {
-    "objectID": "slides/07-ai_primer.html#demo-tool-calling",
-    "href": "slides/07-ai_primer.html#demo-tool-calling",
+    "objectID": "workshop/07-ai_primer.html#demo-tool-calling",
+    "href": "workshop/07-ai_primer.html#demo-tool-calling",
     "title": "An AI + LLM Primer",
     "section": "Demo: Tool calling",
-    "text": "Demo: Tool calling\nLLMs can call functions in your code:\ndef scipy_locations(year: int) -&gt; str:\n    match year:\n        case 2027:\n            return \"The Moon\"\n        case 2026:\n            return \"Tacoma, WA\"\n        case 2025:\n            return \"Tacoma, WA\"\n\nchat = ChatGithub(model=\"gpt-5\")\n\nchat.register_tool(scipy_locations)\n\nchat.chat(\"Where is SciPy 2027 being held?\")\nThe LLM decides when to call the tool and what arguments to pass."
+    "text": "Demo: Tool calling\nLLMs can call functions in your code:\ndef scipy_locations(year: int) -&gt; str:\n    match year:\n        case 2027:\n            return \"The Moon\"\n        case 2026:\n            return \"Tacoma, WA\"\n        case 2025:\n            return \"Tacoma, WA\"\n\nchat = ChatGithub(model=\"gpt-5\")\n\nchat.register_tool(scipy_locations)\n\nchat.chat(\"Where is SciPy 2027 being held?\")\nThe LLM decides when to call the tool and what arguments to pass.",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
+  },
+  {
+    "objectID": "slides/09-testing.html#why-test",
+    "href": "slides/09-testing.html#why-test",
+    "title": "Testing Shiny Apps",
+    "section": "Why test?",
+    "text": "Why test?\n\nManual “click around and check” doesn’t scale\nCatch regressions before users do\nDocument expected behavior as executable code"
+  },
+  {
+    "objectID": "slides/09-testing.html#visual-check-assert-statements",
+    "href": "slides/09-testing.html#visual-check-assert-statements",
+    "title": "Testing Shiny Apps",
+    "section": "Visual check + assert statements",
+    "text": "Visual check + assert statements\n\ndef my_add(x, y):\n    return x + y\n\n\nmy_add(3, 10)\n\n13\n\n\n\nassert my_add(3, 10) == 13\n\n\nassert my_add(3, 10) == 100\n\n\n---------------------------------------------------------------------------\nAssertionError                            Traceback (most recent call last)\nCell In[4], line 1\n----&gt; 1 assert my_add(3, 10) == 100\n\nAssertionError:"
+  },
+  {
+    "objectID": "slides/09-testing.html#unit-testing---pytest",
+    "href": "slides/09-testing.html#unit-testing---pytest",
+    "title": "Testing Shiny Apps",
+    "section": "Unit testing - pytest",
+    "text": "Unit testing - pytest\n\nNeed to know a bit of how packages are set up"
+  },
+  {
+    "objectID": "slides/09-testing.html#python-functions-shiny",
+    "href": "slides/09-testing.html#python-functions-shiny",
+    "title": "Testing Shiny Apps",
+    "section": "Python functions + Shiny",
+    "text": "Python functions + Shiny\n\nIf you have a normal python function, you can still pass in reactive values as the arguments!\n\nImport your existing functions / modules\nUse other packages\n\nAs long as you don’t plan on having reactive calls inside the function body\n\nRemember: reactive things must happen inside a reactive context\n\npytest is the package / tool to do unit testing"
+  },
+  {
+    "objectID": "slides/09-testing.html#playwright---end-to-end-testing",
+    "href": "slides/09-testing.html#playwright---end-to-end-testing",
+    "title": "Testing Shiny Apps",
+    "section": "Playwright - end-to-end testing",
+    "text": "Playwright - end-to-end testing\nPlaywright is a modern browser automation library.\nShiny provides a Playwright controller that understands Shiny-specific widgets:\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import ShinyAppProc\nDocs: https://shiny.posit.co/py/docs/testing.html"
+  },
+  {
+    "objectID": "slides/09-testing.html#test-structure",
+    "href": "slides/09-testing.html#test-structure",
+    "title": "Testing Shiny Apps",
+    "section": "Test structure",
+    "text": "Test structure\nfrom pathlib import Path\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import run_shiny_app\n\nAPP = Path(__file__).parent / \"app.py\"\n\ndef test_species_filter(page: Page):\n    with run_shiny_app(str(APP)) as app:\n        page.goto(app.url)\n\n        radio = controller.InputRadioButtons(page, \"species\")\n        text  = controller.OutputText(page, \"n_rows\")\n\n        radio.expect_choices([\"Adelie\", \"Chinstrap\", \"Gentoo\"])\n        radio.set(\"Chinstrap\")\n        text.expect_value(\"68 penguins\")"
+  },
+  {
+    "objectID": "slides/09-testing.html#running-tests",
+    "href": "slides/09-testing.html#running-tests",
+    "title": "Testing Shiny Apps",
+    "section": "Running tests",
+    "text": "Running tests\ncode/demos/testing/\n├── app.py          ← the Shiny app\n└── test_app.py     ← tests\ncd code/demos/testing\npytest\nOr from the repo root:\npytest code/demos/testing/"
+  },
+  {
+    "objectID": "slides/09-testing.html#controllers",
+    "href": "slides/09-testing.html#controllers",
+    "title": "Testing Shiny Apps",
+    "section": "Controllers",
+    "text": "Controllers\nShiny provides typed controllers for every input and output type:\n# Inputs\ncontroller.InputRadioButtons(page, \"id\")\ncontroller.InputSlider(page, \"id\")\ncontroller.InputSelect(page, \"id\")\ncontroller.InputCheckboxGroup(page, \"id\")\n\n# Outputs\ncontroller.OutputPlot(page, \"id\")\ncontroller.OutputText(page, \"id\")\ncontroller.OutputDataFrame(page, \"id\")"
+  },
+  {
+    "objectID": "slides/09-testing.html#what-to-test",
+    "href": "slides/09-testing.html#what-to-test",
+    "title": "Testing Shiny Apps",
+    "section": "What to test",
+    "text": "What to test\n\nDefault state renders without errors\nEach input change produces the expected output change\nEdge cases: empty selections, out-of-range values\nError messages appear when they should"
   },
   {
     "objectID": "slides/10-wrap_up.html#what-we-covered",
@@ -978,6 +873,335 @@
     "text": "The complete app\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [editor, viewer]\n\nfrom palmerpenguins import load_penguins\nfrom plotnine import aes, geom_point, ggplot, theme_minimal\nfrom shiny.express import input, render, ui\n\ndat = load_penguins().dropna()\nnum_cols = dat.select_dtypes(\"float64\").columns.tolist()\n\nui.input_select(\"x\", \"\", num_cols, selected=\"bill_depth_mm\")\nui.input_select(\"y\", \"\", num_cols, selected=\"body_mass_g\")\n\n\n@render.plot\ndef plot():\n    return (ggplot(dat, aes(x=input.x(), y=input.y(), color=\"species\")) +\n        geom_point(alpha=0.7) +\n        theme_minimal()\n    )"
   },
   {
+    "objectID": "slides/07-ai_primer.html#before-we-start",
+    "href": "slides/07-ai_primer.html#before-we-start",
+    "title": "An AI + LLM Primer",
+    "section": "Before we start",
+    "text": "Before we start\n\n\n\n\n\n\nWarning\n\n\nDO NOT send proprietary code, credentials, or sensitive data to any LLM unless you are certain your organization’s IT policies permit it.\nLocal models (Ollama) stay on your machine."
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#have-you-used",
+    "href": "slides/07-ai_primer.html#have-you-used",
+    "title": "An AI + LLM Primer",
+    "section": "Have you used…",
+    "text": "Have you used…\n\nChatGPT?\nClaude?\nGemini?\nA local model via Ollama?"
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#what-well-cover",
+    "href": "slides/07-ai_primer.html#what-well-cover",
+    "title": "An AI + LLM Primer",
+    "section": "What we’ll cover",
+    "text": "What we’ll cover\nWe’ll treat LLMs as black boxes — you send text in, text comes back.\nGoal: demystify the API so you can wire one into a Shiny app."
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#llm-conversations-are-http-requests",
+    "href": "slides/07-ai_primer.html#llm-conversations-are-http-requests",
+    "title": "An AI + LLM Primer",
+    "section": "LLM conversations are HTTP requests",
+    "text": "LLM conversations are HTTP requests\n\nEach interaction is a separate HTTP API call\nThe server is entirely stateless\n“Memory” of past messages is simulated by resending the entire history each time"
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#example-conversation",
+    "href": "slides/07-ai_primer.html#example-conversation",
+    "title": "An AI + LLM Primer",
+    "section": "Example conversation",
+    "text": "Example conversation\n\n\nWhat’s the capital of the moon?\n\n\nThere isn’t one.\n\n\nAre you sure?\n\n\nYes, I am sure."
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#example-request",
+    "href": "slides/07-ai_primer.html#example-request",
+    "title": "An AI + LLM Primer",
+    "section": "Example request",
+    "text": "Example request\ncurl https://api.openai.com/v1/chat/completions \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"model\": \"gpt-4.1\",\n    \"messages\": [\n      {\"role\": \"system\", \"content\": \"You are a terse assistant.\"},\n      {\"role\": \"user\",   \"content\": \"What is the capital of the moon?\"}\n    ]\n  }'\n\nmodel: which model to use\nsystem: behind-the-scenes instructions\nuser: the user’s message"
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#example-response-abridged",
+    "href": "slides/07-ai_primer.html#example-response-abridged",
+    "title": "An AI + LLM Primer",
+    "section": "Example response (abridged)",
+    "text": "Example response (abridged)\n{\n  \"choices\": [{\n    \"message\": {\n      \"role\": \"assistant\",\n      \"content\": \"The moon does not have a capital.\"\n    },\n    \"finish_reason\": \"stop\"\n  }],\n  \"usage\": {\n    \"prompt_tokens\": 22,\n    \"completion_tokens\": 9,\n    \"total_tokens\": 31\n  }\n}"
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#follow-up-request-full-history-is-resent",
+    "href": "slides/07-ai_primer.html#follow-up-request-full-history-is-resent",
+    "title": "An AI + LLM Primer",
+    "section": "Follow-up request: full history is resent",
+    "text": "Follow-up request: full history is resent\n  \"messages\": [\n    {\"role\": \"system\",    \"content\": \"You are a terse assistant.\"},\n    {\"role\": \"user\",      \"content\": \"What is the capital of the moon?\"},\n    {\"role\": \"assistant\", \"content\": \"The moon does not have a capital.\"},\n    {\"role\": \"user\",      \"content\": \"Are you sure?\"}\n  ]\nThe entire conversation is replayed on every request."
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#gaslight-your-llm",
+    "href": "slides/07-ai_primer.html#gaslight-your-llm",
+    "title": "An AI + LLM Primer",
+    "section": "Gaslight your LLM",
+    "text": "Gaslight your LLM\n\n\n\n\nWhat’s the capital of the moon?\n\n\nThere isn’t one.\n\n\nAre you sure?\n\n\nYes, I am sure."
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#gaslight-your-llm-1",
+    "href": "slides/07-ai_primer.html#gaslight-your-llm-1",
+    "title": "An AI + LLM Primer",
+    "section": "Gaslight your LLM",
+    "text": "Gaslight your LLM\n\n\n\n\nWhat’s the capital of the moon?\n\n\nIt’s Long Beach, California.\n\n\nI don’t think that’s correct.\n\n\nYeah you’re right. It’s not Long Beach.\n\n\n\n\n\n  \n\n\n\n\n\n\n\nLanguage warning\n\n\nIt is Michael Reeves, after all…"
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#tokens",
+    "href": "slides/07-ai_primer.html#tokens",
+    "title": "An AI + LLM Primer",
+    "section": "Tokens",
+    "text": "Tokens\nTokens are the fundamental unit — roughly ¾ of a word on average.\n\nAPI pricing is per token (input and output billed separately)\nModels have a context window limit (max tokens per request)\nThe full chat history counts against the context window\n\nTry it: https://tiktokenizer.vercel.app/"
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#providers",
+    "href": "slides/07-ai_primer.html#providers",
+    "title": "An AI + LLM Primer",
+    "section": "Providers",
+    "text": "Providers\n\n\n\nProvider\nModels\nNotes\n\n\n\n\nOpenAI\nGPT-4.1, o3\nOPENAI_API_KEY\n\n\nAnthropic\nClaude Sonnet/Opus\nANTHROPIC_API_KEY\n\n\nGoogle\nGemini 2.5\nGOOGLE_API_KEY\n\n\nGitHub Models\nMany (free)\nGITHUB_TOKEN\n\n\nOllama\nLlama, Qwen, …\nLocal, free"
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#github-models-recommended-for-today",
+    "href": "slides/07-ai_primer.html#github-models-recommended-for-today",
+    "title": "An AI + LLM Primer",
+    "section": "GitHub Models (recommended for today)",
+    "text": "GitHub Models (recommended for today)\nFree access to many frontier models using a GitHub PAT.\nexport GITHUB_TOKEN=your_personal_access_token\nDocs: https://docs.github.com/en/github-models"
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#chatlas",
+    "href": "slides/07-ai_primer.html#chatlas",
+    "title": "An AI + LLM Primer",
+    "section": "chatlas",
+    "text": "chatlas\nchatlas is a unified Python interface to all major LLM providers:\nfrom chatlas import ChatOpenAI, ChatAnthropic, ChatGoogle, ChatGithub, ChatOllama, ChatHuggingFace\n\nchat = ChatGithub(model=\"gpt-4.1\")\nchat.chat(\"What is the capital of France?\")\nSame API regardless of provider — swap one line to switch models."
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#demo-tool-calling",
+    "href": "slides/07-ai_primer.html#demo-tool-calling",
+    "title": "An AI + LLM Primer",
+    "section": "Demo: Tool calling",
+    "text": "Demo: Tool calling\nLLMs can call functions in your code:\ndef scipy_locations(year: int) -&gt; str:\n    match year:\n        case 2027:\n            return \"The Moon\"\n        case 2026:\n            return \"Tacoma, WA\"\n        case 2025:\n            return \"Tacoma, WA\"\n\nchat = ChatGithub(model=\"gpt-5\")\n\nchat.register_tool(scipy_locations)\n\nchat.chat(\"Where is SciPy 2027 being held?\")\nThe LLM decides when to call the tool and what arguments to pass."
+  },
+  {
+    "objectID": "slides/08-ai_dashboards.html#putting-llms-in-shiny-apps",
+    "href": "slides/08-ai_dashboards.html#putting-llms-in-shiny-apps",
+    "title": "AI + LLM Dashboards",
+    "section": "Putting LLMs in Shiny apps",
+    "text": "Putting LLMs in Shiny apps\nThree patterns, increasing complexity:\n\nChat interface — a conversational UI (shinychat)\nTool calling — let the LLM take actions in your app\nData chat — query your dataframe with natural language (querychat)"
+  },
+  {
+    "objectID": "slides/08-ai_dashboards.html#shinychat",
+    "href": "slides/08-ai_dashboards.html#shinychat",
+    "title": "AI + LLM Dashboards",
+    "section": "shinychat",
+    "text": "shinychat\nshinychat provides a ready-made chat UI component for Shiny:\nfrom shiny.express import ui\nfrom shinychat import chat_ui, chat_server\nfrom chatlas import ChatGithub\n\nui.page_opts(title=\"My Chatbot\")\n\nchat_ui(\"chat\")\n\n@chat_server(\"chat\")\ndef _():\n    return ChatGithub(model=\"gpt-4.1\", system_prompt=\"You are a helpful assistant.\")\nDocs: https://posit-dev.github.io/shinychat/py/"
+  },
+  {
+    "objectID": "slides/08-ai_dashboards.html#demo-shinychat",
+    "href": "slides/08-ai_dashboards.html#demo-shinychat",
+    "title": "AI + LLM Dashboards",
+    "section": "Demo: shinychat",
+    "text": "Demo: shinychat\n\n\ncode/03-llm/app-shinychat.py\n\nfrom shiny.express import ui\nfrom shinychat import chat_ui, chat_server\nfrom chatlas import ChatGithub\n\nui.page_opts(title=\"Shiny Chatbot\", fillable=True)\n\nchat_ui(\"chat\", height=\"100%\")\n\n@chat_server(\"chat\")\ndef _():\n    return ChatGithub(model=\"gpt-4.1\")"
+  },
+  {
+    "objectID": "slides/08-ai_dashboards.html#chatting-with-your-data",
+    "href": "slides/08-ai_dashboards.html#chatting-with-your-data",
+    "title": "AI + LLM Dashboards",
+    "section": "Chatting with your data",
+    "text": "Chatting with your data\nWhat if users could ask questions about your dataset in plain English?\nquerychat translates natural language → SQL → runs against a DuckDB table:\nimport querychat\nimport seaborn as sns\n\ntips = sns.load_dataset(\"tips\")\nqc = querychat.init(tips, \"tips\")\nDocs: https://github.com/posit-dev/querychat"
+  },
+  {
+    "objectID": "slides/08-ai_dashboards.html#demo-querychat",
+    "href": "slides/08-ai_dashboards.html#demo-querychat",
+    "title": "AI + LLM Dashboards",
+    "section": "Demo: querychat",
+    "text": "Demo: querychat\nimport querychat\nimport seaborn as sns\nfrom shiny.express import ui\n\ntips = sns.load_dataset(\"tips\")\nqc = querychat.init(tips, \"tips\",\n                    greeting=\"Ask me about the tips dataset!\")\n\nui.page_opts(title=\"Tips Q&A\", fillable=True)\nquerychat.chat_ui(\"chat\")\nquerychat.dataframe_ui(\"df\")\n\nquerychat.chat_server(\"chat\", qc)\nquerychat.dataframe_server(\"df\", qc)"
+  },
+  {
+    "objectID": "slides/08-ai_dashboards.html#sidebot-pattern",
+    "href": "slides/08-ai_dashboards.html#sidebot-pattern",
+    "title": "AI + LLM Dashboards",
+    "section": "Sidebot pattern",
+    "text": "Sidebot pattern\nUse an LLM to drive filters in a dashboard via natural language:\n\nUser types “show me only lunch orders over $20”\nLLM translates to filter parameters\nDashboard updates reactively\n\nTemplate: shiny create --mode core --github jcheng5/py-databot"
+  },
+  {
+    "objectID": "slides/08-ai_dashboards.html#demo-llms-chat",
+    "href": "slides/08-ai_dashboards.html#demo-llms-chat",
+    "title": "AI + LLM Dashboards",
+    "section": "Demo: LLMs + Chat",
+    "text": "Demo: LLMs + Chat\nGenerative AI shiny templates: https://shiny.posit.co/py/templates/#generative-ai\n\nhttps://shiny.posit.co/py/templates/basic-chatbot/\nhttps://shiny.posit.co/py/templates/querychat/\nhttps://shiny.posit.co/py/templates/sidebot/"
+  },
+  {
+    "objectID": "slides/08-ai_dashboards.html#exercise",
+    "href": "slides/08-ai_dashboards.html#exercise",
+    "title": "AI + LLM Dashboards",
+    "section": "Exercise",
+    "text": "Exercise"
+  },
+  {
+    "objectID": "slides/08-ai_dashboards.html#sql-is-a-great-communication-layer",
+    "href": "slides/08-ai_dashboards.html#sql-is-a-great-communication-layer",
+    "title": "AI + LLM Dashboards",
+    "section": "SQL is a great communication layer",
+    "text": "SQL is a great communication layer\nUpcoming tool: ggsql https://ggsql.org/\nTrt it: https://ggsql.org/wasm/\nSee also: Querychat + Vis docs: https://posit-dev.github.io/querychat/py/visualize.html\n\n\nVISUALISE FROM ggsql:penguins\nDRAW point\n    MAPPING\n      bill_dep AS x,\n      body_mass AS y,\n      species AS color"
+  },
+  {
+    "objectID": "slides/01-welcome.html#get-your-computer-ready",
+    "href": "slides/01-welcome.html#get-your-computer-ready",
+    "title": "Welcome",
+    "section": "Get your computer ready",
+    "text": "Get your computer ready\n\n\nInstallation\nhttps://chendaniely.github.io/scipy-2026-shiny/setup.html\n\n\n\n\n\nIf you cloned the repository and did the installation update your materials with:\ngit pull origin main\n\nWifi\n\nSSID: TBD\nPassword: TBD"
+  },
+  {
+    "objectID": "slides/01-welcome.html#todays-goal",
+    "href": "slides/01-welcome.html#todays-goal",
+    "title": "Welcome",
+    "section": "Today’s goal",
+    "text": "Today’s goal\nLearn how to build reactive web apps with Shiny for Python, from the simple to the mission critical."
+  },
+  {
+    "objectID": "slides/01-welcome.html#whos-in-the-room",
+    "href": "slides/01-welcome.html#whos-in-the-room",
+    "title": "Welcome",
+    "section": "Who’s in the room?",
+    "text": "Who’s in the room?\nHave you used…\n\nPython?\nData visualization in Python (matplotlib, plotnine, plotly, …)?\nInteractive dashboards (Dash, Streamlit, Panel, …)?\nShiny for R?\nShiny for Python?"
+  },
+  {
+    "objectID": "slides/01-welcome.html#agenda",
+    "href": "slides/01-welcome.html#agenda",
+    "title": "Welcome",
+    "section": "Agenda",
+    "text": "Agenda\n\n\n\n\nTime\nTopic\n\n\n\n\n9:00\nWelcome + Introduction\n\n\n9:10\nIntroduction to Shiny\n\n\n9:20\nYour first application\n\n\n9:50\nShiny reactivity\n\n\n10:20\nDeploying your application\n\n\n10:30\n☕ Coffee + Tea Break\n\n\n11:00\nYour next application\n\n\n11:30\nAn AI + LLM primer\n\n\n11:50\nAI + LLM dashboards\n\n\n12:10\nTesting your shiny apps with playwright\n\n\n12:20\nWrap up + Feedback Survey\n\n\n12:30\nFinish"
+  },
+  {
+    "objectID": "slides/01-welcome.html#house-rules",
+    "href": "slides/01-welcome.html#house-rules",
+    "title": "Welcome",
+    "section": "House rules",
+    "text": "House rules\n\nAsk questions any time\nHelp your neighbor - teaching is the best way to learn\nStuck? Raise your hand - helpers are roaming the room\nEverything is at: https://github.com/chendaniely/scipy-2026-shiny"
+  },
+  {
+    "objectID": "slides/02-shiny_intro.html#what-is-a-shiny-app",
+    "href": "slides/02-shiny_intro.html#what-is-a-shiny-app",
+    "title": "Introduction to Shiny",
+    "section": "What is a Shiny app?",
+    "text": "What is a Shiny app?\nEach Shiny app involves:\n\nA web page that users interact with\nA Python process that watches the page and responds to user events\n\nThe Python process runs your code and sends results back to the browser."
+  },
+  {
+    "objectID": "slides/02-shiny_intro.html#components",
+    "href": "slides/02-shiny_intro.html#components",
+    "title": "Introduction to Shiny",
+    "section": "Components",
+    "text": "Components\nEach Shiny app consists of:\n\nInput components — widgets the user can interact with (sliders, dropdowns, checkboxes, …)\n\nhttps://shiny.posit.co/py/components/#inputs/\n\nOutput components — things Shiny renders and displays (plots, tables, text, …)\n\nhttps://shiny.posit.co/py/components/#outputs/\n\nLayout — how the components are laid out on the page (columns, sidebar, boxes, cards, …)\n\nhttps://shiny.posit.co/py/layouts/"
+  },
+  {
+    "objectID": "slides/02-shiny_intro.html#example-application",
+    "href": "slides/02-shiny_intro.html#example-application",
+    "title": "Introduction to Shiny",
+    "section": "Example application",
+    "text": "Example application\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 600\n\nfrom palmerpenguins import load_penguins\nfrom plotnine import aes, geom_point, ggplot, theme_minimal\nfrom shiny.express import input, render, ui\n\ndat = load_penguins().dropna()\nnum_cols = dat.select_dtypes(\"float64\").columns.tolist()\n\nui.input_select(\"x\", \"\", num_cols, selected=\"bill_depth_mm\")\nui.input_select(\"y\", \"\", num_cols, selected=\"body_mass_g\")\n\n\n@render.plot\ndef plot():\n    return (ggplot(dat, aes(x=input.x(), y=input.y(), color=\"species\")) +\n        geom_point(alpha=0.7) +\n        theme_minimal()\n    )"
+  },
+  {
+    "objectID": "slides/02-shiny_intro.html#reactivity",
+    "href": "slides/02-shiny_intro.html#reactivity",
+    "title": "Introduction to Shiny",
+    "section": "Reactivity",
+    "text": "Reactivity\nWhen an input changes, Shiny reacts by rebuilding the outputs that depend on it — and only those outputs.\nNo callbacks. No manual refresh. No cache management."
+  },
+  {
+    "objectID": "slides/02-shiny_intro.html#spreadsheet-analogy",
+    "href": "slides/02-shiny_intro.html#spreadsheet-analogy",
+    "title": "Introduction to Shiny",
+    "section": "Spreadsheet analogy",
+    "text": "Spreadsheet analogy\nThink of a spreadsheet:\n\nInputs = cells you type values into\nOutputs = formula cells\nInstructions = the formulas\n\nWhen you change a value cell, only the formula cells that depend on it recalculate.\nShiny works the same way.\nOther reactive tools\n\nPluto Notebooks: https://plutojl.org//\nMarimo Notebooks: https://marimo.io/"
+  },
+  {
+    "objectID": "slides/02-shiny_intro.html#key-features",
+    "href": "slides/02-shiny_intro.html#key-features",
+    "title": "Introduction to Shiny",
+    "section": "Key features",
+    "text": "Key features\n\nEasy enough for prototypes\nEfficient enough to handle complexity\nScales from a quick script to a production-ready app"
+  },
+  {
+    "objectID": "slides/02-shiny_intro.html#why-shiny-for-python",
+    "href": "slides/02-shiny_intro.html#why-shiny-for-python",
+    "title": "Introduction to Shiny",
+    "section": "Why Shiny for Python?",
+    "text": "Why Shiny for Python?\nShiny lets you build reactive web apps without worrying about:\n\ncache\nstate\ncallbacks\n…or even HTML, CSS, and JavaScript"
+  },
+  {
+    "objectID": "slides/02-shiny_intro.html#shiny-express-vs-shiny-core",
+    "href": "slides/02-shiny_intro.html#shiny-express-vs-shiny-core",
+    "title": "Introduction to Shiny",
+    "section": "Shiny Express vs Shiny Core",
+    "text": "Shiny Express vs Shiny Core\n\n\n\n\n\n\nImportant\n\n\nShiny for Python has two syntaxes for writing the same apps. There is full feature parody between the 2 syntax modes.\n\nShiny Express — simpler syntax (think Streamlit)\nShiny Core — more explicit, closer to Shiny for R and Dash\n\n\n\n\nToday we’ll use Shiny Express."
+  },
+  {
+    "objectID": "slides/02-shiny_intro.html#running-a-shiny-app",
+    "href": "slides/02-shiny_intro.html#running-a-shiny-app",
+    "title": "Introduction to Shiny",
+    "section": "Running a Shiny app",
+    "text": "Running a Shiny app\nshiny run app.py\nOr in Positron / VS Code: click the Run App button in the editor toolbar.\nOpen URL:Port (e.g., http://127.0.0.1:8000) in your browser."
+  },
+  {
+    "objectID": "slides/06-next_app.html#beyond-the-basics",
+    "href": "slides/06-next_app.html#beyond-the-basics",
+    "title": "Your Next Application",
+    "section": "Beyond the basics",
+    "text": "Beyond the basics\nYour first app had one input and one output.\nReal dashboards have:\n\nLayout structure (sidebars, columns, tabs)\n\nshiny.express.ui.*()\n\nMultiple coordinated outputs\nSummary statistics (value boxes)\n\nui.value_box()\n\nShared reactive computations\n\n@reactive.calc\n\nInteractive plots (jupyter widgets)\n\nshinywidgets.render_*()"
+  },
+  {
+    "objectID": "slides/06-next_app.html#example-application",
+    "href": "slides/06-next_app.html#example-application",
+    "title": "Your Next Application",
+    "section": "Example application",
+    "text": "Example application\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| layout: vertical\n#| viewerHeight: 600\n\nimport plotly.express as px\nfrom ridgeplot import ridgeplot\nimport seaborn as sns\nfrom shiny.express import input, ui, render\nfrom shiny import reactive\nfrom shinywidgets import render_plotly, render_widget\n\ntips = sns.load_dataset(\"tips\")\n\n# title\nui.page_opts(title=\"Restaurant tipping\", fillable=True)\n\n# sidebar\nwith ui.sidebar(open=\"desktop\"):\n    ui.input_slider(\n        id=\"slider\",\n        label=\"Bill amount\",\n        min=tips.total_bill.min(),\n        max=tips.total_bill.max(),\n        value=[tips.total_bill.min(), tips.total_bill.max()],\n    )\n    ui.input_checkbox_group(\n        id=\"checkbox_group\",\n        label=\"Food service\",\n        choices={\n            \"Lunch\": \"Lunch\",\n            \"Dinner\": \"Dinner\",\n        },\n        selected=[\n            \"Lunch\",\n            \"Dinner\",\n        ],\n    )\n    ui.input_action_button(\"action_button\", \"Reset filter\")\n\n\n@reactive.effect\n@reactive.event(input.action_button)\ndef reset_filters():\n    ui.update_slider(\n        \"slider\",\n        value=[tips.total_bill.min(), tips.total_bill.max()],\n    )\n    ui.update_checkbox_group(\n        \"checkbox_group\",\n        selected=[\"Lunch\", \"Dinner\"],\n    )\n\n\n@reactive.calc\ndef filtered_data():\n    idx1 = tips.total_bill.between(\n        left=input.slider()[0],\n        right=input.slider()[1],\n        inclusive=\"both\",\n    )\n    idx2 = tips.time.isin(input.checkbox_group())\n    tips_filtered = tips[idx1 & idx2]\n    return tips_filtered\n\n\n# body of application\n# first row of value boxes\nwith ui.layout_columns(fill=False):\n    with ui.value_box():\n        \"Total tippers\"\n\n        @render.text\n        def total_tippers():\n            return filtered_data().shape[0]\n\n    with ui.value_box():\n        \"Average tip\"\n\n        @render.text\n        def average_tip():\n            perc = filtered_data().tip / filtered_data().total_bill\n            return f\"{perc.mean():.1%}\"\n\n    with ui.value_box():\n        \"Average bill\"\n\n        @render.text\n        def average_bill():\n            bill = filtered_data().total_bill.mean()\n            return f\"${bill:.2f}\"\n\n\n# second row of cards\nwith ui.layout_columns(col_widths=[6, 6]):\n    with ui.card(full_screen=True):\n        ui.card_header(\"Tips data\")\n\n        @render.data_frame\n        def tips_data():\n            return filtered_data()\n\n    with ui.card(full_screen=True):\n        ui.card_header(\"Total bill vs tip\")\n\n        @render_plotly\n        def scatterplot():\n            return px.scatter(\n                filtered_data(), x=\"total_bill\", y=\"tip\", trendline=\"lowess\"\n            )\n\n\nwith ui.layout_columns():\n    with ui.card(full_screen=True):\n        ui.card_header(\"Tip percentages\")\n\n        @render_widget\n        def ridge():\n            filtered_data()[\"percent\"] = (\n                filtered_data().tip / filtered_data().total_bill\n            )\n\n            uvals = filtered_data().day.unique()\n            samples = [\n                [filtered_data().percent[filtered_data().day == val]] for val in uvals\n            ]\n\n            plt = ridgeplot(\n                samples=samples,\n                labels=uvals,\n                bandwidth=0.01,\n                colorscale=\"viridis\",\n                colormode=\"row-index\",\n            )\n\n            plt.update_layout(\n                legend=dict(\n                    orientation=\"h\", yanchor=\"bottom\", y=1.02, xanchor=\"center\", x=0.5\n                )\n            )\n\n            return plt\n\n\n## file: requirements.txt\nridgeplot"
+  },
+  {
+    "objectID": "slides/06-next_app.html#layout-components",
+    "href": "slides/06-next_app.html#layout-components",
+    "title": "Your Next Application",
+    "section": "Layout components",
+    "text": "Layout components\nfrom shiny.express import input, render, ui\n\nui.page_opts(title=\"Tips Dashboard\", fillable=True)\n\nwith ui.sidebar():\n    ui.input_slider(\"bill\", \"Max bill ($)\", 3, 50, 25)\n    ui.input_checkbox_group(\n        \"time\",\n        \"Meal\",\n        [\"Lunch\", \"Dinner\"],\n        selected=[\"Lunch\", \"Dinner\"],\n    )\n    ui.input_action_button(\"action_button\", \"Reset\")\n\nwith ui.layout_columns():\n    with ui.card():\n        ...  # output 1\n\n    with ui.card():\n        ...  # output 2\n\n    with ui.card():\n            ...  # output 3\n\nwith ui.layout_columns():\n    with ui.card():\n        ...  # data frame\n\n    with ui.card():\n        ...  # scatter plot\n\nwith ui.layout_columns():\n    with ui.card():\n        ...  # ridgeplot"
+  },
+  {
+    "objectID": "slides/06-next_app.html#value-boxes",
+    "href": "slides/06-next_app.html#value-boxes",
+    "title": "Your Next Application",
+    "section": "Value boxes",
+    "text": "Value boxes\nhttps://shiny.posit.co/py/components/outputs/value-box/\nfrom shiny.express import render, ui\nfrom faicons import icon_svg\n\nwith ui.value_box(showcase=icon_svg(\"dollar-sign\")):\n    \"Average bill\"\n\n    @render.text\n    def avg_bill():\n        return f\"${filtered()['total_bill'].mean():.2f}\""
+  },
+  {
+    "objectID": "slides/06-next_app.html#reactive.calc-for-shared-filtering",
+    "href": "slides/06-next_app.html#reactive.calc-for-shared-filtering",
+    "title": "Your Next Application",
+    "section": "@reactive.calc for shared filtering",
+    "text": "@reactive.calc for shared filtering\nhttps://shiny.posit.co/py/docs/reactive-foundations.html#calculations\nfrom shiny import reactive\n\n@reactive.calc\ndef filtered():\n    df = tips.copy()\n    df = df[df[\"total_bill\"] &lt;= input.bill()]\n    df = df[df[\"time\"].isin(input.time())]\n    return df\nAll outputs call filtered() — the filter runs once per change."
+  },
+  {
+    "objectID": "slides/06-next_app.html#full-app-structure",
+    "href": "slides/06-next_app.html#full-app-structure",
+    "title": "Your Next Application",
+    "section": "Full app structure",
+    "text": "Full app structure\nui.page_opts(title=\"Tips Dashboard\", fillable=True)\n\nwith ui.sidebar():\n    # inputs ...\n\n@reactive.calc\ndef filtered():\n    # shared data transform ...\n\nwith ui.layout_columns():\n    with ui.value_box(...):\n        @render.text\n        def avg_bill(): ...\n\n    with ui.card():\n        @render.plot\n        def scatter(): ...\n\n    with ui.card():\n        @render.data_frame\n        def table(): ..."
+  },
+  {
+    "objectID": "slides/06-next_app.html#pausing-computations",
+    "href": "slides/06-next_app.html#pausing-computations",
+    "title": "Your Next Application",
+    "section": "Pausing computations",
+    "text": "Pausing computations\nSometimes you want an action to wait until you say so (e.g., do something when I push a button)\n\nUsing user text input to filter\nAdjusting multiple filters\n\nWe can use a ui.innput_action_buttion() input component to trigger a reactive event.\nhttps://shiny.posit.co/py/components/inputs/action-button/"
+  },
+  {
+    "objectID": "slides/06-next_app.html#parts-of-an-action-button",
+    "href": "slides/06-next_app.html#parts-of-an-action-button",
+    "title": "Your Next Application",
+    "section": "Parts of an action button",
+    "text": "Parts of an action button\n\nUI input component: ui.innput_action_buttion()\nA function that gets called when the button gets clicked\n\n@reactive.event(input.&lt;ID&gt;) decorator which button triggers which function\n@reactive.effect decorator a button click doesn’t return a result, it creates a side effect"
+  },
+  {
+    "objectID": "slides/06-next_app.html#exercise",
+    "href": "slides/06-next_app.html#exercise",
+    "title": "Your Next Application",
+    "section": "Exercise",
+    "text": "Exercise"
+  },
+  {
     "objectID": "slides/04-reactivity.html#further-reading",
     "href": "slides/04-reactivity.html#further-reading",
     "title": "Shiny Reactivity",
@@ -1090,228 +1314,422 @@
     "text": "Demo + Exercises"
   },
   {
-    "objectID": "slides/01-welcome.html#get-your-computer-ready",
-    "href": "slides/01-welcome.html#get-your-computer-ready",
-    "title": "Welcome",
-    "section": "Get your computer ready",
-    "text": "Get your computer ready\n\n\nInstallation\nhttps://chendaniely.github.io/scipy-2026-shiny/setup.html\n\n\n\n\n\nIf you cloned the repository and did the installation update your materials with:\ngit pull origin main\n\nWifi\n\nSSID: TBD\nPassword: TBD"
+    "objectID": "workshop/08-ai_dashboards.html",
+    "href": "workshop/08-ai_dashboards.html",
+    "title": "AI + LLM Dashboards",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Home",
+      "AI + LLM dashboards"
+    ]
   },
   {
-    "objectID": "slides/01-welcome.html#todays-goal",
-    "href": "slides/01-welcome.html#todays-goal",
-    "title": "Welcome",
-    "section": "Today’s goal",
-    "text": "Today’s goal\nLearn how to build reactive web apps with Shiny for Python, from the simple to the mission critical."
-  },
-  {
-    "objectID": "slides/01-welcome.html#whos-in-the-room",
-    "href": "slides/01-welcome.html#whos-in-the-room",
-    "title": "Welcome",
-    "section": "Who’s in the room?",
-    "text": "Who’s in the room?\nHave you used…\n\nPython?\nData visualization in Python (matplotlib, plotnine, plotly, …)?\nInteractive dashboards (Dash, Streamlit, Panel, …)?\nShiny for R?\nShiny for Python?"
-  },
-  {
-    "objectID": "slides/01-welcome.html#agenda",
-    "href": "slides/01-welcome.html#agenda",
-    "title": "Welcome",
-    "section": "Agenda",
-    "text": "Agenda\n\n\n\n\nTime\nTopic\n\n\n\n\n9:00\nWelcome + Introduction\n\n\n9:10\nIntroduction to Shiny\n\n\n9:20\nYour first application\n\n\n9:50\nShiny reactivity\n\n\n10:20\nDeploying your application\n\n\n10:30\n☕ Coffee + Tea Break\n\n\n11:00\nYour next application\n\n\n11:30\nAn AI + LLM primer\n\n\n11:50\nAI + LLM dashboards\n\n\n12:10\nTesting your shiny apps with playwright\n\n\n12:20\nWrap up + Feedback Survey\n\n\n12:30\nFinish"
-  },
-  {
-    "objectID": "slides/01-welcome.html#house-rules",
-    "href": "slides/01-welcome.html#house-rules",
-    "title": "Welcome",
-    "section": "House rules",
-    "text": "House rules\n\nAsk questions any time\nHelp your neighbor - teaching is the best way to learn\nStuck? Raise your hand - helpers are roaming the room\nEverything is at: https://github.com/chendaniely/scipy-2026-shiny"
-  },
-  {
-    "objectID": "slides/09-testing.html#why-test",
-    "href": "slides/09-testing.html#why-test",
-    "title": "Testing Shiny Apps",
-    "section": "Why test?",
-    "text": "Why test?\n\nManual “click around and check” doesn’t scale\nCatch regressions before users do\nDocument expected behavior as executable code"
-  },
-  {
-    "objectID": "slides/09-testing.html#visual-check-assert-statements",
-    "href": "slides/09-testing.html#visual-check-assert-statements",
-    "title": "Testing Shiny Apps",
-    "section": "Visual check + assert statements",
-    "text": "Visual check + assert statements\n\ndef my_add(x, y):\n    return x + y\n\n\nmy_add(3, 10)\n\n13\n\n\n\nassert my_add(3, 10) == 13\n\n\nassert my_add(3, 10) == 100\n\n\n---------------------------------------------------------------------------\nAssertionError                            Traceback (most recent call last)\nCell In[4], line 1\n----&gt; 1 assert my_add(3, 10) == 100\n\nAssertionError:"
-  },
-  {
-    "objectID": "slides/09-testing.html#unit-testing---pytest",
-    "href": "slides/09-testing.html#unit-testing---pytest",
-    "title": "Testing Shiny Apps",
-    "section": "Unit testing - pytest",
-    "text": "Unit testing - pytest\n\nNeed to know a bit of how packages are set up"
-  },
-  {
-    "objectID": "slides/09-testing.html#python-functions-shiny",
-    "href": "slides/09-testing.html#python-functions-shiny",
-    "title": "Testing Shiny Apps",
-    "section": "Python functions + Shiny",
-    "text": "Python functions + Shiny\n\nIf you have a normal python function, you can still pass in reactive values as the arguments!\n\nImport your existing functions / modules\nUse other packages\n\nAs long as you don’t plan on having reactive calls inside the function body\n\nRemember: reactive things must happen inside a reactive context\n\npytest is the package / tool to do unit testing"
-  },
-  {
-    "objectID": "slides/09-testing.html#playwright---end-to-end-testing",
-    "href": "slides/09-testing.html#playwright---end-to-end-testing",
-    "title": "Testing Shiny Apps",
-    "section": "Playwright - end-to-end testing",
-    "text": "Playwright - end-to-end testing\nPlaywright is a modern browser automation library.\nShiny provides a Playwright controller that understands Shiny-specific widgets:\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import ShinyAppProc\nDocs: https://shiny.posit.co/py/docs/testing.html"
-  },
-  {
-    "objectID": "slides/09-testing.html#test-structure",
-    "href": "slides/09-testing.html#test-structure",
-    "title": "Testing Shiny Apps",
-    "section": "Test structure",
-    "text": "Test structure\nfrom pathlib import Path\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import run_shiny_app\n\nAPP = Path(__file__).parent / \"app.py\"\n\ndef test_species_filter(page: Page):\n    with run_shiny_app(str(APP)) as app:\n        page.goto(app.url)\n\n        radio = controller.InputRadioButtons(page, \"species\")\n        text  = controller.OutputText(page, \"n_rows\")\n\n        radio.expect_choices([\"Adelie\", \"Chinstrap\", \"Gentoo\"])\n        radio.set(\"Chinstrap\")\n        text.expect_value(\"68 penguins\")"
-  },
-  {
-    "objectID": "slides/09-testing.html#running-tests",
-    "href": "slides/09-testing.html#running-tests",
-    "title": "Testing Shiny Apps",
-    "section": "Running tests",
-    "text": "Running tests\ncode/demos/testing/\n├── app.py          ← the Shiny app\n└── test_app.py     ← tests\ncd code/demos/testing\npytest\nOr from the repo root:\npytest code/demos/testing/"
-  },
-  {
-    "objectID": "slides/09-testing.html#controllers",
-    "href": "slides/09-testing.html#controllers",
-    "title": "Testing Shiny Apps",
-    "section": "Controllers",
-    "text": "Controllers\nShiny provides typed controllers for every input and output type:\n# Inputs\ncontroller.InputRadioButtons(page, \"id\")\ncontroller.InputSlider(page, \"id\")\ncontroller.InputSelect(page, \"id\")\ncontroller.InputCheckboxGroup(page, \"id\")\n\n# Outputs\ncontroller.OutputPlot(page, \"id\")\ncontroller.OutputText(page, \"id\")\ncontroller.OutputDataFrame(page, \"id\")"
-  },
-  {
-    "objectID": "slides/09-testing.html#what-to-test",
-    "href": "slides/09-testing.html#what-to-test",
-    "title": "Testing Shiny Apps",
-    "section": "What to test",
-    "text": "What to test\n\nDefault state renders without errors\nEach input change produces the expected output change\nEdge cases: empty selections, out-of-range values\nError messages appear when they should"
-  },
-  {
-    "objectID": "slides/08-ai_dashboards.html#putting-llms-in-shiny-apps",
-    "href": "slides/08-ai_dashboards.html#putting-llms-in-shiny-apps",
+    "objectID": "workshop/08-ai_dashboards.html#putting-llms-in-shiny-apps",
+    "href": "workshop/08-ai_dashboards.html#putting-llms-in-shiny-apps",
     "title": "AI + LLM Dashboards",
     "section": "Putting LLMs in Shiny apps",
-    "text": "Putting LLMs in Shiny apps\nThree patterns, increasing complexity:\n\nChat interface — a conversational UI (shinychat)\nTool calling — let the LLM take actions in your app\nData chat — query your dataframe with natural language (querychat)"
+    "text": "Putting LLMs in Shiny apps\nThree patterns, increasing complexity:\n\nChat interface — a conversational UI (shinychat)\nTool calling — let the LLM take actions in your app\nData chat — query your dataframe with natural language (querychat)",
+    "crumbs": [
+      "Home",
+      "AI + LLM dashboards"
+    ]
   },
   {
-    "objectID": "slides/08-ai_dashboards.html#shinychat",
-    "href": "slides/08-ai_dashboards.html#shinychat",
+    "objectID": "workshop/08-ai_dashboards.html#shinychat",
+    "href": "workshop/08-ai_dashboards.html#shinychat",
     "title": "AI + LLM Dashboards",
     "section": "shinychat",
-    "text": "shinychat\nshinychat provides a ready-made chat UI component for Shiny:\nfrom shiny.express import ui\nfrom shinychat import chat_ui, chat_server\nfrom chatlas import ChatGithub\n\nui.page_opts(title=\"My Chatbot\")\n\nchat_ui(\"chat\")\n\n@chat_server(\"chat\")\ndef _():\n    return ChatGithub(model=\"gpt-4.1\", system_prompt=\"You are a helpful assistant.\")\nDocs: https://posit-dev.github.io/shinychat/py/"
+    "text": "shinychat\nshinychat provides a ready-made chat UI component for Shiny:\nfrom shiny.express import ui\nfrom shinychat import chat_ui, chat_server\nfrom chatlas import ChatGithub\n\nui.page_opts(title=\"My Chatbot\")\n\nchat_ui(\"chat\")\n\n@chat_server(\"chat\")\ndef _():\n    return ChatGithub(model=\"gpt-4.1\", system_prompt=\"You are a helpful assistant.\")\nDocs: https://posit-dev.github.io/shinychat/py/",
+    "crumbs": [
+      "Home",
+      "AI + LLM dashboards"
+    ]
   },
   {
-    "objectID": "slides/08-ai_dashboards.html#demo-shinychat",
-    "href": "slides/08-ai_dashboards.html#demo-shinychat",
+    "objectID": "workshop/08-ai_dashboards.html#demo-shinychat",
+    "href": "workshop/08-ai_dashboards.html#demo-shinychat",
     "title": "AI + LLM Dashboards",
     "section": "Demo: shinychat",
-    "text": "Demo: shinychat\n\n\ncode/03-llm/app-shinychat.py\n\nfrom shiny.express import ui\nfrom shinychat import chat_ui, chat_server\nfrom chatlas import ChatGithub\n\nui.page_opts(title=\"Shiny Chatbot\", fillable=True)\n\nchat_ui(\"chat\", height=\"100%\")\n\n@chat_server(\"chat\")\ndef _():\n    return ChatGithub(model=\"gpt-4.1\")"
+    "text": "Demo: shinychat\n\n\ncode/03-llm/app-shinychat.py\n\nfrom shiny.express import ui\nfrom shinychat import chat_ui, chat_server\nfrom chatlas import ChatGithub\n\nui.page_opts(title=\"Shiny Chatbot\", fillable=True)\n\nchat_ui(\"chat\", height=\"100%\")\n\n@chat_server(\"chat\")\ndef _():\n    return ChatGithub(model=\"gpt-4.1\")",
+    "crumbs": [
+      "Home",
+      "AI + LLM dashboards"
+    ]
   },
   {
-    "objectID": "slides/08-ai_dashboards.html#chatting-with-your-data",
-    "href": "slides/08-ai_dashboards.html#chatting-with-your-data",
+    "objectID": "workshop/08-ai_dashboards.html#chatting-with-your-data",
+    "href": "workshop/08-ai_dashboards.html#chatting-with-your-data",
     "title": "AI + LLM Dashboards",
     "section": "Chatting with your data",
-    "text": "Chatting with your data\nWhat if users could ask questions about your dataset in plain English?\nquerychat translates natural language → SQL → runs against a DuckDB table:\nimport querychat\nimport seaborn as sns\n\ntips = sns.load_dataset(\"tips\")\nqc = querychat.init(tips, \"tips\")\nDocs: https://github.com/posit-dev/querychat"
+    "text": "Chatting with your data\nWhat if users could ask questions about your dataset in plain English?\nquerychat translates natural language → SQL → runs against a DuckDB table:\nimport querychat\nimport seaborn as sns\n\ntips = sns.load_dataset(\"tips\")\nqc = querychat.init(tips, \"tips\")\nDocs: https://github.com/posit-dev/querychat",
+    "crumbs": [
+      "Home",
+      "AI + LLM dashboards"
+    ]
   },
   {
-    "objectID": "slides/08-ai_dashboards.html#demo-querychat",
-    "href": "slides/08-ai_dashboards.html#demo-querychat",
+    "objectID": "workshop/08-ai_dashboards.html#demo-querychat",
+    "href": "workshop/08-ai_dashboards.html#demo-querychat",
     "title": "AI + LLM Dashboards",
     "section": "Demo: querychat",
-    "text": "Demo: querychat\nimport querychat\nimport seaborn as sns\nfrom shiny.express import ui\n\ntips = sns.load_dataset(\"tips\")\nqc = querychat.init(tips, \"tips\",\n                    greeting=\"Ask me about the tips dataset!\")\n\nui.page_opts(title=\"Tips Q&A\", fillable=True)\nquerychat.chat_ui(\"chat\")\nquerychat.dataframe_ui(\"df\")\n\nquerychat.chat_server(\"chat\", qc)\nquerychat.dataframe_server(\"df\", qc)"
+    "text": "Demo: querychat\nimport querychat\nimport seaborn as sns\nfrom shiny.express import ui\n\ntips = sns.load_dataset(\"tips\")\nqc = querychat.init(tips, \"tips\",\n                    greeting=\"Ask me about the tips dataset!\")\n\nui.page_opts(title=\"Tips Q&A\", fillable=True)\nquerychat.chat_ui(\"chat\")\nquerychat.dataframe_ui(\"df\")\n\nquerychat.chat_server(\"chat\", qc)\nquerychat.dataframe_server(\"df\", qc)",
+    "crumbs": [
+      "Home",
+      "AI + LLM dashboards"
+    ]
   },
   {
-    "objectID": "slides/08-ai_dashboards.html#sidebot-pattern",
-    "href": "slides/08-ai_dashboards.html#sidebot-pattern",
+    "objectID": "workshop/08-ai_dashboards.html#sidebot-pattern",
+    "href": "workshop/08-ai_dashboards.html#sidebot-pattern",
     "title": "AI + LLM Dashboards",
     "section": "Sidebot pattern",
-    "text": "Sidebot pattern\nUse an LLM to drive filters in a dashboard via natural language:\n\nUser types “show me only lunch orders over $20”\nLLM translates to filter parameters\nDashboard updates reactively\n\nTemplate: shiny create --mode core --github jcheng5/py-databot"
+    "text": "Sidebot pattern\nUse an LLM to drive filters in a dashboard via natural language:\n\nUser types “show me only lunch orders over $20”\nLLM translates to filter parameters\nDashboard updates reactively\n\nTemplate: shiny create --mode core --github jcheng5/py-databot",
+    "crumbs": [
+      "Home",
+      "AI + LLM dashboards"
+    ]
   },
   {
-    "objectID": "slides/08-ai_dashboards.html#demo-llms-chat",
-    "href": "slides/08-ai_dashboards.html#demo-llms-chat",
+    "objectID": "workshop/08-ai_dashboards.html#demo-llms-chat",
+    "href": "workshop/08-ai_dashboards.html#demo-llms-chat",
     "title": "AI + LLM Dashboards",
     "section": "Demo: LLMs + Chat",
-    "text": "Demo: LLMs + Chat\nGenerative AI shiny templates: https://shiny.posit.co/py/templates/#generative-ai\n\nhttps://shiny.posit.co/py/templates/basic-chatbot/\nhttps://shiny.posit.co/py/templates/querychat/\nhttps://shiny.posit.co/py/templates/sidebot/"
+    "text": "Demo: LLMs + Chat\nGenerative AI shiny templates: https://shiny.posit.co/py/templates/#generative-ai\n\nhttps://shiny.posit.co/py/templates/basic-chatbot/\nhttps://shiny.posit.co/py/templates/querychat/\nhttps://shiny.posit.co/py/templates/sidebot/",
+    "crumbs": [
+      "Home",
+      "AI + LLM dashboards"
+    ]
   },
   {
-    "objectID": "slides/08-ai_dashboards.html#exercise",
-    "href": "slides/08-ai_dashboards.html#exercise",
+    "objectID": "workshop/08-ai_dashboards.html#exercise",
+    "href": "workshop/08-ai_dashboards.html#exercise",
     "title": "AI + LLM Dashboards",
     "section": "Exercise",
-    "text": "Exercise"
+    "text": "Exercise",
+    "crumbs": [
+      "Home",
+      "AI + LLM dashboards"
+    ]
   },
   {
-    "objectID": "slides/08-ai_dashboards.html#sql-is-a-great-communication-layer",
-    "href": "slides/08-ai_dashboards.html#sql-is-a-great-communication-layer",
+    "objectID": "workshop/08-ai_dashboards.html#sql-is-a-great-communication-layer",
+    "href": "workshop/08-ai_dashboards.html#sql-is-a-great-communication-layer",
     "title": "AI + LLM Dashboards",
     "section": "SQL is a great communication layer",
-    "text": "SQL is a great communication layer\nUpcoming tool: ggsql https://ggsql.org/\nTrt it: https://ggsql.org/wasm/\nSee also: Querychat + Vis docs: https://posit-dev.github.io/querychat/py/visualize.html\n\n\nVISUALISE FROM ggsql:penguins\nDRAW point\n    MAPPING\n      bill_dep AS x,\n      body_mass AS y,\n      species AS color"
+    "text": "SQL is a great communication layer\nUpcoming tool: ggsql https://ggsql.org/\nTrt it: https://ggsql.org/wasm/\nSee also: Querychat + Vis docs: https://posit-dev.github.io/querychat/py/visualize.html\n\n\nVISUALISE FROM ggsql:penguins\nDRAW point\n    MAPPING\n      bill_dep AS x,\n      body_mass AS y,\n      species AS color",
+    "crumbs": [
+      "Home",
+      "AI + LLM dashboards"
+    ]
   },
   {
-    "objectID": "slides/06-next_app.html#beyond-the-basics",
-    "href": "slides/06-next_app.html#beyond-the-basics",
+    "objectID": "workshop/01-welcome.html",
+    "href": "workshop/01-welcome.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Home",
+      "Welcome + Introduction"
+    ]
+  },
+  {
+    "objectID": "workshop/01-welcome.html#get-your-computer-ready",
+    "href": "workshop/01-welcome.html#get-your-computer-ready",
+    "title": "Welcome",
+    "section": "Get your computer ready",
+    "text": "Get your computer ready\n\n\n\nInstallation\nhttps://chendaniely.github.io/scipy-2026-shiny/setup.html\n\n\n\n\n\nIf you cloned the repository and did the installation update your materials with:\ngit pull origin main\n\n\n\nWifi\n\nSSID: TBD\nPassword: TBD",
+    "crumbs": [
+      "Home",
+      "Welcome + Introduction"
+    ]
+  },
+  {
+    "objectID": "workshop/01-welcome.html#todays-goal",
+    "href": "workshop/01-welcome.html#todays-goal",
+    "title": "Welcome",
+    "section": "Today’s goal",
+    "text": "Today’s goal\nLearn how to build reactive web apps with Shiny for Python, from the simple to the mission critical.",
+    "crumbs": [
+      "Home",
+      "Welcome + Introduction"
+    ]
+  },
+  {
+    "objectID": "workshop/01-welcome.html#whos-in-the-room",
+    "href": "workshop/01-welcome.html#whos-in-the-room",
+    "title": "Welcome",
+    "section": "Who’s in the room?",
+    "text": "Who’s in the room?\nHave you used…\n\n\nPython?\nData visualization in Python (matplotlib, plotnine, plotly, …)?\nInteractive dashboards (Dash, Streamlit, Panel, …)?\nShiny for R?\nShiny for Python?",
+    "crumbs": [
+      "Home",
+      "Welcome + Introduction"
+    ]
+  },
+  {
+    "objectID": "workshop/01-welcome.html#agenda",
+    "href": "workshop/01-welcome.html#agenda",
+    "title": "Welcome",
+    "section": "Agenda",
+    "text": "Agenda\n\n\n\n\nTime\nTopic\n\n\n\n\n9:00\nWelcome + Introduction\n\n\n9:10\nIntroduction to Shiny\n\n\n9:20\nYour first application\n\n\n9:50\nShiny reactivity\n\n\n10:20\nDeploying your application\n\n\n10:30\n☕ Coffee + Tea Break\n\n\n11:00\nYour next application\n\n\n11:30\nAn AI + LLM primer\n\n\n11:50\nAI + LLM dashboards\n\n\n12:10\nTesting your shiny apps with playwright\n\n\n12:20\nWrap up + Feedback Survey\n\n\n12:30\nFinish",
+    "crumbs": [
+      "Home",
+      "Welcome + Introduction"
+    ]
+  },
+  {
+    "objectID": "workshop/01-welcome.html#house-rules",
+    "href": "workshop/01-welcome.html#house-rules",
+    "title": "Welcome",
+    "section": "House rules",
+    "text": "House rules\n\nAsk questions any time\nHelp your neighbor - teaching is the best way to learn\nStuck? Raise your hand - helpers are roaming the room\nEverything is at: https://github.com/chendaniely/scipy-2026-shiny",
+    "crumbs": [
+      "Home",
+      "Welcome + Introduction"
+    ]
+  },
+  {
+    "objectID": "workshop/02-shiny_intro.html",
+    "href": "workshop/02-shiny_intro.html",
+    "title": "Introduction to Shiny",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Home",
+      "Introduction to Shiny"
+    ]
+  },
+  {
+    "objectID": "workshop/02-shiny_intro.html#title-introduction-to-shiny",
+    "href": "workshop/02-shiny_intro.html#title-introduction-to-shiny",
+    "title": "Introduction to Shiny",
+    "section": "title: “Introduction to Shiny”",
+    "text": "title: “Introduction to Shiny”",
+    "crumbs": [
+      "Home",
+      "Introduction to Shiny"
+    ]
+  },
+  {
+    "objectID": "workshop/02-shiny_intro.html#what-is-a-shiny-app",
+    "href": "workshop/02-shiny_intro.html#what-is-a-shiny-app",
+    "title": "Introduction to Shiny",
+    "section": "What is a Shiny app?",
+    "text": "What is a Shiny app?\nEach Shiny app involves:\n\nA web page that users interact with\nA Python process that watches the page and responds to user events\n\nThe Python process runs your code and sends results back to the browser.",
+    "crumbs": [
+      "Home",
+      "Introduction to Shiny"
+    ]
+  },
+  {
+    "objectID": "workshop/02-shiny_intro.html#components",
+    "href": "workshop/02-shiny_intro.html#components",
+    "title": "Introduction to Shiny",
+    "section": "Components",
+    "text": "Components\nEach Shiny app consists of:\n\nInput components — widgets the user can interact with (sliders, dropdowns, checkboxes, …)\n\nhttps://shiny.posit.co/py/components/#inputs/\n\nOutput components — things Shiny renders and displays (plots, tables, text, …)\n\nhttps://shiny.posit.co/py/components/#outputs/\n\nLayout — how the components are laid out on the page (columns, sidebar, boxes, cards, …)\n\nhttps://shiny.posit.co/py/layouts/",
+    "crumbs": [
+      "Home",
+      "Introduction to Shiny"
+    ]
+  },
+  {
+    "objectID": "workshop/02-shiny_intro.html#example-application",
+    "href": "workshop/02-shiny_intro.html#example-application",
+    "title": "Introduction to Shiny",
+    "section": "Example application",
+    "text": "Example application\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 600\n\nfrom palmerpenguins import load_penguins\nfrom plotnine import aes, geom_point, ggplot, theme_minimal\nfrom shiny.express import input, render, ui\n\ndat = load_penguins().dropna()\nnum_cols = dat.select_dtypes(\"float64\").columns.tolist()\n\nui.input_select(\"x\", \"\", num_cols, selected=\"bill_depth_mm\")\nui.input_select(\"y\", \"\", num_cols, selected=\"body_mass_g\")\n\n\n@render.plot\ndef plot():\n    return (ggplot(dat, aes(x=input.x(), y=input.y(), color=\"species\")) +\n        geom_point(alpha=0.7) +\n        theme_minimal()\n    )",
+    "crumbs": [
+      "Home",
+      "Introduction to Shiny"
+    ]
+  },
+  {
+    "objectID": "workshop/02-shiny_intro.html#reactivity",
+    "href": "workshop/02-shiny_intro.html#reactivity",
+    "title": "Introduction to Shiny",
+    "section": "Reactivity",
+    "text": "Reactivity\nWhen an input changes, Shiny reacts by rebuilding the outputs that depend on it — and only those outputs.\nNo callbacks. No manual refresh. No cache management.",
+    "crumbs": [
+      "Home",
+      "Introduction to Shiny"
+    ]
+  },
+  {
+    "objectID": "workshop/02-shiny_intro.html#spreadsheet-analogy",
+    "href": "workshop/02-shiny_intro.html#spreadsheet-analogy",
+    "title": "Introduction to Shiny",
+    "section": "Spreadsheet analogy",
+    "text": "Spreadsheet analogy\nThink of a spreadsheet:\n\nInputs = cells you type values into\nOutputs = formula cells\nInstructions = the formulas\n\nWhen you change a value cell, only the formula cells that depend on it recalculate.\nShiny works the same way.\n\nOther reactive tools\n\nPluto Notebooks: https://plutojl.org//\nMarimo Notebooks: https://marimo.io/",
+    "crumbs": [
+      "Home",
+      "Introduction to Shiny"
+    ]
+  },
+  {
+    "objectID": "workshop/02-shiny_intro.html#key-features",
+    "href": "workshop/02-shiny_intro.html#key-features",
+    "title": "Introduction to Shiny",
+    "section": "Key features",
+    "text": "Key features\n\nEasy enough for prototypes\nEfficient enough to handle complexity\nScales from a quick script to a production-ready app",
+    "crumbs": [
+      "Home",
+      "Introduction to Shiny"
+    ]
+  },
+  {
+    "objectID": "workshop/02-shiny_intro.html#why-shiny-for-python",
+    "href": "workshop/02-shiny_intro.html#why-shiny-for-python",
+    "title": "Introduction to Shiny",
+    "section": "Why Shiny for Python?",
+    "text": "Why Shiny for Python?\nShiny lets you build reactive web apps without worrying about:\n\ncache\nstate\ncallbacks\n…or even HTML, CSS, and JavaScript",
+    "crumbs": [
+      "Home",
+      "Introduction to Shiny"
+    ]
+  },
+  {
+    "objectID": "workshop/02-shiny_intro.html#shiny-express-vs-shiny-core",
+    "href": "workshop/02-shiny_intro.html#shiny-express-vs-shiny-core",
+    "title": "Introduction to Shiny",
+    "section": "Shiny Express vs Shiny Core",
+    "text": "Shiny Express vs Shiny Core\n\n\n\n\n\n\nImportant\n\n\n\nShiny for Python has two syntaxes for writing the same apps. There is full feature parody between the 2 syntax modes.\n\nShiny Express — simpler syntax (think Streamlit)\nShiny Core — more explicit, closer to Shiny for R and Dash\n\n\n\nToday we’ll use Shiny Express.",
+    "crumbs": [
+      "Home",
+      "Introduction to Shiny"
+    ]
+  },
+  {
+    "objectID": "workshop/02-shiny_intro.html#running-a-shiny-app",
+    "href": "workshop/02-shiny_intro.html#running-a-shiny-app",
+    "title": "Introduction to Shiny",
+    "section": "Running a Shiny app",
+    "text": "Running a Shiny app\nshiny run app.py\nOr in Positron / VS Code: click the Run App button in the editor toolbar.\nOpen URL:Port (e.g., http://127.0.0.1:8000) in your browser.",
+    "crumbs": [
+      "Home",
+      "Introduction to Shiny"
+    ]
+  },
+  {
+    "objectID": "workshop/06-next_app.html",
+    "href": "workshop/06-next_app.html",
+    "title": "Your Next Application",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Home",
+      "Your next application"
+    ]
+  },
+  {
+    "objectID": "workshop/06-next_app.html#title-your-next-application",
+    "href": "workshop/06-next_app.html#title-your-next-application",
+    "title": "Your Next Application",
+    "section": "title: “Your Next Application”",
+    "text": "title: “Your Next Application”",
+    "crumbs": [
+      "Home",
+      "Your next application"
+    ]
+  },
+  {
+    "objectID": "workshop/06-next_app.html#beyond-the-basics",
+    "href": "workshop/06-next_app.html#beyond-the-basics",
     "title": "Your Next Application",
     "section": "Beyond the basics",
-    "text": "Beyond the basics\nYour first app had one input and one output.\nReal dashboards have:\n\nLayout structure (sidebars, columns, tabs)\n\nshiny.express.ui.*()\n\nMultiple coordinated outputs\nSummary statistics (value boxes)\n\nui.value_box()\n\nShared reactive computations\n\n@reactive.calc\n\nInteractive plots (jupyter widgets)\n\nshinywidgets.render_*()"
+    "text": "Beyond the basics\nYour first app had one input and one output.\nReal dashboards have:\n\nLayout structure (sidebars, columns, tabs)\n\nshiny.express.ui.*()\n\nMultiple coordinated outputs\nSummary statistics (value boxes)\n\nui.value_box()\n\nShared reactive computations\n\n@reactive.calc\n\nInteractive plots (jupyter widgets)\n\nshinywidgets.render_*()",
+    "crumbs": [
+      "Home",
+      "Your next application"
+    ]
   },
   {
-    "objectID": "slides/06-next_app.html#example-application",
-    "href": "slides/06-next_app.html#example-application",
+    "objectID": "workshop/06-next_app.html#example-application",
+    "href": "workshop/06-next_app.html#example-application",
     "title": "Your Next Application",
     "section": "Example application",
-    "text": "Example application\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| layout: vertical\n#| viewerHeight: 600\n\nimport plotly.express as px\nfrom ridgeplot import ridgeplot\nimport seaborn as sns\nfrom shiny.express import input, ui, render\nfrom shiny import reactive\nfrom shinywidgets import render_plotly, render_widget\n\ntips = sns.load_dataset(\"tips\")\n\n# title\nui.page_opts(title=\"Restaurant tipping\", fillable=True)\n\n# sidebar\nwith ui.sidebar(open=\"desktop\"):\n    ui.input_slider(\n        id=\"slider\",\n        label=\"Bill amount\",\n        min=tips.total_bill.min(),\n        max=tips.total_bill.max(),\n        value=[tips.total_bill.min(), tips.total_bill.max()],\n    )\n    ui.input_checkbox_group(\n        id=\"checkbox_group\",\n        label=\"Food service\",\n        choices={\n            \"Lunch\": \"Lunch\",\n            \"Dinner\": \"Dinner\",\n        },\n        selected=[\n            \"Lunch\",\n            \"Dinner\",\n        ],\n    )\n    ui.input_action_button(\"action_button\", \"Reset filter\")\n\n\n@reactive.effect\n@reactive.event(input.action_button)\ndef reset_filters():\n    ui.update_slider(\n        \"slider\",\n        value=[tips.total_bill.min(), tips.total_bill.max()],\n    )\n    ui.update_checkbox_group(\n        \"checkbox_group\",\n        selected=[\"Lunch\", \"Dinner\"],\n    )\n\n\n@reactive.calc\ndef filtered_data():\n    idx1 = tips.total_bill.between(\n        left=input.slider()[0],\n        right=input.slider()[1],\n        inclusive=\"both\",\n    )\n    idx2 = tips.time.isin(input.checkbox_group())\n    tips_filtered = tips[idx1 & idx2]\n    return tips_filtered\n\n\n# body of application\n# first row of value boxes\nwith ui.layout_columns(fill=False):\n    with ui.value_box():\n        \"Total tippers\"\n\n        @render.text\n        def total_tippers():\n            return filtered_data().shape[0]\n\n    with ui.value_box():\n        \"Average tip\"\n\n        @render.text\n        def average_tip():\n            perc = filtered_data().tip / filtered_data().total_bill\n            return f\"{perc.mean():.1%}\"\n\n    with ui.value_box():\n        \"Average bill\"\n\n        @render.text\n        def average_bill():\n            bill = filtered_data().total_bill.mean()\n            return f\"${bill:.2f}\"\n\n\n# second row of cards\nwith ui.layout_columns(col_widths=[6, 6]):\n    with ui.card(full_screen=True):\n        ui.card_header(\"Tips data\")\n\n        @render.data_frame\n        def tips_data():\n            return filtered_data()\n\n    with ui.card(full_screen=True):\n        ui.card_header(\"Total bill vs tip\")\n\n        @render_plotly\n        def scatterplot():\n            return px.scatter(\n                filtered_data(), x=\"total_bill\", y=\"tip\", trendline=\"lowess\"\n            )\n\n\nwith ui.layout_columns():\n    with ui.card(full_screen=True):\n        ui.card_header(\"Tip percentages\")\n\n        @render_widget\n        def ridge():\n            filtered_data()[\"percent\"] = (\n                filtered_data().tip / filtered_data().total_bill\n            )\n\n            uvals = filtered_data().day.unique()\n            samples = [\n                [filtered_data().percent[filtered_data().day == val]] for val in uvals\n            ]\n\n            plt = ridgeplot(\n                samples=samples,\n                labels=uvals,\n                bandwidth=0.01,\n                colorscale=\"viridis\",\n                colormode=\"row-index\",\n            )\n\n            plt.update_layout(\n                legend=dict(\n                    orientation=\"h\", yanchor=\"bottom\", y=1.02, xanchor=\"center\", x=0.5\n                )\n            )\n\n            return plt\n\n\n## file: requirements.txt\nridgeplot"
+    "text": "Example application\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| layout: vertical\n#| viewerHeight: 600\n\nimport plotly.express as px\nfrom ridgeplot import ridgeplot\nimport seaborn as sns\nfrom shiny.express import input, ui, render\nfrom shiny import reactive\nfrom shinywidgets import render_plotly, render_widget\n\ntips = sns.load_dataset(\"tips\")\n\n# title\nui.page_opts(title=\"Restaurant tipping\", fillable=True)\n\n# sidebar\nwith ui.sidebar(open=\"desktop\"):\n    ui.input_slider(\n        id=\"slider\",\n        label=\"Bill amount\",\n        min=tips.total_bill.min(),\n        max=tips.total_bill.max(),\n        value=[tips.total_bill.min(), tips.total_bill.max()],\n    )\n    ui.input_checkbox_group(\n        id=\"checkbox_group\",\n        label=\"Food service\",\n        choices={\n            \"Lunch\": \"Lunch\",\n            \"Dinner\": \"Dinner\",\n        },\n        selected=[\n            \"Lunch\",\n            \"Dinner\",\n        ],\n    )\n    ui.input_action_button(\"action_button\", \"Reset filter\")\n\n\n@reactive.effect\n@reactive.event(input.action_button)\ndef reset_filters():\n    ui.update_slider(\n        \"slider\",\n        value=[tips.total_bill.min(), tips.total_bill.max()],\n    )\n    ui.update_checkbox_group(\n        \"checkbox_group\",\n        selected=[\"Lunch\", \"Dinner\"],\n    )\n\n\n@reactive.calc\ndef filtered_data():\n    idx1 = tips.total_bill.between(\n        left=input.slider()[0],\n        right=input.slider()[1],\n        inclusive=\"both\",\n    )\n    idx2 = tips.time.isin(input.checkbox_group())\n    tips_filtered = tips[idx1 & idx2]\n    return tips_filtered\n\n\n# body of application\n# first row of value boxes\nwith ui.layout_columns(fill=False):\n    with ui.value_box():\n        \"Total tippers\"\n\n        @render.text\n        def total_tippers():\n            return filtered_data().shape[0]\n\n    with ui.value_box():\n        \"Average tip\"\n\n        @render.text\n        def average_tip():\n            perc = filtered_data().tip / filtered_data().total_bill\n            return f\"{perc.mean():.1%}\"\n\n    with ui.value_box():\n        \"Average bill\"\n\n        @render.text\n        def average_bill():\n            bill = filtered_data().total_bill.mean()\n            return f\"${bill:.2f}\"\n\n\n# second row of cards\nwith ui.layout_columns(col_widths=[6, 6]):\n    with ui.card(full_screen=True):\n        ui.card_header(\"Tips data\")\n\n        @render.data_frame\n        def tips_data():\n            return filtered_data()\n\n    with ui.card(full_screen=True):\n        ui.card_header(\"Total bill vs tip\")\n\n        @render_plotly\n        def scatterplot():\n            return px.scatter(\n                filtered_data(), x=\"total_bill\", y=\"tip\", trendline=\"lowess\"\n            )\n\n\nwith ui.layout_columns():\n    with ui.card(full_screen=True):\n        ui.card_header(\"Tip percentages\")\n\n        @render_widget\n        def ridge():\n            filtered_data()[\"percent\"] = (\n                filtered_data().tip / filtered_data().total_bill\n            )\n\n            uvals = filtered_data().day.unique()\n            samples = [\n                [filtered_data().percent[filtered_data().day == val]] for val in uvals\n            ]\n\n            plt = ridgeplot(\n                samples=samples,\n                labels=uvals,\n                bandwidth=0.01,\n                colorscale=\"viridis\",\n                colormode=\"row-index\",\n            )\n\n            plt.update_layout(\n                legend=dict(\n                    orientation=\"h\", yanchor=\"bottom\", y=1.02, xanchor=\"center\", x=0.5\n                )\n            )\n\n            return plt\n\n\n\n## file: requirements.txt\nridgeplot",
+    "crumbs": [
+      "Home",
+      "Your next application"
+    ]
   },
   {
-    "objectID": "slides/06-next_app.html#layout-components",
-    "href": "slides/06-next_app.html#layout-components",
+    "objectID": "workshop/06-next_app.html#layout-components",
+    "href": "workshop/06-next_app.html#layout-components",
     "title": "Your Next Application",
     "section": "Layout components",
-    "text": "Layout components\nfrom shiny.express import input, render, ui\n\nui.page_opts(title=\"Tips Dashboard\", fillable=True)\n\nwith ui.sidebar():\n    ui.input_slider(\"bill\", \"Max bill ($)\", 3, 50, 25)\n    ui.input_checkbox_group(\n        \"time\",\n        \"Meal\",\n        [\"Lunch\", \"Dinner\"],\n        selected=[\"Lunch\", \"Dinner\"],\n    )\n    ui.input_action_button(\"action_button\", \"Reset\")\n\nwith ui.layout_columns():\n    with ui.card():\n        ...  # output 1\n\n    with ui.card():\n        ...  # output 2\n\n    with ui.card():\n            ...  # output 3\n\nwith ui.layout_columns():\n    with ui.card():\n        ...  # data frame\n\n    with ui.card():\n        ...  # scatter plot\n\nwith ui.layout_columns():\n    with ui.card():\n        ...  # ridgeplot"
+    "text": "Layout components\nfrom shiny.express import input, render, ui\n\nui.page_opts(title=\"Tips Dashboard\", fillable=True)\n\nwith ui.sidebar():\n    ui.input_slider(\"bill\", \"Max bill ($)\", 3, 50, 25)\n    ui.input_checkbox_group(\n        \"time\",\n        \"Meal\",\n        [\"Lunch\", \"Dinner\"],\n        selected=[\"Lunch\", \"Dinner\"],\n    )\n    ui.input_action_button(\"action_button\", \"Reset\")\n\nwith ui.layout_columns():\n    with ui.card():\n        ...  # output 1\n\n    with ui.card():\n        ...  # output 2\n\n    with ui.card():\n            ...  # output 3\n\nwith ui.layout_columns():\n    with ui.card():\n        ...  # data frame\n\n    with ui.card():\n        ...  # scatter plot\n\nwith ui.layout_columns():\n    with ui.card():\n        ...  # ridgeplot",
+    "crumbs": [
+      "Home",
+      "Your next application"
+    ]
   },
   {
-    "objectID": "slides/06-next_app.html#value-boxes",
-    "href": "slides/06-next_app.html#value-boxes",
+    "objectID": "workshop/06-next_app.html#value-boxes",
+    "href": "workshop/06-next_app.html#value-boxes",
     "title": "Your Next Application",
     "section": "Value boxes",
-    "text": "Value boxes\nhttps://shiny.posit.co/py/components/outputs/value-box/\nfrom shiny.express import render, ui\nfrom faicons import icon_svg\n\nwith ui.value_box(showcase=icon_svg(\"dollar-sign\")):\n    \"Average bill\"\n\n    @render.text\n    def avg_bill():\n        return f\"${filtered()['total_bill'].mean():.2f}\""
+    "text": "Value boxes\nhttps://shiny.posit.co/py/components/outputs/value-box/\nfrom shiny.express import render, ui\nfrom faicons import icon_svg\n\nwith ui.value_box(showcase=icon_svg(\"dollar-sign\")):\n    \"Average bill\"\n\n    @render.text\n    def avg_bill():\n        return f\"${filtered()['total_bill'].mean():.2f}\"",
+    "crumbs": [
+      "Home",
+      "Your next application"
+    ]
   },
   {
-    "objectID": "slides/06-next_app.html#reactive.calc-for-shared-filtering",
-    "href": "slides/06-next_app.html#reactive.calc-for-shared-filtering",
+    "objectID": "workshop/06-next_app.html#reactive.calc-for-shared-filtering",
+    "href": "workshop/06-next_app.html#reactive.calc-for-shared-filtering",
     "title": "Your Next Application",
     "section": "@reactive.calc for shared filtering",
-    "text": "@reactive.calc for shared filtering\nhttps://shiny.posit.co/py/docs/reactive-foundations.html#calculations\nfrom shiny import reactive\n\n@reactive.calc\ndef filtered():\n    df = tips.copy()\n    df = df[df[\"total_bill\"] &lt;= input.bill()]\n    df = df[df[\"time\"].isin(input.time())]\n    return df\nAll outputs call filtered() — the filter runs once per change."
+    "text": "@reactive.calc for shared filtering\nhttps://shiny.posit.co/py/docs/reactive-foundations.html#calculations\nfrom shiny import reactive\n\n@reactive.calc\ndef filtered():\n    df = tips.copy()\n    df = df[df[\"total_bill\"] &lt;= input.bill()]\n    df = df[df[\"time\"].isin(input.time())]\n    return df\nAll outputs call filtered() — the filter runs once per change.",
+    "crumbs": [
+      "Home",
+      "Your next application"
+    ]
   },
   {
-    "objectID": "slides/06-next_app.html#full-app-structure",
-    "href": "slides/06-next_app.html#full-app-structure",
+    "objectID": "workshop/06-next_app.html#full-app-structure",
+    "href": "workshop/06-next_app.html#full-app-structure",
     "title": "Your Next Application",
     "section": "Full app structure",
-    "text": "Full app structure\nui.page_opts(title=\"Tips Dashboard\", fillable=True)\n\nwith ui.sidebar():\n    # inputs ...\n\n@reactive.calc\ndef filtered():\n    # shared data transform ...\n\nwith ui.layout_columns():\n    with ui.value_box(...):\n        @render.text\n        def avg_bill(): ...\n\n    with ui.card():\n        @render.plot\n        def scatter(): ...\n\n    with ui.card():\n        @render.data_frame\n        def table(): ..."
+    "text": "Full app structure\nui.page_opts(title=\"Tips Dashboard\", fillable=True)\n\nwith ui.sidebar():\n    # inputs ...\n\n@reactive.calc\ndef filtered():\n    # shared data transform ...\n\nwith ui.layout_columns():\n    with ui.value_box(...):\n        @render.text\n        def avg_bill(): ...\n\n    with ui.card():\n        @render.plot\n        def scatter(): ...\n\n    with ui.card():\n        @render.data_frame\n        def table(): ...",
+    "crumbs": [
+      "Home",
+      "Your next application"
+    ]
   },
   {
-    "objectID": "slides/06-next_app.html#pausing-computations",
-    "href": "slides/06-next_app.html#pausing-computations",
+    "objectID": "workshop/06-next_app.html#pausing-computations",
+    "href": "workshop/06-next_app.html#pausing-computations",
     "title": "Your Next Application",
     "section": "Pausing computations",
-    "text": "Pausing computations\nSometimes you want an action to wait until you say so (e.g., do something when I push a button)\n\nUsing user text input to filter\nAdjusting multiple filters\n\nWe can use a ui.innput_action_buttion() input component to trigger a reactive event.\nhttps://shiny.posit.co/py/components/inputs/action-button/"
+    "text": "Pausing computations\nSometimes you want an action to wait until you say so (e.g., do something when I push a button)\n\nUsing user text input to filter\nAdjusting multiple filters\n\nWe can use a ui.innput_action_buttion() input component to trigger a reactive event.\nhttps://shiny.posit.co/py/components/inputs/action-button/",
+    "crumbs": [
+      "Home",
+      "Your next application"
+    ]
   },
   {
-    "objectID": "slides/06-next_app.html#parts-of-an-action-button",
-    "href": "slides/06-next_app.html#parts-of-an-action-button",
+    "objectID": "workshop/06-next_app.html#parts-of-an-action-button",
+    "href": "workshop/06-next_app.html#parts-of-an-action-button",
     "title": "Your Next Application",
     "section": "Parts of an action button",
-    "text": "Parts of an action button\n\nUI input component: ui.innput_action_buttion()\nA function that gets called when the button gets clicked\n\n@reactive.event(input.&lt;ID&gt;) decorator which button triggers which function\n@reactive.effect decorator a button click doesn’t return a result, it creates a side effect"
+    "text": "Parts of an action button\n\nUI input component: ui.innput_action_buttion()\nA function that gets called when the button gets clicked\n\n@reactive.event(input.&lt;ID&gt;) decorator which button triggers which function\n@reactive.effect decorator a button click doesn’t return a result, it creates a side effect",
+    "crumbs": [
+      "Home",
+      "Your next application"
+    ]
   },
   {
-    "objectID": "slides/06-next_app.html#exercise",
-    "href": "slides/06-next_app.html#exercise",
+    "objectID": "workshop/06-next_app.html#exercise",
+    "href": "workshop/06-next_app.html#exercise",
     "title": "Your Next Application",
     "section": "Exercise",
-    "text": "Exercise"
+    "text": "Exercise",
+    "crumbs": [
+      "Home",
+      "Your next application"
+    ]
   },
   {
     "objectID": "workshop/04-reactivity.html",
@@ -1498,424 +1916,6 @@
     "crumbs": [
       "Home",
       "Shiny reactivity"
-    ]
-  },
-  {
-    "objectID": "workshop/01-welcome.html",
-    "href": "workshop/01-welcome.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Home",
-      "Welcome + Introduction"
-    ]
-  },
-  {
-    "objectID": "workshop/01-welcome.html#get-your-computer-ready",
-    "href": "workshop/01-welcome.html#get-your-computer-ready",
-    "title": "Welcome",
-    "section": "Get your computer ready",
-    "text": "Get your computer ready\n\n\n\nInstallation\nhttps://chendaniely.github.io/scipy-2026-shiny/setup.html\n\n\n\n\n\nIf you cloned the repository and did the installation update your materials with:\ngit pull origin main\n\n\n\nWifi\n\nSSID: TBD\nPassword: TBD",
-    "crumbs": [
-      "Home",
-      "Welcome + Introduction"
-    ]
-  },
-  {
-    "objectID": "workshop/01-welcome.html#todays-goal",
-    "href": "workshop/01-welcome.html#todays-goal",
-    "title": "Welcome",
-    "section": "Today’s goal",
-    "text": "Today’s goal\nLearn how to build reactive web apps with Shiny for Python, from the simple to the mission critical.",
-    "crumbs": [
-      "Home",
-      "Welcome + Introduction"
-    ]
-  },
-  {
-    "objectID": "workshop/01-welcome.html#whos-in-the-room",
-    "href": "workshop/01-welcome.html#whos-in-the-room",
-    "title": "Welcome",
-    "section": "Who’s in the room?",
-    "text": "Who’s in the room?\nHave you used…\n\n\nPython?\nData visualization in Python (matplotlib, plotnine, plotly, …)?\nInteractive dashboards (Dash, Streamlit, Panel, …)?\nShiny for R?\nShiny for Python?",
-    "crumbs": [
-      "Home",
-      "Welcome + Introduction"
-    ]
-  },
-  {
-    "objectID": "workshop/01-welcome.html#agenda",
-    "href": "workshop/01-welcome.html#agenda",
-    "title": "Welcome",
-    "section": "Agenda",
-    "text": "Agenda\n\n\n\n\nTime\nTopic\n\n\n\n\n9:00\nWelcome + Introduction\n\n\n9:10\nIntroduction to Shiny\n\n\n9:20\nYour first application\n\n\n9:50\nShiny reactivity\n\n\n10:20\nDeploying your application\n\n\n10:30\n☕ Coffee + Tea Break\n\n\n11:00\nYour next application\n\n\n11:30\nAn AI + LLM primer\n\n\n11:50\nAI + LLM dashboards\n\n\n12:10\nTesting your shiny apps with playwright\n\n\n12:20\nWrap up + Feedback Survey\n\n\n12:30\nFinish",
-    "crumbs": [
-      "Home",
-      "Welcome + Introduction"
-    ]
-  },
-  {
-    "objectID": "workshop/01-welcome.html#house-rules",
-    "href": "workshop/01-welcome.html#house-rules",
-    "title": "Welcome",
-    "section": "House rules",
-    "text": "House rules\n\nAsk questions any time\nHelp your neighbor - teaching is the best way to learn\nStuck? Raise your hand - helpers are roaming the room\nEverything is at: https://github.com/chendaniely/scipy-2026-shiny",
-    "crumbs": [
-      "Home",
-      "Welcome + Introduction"
-    ]
-  },
-  {
-    "objectID": "workshop/09-testing.html",
-    "href": "workshop/09-testing.html",
-    "title": "Testing",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Home",
-      "Testing"
-    ]
-  },
-  {
-    "objectID": "workshop/09-testing.html#title-testing-shiny-apps",
-    "href": "workshop/09-testing.html#title-testing-shiny-apps",
-    "title": "Testing",
-    "section": "title: “Testing Shiny Apps”",
-    "text": "title: “Testing Shiny Apps”",
-    "crumbs": [
-      "Home",
-      "Testing"
-    ]
-  },
-  {
-    "objectID": "workshop/09-testing.html#why-test",
-    "href": "workshop/09-testing.html#why-test",
-    "title": "Testing",
-    "section": "Why test?",
-    "text": "Why test?\n\nManual “click around and check” doesn’t scale\nCatch regressions before users do\nDocument expected behavior as executable code",
-    "crumbs": [
-      "Home",
-      "Testing"
-    ]
-  },
-  {
-    "objectID": "workshop/09-testing.html#visual-check-assert-statements",
-    "href": "workshop/09-testing.html#visual-check-assert-statements",
-    "title": "Testing",
-    "section": "Visual check + assert statements",
-    "text": "Visual check + assert statements\n\ndef my_add(x, y):\n    return x + y\n\n\nmy_add(3, 10)\n\n13\n\n\n\nassert my_add(3, 10) == 13\n\n\nassert my_add(3, 10) == 100\n\n\n---------------------------------------------------------------------------\nAssertionError                            Traceback (most recent call last)\nCell In[4], line 1\n----&gt; 1 assert my_add(3, 10) == 100\n\nAssertionError:",
-    "crumbs": [
-      "Home",
-      "Testing"
-    ]
-  },
-  {
-    "objectID": "workshop/09-testing.html#unit-testing---pytest",
-    "href": "workshop/09-testing.html#unit-testing---pytest",
-    "title": "Testing",
-    "section": "Unit testing - pytest",
-    "text": "Unit testing - pytest\n\nNeed to know a bit of how packages are set up",
-    "crumbs": [
-      "Home",
-      "Testing"
-    ]
-  },
-  {
-    "objectID": "workshop/09-testing.html#python-functions-shiny",
-    "href": "workshop/09-testing.html#python-functions-shiny",
-    "title": "Testing",
-    "section": "Python functions + Shiny",
-    "text": "Python functions + Shiny\n\nIf you have a normal python function, you can still pass in reactive values as the arguments!\n\nImport your existing functions / modules\nUse other packages\n\nAs long as you don’t plan on having reactive calls inside the function body\n\nRemember: reactive things must happen inside a reactive context\n\npytest is the package / tool to do unit testing",
-    "crumbs": [
-      "Home",
-      "Testing"
-    ]
-  },
-  {
-    "objectID": "workshop/09-testing.html#playwright---end-to-end-testing",
-    "href": "workshop/09-testing.html#playwright---end-to-end-testing",
-    "title": "Testing",
-    "section": "Playwright - end-to-end testing",
-    "text": "Playwright - end-to-end testing\nPlaywright is a modern browser automation library.\nShiny provides a Playwright controller that understands Shiny-specific widgets:\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import ShinyAppProc\nDocs: https://shiny.posit.co/py/docs/testing.html",
-    "crumbs": [
-      "Home",
-      "Testing"
-    ]
-  },
-  {
-    "objectID": "workshop/09-testing.html#test-structure",
-    "href": "workshop/09-testing.html#test-structure",
-    "title": "Testing",
-    "section": "Test structure",
-    "text": "Test structure\nfrom pathlib import Path\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import run_shiny_app\n\nAPP = Path(__file__).parent / \"app.py\"\n\ndef test_species_filter(page: Page):\n    with run_shiny_app(str(APP)) as app:\n        page.goto(app.url)\n\n        radio = controller.InputRadioButtons(page, \"species\")\n        text  = controller.OutputText(page, \"n_rows\")\n\n        radio.expect_choices([\"Adelie\", \"Chinstrap\", \"Gentoo\"])\n        radio.set(\"Chinstrap\")\n        text.expect_value(\"68 penguins\")",
-    "crumbs": [
-      "Home",
-      "Testing"
-    ]
-  },
-  {
-    "objectID": "workshop/09-testing.html#running-tests",
-    "href": "workshop/09-testing.html#running-tests",
-    "title": "Testing",
-    "section": "Running tests",
-    "text": "Running tests\ncode/demos/testing/\n├── app.py          ← the Shiny app\n└── test_app.py     ← tests\ncd code/demos/testing\npytest\nOr from the repo root:\npytest code/demos/testing/",
-    "crumbs": [
-      "Home",
-      "Testing"
-    ]
-  },
-  {
-    "objectID": "workshop/09-testing.html#controllers",
-    "href": "workshop/09-testing.html#controllers",
-    "title": "Testing",
-    "section": "Controllers",
-    "text": "Controllers\nShiny provides typed controllers for every input and output type:\n# Inputs\ncontroller.InputRadioButtons(page, \"id\")\ncontroller.InputSlider(page, \"id\")\ncontroller.InputSelect(page, \"id\")\ncontroller.InputCheckboxGroup(page, \"id\")\n\n# Outputs\ncontroller.OutputPlot(page, \"id\")\ncontroller.OutputText(page, \"id\")\ncontroller.OutputDataFrame(page, \"id\")",
-    "crumbs": [
-      "Home",
-      "Testing"
-    ]
-  },
-  {
-    "objectID": "workshop/09-testing.html#what-to-test",
-    "href": "workshop/09-testing.html#what-to-test",
-    "title": "Testing",
-    "section": "What to test",
-    "text": "What to test\n\nDefault state renders without errors\nEach input change produces the expected output change\nEdge cases: empty selections, out-of-range values\nError messages appear when they should",
-    "crumbs": [
-      "Home",
-      "Testing"
-    ]
-  },
-  {
-    "objectID": "workshop/08-ai_dashboards.html",
-    "href": "workshop/08-ai_dashboards.html",
-    "title": "AI + LLM Dashboards",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Home",
-      "AI + LLM dashboards"
-    ]
-  },
-  {
-    "objectID": "workshop/08-ai_dashboards.html#putting-llms-in-shiny-apps",
-    "href": "workshop/08-ai_dashboards.html#putting-llms-in-shiny-apps",
-    "title": "AI + LLM Dashboards",
-    "section": "Putting LLMs in Shiny apps",
-    "text": "Putting LLMs in Shiny apps\nThree patterns, increasing complexity:\n\nChat interface — a conversational UI (shinychat)\nTool calling — let the LLM take actions in your app\nData chat — query your dataframe with natural language (querychat)",
-    "crumbs": [
-      "Home",
-      "AI + LLM dashboards"
-    ]
-  },
-  {
-    "objectID": "workshop/08-ai_dashboards.html#shinychat",
-    "href": "workshop/08-ai_dashboards.html#shinychat",
-    "title": "AI + LLM Dashboards",
-    "section": "shinychat",
-    "text": "shinychat\nshinychat provides a ready-made chat UI component for Shiny:\nfrom shiny.express import ui\nfrom shinychat import chat_ui, chat_server\nfrom chatlas import ChatGithub\n\nui.page_opts(title=\"My Chatbot\")\n\nchat_ui(\"chat\")\n\n@chat_server(\"chat\")\ndef _():\n    return ChatGithub(model=\"gpt-4.1\", system_prompt=\"You are a helpful assistant.\")\nDocs: https://posit-dev.github.io/shinychat/py/",
-    "crumbs": [
-      "Home",
-      "AI + LLM dashboards"
-    ]
-  },
-  {
-    "objectID": "workshop/08-ai_dashboards.html#demo-shinychat",
-    "href": "workshop/08-ai_dashboards.html#demo-shinychat",
-    "title": "AI + LLM Dashboards",
-    "section": "Demo: shinychat",
-    "text": "Demo: shinychat\n\n\ncode/03-llm/app-shinychat.py\n\nfrom shiny.express import ui\nfrom shinychat import chat_ui, chat_server\nfrom chatlas import ChatGithub\n\nui.page_opts(title=\"Shiny Chatbot\", fillable=True)\n\nchat_ui(\"chat\", height=\"100%\")\n\n@chat_server(\"chat\")\ndef _():\n    return ChatGithub(model=\"gpt-4.1\")",
-    "crumbs": [
-      "Home",
-      "AI + LLM dashboards"
-    ]
-  },
-  {
-    "objectID": "workshop/08-ai_dashboards.html#chatting-with-your-data",
-    "href": "workshop/08-ai_dashboards.html#chatting-with-your-data",
-    "title": "AI + LLM Dashboards",
-    "section": "Chatting with your data",
-    "text": "Chatting with your data\nWhat if users could ask questions about your dataset in plain English?\nquerychat translates natural language → SQL → runs against a DuckDB table:\nimport querychat\nimport seaborn as sns\n\ntips = sns.load_dataset(\"tips\")\nqc = querychat.init(tips, \"tips\")\nDocs: https://github.com/posit-dev/querychat",
-    "crumbs": [
-      "Home",
-      "AI + LLM dashboards"
-    ]
-  },
-  {
-    "objectID": "workshop/08-ai_dashboards.html#demo-querychat",
-    "href": "workshop/08-ai_dashboards.html#demo-querychat",
-    "title": "AI + LLM Dashboards",
-    "section": "Demo: querychat",
-    "text": "Demo: querychat\nimport querychat\nimport seaborn as sns\nfrom shiny.express import ui\n\ntips = sns.load_dataset(\"tips\")\nqc = querychat.init(tips, \"tips\",\n                    greeting=\"Ask me about the tips dataset!\")\n\nui.page_opts(title=\"Tips Q&A\", fillable=True)\nquerychat.chat_ui(\"chat\")\nquerychat.dataframe_ui(\"df\")\n\nquerychat.chat_server(\"chat\", qc)\nquerychat.dataframe_server(\"df\", qc)",
-    "crumbs": [
-      "Home",
-      "AI + LLM dashboards"
-    ]
-  },
-  {
-    "objectID": "workshop/08-ai_dashboards.html#sidebot-pattern",
-    "href": "workshop/08-ai_dashboards.html#sidebot-pattern",
-    "title": "AI + LLM Dashboards",
-    "section": "Sidebot pattern",
-    "text": "Sidebot pattern\nUse an LLM to drive filters in a dashboard via natural language:\n\nUser types “show me only lunch orders over $20”\nLLM translates to filter parameters\nDashboard updates reactively\n\nTemplate: shiny create --mode core --github jcheng5/py-databot",
-    "crumbs": [
-      "Home",
-      "AI + LLM dashboards"
-    ]
-  },
-  {
-    "objectID": "workshop/08-ai_dashboards.html#demo-llms-chat",
-    "href": "workshop/08-ai_dashboards.html#demo-llms-chat",
-    "title": "AI + LLM Dashboards",
-    "section": "Demo: LLMs + Chat",
-    "text": "Demo: LLMs + Chat\nGenerative AI shiny templates: https://shiny.posit.co/py/templates/#generative-ai\n\nhttps://shiny.posit.co/py/templates/basic-chatbot/\nhttps://shiny.posit.co/py/templates/querychat/\nhttps://shiny.posit.co/py/templates/sidebot/",
-    "crumbs": [
-      "Home",
-      "AI + LLM dashboards"
-    ]
-  },
-  {
-    "objectID": "workshop/08-ai_dashboards.html#exercise",
-    "href": "workshop/08-ai_dashboards.html#exercise",
-    "title": "AI + LLM Dashboards",
-    "section": "Exercise",
-    "text": "Exercise",
-    "crumbs": [
-      "Home",
-      "AI + LLM dashboards"
-    ]
-  },
-  {
-    "objectID": "workshop/08-ai_dashboards.html#sql-is-a-great-communication-layer",
-    "href": "workshop/08-ai_dashboards.html#sql-is-a-great-communication-layer",
-    "title": "AI + LLM Dashboards",
-    "section": "SQL is a great communication layer",
-    "text": "SQL is a great communication layer\nUpcoming tool: ggsql https://ggsql.org/\nTrt it: https://ggsql.org/wasm/\nSee also: Querychat + Vis docs: https://posit-dev.github.io/querychat/py/visualize.html\n\n\nVISUALISE FROM ggsql:penguins\nDRAW point\n    MAPPING\n      bill_dep AS x,\n      body_mass AS y,\n      species AS color",
-    "crumbs": [
-      "Home",
-      "AI + LLM dashboards"
-    ]
-  },
-  {
-    "objectID": "workshop/06-next_app.html",
-    "href": "workshop/06-next_app.html",
-    "title": "Your Next Application",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Home",
-      "Your next application"
-    ]
-  },
-  {
-    "objectID": "workshop/06-next_app.html#title-your-next-application",
-    "href": "workshop/06-next_app.html#title-your-next-application",
-    "title": "Your Next Application",
-    "section": "title: “Your Next Application”",
-    "text": "title: “Your Next Application”",
-    "crumbs": [
-      "Home",
-      "Your next application"
-    ]
-  },
-  {
-    "objectID": "workshop/06-next_app.html#beyond-the-basics",
-    "href": "workshop/06-next_app.html#beyond-the-basics",
-    "title": "Your Next Application",
-    "section": "Beyond the basics",
-    "text": "Beyond the basics\nYour first app had one input and one output.\nReal dashboards have:\n\nLayout structure (sidebars, columns, tabs)\n\nshiny.express.ui.*()\n\nMultiple coordinated outputs\nSummary statistics (value boxes)\n\nui.value_box()\n\nShared reactive computations\n\n@reactive.calc\n\nInteractive plots (jupyter widgets)\n\nshinywidgets.render_*()",
-    "crumbs": [
-      "Home",
-      "Your next application"
-    ]
-  },
-  {
-    "objectID": "workshop/06-next_app.html#example-application",
-    "href": "workshop/06-next_app.html#example-application",
-    "title": "Your Next Application",
-    "section": "Example application",
-    "text": "Example application\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| layout: vertical\n#| viewerHeight: 600\n\nimport plotly.express as px\nfrom ridgeplot import ridgeplot\nimport seaborn as sns\nfrom shiny.express import input, ui, render\nfrom shiny import reactive\nfrom shinywidgets import render_plotly, render_widget\n\ntips = sns.load_dataset(\"tips\")\n\n# title\nui.page_opts(title=\"Restaurant tipping\", fillable=True)\n\n# sidebar\nwith ui.sidebar(open=\"desktop\"):\n    ui.input_slider(\n        id=\"slider\",\n        label=\"Bill amount\",\n        min=tips.total_bill.min(),\n        max=tips.total_bill.max(),\n        value=[tips.total_bill.min(), tips.total_bill.max()],\n    )\n    ui.input_checkbox_group(\n        id=\"checkbox_group\",\n        label=\"Food service\",\n        choices={\n            \"Lunch\": \"Lunch\",\n            \"Dinner\": \"Dinner\",\n        },\n        selected=[\n            \"Lunch\",\n            \"Dinner\",\n        ],\n    )\n    ui.input_action_button(\"action_button\", \"Reset filter\")\n\n\n@reactive.effect\n@reactive.event(input.action_button)\ndef reset_filters():\n    ui.update_slider(\n        \"slider\",\n        value=[tips.total_bill.min(), tips.total_bill.max()],\n    )\n    ui.update_checkbox_group(\n        \"checkbox_group\",\n        selected=[\"Lunch\", \"Dinner\"],\n    )\n\n\n@reactive.calc\ndef filtered_data():\n    idx1 = tips.total_bill.between(\n        left=input.slider()[0],\n        right=input.slider()[1],\n        inclusive=\"both\",\n    )\n    idx2 = tips.time.isin(input.checkbox_group())\n    tips_filtered = tips[idx1 & idx2]\n    return tips_filtered\n\n\n# body of application\n# first row of value boxes\nwith ui.layout_columns(fill=False):\n    with ui.value_box():\n        \"Total tippers\"\n\n        @render.text\n        def total_tippers():\n            return filtered_data().shape[0]\n\n    with ui.value_box():\n        \"Average tip\"\n\n        @render.text\n        def average_tip():\n            perc = filtered_data().tip / filtered_data().total_bill\n            return f\"{perc.mean():.1%}\"\n\n    with ui.value_box():\n        \"Average bill\"\n\n        @render.text\n        def average_bill():\n            bill = filtered_data().total_bill.mean()\n            return f\"${bill:.2f}\"\n\n\n# second row of cards\nwith ui.layout_columns(col_widths=[6, 6]):\n    with ui.card(full_screen=True):\n        ui.card_header(\"Tips data\")\n\n        @render.data_frame\n        def tips_data():\n            return filtered_data()\n\n    with ui.card(full_screen=True):\n        ui.card_header(\"Total bill vs tip\")\n\n        @render_plotly\n        def scatterplot():\n            return px.scatter(\n                filtered_data(), x=\"total_bill\", y=\"tip\", trendline=\"lowess\"\n            )\n\n\nwith ui.layout_columns():\n    with ui.card(full_screen=True):\n        ui.card_header(\"Tip percentages\")\n\n        @render_widget\n        def ridge():\n            filtered_data()[\"percent\"] = (\n                filtered_data().tip / filtered_data().total_bill\n            )\n\n            uvals = filtered_data().day.unique()\n            samples = [\n                [filtered_data().percent[filtered_data().day == val]] for val in uvals\n            ]\n\n            plt = ridgeplot(\n                samples=samples,\n                labels=uvals,\n                bandwidth=0.01,\n                colorscale=\"viridis\",\n                colormode=\"row-index\",\n            )\n\n            plt.update_layout(\n                legend=dict(\n                    orientation=\"h\", yanchor=\"bottom\", y=1.02, xanchor=\"center\", x=0.5\n                )\n            )\n\n            return plt\n\n\n\n## file: requirements.txt\nridgeplot",
-    "crumbs": [
-      "Home",
-      "Your next application"
-    ]
-  },
-  {
-    "objectID": "workshop/06-next_app.html#layout-components",
-    "href": "workshop/06-next_app.html#layout-components",
-    "title": "Your Next Application",
-    "section": "Layout components",
-    "text": "Layout components\nfrom shiny.express import input, render, ui\n\nui.page_opts(title=\"Tips Dashboard\", fillable=True)\n\nwith ui.sidebar():\n    ui.input_slider(\"bill\", \"Max bill ($)\", 3, 50, 25)\n    ui.input_checkbox_group(\n        \"time\",\n        \"Meal\",\n        [\"Lunch\", \"Dinner\"],\n        selected=[\"Lunch\", \"Dinner\"],\n    )\n    ui.input_action_button(\"action_button\", \"Reset\")\n\nwith ui.layout_columns():\n    with ui.card():\n        ...  # output 1\n\n    with ui.card():\n        ...  # output 2\n\n    with ui.card():\n            ...  # output 3\n\nwith ui.layout_columns():\n    with ui.card():\n        ...  # data frame\n\n    with ui.card():\n        ...  # scatter plot\n\nwith ui.layout_columns():\n    with ui.card():\n        ...  # ridgeplot",
-    "crumbs": [
-      "Home",
-      "Your next application"
-    ]
-  },
-  {
-    "objectID": "workshop/06-next_app.html#value-boxes",
-    "href": "workshop/06-next_app.html#value-boxes",
-    "title": "Your Next Application",
-    "section": "Value boxes",
-    "text": "Value boxes\nhttps://shiny.posit.co/py/components/outputs/value-box/\nfrom shiny.express import render, ui\nfrom faicons import icon_svg\n\nwith ui.value_box(showcase=icon_svg(\"dollar-sign\")):\n    \"Average bill\"\n\n    @render.text\n    def avg_bill():\n        return f\"${filtered()['total_bill'].mean():.2f}\"",
-    "crumbs": [
-      "Home",
-      "Your next application"
-    ]
-  },
-  {
-    "objectID": "workshop/06-next_app.html#reactive.calc-for-shared-filtering",
-    "href": "workshop/06-next_app.html#reactive.calc-for-shared-filtering",
-    "title": "Your Next Application",
-    "section": "@reactive.calc for shared filtering",
-    "text": "@reactive.calc for shared filtering\nhttps://shiny.posit.co/py/docs/reactive-foundations.html#calculations\nfrom shiny import reactive\n\n@reactive.calc\ndef filtered():\n    df = tips.copy()\n    df = df[df[\"total_bill\"] &lt;= input.bill()]\n    df = df[df[\"time\"].isin(input.time())]\n    return df\nAll outputs call filtered() — the filter runs once per change.",
-    "crumbs": [
-      "Home",
-      "Your next application"
-    ]
-  },
-  {
-    "objectID": "workshop/06-next_app.html#full-app-structure",
-    "href": "workshop/06-next_app.html#full-app-structure",
-    "title": "Your Next Application",
-    "section": "Full app structure",
-    "text": "Full app structure\nui.page_opts(title=\"Tips Dashboard\", fillable=True)\n\nwith ui.sidebar():\n    # inputs ...\n\n@reactive.calc\ndef filtered():\n    # shared data transform ...\n\nwith ui.layout_columns():\n    with ui.value_box(...):\n        @render.text\n        def avg_bill(): ...\n\n    with ui.card():\n        @render.plot\n        def scatter(): ...\n\n    with ui.card():\n        @render.data_frame\n        def table(): ...",
-    "crumbs": [
-      "Home",
-      "Your next application"
-    ]
-  },
-  {
-    "objectID": "workshop/06-next_app.html#pausing-computations",
-    "href": "workshop/06-next_app.html#pausing-computations",
-    "title": "Your Next Application",
-    "section": "Pausing computations",
-    "text": "Pausing computations\nSometimes you want an action to wait until you say so (e.g., do something when I push a button)\n\nUsing user text input to filter\nAdjusting multiple filters\n\nWe can use a ui.innput_action_buttion() input component to trigger a reactive event.\nhttps://shiny.posit.co/py/components/inputs/action-button/",
-    "crumbs": [
-      "Home",
-      "Your next application"
-    ]
-  },
-  {
-    "objectID": "workshop/06-next_app.html#parts-of-an-action-button",
-    "href": "workshop/06-next_app.html#parts-of-an-action-button",
-    "title": "Your Next Application",
-    "section": "Parts of an action button",
-    "text": "Parts of an action button\n\nUI input component: ui.innput_action_buttion()\nA function that gets called when the button gets clicked\n\n@reactive.event(input.&lt;ID&gt;) decorator which button triggers which function\n@reactive.effect decorator a button click doesn’t return a result, it creates a side effect",
-    "crumbs": [
-      "Home",
-      "Your next application"
-    ]
-  },
-  {
-    "objectID": "workshop/06-next_app.html#exercise",
-    "href": "workshop/06-next_app.html#exercise",
-    "title": "Your Next Application",
-    "section": "Exercise",
-    "text": "Exercise",
-    "crumbs": [
-      "Home",
-      "Your next application"
     ]
   },
   {

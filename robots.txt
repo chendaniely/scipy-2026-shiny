@@ -1,0 +1,1 @@
+Sitemap: https://chendaniely.github.io/scipy-2026-shiny/sitemap.xml
