@@ -370,5 +370,7 @@ def table():
 
 ## Demo + Exercises
 
+See exercise: [Reactivity](../exercises.qmd#ex-reactivity).
+
 
 

@@ -1,8 +1,9 @@
 ---
 title: Exercises
+number-sections: true
 ---
 
-## Exercise 1 - Basic App {#ex1}
+## Basic App {#ex-basic-app}
 
 ::: {.exercise}
 Open `code/demos/app-01-intro.py` file in the [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/demos) and run it.
@@ -17,7 +18,7 @@ Try out any one of the following changes:
 :::
 
 ::: {.callout-note collapse="true"}
-## Solution 1a — species checkbox
+## Solution — species checkbox
 ```{shinylive-python}
 #| standalone: true
 #| components: [editor, viewer]
@@ -30,7 +31,7 @@ Try out any one of the following changes:
 :::
 
 ::: {.callout-note collapse="true"}
-## Solution 1b — body mass slider
+## Solution — body mass slider
 
 
 
@@ -46,7 +47,7 @@ Try out any one of the following changes:
 :::
 
 ::: {.callout-note collapse="true"}
-## Solution 1c — full solution (checkbox + count)
+## Solution — full solution (checkbox + count)
 
 ```{shinylive-python}
 #| standalone: true
@@ -59,7 +60,7 @@ Try out any one of the following changes:
 
 :::
 
-## Exercise 2 - Reactivity {#ex2}
+## Reactivity {#ex-reactivity}
 
 ::: {.exercise}
 
@@ -79,7 +80,7 @@ Before doing the exercise make a copy of the file for your solution.
 3. Add a `print` to each calc to confirm which ones re-run for each input change
 :::
 
-## Exercise 3 - Tips {#ex3}
+## Tips {#ex-tips}
 
 ::: {.exercise}
 
@@ -111,7 +112,7 @@ return (points + trend).add_params(zoom).properties(width="container")
 :::
 
 ::: {.callout-note collapse="true"}
-## Solution 3
+## Solution
 
 ```{shinylive-python}
 #| standalone: true
@@ -124,7 +125,7 @@ return (points + trend).add_params(zoom).properties(width="container")
 
 :::
 
-## Exercise 4 - Tips + Button {#ex4}
+## Tips + Button {#ex-tips-button}
 
 ::: {.exercise}
 
@@ -154,7 +155,7 @@ def reset_filters():
 :::
 
 ::: {.callout-note collapse="true"}
-## Solution 4
+## Solution
 
 ```{shinylive-python}
 #| standalone: true
@@ -167,13 +168,13 @@ def reset_filters():
 
 :::
 
-## Exercise 6 - Refactor into a Module {#ex6}
+## Refactor into a Module {#ex-modules-refactor}
 
 ::: {.exercise}
 
 Take a look at `code/exercises/app-ex06-modules_refactor.py` in the
 [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/exercises) —
-it's the tips dashboard from Exercise 4, filter sidebar and all.
+it's the tips dashboard from the Tips + Button exercise, filter sidebar and all.
 
 Before doing the exercise make a copy of the file for your solution.
 
@@ -194,7 +195,7 @@ Before doing the exercise make a copy of the file for your solution.
 :::
 
 ::: {.callout-note collapse="true"}
-## Solution 6
+## Solution
 
 ```{shinylive-python}
 #| standalone: true
@@ -210,11 +211,11 @@ Before doing the exercise make a copy of the file for your solution.
 
 :::
 
-## Exercise 7 - Reuse Your Module {#ex7}
+## Reuse Your Module {#ex-modules-compose}
 
 ::: {.exercise}
 
-Start from your Exercise 6 solution
+Start from your Refactor into a Module solution
 (`code/exercise_solutions/app-ex06-modules_refactor.py`).
 
 1. Add a `ui.navset_card_tab()` with two `ui.nav_panel()`s: "Tips" (your
@@ -228,7 +229,7 @@ Start from your Exercise 6 solution
 :::
 
 ::: {.callout-note collapse="true"}
-## Solution 7
+## Solution
 
 ```{shinylive-python}
 #| standalone: true
@@ -244,8 +245,57 @@ Start from your Exercise 6 solution
 
 :::
 
+## Testing {#ex-testing}
 
-## 🎁 Bonus Exercise - AI Dashboards {#ex5}
+::: {.exercise}
+
+Look at the pattern in `code/demos/testing/app.py` and `test_app.py` in the
+[repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/demos/testing) —
+it uses `run_shiny_app()` plus Shiny's Playwright `controller`s to drive a
+running app from a test.
+
+Write a `test_app.py` for your Tips + Button solution
+(`code/exercise_solutions/app-ex04-button.py`):
+
+1. Confirm the default state — the `"checkbox_group"` checkboxes start
+   selected on `["Lunch", "Dinner"]` and `total_tippers` shows the full row
+   count.
+2. Change `"checkbox_group"` to only `["Dinner"]` and confirm `total_tippers`
+   updates to the filtered count.
+3. Click the `"action_button"` ("Reset filter") and confirm
+   `"checkbox_group"` and `total_tippers` return to their defaults.
+
+Run it with `pytest`.
+
+:::
+
+::: {.callout-note collapse="true"}
+## Solution
+
+Playwright tests drive a real browser — they won't run inside shinylive.
+Run locally with `pytest`.
+
+```{.python}
+{{< include /../code/exercise_solutions/test_app-ex04-button.py >}}
+```
+
+:::
+
+## Deploy Your App {#ex-deploy}
+
+::: {.exercise}
+
+1. Create a new GitHub repository
+2. Copy your first app code into an `app.py` file
+3. Make sure your repository has a `requirements.txt` file
+4. Push the `app.py` and `requirements.txt` to GitHub
+5. Deploy it to Posit Connect Cloud
+
+<https://docs.posit.co/connect-cloud/how-to/python/shiny-python.html>
+
+:::
+
+## 🎁 Bonus: AI Dashboards {#ex-ai-dashboards}
 
 Let's start from the solution in the previous exercise
 `code/exercise_solutions/app-ex04-button.py`.
@@ -274,7 +324,7 @@ qc.df()
 ```
 
 ::: {.callout-note collapse="true"}
-## Solution 4
+## Solution
 
 Will not work in shinylive, run locally.
 

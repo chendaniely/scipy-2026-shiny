@@ -167,3 +167,7 @@ ui.input_select("y", "", num_cols, selected="body_mass_g")
 
 {{< include /../code/demos/app-01-intro.py >}}
 ```
+
+## Exercise
+
+See exercise: [Basic App](../exercises.qmd#ex-basic-app).

@@ -66,8 +66,8 @@ Everywhere the app used `filtered_data()`, it now uses
 ## What we dropped
 
 The original app had a "Reset filter" button. We left it out of the module
-to keep this refactor focused — adding it back is Exercise 6.
+to keep this refactor focused — adding it back is your exercise.
 
 ## Exercise
 
-See [Exercise 6](../exercises.qmd#ex6).
+See exercise: [Refactor into a Module](../exercises.qmd#ex-modules-refactor).

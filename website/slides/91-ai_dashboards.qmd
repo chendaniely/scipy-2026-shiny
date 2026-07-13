@@ -101,6 +101,8 @@ Generative AI shiny templates: <https://shiny.posit.co/py/templates/#generative-
 
 ## Exercise
 
+See exercise: [AI Dashboards](../exercises.qmd#ex-ai-dashboards).
+
 ## SQL is a great communication layer
 
 Upcoming tool: ggsql <https://ggsql.org/>

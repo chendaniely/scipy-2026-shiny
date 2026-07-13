@@ -123,3 +123,7 @@ controller.OutputDataFrame(page, "id")
 - Each input change produces the expected output change
 - Edge cases: empty selections, out-of-range values
 - Error messages appear when they should
+
+## Exercise
+
+See exercise: [Testing](../exercises.qmd#ex-testing).

@@ -65,15 +65,6 @@ Limitations:
 
 Great for: demos, tutorials, sharing one-off apps.
 
-## Exercise + Break (Back at 11:00)
+## Exercise
 
-::: {.exercise}
-
-1. Create a new github repository
-2. Copy your first app code into an app.py file
-1. Make sure your repository has a `requirements.txt` file
-2. Push the `app.py` and `requirements.txt` to GitHub
-3. Deploy it to Posit Connect Cloud
-
-<https://docs.posit.co/connect-cloud/how-to/python/shiny-python.html>
-:::
+See exercise: [Deploy Your App](../exercises.qmd#ex-deploy).

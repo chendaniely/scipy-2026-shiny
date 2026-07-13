@@ -69,4 +69,4 @@ two module instances' inputs from colliding.
 
 ## Exercise
 
-See [Exercise 7](../exercises.qmd#ex7).
+See exercise: [Reuse Your Module](../exercises.qmd#ex-modules-compose).
