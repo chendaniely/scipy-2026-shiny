@@ -1,12 +1,12 @@
 ---
-title: "Show off your data"
-subtitle: "Interactive dashboards in Python"
+title: "Shiny for Python"
+subtitle: "Building Production-Ready Dashboards in Python"
 ---
 
 <!-- TODO: Add SciPy 2026 date, time, and room once confirmed -->
-📅 TBD\
-🕘 TBD\
-🏢 TBD\
+📅 Tuesday July 13\
+🕘 8:00 AM\
+🏢 PWB 3-152\
 🔗 <https://www.scipy2026.scipy.org/>
 
 ## Schedule

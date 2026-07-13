@@ -5,12 +5,6 @@ title: "Welcome"
 ## Get your computer ready
 
 
-::: {.columns}
-
-::: {.column}
-
-### Installation
-
 <https://chendaniely.github.io/scipy-2026-shiny/setup.html>
 
 ![](/img/qr-setup.png){width="350px" fig-align="center"}
@@ -20,21 +14,6 @@ If you cloned the repository and did the installation update your materials with
 ```bash
 git pull origin main
 ```
-
-:::
-
-::: {.column}
-
-### Wifi
-
-<!-- TODO: Add SciPy 2026 wifi SSID and password -->
-SSID: TBD\
-Password: TBD\
-![](/img/wifi.jpg)
-
-:::
-
-:::
 
 
 ## Today's goal
