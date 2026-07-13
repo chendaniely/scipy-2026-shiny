@@ -18,13 +18,13 @@ Real dashboards have:
 - Interactive plots (jupyter widgets)
     - `shinywidgets.render_*()`
 
-## Example application
+## Example application {footer=false}
 
 ```{shinylive-python}
 #| standalone: true
 #| components: [viewer]
 #| layout: vertical
-#| viewerHeight: 600
+#| viewerHeight: 550
 
 {{< include /../code/demos/app-05-tips.py >}}
 
@@ -56,7 +56,7 @@ with ui.value_box(showcase=icon_svg("dollar-sign")):
         return f"${filtered()['total_bill'].mean():.2f}"
 ```
 
-## `@reactive.calc` for shared filtering
+## `@reactive.calc`: shared filtering
 
 <https://shiny.posit.co/py/docs/reactive-foundations.html#calculations>
 
@@ -118,3 +118,5 @@ We can use a `ui.innput_action_buttion()` input component to trigger a reactive 
     - `@reactive.effect` decorator a button click doesn't return a result, it creates a side effect
 
 ## Exercise
+
+See exercises: [Tips](../exercises.qmd#ex-tips) and [Tips + Button](../exercises.qmd#ex-tips-button).

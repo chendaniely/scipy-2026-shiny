@@ -22,12 +22,12 @@ Each Shiny app consists of:
 3. **Layout** — how the components are laid out on the page (columns, sidebar, boxes, cards, ...)
     - <https://shiny.posit.co/py/layouts/>
 
-## Example application
+## Example application {footer=false}
 
 ```{shinylive-python}
 #| standalone: true
 #| components: [viewer]
-#| viewerHeight: 600
+#| viewerHeight: 550
 
 {{< include /../code/demos/app-01-intro.py >}}
 ```
