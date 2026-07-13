@@ -1,11 +1,11 @@
 /* SciPy 2026 site-wide overrides, layered on top of _brand.yml + flatly */
 
 /* Quarto's generated bootstrap CSS colors *inline* code (not fenced blocks)
-   using the monokai highlight-style's dark background via
+   with a dark background regardless of highlight-style, via
    `p code:not(.sourceCode), li code:not(.sourceCode), td code:not(.sourceCode)`.
    That leaves inline code dark-on-dark now that the page is light. Fenced
-   code blocks keep the monokai look on purpose; only inline code is fixed
-   here, matching Quarto's own selector so this reliably wins. */
+   code blocks use the github-light highlight-style; only inline code is
+   fixed here, matching Quarto's own selector so this reliably wins. */
 p code:not(.sourceCode),
 li code:not(.sourceCode),
 td code:not(.sourceCode),

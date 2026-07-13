@@ -51,16 +51,16 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Show off your data",
+    "title": "Shiny for Python",
     "section": "",
-    "text": "📅 TBD\n🕘 TBD\n🏢 TBD\n🔗 https://www.scipy2026.scipy.org/"
+    "text": "📅 Tuesday July 13\n🕘 8:00 AM\n🏢 PWB 3-152\n🔗 https://www.scipy2026.scipy.org/"
   },
   {
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
-    "title": "Show off your data",
+    "title": "Shiny for Python",
     "section": "Schedule",
-    "text": "Schedule\n\n\n\nTime\nTopic\n\n\n\n\n:00\nWelcome + Basic building blocks\n\n\n:20\nYour first application — inputs\n\n\n:35\nYour first application — outputs\n\n\n:50\n☕ Break\n\n\n1:00\nShiny reactivity\n\n\n1:15\nA more complex application\n\n\n1:50\n☕ Break\n\n\n2:00\nIntroduction to Shiny modules\n\n\n2:15\nRefactor your app into a module\n\n\n2:30\nReuse your Shiny module\n\n\n2:50\n☕ Break\n\n\n3:00\nTesting your shiny apps with playwright\n\n\n3:30\nDeploying your application\n\n\n3:50\nWrap up + Feedback Survey\n\n\n4:00\nFinish"
+    "text": "Schedule\n\n\n\nTime\nTopic\n\n\n\n\n8:00\nWelcome + Basic building blocks\n\n\n8:20\nYour first application — inputs\n\n\n8:35\nYour first application — outputs\n\n\n8:50\n☕ Break\n\n\n9:00\nShiny reactivity\n\n\n9:15\nA more complex application\n\n\n9:50\n☕ Break\n\n\n10:00\nIntroduction to Shiny modules\n\n\n10:15\nRefactor your app into a module\n\n\n10:30\nReuse your Shiny module\n\n\n10:50\n☕ Break\n\n\n11:00\nTesting your shiny apps with playwright\n\n\n11:30\nDeploying your application\n\n\n11:50\nWrap up\n\n\n12:00\nFinish"
   },
   {
     "objectID": "cloud.html",
@@ -612,7 +612,7 @@
     "href": "workshop/01-welcome.html#get-your-computer-ready",
     "title": "Welcome",
     "section": "Get your computer ready",
-    "text": "Get your computer ready\n\n\n\nInstallation\nhttps://chendaniely.github.io/scipy-2026-shiny/setup.html\n\n\n\n\n\nIf you cloned the repository and did the installation update your materials with:\ngit pull origin main\n\n\n\nWifi\n\nSSID: TBD\nPassword: TBD",
+    "text": "Get your computer ready\nhttps://chendaniely.github.io/scipy-2026-shiny/setup.html\n\n\n\n\n\nIf you cloned the repository and did the installation update your materials with:\ngit pull origin main",
     "crumbs": [
       "Home",
       "Welcome + Introduction"
@@ -645,7 +645,7 @@
     "href": "workshop/01-welcome.html#agenda",
     "title": "Welcome",
     "section": "Agenda",
-    "text": "Agenda\n\n\n\nTime\nTopic\n\n\n\n\n:00\nWelcome + Basic building blocks\n\n\n:20\nYour first application — inputs\n\n\n:35\nYour first application — outputs\n\n\n:50\n☕ Break\n\n\n1:00\nShiny reactivity\n\n\n1:15\nA more complex application\n\n\n1:50\n☕ Break\n\n\n2:00\nIntroduction to Shiny modules\n\n\n2:15\nRefactor your app into a module\n\n\n2:30\nReuse your Shiny module\n\n\n2:50\n☕ Break\n\n\n3:00\nTesting your shiny apps with playwright\n\n\n3:30\nDeploying your application\n\n\n3:50\nWrap up + Feedback Survey\n\n\n4:00\nFinish",
+    "text": "Agenda\n\n\n\nTime\nTopic\n\n\n\n\n8:00\nWelcome + Basic building blocks\n\n\n8:20\nYour first application — inputs\n\n\n8:35\nYour first application — outputs\n\n\n8:50\n☕ Break\n\n\n9:00\nShiny reactivity\n\n\n9:15\nA more complex application\n\n\n9:50\n☕ Break\n\n\n10:00\nIntroduction to Shiny modules\n\n\n10:15\nRefactor your app into a module\n\n\n10:30\nReuse your Shiny module\n\n\n10:50\n☕ Break\n\n\n11:00\nTesting your shiny apps with playwright\n\n\n11:30\nDeploying your application\n\n\n11:50\nWrap up\n\n\n12:00\nFinish",
     "crumbs": [
       "Home",
       "Welcome + Introduction"
@@ -1261,7 +1261,7 @@
     "href": "slides/01-welcome.html#get-your-computer-ready",
     "title": "Welcome",
     "section": "Get your computer ready",
-    "text": "Get your computer ready\n\n\nInstallation\nhttps://chendaniely.github.io/scipy-2026-shiny/setup.html\n\n\n\n\n\nIf you cloned the repository and did the installation update your materials with:\ngit pull origin main\n\nWifi\n\nSSID: TBD\nPassword: TBD"
+    "text": "Get your computer ready\nhttps://chendaniely.github.io/scipy-2026-shiny/setup.html\n\nIf you cloned the repository and did the installation update your materials with:\ngit pull origin main"
   },
   {
     "objectID": "slides/01-welcome.html#todays-goal",
@@ -1282,7 +1282,7 @@
     "href": "slides/01-welcome.html#agenda",
     "title": "Welcome",
     "section": "Agenda",
-    "text": "Agenda\n\n\n\nTime\nTopic\n\n\n\n\n:00\nWelcome + Basic building blocks\n\n\n:20\nYour first application — inputs\n\n\n:35\nYour first application — outputs\n\n\n:50\n☕ Break\n\n\n1:00\nShiny reactivity\n\n\n1:15\nA more complex application\n\n\n1:50\n☕ Break\n\n\n2:00\nIntroduction to Shiny modules\n\n\n2:15\nRefactor your app into a module\n\n\n2:30\nReuse your Shiny module\n\n\n2:50\n☕ Break\n\n\n3:00\nTesting your shiny apps with playwright\n\n\n3:30\nDeploying your application\n\n\n3:50\nWrap up + Feedback Survey\n\n\n4:00\nFinish"
+    "text": "Agenda\n\n\n\nTime\nTopic\n\n\n\n\n8:00\nWelcome + Basic building blocks\n\n\n8:20\nYour first application — inputs\n\n\n8:35\nYour first application — outputs\n\n\n8:50\n☕ Break\n\n\n9:00\nShiny reactivity\n\n\n9:15\nA more complex application\n\n\n9:50\n☕ Break\n\n\n10:00\nIntroduction to Shiny modules\n\n\n10:15\nRefactor your app into a module\n\n\n10:30\nReuse your Shiny module\n\n\n10:50\n☕ Break\n\n\n11:00\nTesting your shiny apps with playwright\n\n\n11:30\nDeploying your application\n\n\n11:50\nWrap up\n\n\n12:00\nFinish"
   },
   {
     "objectID": "slides/01-welcome.html#house-rules",
