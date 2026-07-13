@@ -73,7 +73,7 @@ format:
       - flatly
       - brand
     css: styles.css
-    highlight-style: monokai
+    highlight-style: github-light
     toc: true
     anchor-sections: true
 

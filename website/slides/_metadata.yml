@@ -4,7 +4,7 @@ format:
     slide-number: true
     show-slide-number: all
     theme: [default, brand, slides-theme.scss]
-    highlight-style: monokai
+    highlight-style: github-light
     smaller: true
     logo: /img/conf-logo.png
     title-slide-attributes:
