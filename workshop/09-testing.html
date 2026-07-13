@@ -339,6 +339,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#running-tests" id="toc-running-tests" class="nav-link" data-scroll-target="#running-tests">Running tests</a></li>
   <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers">Controllers</a></li>
   <li><a href="#what-to-test" id="toc-what-to-test" class="nav-link" data-scroll-target="#what-to-test">What to test</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -388,20 +389,20 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </section>
 <section id="visual-check-assert-statements" class="level2">
 <h2 class="anchored" data-anchor-id="visual-check-assert-statements">Visual check + assert statements</h2>
-<div id="24ee6c88" class="cell" data-execution_count="1">
+<div id="bb323b87" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_add(x, y):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="7b842c79" class="cell" data-execution_count="2">
+<div id="c8f25cd8" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_add(<span class="dv">3</span>, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>13</code></pre>
 </div>
 </div>
-<div id="213819e4" class="cell" data-execution_count="3">
+<div id="a5587997" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> my_add(<span class="dv">3</span>, <span class="dv">10</span>) <span class="op">==</span> <span class="dv">13</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="8f80b894" class="cell" data-execution_count="4">
+<div id="865b49eb" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> my_add(<span class="dv">3</span>, <span class="dv">10</span>) <span class="op">==</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -497,6 +498,10 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <li>Edge cases: empty selections, out-of-range values</li>
 <li>Error messages appear when they should</li>
 </ul>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>See exercise: <a href="../exercises.html#ex-testing">Testing</a>.</p>
 
 
 </section>

@@ -339,7 +339,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#example-application" id="toc-example-application" class="nav-link" data-scroll-target="#example-application">Example application</a></li>
   <li><a href="#layout-components" id="toc-layout-components" class="nav-link" data-scroll-target="#layout-components">Layout components</a></li>
   <li><a href="#value-boxes" id="toc-value-boxes" class="nav-link" data-scroll-target="#value-boxes">Value boxes</a></li>
-  <li><a href="#reactive.calc-for-shared-filtering" id="toc-reactive.calc-for-shared-filtering" class="nav-link" data-scroll-target="#reactive.calc-for-shared-filtering"><code>@reactive.calc</code> for shared filtering</a></li>
+  <li><a href="#reactive.calc-shared-filtering" id="toc-reactive.calc-shared-filtering" class="nav-link" data-scroll-target="#reactive.calc-shared-filtering"><code>@reactive.calc</code>: shared filtering</a></li>
   <li><a href="#full-app-structure" id="toc-full-app-structure" class="nav-link" data-scroll-target="#full-app-structure">Full app structure</a></li>
   <li><a href="#pausing-computations" id="toc-pausing-computations" class="nav-link" data-scroll-target="#pausing-computations">Pausing computations</a></li>
   <li><a href="#parts-of-an-action-button" id="toc-parts-of-an-action-button" class="nav-link" data-scroll-target="#parts-of-an-action-button">Parts of an action button</a></li>
@@ -407,15 +407,15 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </ul></li>
 </ul>
 </section>
-<section id="example-application" class="level2">
-<h2 class="anchored" data-anchor-id="example-application">Example application</h2>
+<section id="example-application" class="level2" data-footer="false">
+<h2 data-footer="false" class="anchored" data-anchor-id="example-application">Example application</h2>
 <pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
 #| standalone: true
 #| components: [viewer]
 #| layout: vertical
-#| viewerHeight: 600
+#| viewerHeight: 550
 
 import plotly.express as px
 from ridgeplot import ridgeplot
@@ -611,8 +611,8 @@ ridgeplot</code></pre>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> avg_bill():</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"$</span><span class="sc">{</span>filtered()[<span class="st">'total_bill'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="reactive.calc-for-shared-filtering" class="level2">
-<h2 class="anchored" data-anchor-id="reactive.calc-for-shared-filtering"><code>@reactive.calc</code> for shared filtering</h2>
+<section id="reactive.calc-shared-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="reactive.calc-shared-filtering"><code>@reactive.calc</code>: shared filtering</h2>
 <p><a href="https://shiny.posit.co/py/docs/reactive-foundations.html#calculations" class="uri">https://shiny.posit.co/py/docs/reactive-foundations.html#calculations</a></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny <span class="im">import</span> reactive</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -671,6 +671,7 @@ ridgeplot</code></pre>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>See exercises: <a href="../exercises.html#ex-tips">Tips</a> and <a href="../exercises.html#ex-tips-button">Tips + Button</a>.</p>
 
 
 </section>

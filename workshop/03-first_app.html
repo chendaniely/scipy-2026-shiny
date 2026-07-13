@@ -345,6 +345,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#what-just-happened" id="toc-what-just-happened" class="nav-link" data-scroll-target="#what-just-happened">What just happened?</a></li>
   <li><a href="#output-without-reactive-context" id="toc-output-without-reactive-context" class="nav-link" data-scroll-target="#output-without-reactive-context">Output without reactive context</a></li>
   <li><a href="#the-complete-app" id="toc-the-complete-app" class="nav-link" data-scroll-target="#the-complete-app">The complete app</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   </ul>
@@ -399,7 +400,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </section>
 <section id="step-1-static-plot" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-static-plot">Step 1 — static plot</h2>
-<div id="b11ad473" class="cell" data-execution_count="1">
+<div id="bfac8ba6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -421,7 +422,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </section>
 <section id="step-1b---parameterize-your-output" class="level2">
 <h2 class="anchored" data-anchor-id="step-1b---parameterize-your-output">Step 1b - parameterize your output</h2>
-<div id="7c8c2e7b" class="cell" data-execution_count="2">
+<div id="4076f7ca" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -446,7 +447,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </section>
 <section id="step-2-add-shiny-imports" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-add-shiny-imports">Step 2 — add Shiny imports</h2>
-<div id="da8a2b00" class="cell" data-execution_count="3">
+<div id="b3862fa3" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
@@ -464,7 +465,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </section>
 <section id="step-3-discover-the-axis-choices" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-discover-the-axis-choices">Step 3 — discover the axis choices</h2>
-<div id="caca5fad" class="cell" data-execution_count="4">
+<div id="479c2762" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
@@ -615,6 +616,10 @@ def plot():
     )
 
 </code></pre>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>See exercise: <a href="../exercises.html#ex-basic-app">Basic App</a>.</p>
 </section>
 </section>
 <section id="code" class="level1 page-columns page-full">

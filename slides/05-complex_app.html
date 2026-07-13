@@ -255,7 +255,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="example-application" class="slide level2">
+<section id="example-application" class="slide level2" data-footer="false">
 <h2>Example application</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>#| '!! shinylive warning !!': |</span>
 <span id="cb1-2"><a></a>#|   shinylive does not work in self-contained HTML documents.</span>
@@ -263,7 +263,7 @@
 <span id="cb1-4"><a></a>#| standalone: true</span>
 <span id="cb1-5"><a></a>#| components: [viewer]</span>
 <span id="cb1-6"><a></a>#| layout: vertical</span>
-<span id="cb1-7"><a></a>#| viewerHeight: 600</span>
+<span id="cb1-7"><a></a>#| viewerHeight: 550</span>
 <span id="cb1-8"><a></a></span>
 <span id="cb1-9"><a></a>import plotly.express as px</span>
 <span id="cb1-10"><a></a>from ridgeplot import ridgeplot</span>
@@ -457,8 +457,8 @@
 <span id="cb3-8"><a></a>    <span class="kw">def</span> avg_bill():</span>
 <span id="cb3-9"><a></a>        <span class="cf">return</span> <span class="ss">f"$</span><span class="sc">{</span>filtered()[<span class="st">'total_bill'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="reactive.calc-for-shared-filtering" class="slide level2">
-<h2><code>@reactive.calc</code> for shared filtering</h2>
+<section id="reactive.calc-shared-filtering" class="slide level2">
+<h2><code>@reactive.calc</code>: shared filtering</h2>
 <p><a href="https://shiny.posit.co/py/docs/reactive-foundations.html#calculations" class="uri">https://shiny.posit.co/py/docs/reactive-foundations.html#calculations</a></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">from</span> shiny <span class="im">import</span> reactive</span>
 <span id="cb4-2"><a></a></span>
@@ -517,6 +517,7 @@
 </section>
 <section id="exercise" class="slide level2">
 <h2>Exercise</h2>
+<p>See exercises: <a href="../exercises.html#ex-tips">Tips</a> and <a href="../exercises.html#ex-tips-button">Tips + Button</a>.</p>
 
 
 </section>
