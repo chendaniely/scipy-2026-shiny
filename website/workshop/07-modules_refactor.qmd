@@ -1,0 +1,25 @@
+---
+title: "Refactor Your App Into a Module"
+---
+
+:::{.column-page-inset-right}
+
+{{< revealjs file="/slides/07-modules_refactor.html" height="500px" class="ratio ratio-16x9" >}}
+
+:::
+
+# Slide Contents
+
+{{< include /slides/07-modules_refactor.qmd >}}
+
+# Code
+
+:::{.column-page-inset}
+
+Shiny Core version:
+
+```{.python}
+{{< include /../code/demos/app-06-modules_refactor-core.py >}}
+```
+
+:::

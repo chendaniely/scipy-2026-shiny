@@ -3,8 +3,15 @@ format:
     footer: "SciPy 2026. chendaniely/scipy-2026-shiny"
     slide-number: true
     show-slide-number: all
-    theme: default
+    theme: [default, brand, slides-theme.scss]
     highlight-style: monokai
+    smaller: true
+    logo: /img/conf-logo.png
+    title-slide-attributes:
+      data-background-image: /img/scipy2026-loon.png
+      data-background-size: 320px
+      data-background-position: 97% 97%
+      data-background-opacity: "0.85"
     revealjs-plugins:
       - chat-bubbles
       - pointer
@@ -22,6 +29,6 @@ execute:
 
 pointer:
   key: "q"
-  color: "#ff0000"
+  color: "#EA1F26"
   pointerSize: 16
   alwaysVisible: false

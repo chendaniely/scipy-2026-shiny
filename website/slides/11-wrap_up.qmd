@@ -8,23 +8,18 @@ title: "Wrap Up"
 - Building and running your first app
 - `@reactive.calc` for shared computations
 - Dashboard layouts: sidebars, columns, cards, value boxes
-- Deploying to Posit Connect Cloud
-- Integrating LLMs with `chatlas`, `shinychat`, and `querychat`
+- Shiny modules — reuse and refactor without repeating yourself
 - Testing with Playwright
-
-## Key concepts to take home
-
-- **Reactivity is automatic** — Shiny tracks dependencies for you
-- **Start static** — get the visualization right, then add inputs
-- **`@reactive.calc`** — avoid redundant computation across outputs
-- **`requirements.txt`** — always needed for deployment
-- SQL is a great intermediate language between humans and LLMs
+- Deploying to Posit Connect Cloud
 
 ## This workshop
 
 Everything from today:
 
 <https://github.com/chendaniely/scipy-2026-shiny>
+
+Bonus material (AI + LLM dashboards with `chatlas`, `shinychat`, `querychat`)
+is in the "🎁 Bonus" section of the sidebar — try it on your own time.
 
 ## Feedback survey
 

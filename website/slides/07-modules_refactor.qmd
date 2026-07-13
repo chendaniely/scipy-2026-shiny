@@ -1,0 +1,73 @@
+---
+title: "Refactor Your App Into a Module"
+---
+
+## Where we're starting
+
+The tips dashboard's sidebar today: one slider (`total_bill`), one checkbox
+group (`time`), one `@reactive.calc filtered_data()`. All hand-written,
+all tied to the `tips` dataframe specifically.
+
+## Step 1 — identify the reusable part
+
+- The sidebar UI (slider + checkbox group)
+- The filtering logic (`@reactive.calc`)
+- Everything *else* (value boxes, plots, tables) stays in the app — it's
+  specific to how *this* app wants to display the filtered data
+
+## Step 2 — write the module
+
+We already built this in the last section:
+`filter_panel(input, output, session, data, columns)` — pass in any
+dataframe and any list of columns, get back `{"mask": <reactive.calc>}`.
+
+## Step 3 — swap the sidebar for the module
+
+Before:
+
+```{.python}
+with ui.sidebar(open="desktop"):
+    ui.input_slider(id="slider", label="Bill amount", ...)
+    ui.input_checkbox_group(id="checkbox_group", label="Food service", ...)
+
+@reactive.calc
+def filtered_data():
+    idx1 = tips.total_bill.between(...)
+    idx2 = tips.time.isin(...)
+    return tips[idx1 & idx2]
+```
+
+After:
+
+```{.python}
+with ui.sidebar():
+    tips_filter = filter_panel(
+        "tips_filter", data=tips, columns=["total_bill", "time"]
+    )
+```
+
+Everywhere the app used `filtered_data()`, it now uses
+`tips.loc[tips_filter["mask"]()]`.
+
+## The refactored app
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+{{< include /../code/demos/app-06-modules_refactor-express.py >}}
+
+## file: filter_module_express.py
+{{< include /../code/demos/filter_module_express.py >}}
+```
+
+## What we dropped
+
+The original app had a "Reset filter" button. We left it out of the module
+to keep this refactor focused — adding it back is Exercise 6.
+
+## Exercise
+
+See [Exercise 6](../exercises.qmd#ex6).

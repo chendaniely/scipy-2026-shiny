@@ -1,0 +1,13 @@
+---
+title: "Deploying Your Application"
+---
+
+:::{.column-page-inset-right}
+
+{{< revealjs file="/slides/10-deploy.html" height="500px" class="ratio ratio-16x9" >}}
+
+:::
+
+# Slide Contents
+
+{{< include /slides/10-deploy.qmd >}}

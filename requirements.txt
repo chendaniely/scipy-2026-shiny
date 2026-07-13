@@ -11,7 +11,7 @@ shinylive
 # mybinder
 jupyter-server-proxy
 
-# AI slides (07-08)
+# AI slides (bonus, 90-91)
 anthropic
 chatlas
 openai

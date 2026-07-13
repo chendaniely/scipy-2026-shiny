@@ -1,0 +1,13 @@
+---
+title: "AI + LLM Dashboards"
+---
+
+:::{.column-page-inset-right}
+
+{{< revealjs file="/slides/91-ai_dashboards.html" height="500px" class="ratio ratio-16x9" >}}
+
+:::
+
+# Slide Contents
+
+{{< include /slides/91-ai_dashboards.qmd >}}

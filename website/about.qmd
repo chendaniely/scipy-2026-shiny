@@ -7,7 +7,7 @@ toc: false
 
 ::: {.column}
 
-![](img/placeholder.png){width="90%"}
+![](img/Daniel%20Chen.png){width="90%"}
 
 :::
 
@@ -15,9 +15,10 @@ toc: false
 
 Hi I'm Daniel. I'm a Lecturer at the University of British Columbia.
 I primarily teach Data Science tooling through the Statistics department,
-and through the Master's of Data Science program at UBC.
+and through the [Master's of Data Science program at UBC](https://masterdatascience.ubc.ca/).
 
-Previously, I was a data science educator and developer advocate at [Posit, PBC](https://posit.co/). They are the authors of a _TON_ of [open source data science tools](https://opensource.posit.co/), some of which are used in this tutorial.
+Previously, I was a data science educator and developer advocate at [Posit, PBC](https://posit.co/).
+They are the authors of a _TON_ of [open source data science tools](https://opensource.posit.co/), some of which are used in this tutorial.
 
 :::
 
@@ -28,11 +29,12 @@ Previously, I was a data science educator and developer advocate at [Posit, PBC]
 :::{.callout-note}
 ## Meet the Shiny Team
 
-Members of the Posit team — including Shiny for Python engineers, developers, and maintainers — will be attending SciPy 2026.
+Members of the Posit team, including Shiny for Python engineers, developers, and maintainers, will be attending SciPy 2026.
 
-<!-- TODO: Add names, roles, and any booth/session details once confirmed -->
+Go say hi and ask them anything about Shiny!
 
-Come say hi and ask them anything about Shiny!
+You can find the folks there here: [opensource.posit.co/events/scipy-2026](https://opensource.posit.co/events/scipy-2026/)
+
 :::
 
 ## How it's made

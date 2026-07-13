@@ -1,15 +1,19 @@
-<!-- TODO: Update schedule times for SciPy 2026 once confirmed -->
-| Time  | Topic                                                              |
-|-------|--------------------------------------------------------------------|
-| 9:00  | [Welcome + Introduction](workshop/01-welcome.qmd)                  |
-| 9:10  | [Introduction to Shiny](workshop/02-shiny_intro.qmd)               |
-| 9:20  | [Your first application](workshop/03-first_app.qmd)                |
-| 9:50  | [Shiny reactivity](workshop/04-reactivity.qmd)                     |
-| 10:20 | [Deploying your application](workshop/05-deploy.qmd)               |
-| 10:30 | ☕ Coffee + Tea Break                                               |
-| 11:00 | [Your next application](workshop/06-next_app.qmd)                  |
-| 11:30 | [An AI + LLM primer](workshop/07-ai_primer.qmd)                    |
-| 11:50 | [AI + LLM dashboards](workshop/08-ai_dashboards.qmd)               |
-| 12:10 | [Testing](workshop/09-testing.qmd) your shiny apps with playwright |
-| 12:20 | [Wrap up](workshop/10-wrap_up.qmd) + Feedback Survey               |
-| 12:30 | Finish                                                             |
+| Time  | Topic                                                                  |
+|-------|-------------------------------------------------------------------------|
+| :00   | [Welcome + Basic building blocks](workshop/02-building_blocks.qmd)      |
+| :20   | [Your first application — inputs](workshop/03-first_app.qmd)            |
+| :35   | [Your first application — outputs](workshop/03-first_app.qmd)           |
+| :50   | ☕ Break                                                                 |
+| 1:00  | [Shiny reactivity](workshop/04-reactivity.qmd)                          |
+| 1:15  | [A more complex application](workshop/05-complex_app.qmd)               |
+| 1:50  | ☕ Break                                                                 |
+| 2:00  | [Introduction to Shiny modules](workshop/06-modules_intro.qmd)          |
+| 2:15  | [Refactor your app into a module](workshop/07-modules_refactor.qmd)     |
+| 2:30  | [Reuse your Shiny module](workshop/08-modules_compose.qmd)              |
+| 2:50  | ☕ Break                                                                 |
+| 3:00  | [Testing](workshop/09-testing.qmd) your shiny apps with playwright      |
+| 3:30  | [Deploying your application](workshop/10-deploy.qmd)                    |
+| 3:50  | [Wrap up](workshop/11-wrap_up.qmd) + Feedback Survey                    |
+| 4:00  | Finish                                                                   |
+
+<!-- TODO: Add SciPy 2026 start time so relative times above can be converted to clock times -->

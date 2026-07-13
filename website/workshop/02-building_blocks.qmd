@@ -1,0 +1,13 @@
+---
+title: "Introduction to Shiny"
+---
+
+:::{.column-page-inset-right}
+
+{{< revealjs file="/slides/02-building_blocks.html" height="500px" class="ratio ratio-16x9" >}}
+
+:::
+
+# Slide Contents
+
+{{< include /slides/02-building_blocks.qmd >}}

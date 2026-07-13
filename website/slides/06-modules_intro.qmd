@@ -1,0 +1,84 @@
+---
+title: "Introduction to Shiny Modules"
+---
+
+## The problem
+
+Your tips dashboard's sidebar has a slider, a checkbox group, and a
+`@reactive.calc` that filters the data.
+
+Now imagine a second dataset, with its own filters. Copy-paste the sidebar
+code. Copy-paste the filter logic. Now you have **two places** to fix every
+bug and **two places** to add every new feature.
+
+## Functions don't fully solve this
+
+You could wrap the filter UI in a plain function — but Shiny input/output
+**IDs must be unique across the whole app**. Call that function twice and
+you get two `input_slider()`s both named `"filter_total_bill"` — Shiny can't
+tell them apart.
+
+## Shiny modules
+
+A module is a function that:
+
+- Encapsulates UI *and* server logic together
+- Gets its own **namespace** — an ID prefix Shiny manages for you, so
+  duplicate inner IDs never collide
+- Otherwise behaves like a normal Python function: takes arguments,
+  returns values
+
+<https://shiny.posit.co/py/docs/modules.html>
+
+## Shiny Core: `@module.ui` / `@module.server`
+
+```{.python}
+from shiny import module, reactive, render, ui
+
+@module.ui
+def filter_ui():
+    return ui.output_ui("filters")
+
+@module.server
+def filter_server(input, output, session, data, columns):
+    ...
+    return {"mask": mask}
+```
+
+Use it with an explicit id: `filter_ui("tips_filter")`,
+`filter_server("tips_filter", data=tips, columns=[...])`.
+
+## Shiny Express: `@module`
+
+One function is both UI and server. Modules are supported in Express as of
+Shiny 0.10.0.
+
+```{.python}
+from shiny.express import module, render, ui
+
+@module
+def filter_panel(input, output, session, data, columns):
+    ...
+    return {"mask": mask}
+```
+
+Use it the same way: `filter_panel("tips_filter", data=tips, columns=[...])`.
+
+::: {.callout-important}
+A module written in Core syntax can be used from an Express app, and vice
+versa — the two are interchangeable.
+:::
+
+## Our filter module
+
+```{.python}
+{{< include /../code/demos/filter_module_express.py >}}
+```
+
+Numeric columns get a range slider, everything else gets a checkbox group —
+same idea as the sidebar you already built by hand for tips.
+
+## Next
+
+We'll refactor the tips dashboard's sidebar into this module, then reuse it
+on a second dataset without writing any new filter code.

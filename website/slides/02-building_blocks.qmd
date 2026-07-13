@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Shiny"
+title: "Basic Building Blocks"
 ---
 
 ## What is a Shiny app?

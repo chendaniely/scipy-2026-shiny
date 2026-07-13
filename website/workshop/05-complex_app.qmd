@@ -1,0 +1,13 @@
+---
+title: "Your Next Application"
+---
+
+:::{.column-page-inset-right}
+
+{{< revealjs file="/slides/05-complex_app.html" height="500px" class="ratio ratio-16x9" >}}
+
+:::
+
+# Slide Contents
+
+{{< include /slides/05-complex_app.qmd >}}

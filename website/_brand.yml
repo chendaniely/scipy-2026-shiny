@@ -1,0 +1,39 @@
+meta:
+  name: "SciPy 2026: Shiny Dashboards"
+  link: https://www.scipy2026.scipy.org/
+
+logo:
+  images:
+    horizontal: img/conf-logo.png
+    icon: img/scipy2026-loon.png
+  small: icon
+  medium: horizontal
+  large: horizontal
+
+color:
+  palette:
+    scipy-blue: "#3853A3"
+    scipy-sky: "#86BAE4"
+    scipy-red: "#EA1F26"
+    scipy-ink: "#231522"
+  foreground: scipy-ink
+  background: "#FFFFFF"
+  primary: scipy-blue
+  secondary: scipy-sky
+  info: scipy-sky
+  danger: scipy-red
+  dark: scipy-ink
+  light: "#FFFFFF"
+
+typography:
+  fonts:
+    - family: Montserrat
+      source: google
+      weight: [400, 600, 700]
+      style: [normal, italic]
+  base: Montserrat
+  headings:
+    family: Montserrat
+    weight: 700
+  link:
+    color: primary

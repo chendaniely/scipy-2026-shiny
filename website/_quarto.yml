@@ -14,7 +14,9 @@ website:
   #  position: below-navbar
   title: "SciPy 2026: Shiny Dashboards"
   google-analytics: "G-XFPBQ3BZ6M"
+  favicon: img/favicon.ico
   navbar:
+    logo: img/conf-logo.png
     left:
       - href: index.qmd
         text: Home
@@ -39,29 +41,38 @@ website:
       - text: "Workshop Materials"
       - text: "Welcome + Introduction"
         href: workshop/01-welcome.qmd
-      - text: "Introduction to Shiny"
-        href: workshop/02-shiny_intro.qmd
+      - text: "Basic building blocks"
+        href: workshop/02-building_blocks.qmd
       - text: "Your first application"
         href: workshop/03-first_app.qmd
       - text: "Shiny reactivity"
         href: workshop/04-reactivity.qmd
-      - text: "Deploying your application"
-        href: workshop/05-deploy.qmd
-      - text: "Your next application"
-        href: workshop/06-next_app.qmd
-      - text: "An AI + LLM primer"
-        href: workshop/07-ai_primer.qmd
-      - text: "AI + LLM dashboards"
-        href: workshop/08-ai_dashboards.qmd
+      - text: "A more complex application"
+        href: workshop/05-complex_app.qmd
+      - text: "Introduction to Shiny modules"
+        href: workshop/06-modules_intro.qmd
+      - text: "Refactor your app into a module"
+        href: workshop/07-modules_refactor.qmd
+      - text: "Reuse your Shiny module"
+        href: workshop/08-modules_compose.qmd
       - text: "Testing"
         href: workshop/09-testing.qmd
+      - text: "Deploying your application"
+        href: workshop/10-deploy.qmd
       - text: "Wrap up"
-        href: workshop/10-wrap_up.qmd
+        href: workshop/11-wrap_up.qmd
+      - text: "🎁 Bonus"
+      - text: "An AI + LLM primer"
+        href: workshop/90-ai_primer.qmd
+      - text: "AI + LLM dashboards"
+        href: workshop/91-ai_dashboards.qmd
 
 format:
   html:
     theme:
-      - darkly
+      - flatly
+      - brand
+    css: styles.css
     highlight-style: monokai
     toc: true
     anchor-sections: true
