@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en"><head>
+<link href="../img/favicon.ico" rel="icon">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.3">
 
-  <title>SciPy 2026: Shiny Dashboards – Your Next Application</title>
+  <title>SciPy 2026: Shiny Dashboards – AI + LLM Dashboards</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -102,7 +98,7 @@
     code span.vs { color: #e6db74; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-44a157fb0331a1520d9859d627e72c37.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-086cd9c615d0cfb810a821e9b2afa0ac.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XFPBQ3BZ6M"></script>
 
   <script type="text/javascript">
@@ -223,304 +219,129 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Your Next Application</h1>
+<section id="title-slide" data-background-image="../img/scipy2026-loon.png" data-background-opacity="0.85" data-background-position="97% 97%" data-background-size="320px" class="quarto-title-block center">
+  <h1 class="title">AI + LLM Dashboards</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="beyond-the-basics" class="slide level2">
-<h2>Beyond the basics</h2>
-<p>Your first app had one input and one output.</p>
-<p>Real dashboards have:</p>
-<ul>
-<li>Layout structure (sidebars, columns, tabs)
-<ul>
-<li><code>shiny.express.ui.*()</code></li>
-</ul></li>
-<li>Multiple coordinated outputs</li>
-<li>Summary statistics (value boxes)
-<ul>
-<li><code>ui.value_box()</code></li>
-</ul></li>
-<li>Shared reactive computations
-<ul>
-<li><code>@reactive.calc</code></li>
-</ul></li>
-<li>Interactive plots (jupyter widgets)
-<ul>
-<li><code>shinywidgets.render_*()</code></li>
-</ul></li>
-</ul>
-</section>
-<section id="example-application" class="slide level2">
-<h2>Example application</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>#| '!! shinylive warning !!': |</span>
-<span id="cb1-2"><a></a>#|   shinylive does not work in self-contained HTML documents.</span>
-<span id="cb1-3"><a></a>#|   Please set `embed-resources: false` in your metadata.</span>
-<span id="cb1-4"><a></a>#| standalone: true</span>
-<span id="cb1-5"><a></a>#| components: [viewer]</span>
-<span id="cb1-6"><a></a>#| layout: vertical</span>
-<span id="cb1-7"><a></a>#| viewerHeight: 600</span>
-<span id="cb1-8"><a></a></span>
-<span id="cb1-9"><a></a>import plotly.express as px</span>
-<span id="cb1-10"><a></a>from ridgeplot import ridgeplot</span>
-<span id="cb1-11"><a></a>import seaborn as sns</span>
-<span id="cb1-12"><a></a>from shiny.express import input, ui, render</span>
-<span id="cb1-13"><a></a>from shiny import reactive</span>
-<span id="cb1-14"><a></a>from shinywidgets import render_plotly, render_widget</span>
-<span id="cb1-15"><a></a></span>
-<span id="cb1-16"><a></a>tips = sns.load_dataset("tips")</span>
-<span id="cb1-17"><a></a></span>
-<span id="cb1-18"><a></a># title</span>
-<span id="cb1-19"><a></a>ui.page_opts(title="Restaurant tipping", fillable=True)</span>
-<span id="cb1-20"><a></a></span>
-<span id="cb1-21"><a></a># sidebar</span>
-<span id="cb1-22"><a></a>with ui.sidebar(open="desktop"):</span>
-<span id="cb1-23"><a></a>    ui.input_slider(</span>
-<span id="cb1-24"><a></a>        id="slider",</span>
-<span id="cb1-25"><a></a>        label="Bill amount",</span>
-<span id="cb1-26"><a></a>        min=tips.total_bill.min(),</span>
-<span id="cb1-27"><a></a>        max=tips.total_bill.max(),</span>
-<span id="cb1-28"><a></a>        value=[tips.total_bill.min(), tips.total_bill.max()],</span>
-<span id="cb1-29"><a></a>    )</span>
-<span id="cb1-30"><a></a>    ui.input_checkbox_group(</span>
-<span id="cb1-31"><a></a>        id="checkbox_group",</span>
-<span id="cb1-32"><a></a>        label="Food service",</span>
-<span id="cb1-33"><a></a>        choices={</span>
-<span id="cb1-34"><a></a>            "Lunch": "Lunch",</span>
-<span id="cb1-35"><a></a>            "Dinner": "Dinner",</span>
-<span id="cb1-36"><a></a>        },</span>
-<span id="cb1-37"><a></a>        selected=[</span>
-<span id="cb1-38"><a></a>            "Lunch",</span>
-<span id="cb1-39"><a></a>            "Dinner",</span>
-<span id="cb1-40"><a></a>        ],</span>
-<span id="cb1-41"><a></a>    )</span>
-<span id="cb1-42"><a></a>    ui.input_action_button("action_button", "Reset filter")</span>
-<span id="cb1-43"><a></a></span>
-<span id="cb1-44"><a></a></span>
-<span id="cb1-45"><a></a>@reactive.effect</span>
-<span id="cb1-46"><a></a>@reactive.event(input.action_button)</span>
-<span id="cb1-47"><a></a>def reset_filters():</span>
-<span id="cb1-48"><a></a>    ui.update_slider(</span>
-<span id="cb1-49"><a></a>        "slider",</span>
-<span id="cb1-50"><a></a>        value=[tips.total_bill.min(), tips.total_bill.max()],</span>
-<span id="cb1-51"><a></a>    )</span>
-<span id="cb1-52"><a></a>    ui.update_checkbox_group(</span>
-<span id="cb1-53"><a></a>        "checkbox_group",</span>
-<span id="cb1-54"><a></a>        selected=["Lunch", "Dinner"],</span>
-<span id="cb1-55"><a></a>    )</span>
-<span id="cb1-56"><a></a></span>
-<span id="cb1-57"><a></a></span>
-<span id="cb1-58"><a></a>@reactive.calc</span>
-<span id="cb1-59"><a></a>def filtered_data():</span>
-<span id="cb1-60"><a></a>    idx1 = tips.total_bill.between(</span>
-<span id="cb1-61"><a></a>        left=input.slider()[0],</span>
-<span id="cb1-62"><a></a>        right=input.slider()[1],</span>
-<span id="cb1-63"><a></a>        inclusive="both",</span>
-<span id="cb1-64"><a></a>    )</span>
-<span id="cb1-65"><a></a>    idx2 = tips.time.isin(input.checkbox_group())</span>
-<span id="cb1-66"><a></a>    tips_filtered = tips[idx1 &amp; idx2]</span>
-<span id="cb1-67"><a></a>    return tips_filtered</span>
-<span id="cb1-68"><a></a></span>
-<span id="cb1-69"><a></a></span>
-<span id="cb1-70"><a></a># body of application</span>
-<span id="cb1-71"><a></a># first row of value boxes</span>
-<span id="cb1-72"><a></a>with ui.layout_columns(fill=False):</span>
-<span id="cb1-73"><a></a>    with ui.value_box():</span>
-<span id="cb1-74"><a></a>        "Total tippers"</span>
-<span id="cb1-75"><a></a></span>
-<span id="cb1-76"><a></a>        @render.text</span>
-<span id="cb1-77"><a></a>        def total_tippers():</span>
-<span id="cb1-78"><a></a>            return filtered_data().shape[0]</span>
-<span id="cb1-79"><a></a></span>
-<span id="cb1-80"><a></a>    with ui.value_box():</span>
-<span id="cb1-81"><a></a>        "Average tip"</span>
-<span id="cb1-82"><a></a></span>
-<span id="cb1-83"><a></a>        @render.text</span>
-<span id="cb1-84"><a></a>        def average_tip():</span>
-<span id="cb1-85"><a></a>            perc = filtered_data().tip / filtered_data().total_bill</span>
-<span id="cb1-86"><a></a>            return f"{perc.mean():.1%}"</span>
-<span id="cb1-87"><a></a></span>
-<span id="cb1-88"><a></a>    with ui.value_box():</span>
-<span id="cb1-89"><a></a>        "Average bill"</span>
-<span id="cb1-90"><a></a></span>
-<span id="cb1-91"><a></a>        @render.text</span>
-<span id="cb1-92"><a></a>        def average_bill():</span>
-<span id="cb1-93"><a></a>            bill = filtered_data().total_bill.mean()</span>
-<span id="cb1-94"><a></a>            return f"${bill:.2f}"</span>
-<span id="cb1-95"><a></a></span>
-<span id="cb1-96"><a></a></span>
-<span id="cb1-97"><a></a># second row of cards</span>
-<span id="cb1-98"><a></a>with ui.layout_columns(col_widths=[6, 6]):</span>
-<span id="cb1-99"><a></a>    with ui.card(full_screen=True):</span>
-<span id="cb1-100"><a></a>        ui.card_header("Tips data")</span>
-<span id="cb1-101"><a></a></span>
-<span id="cb1-102"><a></a>        @render.data_frame</span>
-<span id="cb1-103"><a></a>        def tips_data():</span>
-<span id="cb1-104"><a></a>            return filtered_data()</span>
-<span id="cb1-105"><a></a></span>
-<span id="cb1-106"><a></a>    with ui.card(full_screen=True):</span>
-<span id="cb1-107"><a></a>        ui.card_header("Total bill vs tip")</span>
-<span id="cb1-108"><a></a></span>
-<span id="cb1-109"><a></a>        @render_plotly</span>
-<span id="cb1-110"><a></a>        def scatterplot():</span>
-<span id="cb1-111"><a></a>            return px.scatter(</span>
-<span id="cb1-112"><a></a>                filtered_data(), x="total_bill", y="tip", trendline="lowess"</span>
-<span id="cb1-113"><a></a>            )</span>
-<span id="cb1-114"><a></a></span>
-<span id="cb1-115"><a></a></span>
-<span id="cb1-116"><a></a>with ui.layout_columns():</span>
-<span id="cb1-117"><a></a>    with ui.card(full_screen=True):</span>
-<span id="cb1-118"><a></a>        ui.card_header("Tip percentages")</span>
-<span id="cb1-119"><a></a></span>
-<span id="cb1-120"><a></a>        @render_widget</span>
-<span id="cb1-121"><a></a>        def ridge():</span>
-<span id="cb1-122"><a></a>            filtered_data()["percent"] = (</span>
-<span id="cb1-123"><a></a>                filtered_data().tip / filtered_data().total_bill</span>
-<span id="cb1-124"><a></a>            )</span>
-<span id="cb1-125"><a></a></span>
-<span id="cb1-126"><a></a>            uvals = filtered_data().day.unique()</span>
-<span id="cb1-127"><a></a>            samples = [</span>
-<span id="cb1-128"><a></a>                [filtered_data().percent[filtered_data().day == val]] for val in uvals</span>
-<span id="cb1-129"><a></a>            ]</span>
-<span id="cb1-130"><a></a></span>
-<span id="cb1-131"><a></a>            plt = ridgeplot(</span>
-<span id="cb1-132"><a></a>                samples=samples,</span>
-<span id="cb1-133"><a></a>                labels=uvals,</span>
-<span id="cb1-134"><a></a>                bandwidth=0.01,</span>
-<span id="cb1-135"><a></a>                colorscale="viridis",</span>
-<span id="cb1-136"><a></a>                colormode="row-index",</span>
-<span id="cb1-137"><a></a>            )</span>
-<span id="cb1-138"><a></a></span>
-<span id="cb1-139"><a></a>            plt.update_layout(</span>
-<span id="cb1-140"><a></a>                legend=dict(</span>
-<span id="cb1-141"><a></a>                    orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5</span>
-<span id="cb1-142"><a></a>                )</span>
-<span id="cb1-143"><a></a>            )</span>
-<span id="cb1-144"><a></a></span>
-<span id="cb1-145"><a></a>            return plt</span>
-<span id="cb1-146"><a></a></span>
-<span id="cb1-147"><a></a></span>
-<span id="cb1-148"><a></a>## file: requirements.txt</span>
-<span id="cb1-149"><a></a>ridgeplot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="layout-components" class="slide level2">
-<h2>Layout components</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
-<span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a>ui.page_opts(title<span class="op">=</span><span class="st">"Tips Dashboard"</span>, fillable<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-4"><a></a></span>
-<span id="cb2-5"><a></a><span class="cf">with</span> ui.sidebar():</span>
-<span id="cb2-6"><a></a>    ui.input_slider(<span class="st">"bill"</span>, <span class="st">"Max bill ($)"</span>, <span class="dv">3</span>, <span class="dv">50</span>, <span class="dv">25</span>)</span>
-<span id="cb2-7"><a></a>    ui.input_checkbox_group(</span>
-<span id="cb2-8"><a></a>        <span class="st">"time"</span>,</span>
-<span id="cb2-9"><a></a>        <span class="st">"Meal"</span>,</span>
-<span id="cb2-10"><a></a>        [<span class="st">"Lunch"</span>, <span class="st">"Dinner"</span>],</span>
-<span id="cb2-11"><a></a>        selected<span class="op">=</span>[<span class="st">"Lunch"</span>, <span class="st">"Dinner"</span>],</span>
-<span id="cb2-12"><a></a>    )</span>
-<span id="cb2-13"><a></a>    ui.input_action_button(<span class="st">"action_button"</span>, <span class="st">"Reset"</span>)</span>
-<span id="cb2-14"><a></a></span>
-<span id="cb2-15"><a></a><span class="cf">with</span> ui.layout_columns():</span>
-<span id="cb2-16"><a></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb2-17"><a></a>        ...  <span class="co"># output 1</span></span>
-<span id="cb2-18"><a></a></span>
-<span id="cb2-19"><a></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb2-20"><a></a>        ...  <span class="co"># output 2</span></span>
-<span id="cb2-21"><a></a></span>
-<span id="cb2-22"><a></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb2-23"><a></a>            ...  <span class="co"># output 3</span></span>
-<span id="cb2-24"><a></a></span>
-<span id="cb2-25"><a></a><span class="cf">with</span> ui.layout_columns():</span>
-<span id="cb2-26"><a></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb2-27"><a></a>        ...  <span class="co"># data frame</span></span>
-<span id="cb2-28"><a></a></span>
-<span id="cb2-29"><a></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb2-30"><a></a>        ...  <span class="co"># scatter plot</span></span>
-<span id="cb2-31"><a></a></span>
-<span id="cb2-32"><a></a><span class="cf">with</span> ui.layout_columns():</span>
-<span id="cb2-33"><a></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb2-34"><a></a>        ...  <span class="co"># ridgeplot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="value-boxes" class="slide level2">
-<h2>Value boxes</h2>
-<p><a href="https://shiny.posit.co/py/components/outputs/value-box/" class="uri">https://shiny.posit.co/py/components/outputs/value-box/</a></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">from</span> shiny.express <span class="im">import</span> render, ui</span>
-<span id="cb3-2"><a></a><span class="im">from</span> faicons <span class="im">import</span> icon_svg</span>
-<span id="cb3-3"><a></a></span>
-<span id="cb3-4"><a></a><span class="cf">with</span> ui.value_box(showcase<span class="op">=</span>icon_svg(<span class="st">"dollar-sign"</span>)):</span>
-<span id="cb3-5"><a></a>    <span class="co">"Average bill"</span></span>
-<span id="cb3-6"><a></a></span>
-<span id="cb3-7"><a></a>    <span class="at">@render.text</span></span>
-<span id="cb3-8"><a></a>    <span class="kw">def</span> avg_bill():</span>
-<span id="cb3-9"><a></a>        <span class="cf">return</span> <span class="ss">f"$</span><span class="sc">{</span>filtered()[<span class="st">'total_bill'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="reactive.calc-for-shared-filtering" class="slide level2">
-<h2><code>@reactive.calc</code> for shared filtering</h2>
-<p><a href="https://shiny.posit.co/py/docs/reactive-foundations.html#calculations" class="uri">https://shiny.posit.co/py/docs/reactive-foundations.html#calculations</a></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">from</span> shiny <span class="im">import</span> reactive</span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a><span class="at">@reactive.calc</span></span>
-<span id="cb4-4"><a></a><span class="kw">def</span> filtered():</span>
-<span id="cb4-5"><a></a>    df <span class="op">=</span> tips.copy()</span>
-<span id="cb4-6"><a></a>    df <span class="op">=</span> df[df[<span class="st">"total_bill"</span>] <span class="op">&lt;=</span> <span class="bu">input</span>.bill()]</span>
-<span id="cb4-7"><a></a>    df <span class="op">=</span> df[df[<span class="st">"time"</span>].isin(<span class="bu">input</span>.time())]</span>
-<span id="cb4-8"><a></a>    <span class="cf">return</span> df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>All outputs call <code>filtered()</code> — the filter runs once per change.</p>
-</section>
-<section id="full-app-structure" class="slide level2">
-<h2>Full app structure</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>ui.page_opts(title<span class="op">=</span><span class="st">"Tips Dashboard"</span>, fillable<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-2"><a></a></span>
-<span id="cb5-3"><a></a><span class="cf">with</span> ui.sidebar():</span>
-<span id="cb5-4"><a></a>    <span class="co"># inputs ...</span></span>
-<span id="cb5-5"><a></a></span>
-<span id="cb5-6"><a></a><span class="at">@reactive.calc</span></span>
-<span id="cb5-7"><a></a><span class="kw">def</span> filtered():</span>
-<span id="cb5-8"><a></a>    <span class="co"># shared data transform ...</span></span>
-<span id="cb5-9"><a></a></span>
-<span id="cb5-10"><a></a><span class="cf">with</span> ui.layout_columns():</span>
-<span id="cb5-11"><a></a>    <span class="cf">with</span> ui.value_box(...):</span>
-<span id="cb5-12"><a></a>        <span class="at">@render.text</span></span>
-<span id="cb5-13"><a></a>        <span class="kw">def</span> avg_bill(): ...</span>
-<span id="cb5-14"><a></a></span>
-<span id="cb5-15"><a></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb5-16"><a></a>        <span class="at">@render.plot</span></span>
-<span id="cb5-17"><a></a>        <span class="kw">def</span> scatter(): ...</span>
-<span id="cb5-18"><a></a></span>
-<span id="cb5-19"><a></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb5-20"><a></a>        <span class="at">@render.data_frame</span></span>
-<span id="cb5-21"><a></a>        <span class="kw">def</span> table(): ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="pausing-computations" class="slide level2">
-<h2>Pausing computations</h2>
-<p>Sometimes you want an action to wait until you say so (e.g., do something when I push a button)</p>
-<ul>
-<li>Using user text input to filter</li>
-<li>Adjusting multiple filters</li>
-</ul>
-<p>We can use a <code>ui.innput_action_buttion()</code> input component to trigger a reactive event.</p>
-<p><a href="https://shiny.posit.co/py/components/inputs/action-button/" class="uri">https://shiny.posit.co/py/components/inputs/action-button/</a></p>
-</section>
-<section id="parts-of-an-action-button" class="slide level2">
-<h2>Parts of an action button</h2>
+<section id="putting-llms-in-shiny-apps" class="slide level2">
+<h2>Putting LLMs in Shiny apps</h2>
+<p>Three patterns, increasing complexity:</p>
 <ol type="1">
-<li>UI input component: <code>ui.innput_action_buttion()</code></li>
-<li>A function that gets called when the button gets clicked
-<ul>
-<li><code>@reactive.event(input.&lt;ID&gt;)</code> decorator which button triggers which function</li>
-<li><code>@reactive.effect</code> decorator a button click doesn’t return a result, it creates a side effect</li>
-</ul></li>
+<li><strong>Chat interface</strong> — a conversational UI (<code>shinychat</code>)</li>
+<li><strong>Tool calling</strong> — let the LLM take actions in your app</li>
+<li><strong>Data chat</strong> — query your dataframe with natural language (<code>querychat</code>)</li>
 </ol>
+</section>
+<section id="shinychat" class="slide level2">
+<h2>shinychat</h2>
+<p><code>shinychat</code> provides a ready-made chat UI component for Shiny:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> shiny.express <span class="im">import</span> ui</span>
+<span id="cb1-2"><a></a><span class="im">from</span> shinychat <span class="im">import</span> chat_ui, chat_server</span>
+<span id="cb1-3"><a></a><span class="im">from</span> chatlas <span class="im">import</span> ChatGithub</span>
+<span id="cb1-4"><a></a></span>
+<span id="cb1-5"><a></a>ui.page_opts(title<span class="op">=</span><span class="st">"My Chatbot"</span>)</span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a>chat_ui(<span class="st">"chat"</span>)</span>
+<span id="cb1-8"><a></a></span>
+<span id="cb1-9"><a></a><span class="at">@chat_server</span>(<span class="st">"chat"</span>)</span>
+<span id="cb1-10"><a></a><span class="kw">def</span> _():</span>
+<span id="cb1-11"><a></a>    <span class="cf">return</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-4.1"</span>, system_prompt<span class="op">=</span><span class="st">"You are a helpful assistant."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Docs: <a href="https://posit-dev.github.io/shinychat/py/" class="uri">https://posit-dev.github.io/shinychat/py/</a></p>
+</section>
+<section id="demo-shinychat" class="slide level2">
+<h2>Demo: shinychat</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>code/03-llm/app-shinychat.py</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="code/03-llm/app-shinychat.py"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> shiny.express <span class="im">import</span> ui</span>
+<span id="cb2-2"><a></a><span class="im">from</span> shinychat <span class="im">import</span> chat_ui, chat_server</span>
+<span id="cb2-3"><a></a><span class="im">from</span> chatlas <span class="im">import</span> ChatGithub</span>
+<span id="cb2-4"><a></a></span>
+<span id="cb2-5"><a></a>ui.page_opts(title<span class="op">=</span><span class="st">"Shiny Chatbot"</span>, fillable<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-6"><a></a></span>
+<span id="cb2-7"><a></a>chat_ui(<span class="st">"chat"</span>, height<span class="op">=</span><span class="st">"100%"</span>)</span>
+<span id="cb2-8"><a></a></span>
+<span id="cb2-9"><a></a><span class="at">@chat_server</span>(<span class="st">"chat"</span>)</span>
+<span id="cb2-10"><a></a><span class="kw">def</span> _():</span>
+<span id="cb2-11"><a></a>    <span class="cf">return</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-4.1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="chatting-with-your-data" class="slide level2">
+<h2>Chatting with your data</h2>
+<p>What if users could ask questions about your dataset in plain English?</p>
+<p><code>querychat</code> translates natural language → SQL → runs against a DuckDB table:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> querychat</span>
+<span id="cb3-2"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
+<span id="cb3-5"><a></a>qc <span class="op">=</span> querychat.init(tips, <span class="st">"tips"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Docs: <a href="https://github.com/posit-dev/querychat" class="uri">https://github.com/posit-dev/querychat</a></p>
+</section>
+<section id="demo-querychat" class="slide level2">
+<h2>Demo: querychat</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> querychat</span>
+<span id="cb4-2"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb4-3"><a></a><span class="im">from</span> shiny.express <span class="im">import</span> ui</span>
+<span id="cb4-4"><a></a></span>
+<span id="cb4-5"><a></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
+<span id="cb4-6"><a></a>qc <span class="op">=</span> querychat.init(tips, <span class="st">"tips"</span>,</span>
+<span id="cb4-7"><a></a>                    greeting<span class="op">=</span><span class="st">"Ask me about the tips dataset!"</span>)</span>
+<span id="cb4-8"><a></a></span>
+<span id="cb4-9"><a></a>ui.page_opts(title<span class="op">=</span><span class="st">"Tips Q&amp;A"</span>, fillable<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-10"><a></a>querychat.chat_ui(<span class="st">"chat"</span>)</span>
+<span id="cb4-11"><a></a>querychat.dataframe_ui(<span class="st">"df"</span>)</span>
+<span id="cb4-12"><a></a></span>
+<span id="cb4-13"><a></a>querychat.chat_server(<span class="st">"chat"</span>, qc)</span>
+<span id="cb4-14"><a></a>querychat.dataframe_server(<span class="st">"df"</span>, qc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="sidebot-pattern" class="slide level2">
+<h2>Sidebot pattern</h2>
+<p>Use an LLM to drive filters in a dashboard via natural language:</p>
+<ul>
+<li>User types “show me only lunch orders over $20”</li>
+<li>LLM translates to filter parameters</li>
+<li>Dashboard updates reactively</li>
+</ul>
+<p>Template: <code>shiny create --mode core --github jcheng5/py-databot</code></p>
+</section>
+<section id="demo-llms-chat" class="slide level2">
+<h2>Demo: LLMs + Chat</h2>
+<p>Generative AI shiny templates: <a href="https://shiny.posit.co/py/templates/#generative-ai" class="uri">https://shiny.posit.co/py/templates/#generative-ai</a></p>
+<ul>
+<li><a href="https://shiny.posit.co/py/templates/basic-chatbot/" class="uri">https://shiny.posit.co/py/templates/basic-chatbot/</a></li>
+<li><a href="https://shiny.posit.co/py/templates/querychat/" class="uri">https://shiny.posit.co/py/templates/querychat/</a></li>
+<li><a href="https://shiny.posit.co/py/templates/sidebot/" class="uri">https://shiny.posit.co/py/templates/sidebot/</a></li>
+</ul>
 </section>
 <section id="exercise" class="slide level2">
 <h2>Exercise</h2>
+</section>
+<section id="sql-is-a-great-communication-layer" class="slide level2">
+<h2>SQL is a great communication layer</h2>
+<p>Upcoming tool: ggsql <a href="https://ggsql.org/" class="uri">https://ggsql.org/</a></p>
+<p>Trt it: <a href="https://ggsql.org/wasm/" class="uri">https://ggsql.org/wasm/</a></p>
+<p>See also: Querychat + Vis docs: <a href="https://posit-dev.github.io/querychat/py/visualize.html" class="uri">https://posit-dev.github.io/querychat/py/visualize.html</a></p>
+<div class="columns">
+<div class="column">
+<pre><code>VISUALISE FROM ggsql:penguins
+DRAW point
+    MAPPING
+      bill_dep AS x,
+      body_mass AS y,
+      species AS color</code></pre>
+</div><div class="column">
+<p><img data-src="../img/ggsql-example.png"></p>
+</div></div>
 
 
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="../img/conf-logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p>SciPy 2026. chendaniely/scipy-2026-shiny</p>
 </div>
@@ -558,9 +379,9 @@
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'pointer': {"key":"q","color":"#ff0000","pointerSize":16,"alwaysVisible":false},
+'pointer': {"key":"q","color":"#EA1F26","pointerSize":16,"alwaysVisible":false},
 'revealjs-a11y': {"revealjs-a11y":{"high-contrast":false,"alt-text-warnings":true,"slide-change-cue":{"visual":true,"audio":false}}},
-'smaller': false,
+'smaller': true,
  
         // Display controls in the bottom right corner
         controls: false,

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Your Next Application – SciPy 2026: Shiny Dashboards</title>
+<title>Reuse Your Shiny Module – SciPy 2026: Shiny Dashboards</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,16 +68,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../img/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ed403f32569dc2681973445e9033bc4c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-caa3b4d27c340e046929894697b8e1d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-172cb87c3a3df97a00d3fb28d62b8d03.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-caa3b4d27c340e046929894697b8e1d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
 <script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
 <script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
@@ -141,6 +146,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -150,6 +156,10 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../img/conf-logo.png" alt="" class="navbar-logo light-content">
+    <img src="../img/conf-logo.png" alt="" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">SciPy 2026: Shiny Dashboards</span>
     </a>
@@ -202,7 +212,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/06-next_app.html">Your next application</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/08-modules_compose.html">Reuse your Shiny module</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -215,6 +225,12 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/conf-logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../img/conf-logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -233,8 +249,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/02-shiny_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Shiny</span></a>
+  <a href="../workshop/02-building_blocks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic building blocks</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -251,26 +267,26 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/05-deploy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Deploying your application</span></a>
+  <a href="../workshop/05-complex_app.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A more complex application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-next_app.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Your next application</span></a>
+  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/07-ai_primer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">An AI + LLM primer</span></a>
+  <a href="../workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Refactor your app into a module</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/08-ai_dashboards.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">AI + LLM dashboards</span></a>
+  <a href="../workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Reuse your Shiny module</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -281,8 +297,29 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/10-deploy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deploying your application</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+ <span class="menu-text">🎁 Bonus</span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/90-ai_primer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An AI + LLM primer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/91-ai_dashboards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI + LLM dashboards</span></a>
   </div>
 </li>
     </ul>
@@ -297,17 +334,15 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <ul>
   <li><a href="#slide-contents" id="toc-slide-contents" class="nav-link active" data-scroll-target="#slide-contents">Slide Contents</a>
   <ul class="collapse">
-  <li><a href="#title-your-next-application" id="toc-title-your-next-application" class="nav-link" data-scroll-target="#title-your-next-application">title: “Your Next Application”</a></li>
-  <li><a href="#beyond-the-basics" id="toc-beyond-the-basics" class="nav-link" data-scroll-target="#beyond-the-basics">Beyond the basics</a></li>
-  <li><a href="#example-application" id="toc-example-application" class="nav-link" data-scroll-target="#example-application">Example application</a></li>
-  <li><a href="#layout-components" id="toc-layout-components" class="nav-link" data-scroll-target="#layout-components">Layout components</a></li>
-  <li><a href="#value-boxes" id="toc-value-boxes" class="nav-link" data-scroll-target="#value-boxes">Value boxes</a></li>
-  <li><a href="#reactive.calc-for-shared-filtering" id="toc-reactive.calc-for-shared-filtering" class="nav-link" data-scroll-target="#reactive.calc-for-shared-filtering"><code>@reactive.calc</code> for shared filtering</a></li>
-  <li><a href="#full-app-structure" id="toc-full-app-structure" class="nav-link" data-scroll-target="#full-app-structure">Full app structure</a></li>
-  <li><a href="#pausing-computations" id="toc-pausing-computations" class="nav-link" data-scroll-target="#pausing-computations">Pausing computations</a></li>
-  <li><a href="#parts-of-an-action-button" id="toc-parts-of-an-action-button" class="nav-link" data-scroll-target="#parts-of-an-action-button">Parts of an action button</a></li>
+  <li><a href="#title-reuse-your-shiny-module" id="toc-title-reuse-your-shiny-module" class="nav-link" data-scroll-target="#title-reuse-your-shiny-module">title: “Reuse Your Shiny Module”</a></li>
+  <li><a href="#the-payoff" id="toc-the-payoff" class="nav-link" data-scroll-target="#the-payoff">The payoff</a></li>
+  <li><a href="#a-second-dataset-zero-new-filter-code" id="toc-a-second-dataset-zero-new-filter-code" class="nav-link" data-scroll-target="#a-second-dataset-zero-new-filter-code">A second dataset, zero new filter code</a></li>
+  <li><a href="#two-tabs-two-datasets-one-module" id="toc-two-tabs-two-datasets-one-module" class="nav-link" data-scroll-target="#two-tabs-two-datasets-one-module">Two tabs, two datasets, one module</a></li>
+  <li><a href="#the-composed-app" id="toc-the-composed-app" class="nav-link" data-scroll-target="#the-composed-app">The composed app</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   </ul>
 </nav>
     </div>
@@ -316,7 +351,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Your Next Application</h1>
+<h1 class="title">Reuse Your Shiny Module</h1>
 </div>
 
 
@@ -334,309 +369,235 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 
 <div class="column-page-inset-right">
-    <p><a href="../slides/06-next_app.html" target="_blank">View slides in full screen</a></p>
+    <p><a href="../slides/08-modules_compose.html" target="_blank">View slides in full screen</a></p>
        <div class="ratio ratio-16x9">
-      <iframe class="slide-deck" src="../slides/06-next_app.html" height="500px" width="100%"></iframe>
+      <iframe class="slide-deck" src="../slides/08-modules_compose.html" height="500px" width="100%"></iframe>
     </div>
   
 </div>
 <section id="slide-contents" class="level1">
 <h1>Slide Contents</h1>
 <hr>
-<section id="title-your-next-application" class="level2">
-<h2 class="anchored" data-anchor-id="title-your-next-application">title: “Your Next Application”</h2>
+<section id="title-reuse-your-shiny-module" class="level2">
+<h2 class="anchored" data-anchor-id="title-reuse-your-shiny-module">title: “Reuse Your Shiny Module”</h2>
 </section>
-<section id="beyond-the-basics" class="level2">
-<h2 class="anchored" data-anchor-id="beyond-the-basics">Beyond the basics</h2>
-<p>Your first app had one input and one output.</p>
-<p>Real dashboards have:</p>
-<ul>
-<li>Layout structure (sidebars, columns, tabs)
-<ul>
-<li><code>shiny.express.ui.*()</code></li>
-</ul></li>
-<li>Multiple coordinated outputs</li>
-<li>Summary statistics (value boxes)
-<ul>
-<li><code>ui.value_box()</code></li>
-</ul></li>
-<li>Shared reactive computations
-<ul>
-<li><code>@reactive.calc</code></li>
-</ul></li>
-<li>Interactive plots (jupyter widgets)
-<ul>
-<li><code>shinywidgets.render_*()</code></li>
-</ul></li>
-</ul>
+<section id="the-payoff" class="level2">
+<h2 class="anchored" data-anchor-id="the-payoff">The payoff</h2>
+<p>You already have <code>filter_panel(input, output, session, data, columns)</code> from the last section. It doesn’t know anything about <code>tips</code> specifically — it takes <em>any</em> dataframe and <em>any</em> column list.</p>
 </section>
-<section id="example-application" class="level2">
-<h2 class="anchored" data-anchor-id="example-application">Example application</h2>
+<section id="a-second-dataset-zero-new-filter-code" class="level2">
+<h2 class="anchored" data-anchor-id="a-second-dataset-zero-new-filter-code">A second dataset, zero new filter code</h2>
+<p><code>palmerpenguins</code> — the dataset from your very first app — has a categorical column (<code>species</code>) and two numeric ones (<code>bill_length_mm</code>, <code>body_mass_g</code>). Exactly the shape our module already handles.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>penguins_filter <span class="op">=</span> filter_panel(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"penguins_filter"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>penguins,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>[<span class="st">"species"</span>, <span class="st">"bill_length_mm"</span>, <span class="st">"body_mass_g"</span>],</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="two-tabs-two-datasets-one-module" class="level2">
+<h2 class="anchored" data-anchor-id="two-tabs-two-datasets-one-module">Two tabs, two datasets, one module</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ui.navset_card_tab():</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.nav_panel(<span class="st">"Tips"</span>):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> ui.layout_sidebar():</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> ui.sidebar():</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                tips_filter <span class="op">=</span> filter_panel(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"tips_filter"</span>, data<span class="op">=</span>tips, columns<span class="op">=</span>[<span class="st">"total_bill"</span>, <span class="st">"time"</span>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            ...</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.nav_panel(<span class="st">"Penguins"</span>):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> ui.layout_sidebar():</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> ui.sidebar():</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                penguins_filter <span class="op">=</span> filter_panel(</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"penguins_filter"</span>, data<span class="op">=</span>penguins,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                    columns<span class="op">=</span>[<span class="st">"species"</span>, <span class="st">"bill_length_mm"</span>, <span class="st">"body_mass_g"</span>],</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Two different namespace ids (<code>"tips_filter"</code>, <code>"penguins_filter"</code>) keep the two module instances’ inputs from colliding.</p>
+</section>
+<section id="the-composed-app" class="level2">
+<h2 class="anchored" data-anchor-id="the-composed-app">The composed app</h2>
 <pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
 #| standalone: true
-#| components: [viewer]
+#| components: [editor, viewer]
 #| layout: vertical
-#| viewerHeight: 600
+#| viewerHeight: 650
 
-import plotly.express as px
-from ridgeplot import ridgeplot
+"""Two datasets, two tabs, one reused filter module (Express syntax)."""
+
 import seaborn as sns
-from shiny.express import input, ui, render
-from shiny import reactive
-from shinywidgets import render_plotly, render_widget
+from palmerpenguins import load_penguins
+from shiny.express import render, ui
+
+from filter_module_express import filter_panel
 
 tips = sns.load_dataset("tips")
+penguins = load_penguins().dropna()
 
-# title
-ui.page_opts(title="Restaurant tipping", fillable=True)
+ui.page_opts(fillable=True)
 
-# sidebar
-with ui.sidebar(open="desktop"):
-    ui.input_slider(
-        id="slider",
-        label="Bill amount",
-        min=tips.total_bill.min(),
-        max=tips.total_bill.max(),
-        value=[tips.total_bill.min(), tips.total_bill.max()],
-    )
-    ui.input_checkbox_group(
-        id="checkbox_group",
-        label="Food service",
-        choices={
-            "Lunch": "Lunch",
-            "Dinner": "Dinner",
-        },
-        selected=[
-            "Lunch",
-            "Dinner",
-        ],
-    )
-    ui.input_action_button("action_button", "Reset filter")
-
-
-@reactive.effect
-@reactive.event(input.action_button)
-def reset_filters():
-    ui.update_slider(
-        "slider",
-        value=[tips.total_bill.min(), tips.total_bill.max()],
-    )
-    ui.update_checkbox_group(
-        "checkbox_group",
-        selected=["Lunch", "Dinner"],
-    )
-
-
-@reactive.calc
-def filtered_data():
-    idx1 = tips.total_bill.between(
-        left=input.slider()[0],
-        right=input.slider()[1],
-        inclusive="both",
-    )
-    idx2 = tips.time.isin(input.checkbox_group())
-    tips_filtered = tips[idx1 &amp; idx2]
-    return tips_filtered
-
-
-# body of application
-# first row of value boxes
-with ui.layout_columns(fill=False):
-    with ui.value_box():
-        "Total tippers"
-
-        @render.text
-        def total_tippers():
-            return filtered_data().shape[0]
-
-    with ui.value_box():
-        "Average tip"
-
-        @render.text
-        def average_tip():
-            perc = filtered_data().tip / filtered_data().total_bill
-            return f"{perc.mean():.1%}"
-
-    with ui.value_box():
-        "Average bill"
-
-        @render.text
-        def average_bill():
-            bill = filtered_data().total_bill.mean()
-            return f"${bill:.2f}"
-
-
-# second row of cards
-with ui.layout_columns(col_widths=[6, 6]):
-    with ui.card(full_screen=True):
-        ui.card_header("Tips data")
-
-        @render.data_frame
-        def tips_data():
-            return filtered_data()
-
-    with ui.card(full_screen=True):
-        ui.card_header("Total bill vs tip")
-
-        @render_plotly
-        def scatterplot():
-            return px.scatter(
-                filtered_data(), x="total_bill", y="tip", trendline="lowess"
-            )
-
-
-with ui.layout_columns():
-    with ui.card(full_screen=True):
-        ui.card_header("Tip percentages")
-
-        @render_widget
-        def ridge():
-            filtered_data()["percent"] = (
-                filtered_data().tip / filtered_data().total_bill
-            )
-
-            uvals = filtered_data().day.unique()
-            samples = [
-                [filtered_data().percent[filtered_data().day == val]] for val in uvals
-            ]
-
-            plt = ridgeplot(
-                samples=samples,
-                labels=uvals,
-                bandwidth=0.01,
-                colorscale="viridis",
-                colormode="row-index",
-            )
-
-            plt.update_layout(
-                legend=dict(
-                    orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5
+with ui.navset_card_tab():
+    with ui.nav_panel("Tips"):
+        with ui.layout_sidebar():
+            with ui.sidebar():
+                tips_filter = filter_panel(
+                    "tips_filter", data=tips, columns=["total_bill", "time"]
                 )
-            )
 
-            return plt
+            @render.data_frame
+            def tips_table():
+                return tips.loc[tips_filter["mask"]()]
+
+    with ui.nav_panel("Penguins"):
+        with ui.layout_sidebar():
+            with ui.sidebar():
+                penguins_filter = filter_panel(
+                    "penguins_filter",
+                    data=penguins,
+                    columns=["species", "bill_length_mm", "body_mass_g"],
+                )
+
+            @render.data_frame
+            def penguins_table():
+                return penguins.loc[penguins_filter["mask"]()]
 
 
 
-## file: requirements.txt
-ridgeplot</code></pre>
+## file: filter_module_express.py
+"""Reusable Shiny Express module: same behavior as filter_module_core.py,
+using the Express `@module` decorator (one function is both UI and server)."""
+
+import pandas as pd
+from shiny import reactive
+from shiny.express import module, render, ui
+
+
+def _make_filters(data, columns):
+    filters = {}
+    for col in columns:
+        if pd.api.types.is_numeric_dtype(data[col]):
+            lo, hi = float(data[col].min()), float(data[col].max())
+            filters[col] = {
+                "kind": "range",
+                "component": ui.input_slider(
+                    f"filter_{col}",
+                    f"Range for {col}",
+                    min=lo,
+                    max=hi,
+                    value=[lo, hi],
+                ),
+            }
+        else:
+            choices = sorted(data[col].unique())
+            filters[col] = {
+                "kind": "isin",
+                "component": ui.input_checkbox_group(
+                    f"filter_{col}",
+                    f"Select {col}",
+                    choices=choices,
+                    selected=choices,
+                ),
+            }
+    return filters
+
+
+@module
+def filter_panel(input, output, session, data, columns):
+    ui_filters = _make_filters(data, columns)
+
+    @render.ui
+    def filters():
+        return [ui_filters[col]["component"] for col in columns]
+
+    @reactive.calc
+    def mask():
+        m = pd.Series(True, index=data.index)
+        for col in columns:
+            if ui_filters[col]["kind"] == "range":
+                lo, hi = input[f"filter_{col}"]()
+                m = m &amp; data[col].between(lo, hi)
+            else:
+                m = m &amp; data[col].isin(input[f"filter_{col}"]())
+        return m
+
+    return {"mask": mask}
+
+</code></pre>
 </section>
-<section id="layout-components" class="level2">
-<h2 class="anchored" data-anchor-id="layout-components">Layout components</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ui.page_opts(title<span class="op">=</span><span class="st">"Tips Dashboard"</span>, fillable<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ui.sidebar():</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    ui.input_slider(<span class="st">"bill"</span>, <span class="st">"Max bill ($)"</span>, <span class="dv">3</span>, <span class="dv">50</span>, <span class="dv">25</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    ui.input_checkbox_group(</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"time"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Meal"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"Lunch"</span>, <span class="st">"Dinner"</span>],</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        selected<span class="op">=</span>[<span class="st">"Lunch"</span>, <span class="st">"Dinner"</span>],</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    ui.input_action_button(<span class="st">"action_button"</span>, <span class="st">"Reset"</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ui.layout_columns():</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        ...  <span class="co"># output 1</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        ...  <span class="co"># output 2</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            ...  <span class="co"># output 3</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ui.layout_columns():</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        ...  <span class="co"># data frame</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        ...  <span class="co"># scatter plot</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ui.layout_columns():</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        ...  <span class="co"># ridgeplot</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="value-boxes" class="level2">
-<h2 class="anchored" data-anchor-id="value-boxes">Value boxes</h2>
-<p><a href="https://shiny.posit.co/py/components/outputs/value-box/" class="uri">https://shiny.posit.co/py/components/outputs/value-box/</a></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> render, ui</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> faicons <span class="im">import</span> icon_svg</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ui.value_box(showcase<span class="op">=</span>icon_svg(<span class="st">"dollar-sign"</span>)):</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Average bill"</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">@render.text</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> avg_bill():</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"$</span><span class="sc">{</span>filtered()[<span class="st">'total_bill'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="reactive.calc-for-shared-filtering" class="level2">
-<h2 class="anchored" data-anchor-id="reactive.calc-for-shared-filtering"><code>@reactive.calc</code> for shared filtering</h2>
-<p><a href="https://shiny.posit.co/py/docs/reactive-foundations.html#calculations" class="uri">https://shiny.posit.co/py/docs/reactive-foundations.html#calculations</a></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny <span class="im">import</span> reactive</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">@reactive.calc</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filtered():</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> tips.copy()</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[df[<span class="st">"total_bill"</span>] <span class="op">&lt;=</span> <span class="bu">input</span>.bill()]</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[df[<span class="st">"time"</span>].isin(<span class="bu">input</span>.time())]</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>All outputs call <code>filtered()</code> — the filter runs once per change.</p>
-</section>
-<section id="full-app-structure" class="level2">
-<h2 class="anchored" data-anchor-id="full-app-structure">Full app structure</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ui.page_opts(title<span class="op">=</span><span class="st">"Tips Dashboard"</span>, fillable<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ui.sidebar():</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># inputs ...</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">@reactive.calc</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filtered():</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># shared data transform ...</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ui.layout_columns():</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.value_box(...):</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">@render.text</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> avg_bill(): ...</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">@render.plot</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> scatter(): ...</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.card():</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">@render.data_frame</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> table(): ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="pausing-computations" class="level2">
-<h2 class="anchored" data-anchor-id="pausing-computations">Pausing computations</h2>
-<p>Sometimes you want an action to wait until you say so (e.g., do something when I push a button)</p>
+<section id="recap" class="level2">
+<h2 class="anchored" data-anchor-id="recap">Recap</h2>
 <ul>
-<li>Using user text input to filter</li>
-<li>Adjusting multiple filters</li>
+<li>Modules are namespaced functions — write the logic once</li>
+<li>Reuse across datasets, across tabs, across apps</li>
+<li>Same module works from Shiny Core <em>or</em> Shiny Express</li>
 </ul>
-<p>We can use a <code>ui.innput_action_buttion()</code> input component to trigger a reactive event.</p>
-<p><a href="https://shiny.posit.co/py/components/inputs/action-button/" class="uri">https://shiny.posit.co/py/components/inputs/action-button/</a></p>
-</section>
-<section id="parts-of-an-action-button" class="level2">
-<h2 class="anchored" data-anchor-id="parts-of-an-action-button">Parts of an action button</h2>
-<ol type="1">
-<li>UI input component: <code>ui.innput_action_buttion()</code></li>
-<li>A function that gets called when the button gets clicked
-<ul>
-<li><code>@reactive.event(input.&lt;ID&gt;)</code> decorator which button triggers which function</li>
-<li><code>@reactive.effect</code> decorator a button click doesn’t return a result, it creates a side effect</li>
-</ul></li>
-</ol>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-
-
+<p>See <a href="../exercises.html#ex7">Exercise 7</a>.</p>
 </section>
+</section>
+<section id="code" class="level1 page-columns page-full">
+<h1>Code</h1>
+<div class="column-page-inset">
+<p>Shiny Core version:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Two datasets, two tabs, one reused filter module (Core syntax)."""</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> filter_module_core <span class="im">import</span> filter_server, filter_ui</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> load_penguins().dropna()</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    ui.navset_card_tab(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        ui.nav_panel(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Tips"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            ui.layout_sidebar(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                ui.sidebar(filter_ui(<span class="st">"tips_filter"</span>)),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                ui.output_data_frame(<span class="st">"tips_table"</span>),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        ui.nav_panel(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Penguins"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>            ui.layout_sidebar(</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                ui.sidebar(filter_ui(<span class="st">"penguins_filter"</span>)),</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                ui.output_data_frame(<span class="st">"penguins_table"</span>),</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    tips_filter <span class="op">=</span> filter_server(</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"tips_filter"</span>, data<span class="op">=</span>tips, columns<span class="op">=</span>[<span class="st">"total_bill"</span>, <span class="st">"time"</span>]</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">@render.data_frame</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tips_table():</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tips.loc[tips_filter[<span class="st">"mask"</span>]()]</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    penguins_filter <span class="op">=</span> filter_server(</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        <span class="st">"penguins_filter"</span>,</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>        data<span class="op">=</span>penguins,</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>        columns<span class="op">=</span>[<span class="st">"species"</span>, <span class="st">"bill_length_mm"</span>, <span class="st">"body_mass_g"</span>],</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">@render.data_frame</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> penguins_table():</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> penguins.loc[penguins_filter[<span class="st">"mask"</span>]()]</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> App(app_ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

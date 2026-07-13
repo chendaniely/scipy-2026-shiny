@@ -68,16 +68,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./img/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ed403f32569dc2681973445e9033bc4c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-caa3b4d27c340e046929894697b8e1d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-172cb87c3a3df97a00d3fb28d62b8d03.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-caa3b4d27c340e046929894697b8e1d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -129,6 +134,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </style>
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -138,6 +144,10 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./img/conf-logo.png" alt="" class="navbar-logo light-content">
+    <img src="./img/conf-logo.png" alt="" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">SciPy 2026: Shiny Dashboards</span>
     </a>
@@ -203,6 +213,12 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./img/conf-logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./img/conf-logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -221,8 +237,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop/02-shiny_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Shiny</span></a>
+  <a href="./workshop/02-building_blocks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic building blocks</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -239,26 +255,26 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop/05-deploy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Deploying your application</span></a>
+  <a href="./workshop/05-complex_app.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A more complex application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop/06-next_app.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Your next application</span></a>
+  <a href="./workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop/07-ai_primer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">An AI + LLM primer</span></a>
+  <a href="./workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Refactor your app into a module</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop/08-ai_dashboards.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">AI + LLM dashboards</span></a>
+  <a href="./workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reuse your Shiny module</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -269,8 +285,29 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop/10-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop/10-deploy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deploying your application</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+ <span class="menu-text">🎁 Bonus</span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workshop/90-ai_primer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An AI + LLM primer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workshop/91-ai_dashboards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI + LLM dashboards</span></a>
   </div>
 </li>
     </ul>
@@ -356,7 +393,7 @@ shinylive
 # mybinder
 jupyter-server-proxy
 
-# AI slides (07-08)
+# AI slides (bonus, 90-91)
 anthropic
 chatlas
 openai

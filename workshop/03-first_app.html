@@ -68,16 +68,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../img/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ed403f32569dc2681973445e9033bc4c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-caa3b4d27c340e046929894697b8e1d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-172cb87c3a3df97a00d3fb28d62b8d03.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-caa3b4d27c340e046929894697b8e1d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
 <script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
 <script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
@@ -141,6 +146,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -150,6 +156,10 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../img/conf-logo.png" alt="" class="navbar-logo light-content">
+    <img src="../img/conf-logo.png" alt="" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">SciPy 2026: Shiny Dashboards</span>
     </a>
@@ -215,6 +225,12 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/conf-logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../img/conf-logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -233,8 +249,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/02-shiny_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Shiny</span></a>
+  <a href="../workshop/02-building_blocks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic building blocks</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -251,26 +267,26 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/05-deploy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Deploying your application</span></a>
+  <a href="../workshop/05-complex_app.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A more complex application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-next_app.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Your next application</span></a>
+  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/07-ai_primer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">An AI + LLM primer</span></a>
+  <a href="../workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Refactor your app into a module</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/08-ai_dashboards.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">AI + LLM dashboards</span></a>
+  <a href="../workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reuse your Shiny module</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -281,8 +297,29 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/10-deploy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deploying your application</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+ <span class="menu-text">🎁 Bonus</span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/90-ai_primer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An AI + LLM primer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/91-ai_dashboards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI + LLM dashboards</span></a>
   </div>
 </li>
     </ul>
@@ -362,7 +399,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </section>
 <section id="step-1-static-plot" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-static-plot">Step 1 — static plot</h2>
-<div id="4f26bbb4" class="cell" data-execution_count="1">
+<div id="e6fa96f0" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -384,7 +421,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </section>
 <section id="step-1b---parameterize-your-output" class="level2">
 <h2 class="anchored" data-anchor-id="step-1b---parameterize-your-output">Step 1b - parameterize your output</h2>
-<div id="964e458f" class="cell" data-execution_count="2">
+<div id="c6be583a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -409,7 +446,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </section>
 <section id="step-2-add-shiny-imports" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-add-shiny-imports">Step 2 — add Shiny imports</h2>
-<div id="47b3820e" class="cell" data-execution_count="3">
+<div id="71ff78a9" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
@@ -427,7 +464,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </section>
 <section id="step-3-discover-the-axis-choices" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-discover-the-axis-choices">Step 3 — discover the axis choices</h2>
-<div id="93f9d787" class="cell" data-execution_count="4">
+<div id="31f153b8" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Deploying Your Application – SciPy 2026: Shiny Dashboards</title>
+<title>Wrap Up – SciPy 2026: Shiny Dashboards</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -68,16 +33,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../img/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ed403f32569dc2681973445e9033bc4c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-caa3b4d27c340e046929894697b8e1d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-172cb87c3a3df97a00d3fb28d62b8d03.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-caa3b4d27c340e046929894697b8e1d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -136,6 +106,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -145,6 +116,10 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../img/conf-logo.png" alt="" class="navbar-logo light-content">
+    <img src="../img/conf-logo.png" alt="" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">SciPy 2026: Shiny Dashboards</span>
     </a>
@@ -197,7 +172,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/05-deploy.html">Deploying your application</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/11-wrap_up.html">Wrap up</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -210,6 +185,12 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/conf-logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../img/conf-logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -228,8 +209,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/02-shiny_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Shiny</span></a>
+  <a href="../workshop/02-building_blocks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic building blocks</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -246,26 +227,26 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/05-deploy.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Deploying your application</span></a>
+  <a href="../workshop/05-complex_app.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A more complex application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-next_app.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Your next application</span></a>
+  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/07-ai_primer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">An AI + LLM primer</span></a>
+  <a href="../workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Refactor your app into a module</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/08-ai_dashboards.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">AI + LLM dashboards</span></a>
+  <a href="../workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reuse your Shiny module</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -276,8 +257,29 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/10-deploy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deploying your application</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Wrap up</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+ <span class="menu-text">🎁 Bonus</span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/90-ai_primer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An AI + LLM primer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/91-ai_dashboards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI + LLM dashboards</span></a>
   </div>
 </li>
     </ul>
@@ -292,13 +294,9 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <ul>
   <li><a href="#slide-contents" id="toc-slide-contents" class="nav-link active" data-scroll-target="#slide-contents">Slide Contents</a>
   <ul class="collapse">
-  <li><a href="#options" id="toc-options" class="nav-link" data-scroll-target="#options">Options</a></li>
-  <li><a href="#requirements.txt-is-required" id="toc-requirements.txt-is-required" class="nav-link" data-scroll-target="#requirements.txt-is-required"><code>requirements.txt</code> is required</a></li>
-  <li><a href="#deploy-to-posit-connect-cloud" id="toc-deploy-to-posit-connect-cloud" class="nav-link" data-scroll-target="#deploy-to-posit-connect-cloud">Deploy to Posit Connect Cloud</a></li>
-  <li><a href="#deploy-with-the-publish-button" id="toc-deploy-with-the-publish-button" class="nav-link" data-scroll-target="#deploy-with-the-publish-button">Deploy with the publish button</a></li>
-  <li><a href="#updating-a-deployed-app" id="toc-updating-a-deployed-app" class="nav-link" data-scroll-target="#updating-a-deployed-app">Updating a deployed app</a></li>
-  <li><a href="#shinylive-no-server-required" id="toc-shinylive-no-server-required" class="nav-link" data-scroll-target="#shinylive-no-server-required">Shinylive: no server required</a></li>
-  <li><a href="#exercise-break-back-at-1100" id="toc-exercise-break-back-at-1100" class="nav-link" data-scroll-target="#exercise-break-back-at-1100">Exercise + Break (Back at 11:00)</a></li>
+  <li><a href="#what-we-covered" id="toc-what-we-covered" class="nav-link" data-scroll-target="#what-we-covered">What we covered</a></li>
+  <li><a href="#this-workshop" id="toc-this-workshop" class="nav-link" data-scroll-target="#this-workshop">This workshop</a></li>
+  <li><a href="#feedback-survey" id="toc-feedback-survey" class="nav-link" data-scroll-target="#feedback-survey">Feedback survey</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -308,7 +306,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Deploying Your Application</h1>
+<h1 class="title">Wrap Up</h1>
 </div>
 
 
@@ -326,126 +324,37 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 
 <div class="column-page-inset-right">
-    <p><a href="../slides/05-deploy.html" target="_blank">View slides in full screen</a></p>
+    <p><a href="../slides/11-wrap_up.html" target="_blank">View slides in full screen</a></p>
        <div class="ratio ratio-16x9">
-      <iframe class="slide-deck" src="../slides/05-deploy.html" height="500px" width="100%"></iframe>
+      <iframe class="slide-deck" src="../slides/11-wrap_up.html" height="500px" width="100%"></iframe>
     </div>
   
 </div>
 <section id="slide-contents" class="level1">
 <h1>Slide Contents</h1>
-<section id="options" class="level2">
-<h2 class="anchored" data-anchor-id="options">Options</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Platform</th>
-<th>Cost</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="https://connect.posit.cloud">Posit Connect Cloud</a></td>
-<td>Free tier</td>
-<td>Easiest, GitHub-based deploy</td>
-</tr>
-<tr class="even">
-<td><a href="https://render.com/">Render.com</a></td>
-<td>Free tier</td>
-<td>PaaS managed web service deployment</td>
-</tr>
-<tr class="odd">
-<td><a href="https://www.shinyapps.io">shinyapps.io</a></td>
-<td>Free tier</td>
-<td>Deprecated - Move to Posit Cloud after 2026</td>
-</tr>
-<tr class="even">
-<td><a href="https://posit.co/products/enterprise/connect">Posit Connect</a> (self-hosted)</td>
-<td>Paid</td>
-<td>Enterprise, on-prem</td>
-</tr>
-<tr class="odd">
-<td><a href="https://shiny.posit.co/py/docs/shinylive.html">Shinylive</a></td>
-<td>Free</td>
-<td>Runs entirely in the browser (no server)</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="requirements.txt-is-required" class="level2">
-<h2 class="anchored" data-anchor-id="requirements.txt-is-required"><code>requirements.txt</code> is required</h2>
-<p>Posit Connect Cloud installs packages from <code>requirements.txt</code> before running your app.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>requirements.txt</strong></pre>
-</div>
-<pre class="text" data-filename="requirements.txt"><code>shiny
-palmerpenguins
-plotnine
-pandas</code></pre>
-</div>
-<p>If a package isn’t listed, the deployed app will crash with an <code>ImportError</code>.</p>
-</section>
-<section id="deploy-to-posit-connect-cloud" class="level2">
-<h2 class="anchored" data-anchor-id="deploy-to-posit-connect-cloud">Deploy to Posit Connect Cloud</h2>
-<ol type="1">
-<li>Go to <a href="https://connect.posit.cloud" class="uri">https://connect.posit.cloud</a> and sign in with GitHub</li>
-<li>Click <strong>New Content</strong> → <strong>Import from GitHub</strong></li>
-<li>Select your repository and branch</li>
-<li>Set the <strong>Entry point</strong> to your <code>app.py</code></li>
-<li>Click <strong>Deploy</strong></li>
-</ol>
-<p>That’s it. Posit Connect Cloud handles the environment.</p>
-</section>
-<section id="deploy-with-the-publish-button" class="level2">
-<h2 class="anchored" data-anchor-id="deploy-with-the-publish-button">Deploy with the publish button</h2>
-<p>In Positron or VS Code with the Shiny extension:</p>
-<ol type="1">
-<li>Open your <code>app.py</code></li>
-<li>Click the <strong>Publish</strong> button in the editor toolbar</li>
-<li>Follow the prompts to connect your account</li>
-</ol>
-</section>
-<section id="updating-a-deployed-app" class="level2">
-<h2 class="anchored" data-anchor-id="updating-a-deployed-app">Updating a deployed app</h2>
-<p>Push to the connected branch — Connect Cloud redeploys automatically.</p>
-<p>Or click <strong>Redeploy</strong> in the Connect Cloud dashboard.</p>
-</section>
-<section id="shinylive-no-server-required" class="level2">
-<h2 class="anchored" data-anchor-id="shinylive-no-server-required">Shinylive: no server required</h2>
-<p>Compile your app to WebAssembly and host it as a static site:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shinylive</span> export app/ site/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Limitations:</p>
+<section id="what-we-covered" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-covered">What we covered</h2>
 <ul>
-<li>No file I/O, no database connections</li>
-<li>Package support is limited to what Pyodide supports</li>
-<li>Startup is slower (downloads Python + packages to browser)</li>
+<li>Shiny’s input → output → reactivity model</li>
+<li>Building and running your first app</li>
+<li><code>@reactive.calc</code> for shared computations</li>
+<li>Dashboard layouts: sidebars, columns, cards, value boxes</li>
+<li>Shiny modules — reuse and refactor without repeating yourself</li>
+<li>Testing with Playwright</li>
+<li>Deploying to Posit Connect Cloud</li>
 </ul>
-<p>Great for: demos, tutorials, sharing one-off apps.</p>
 </section>
-<section id="exercise-break-back-at-1100" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-break-back-at-1100">Exercise + Break (Back at 11:00)</h2>
-<div class="callout callout-style-default callout-exercise callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Exercise</span>Exercise
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Create a new github repository</li>
-<li>Copy your first app code into an app.py file</li>
-<li>Make sure your repository has a <code>requirements.txt</code> file</li>
-<li>Push the <code>app.py</code> and <code>requirements.txt</code> to GitHub</li>
-<li>Deploy it to Posit Connect Cloud</li>
-</ol>
-<p><a href="https://docs.posit.co/connect-cloud/how-to/python/shiny-python.html" class="uri">https://docs.posit.co/connect-cloud/how-to/python/shiny-python.html</a></p>
-</div>
-</div>
+<section id="this-workshop" class="level2">
+<h2 class="anchored" data-anchor-id="this-workshop">This workshop</h2>
+<p>Everything from today:</p>
+<p><a href="https://github.com/chendaniely/scipy-2026-shiny" class="uri">https://github.com/chendaniely/scipy-2026-shiny</a></p>
+<p>Bonus material (AI + LLM dashboards with <code>chatlas</code>, <code>shinychat</code>, <code>querychat</code>) is in the “🎁 Bonus” section of the sidebar — try it on your own time.</p>
+</section>
+<section id="feedback-survey" class="level2">
+<h2 class="anchored" data-anchor-id="feedback-survey">Feedback survey</h2>
+<p>Please take 2 minutes to fill out the SciPy session feedback — it directly influences future tutorial selections.</p>
+<!-- TODO: Add SciPy 2026 feedback survey link -->
+<p>Survey link is in your email / QR Code</p>
 
 
 </section>

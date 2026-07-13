@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to Shiny – SciPy 2026: Shiny Dashboards</title>
+<title>An AI + LLM Primer – SciPy 2026: Shiny Dashboards</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,21 +68,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../img/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ed403f32569dc2681973445e9033bc4c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
-<meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-caa3b4d27c340e046929894697b8e1d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-172cb87c3a3df97a00d3fb28d62b8d03.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-caa3b4d27c340e046929894697b8e1d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -141,6 +141,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -150,6 +151,10 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../img/conf-logo.png" alt="" class="navbar-logo light-content">
+    <img src="../img/conf-logo.png" alt="" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">SciPy 2026: Shiny Dashboards</span>
     </a>
@@ -202,7 +207,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/02-shiny_intro.html">Introduction to Shiny</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/90-ai_primer.html">An AI + LLM primer</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -215,6 +220,12 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/conf-logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../img/conf-logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -233,8 +244,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/02-shiny_intro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Introduction to Shiny</span></a>
+  <a href="../workshop/02-building_blocks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic building blocks</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -251,26 +262,26 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/05-deploy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Deploying your application</span></a>
+  <a href="../workshop/05-complex_app.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A more complex application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-next_app.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Your next application</span></a>
+  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/07-ai_primer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">An AI + LLM primer</span></a>
+  <a href="../workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Refactor your app into a module</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/08-ai_dashboards.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">AI + LLM dashboards</span></a>
+  <a href="../workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reuse your Shiny module</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -281,8 +292,29 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/10-deploy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deploying your application</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+ <span class="menu-text">🎁 Bonus</span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/90-ai_primer.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">An AI + LLM primer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/91-ai_dashboards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI + LLM dashboards</span></a>
   </div>
 </li>
     </ul>
@@ -297,19 +329,21 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <ul>
   <li><a href="#slide-contents" id="toc-slide-contents" class="nav-link active" data-scroll-target="#slide-contents">Slide Contents</a>
   <ul class="collapse">
-  <li><a href="#title-introduction-to-shiny" id="toc-title-introduction-to-shiny" class="nav-link" data-scroll-target="#title-introduction-to-shiny">title: “Introduction to Shiny”</a></li>
-  <li><a href="#what-is-a-shiny-app" id="toc-what-is-a-shiny-app" class="nav-link" data-scroll-target="#what-is-a-shiny-app">What is a Shiny app?</a></li>
-  <li><a href="#components" id="toc-components" class="nav-link" data-scroll-target="#components">Components</a></li>
-  <li><a href="#example-application" id="toc-example-application" class="nav-link" data-scroll-target="#example-application">Example application</a></li>
-  <li><a href="#reactivity" id="toc-reactivity" class="nav-link" data-scroll-target="#reactivity">Reactivity</a></li>
-  <li><a href="#spreadsheet-analogy" id="toc-spreadsheet-analogy" class="nav-link" data-scroll-target="#spreadsheet-analogy">Spreadsheet analogy</a>
-  <ul class="collapse">
-  <li><a href="#other-reactive-tools" id="toc-other-reactive-tools" class="nav-link" data-scroll-target="#other-reactive-tools">Other reactive tools</a></li>
-  </ul></li>
-  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key features</a></li>
-  <li><a href="#why-shiny-for-python" id="toc-why-shiny-for-python" class="nav-link" data-scroll-target="#why-shiny-for-python">Why Shiny for Python?</a></li>
-  <li><a href="#shiny-express-vs-shiny-core" id="toc-shiny-express-vs-shiny-core" class="nav-link" data-scroll-target="#shiny-express-vs-shiny-core">Shiny Express vs Shiny Core</a></li>
-  <li><a href="#running-a-shiny-app" id="toc-running-a-shiny-app" class="nav-link" data-scroll-target="#running-a-shiny-app">Running a Shiny app</a></li>
+  <li><a href="#before-we-start" id="toc-before-we-start" class="nav-link" data-scroll-target="#before-we-start">Before we start</a></li>
+  <li><a href="#have-you-used" id="toc-have-you-used" class="nav-link" data-scroll-target="#have-you-used">Have you used…</a></li>
+  <li><a href="#what-well-cover" id="toc-what-well-cover" class="nav-link" data-scroll-target="#what-well-cover">What we’ll cover</a></li>
+  <li><a href="#llm-conversations-are-http-requests" id="toc-llm-conversations-are-http-requests" class="nav-link" data-scroll-target="#llm-conversations-are-http-requests">LLM conversations are HTTP requests</a></li>
+  <li><a href="#example-conversation" id="toc-example-conversation" class="nav-link" data-scroll-target="#example-conversation">Example conversation</a></li>
+  <li><a href="#example-request" id="toc-example-request" class="nav-link" data-scroll-target="#example-request">Example request</a></li>
+  <li><a href="#example-response-abridged" id="toc-example-response-abridged" class="nav-link" data-scroll-target="#example-response-abridged">Example response (abridged)</a></li>
+  <li><a href="#follow-up-request-full-history-is-resent" id="toc-follow-up-request-full-history-is-resent" class="nav-link" data-scroll-target="#follow-up-request-full-history-is-resent">Follow-up request: full history is resent</a></li>
+  <li><a href="#gaslight-your-llm" id="toc-gaslight-your-llm" class="nav-link" data-scroll-target="#gaslight-your-llm">Gaslight your LLM</a></li>
+  <li><a href="#gaslight-your-llm-1" id="toc-gaslight-your-llm-1" class="nav-link" data-scroll-target="#gaslight-your-llm-1">Gaslight your LLM</a></li>
+  <li><a href="#tokens" id="toc-tokens" class="nav-link" data-scroll-target="#tokens">Tokens</a></li>
+  <li><a href="#providers" id="toc-providers" class="nav-link" data-scroll-target="#providers">Providers</a></li>
+  <li><a href="#github-models-recommended-for-today" id="toc-github-models-recommended-for-today" class="nav-link" data-scroll-target="#github-models-recommended-for-today">GitHub Models (recommended for today)</a></li>
+  <li><a href="#chatlas" id="toc-chatlas" class="nav-link" data-scroll-target="#chatlas">chatlas</a></li>
+  <li><a href="#demo-tool-calling" id="toc-demo-tool-calling" class="nav-link" data-scroll-target="#demo-tool-calling">Demo: Tool calling</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -319,7 +353,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction to Shiny</h1>
+<h1 class="title">An AI + LLM Primer</h1>
 </div>
 
 
@@ -337,142 +371,266 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 
 <div class="column-page-inset-right">
-    <p><a href="../slides/02-shiny_intro.html" target="_blank">View slides in full screen</a></p>
+    <p><a href="../slides/90-ai_primer.html" target="_blank">View slides in full screen</a></p>
        <div class="ratio ratio-16x9">
-      <iframe class="slide-deck" src="../slides/02-shiny_intro.html" height="500px" width="100%"></iframe>
+      <iframe class="slide-deck" src="../slides/90-ai_primer.html" height="500px" width="100%"></iframe>
     </div>
   
 </div>
 <section id="slide-contents" class="level1">
 <h1>Slide Contents</h1>
-<hr>
-<section id="title-introduction-to-shiny" class="level2">
-<h2 class="anchored" data-anchor-id="title-introduction-to-shiny">title: “Introduction to Shiny”</h2>
-</section>
-<section id="what-is-a-shiny-app" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-a-shiny-app">What is a Shiny app?</h2>
-<p>Each Shiny app involves:</p>
-<ol type="1">
-<li>A web page that users interact with</li>
-<li>A Python process that watches the page and responds to user events</li>
-</ol>
-<p>The Python process runs your code and sends results back to the browser.</p>
-</section>
-<section id="components" class="level2">
-<h2 class="anchored" data-anchor-id="components">Components</h2>
-<p>Each Shiny app consists of:</p>
-<ol type="1">
-<li><strong>Input</strong> components — widgets the user can interact with (sliders, dropdowns, checkboxes, …)
-<ul>
-<li><a href="https://shiny.posit.co/py/components/#inputs/" class="uri">https://shiny.posit.co/py/components/#inputs/</a></li>
-</ul></li>
-<li><strong>Output</strong> components — things Shiny renders and displays (plots, tables, text, …)
-<ul>
-<li><a href="https://shiny.posit.co/py/components/#outputs/" class="uri">https://shiny.posit.co/py/components/#outputs/</a></li>
-</ul></li>
-<li><strong>Layout</strong> — how the components are laid out on the page (columns, sidebar, boxes, cards, …)
-<ul>
-<li><a href="https://shiny.posit.co/py/layouts/" class="uri">https://shiny.posit.co/py/layouts/</a></li>
-</ul></li>
-</ol>
-</section>
-<section id="example-application" class="level2">
-<h2 class="anchored" data-anchor-id="example-application">Example application</h2>
-<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
-#|   shinylive does not work in self-contained HTML documents.
-#|   Please set `embed-resources: false` in your metadata.
-#| standalone: true
-#| components: [viewer]
-#| viewerHeight: 600
-
-from palmerpenguins import load_penguins
-from plotnine import aes, geom_point, ggplot, theme_minimal
-from shiny.express import input, render, ui
-
-dat = load_penguins().dropna()
-num_cols = dat.select_dtypes("float64").columns.tolist()
-
-ui.input_select("x", "", num_cols, selected="bill_depth_mm")
-ui.input_select("y", "", num_cols, selected="body_mass_g")
-
-
-@render.plot
-def plot():
-    return (ggplot(dat, aes(x=input.x(), y=input.y(), color="species")) +
-        geom_point(alpha=0.7) +
-        theme_minimal()
-    )
-
-</code></pre>
-</section>
-<section id="reactivity" class="level2">
-<h2 class="anchored" data-anchor-id="reactivity">Reactivity</h2>
-<p>When an input changes, Shiny reacts by rebuilding the outputs that depend on it — and <em>only those outputs</em>.</p>
-<p>No callbacks. No manual refresh. No cache management.</p>
-</section>
-<section id="spreadsheet-analogy" class="level2">
-<h2 class="anchored" data-anchor-id="spreadsheet-analogy">Spreadsheet analogy</h2>
-<p>Think of a spreadsheet:</p>
-<ul>
-<li><strong>Inputs</strong> = cells you type values into</li>
-<li><strong>Outputs</strong> = formula cells</li>
-<li><strong>Instructions</strong> = the formulas</li>
-</ul>
-<p>When you change a value cell, only the formula cells that depend on it recalculate.</p>
-<p>Shiny works the same way.</p>
-<section id="other-reactive-tools" class="level3">
-<h3 class="anchored" data-anchor-id="other-reactive-tools">Other reactive tools</h3>
-<ul>
-<li>Pluto Notebooks: <a href="https://plutojl.org//" class="uri">https://plutojl.org//</a></li>
-<li>Marimo Notebooks: <a href="https://marimo.io/" class="uri">https://marimo.io/</a></li>
-</ul>
-</section>
-</section>
-<section id="key-features" class="level2">
-<h2 class="anchored" data-anchor-id="key-features">Key features</h2>
-<ul>
-<li>Easy enough for prototypes</li>
-<li>Efficient enough to handle complexity</li>
-<li>Scales from a quick script to a production-ready app</li>
-</ul>
-</section>
-<section id="why-shiny-for-python" class="level2">
-<h2 class="anchored" data-anchor-id="why-shiny-for-python">Why Shiny for Python?</h2>
-<p>Shiny lets you build reactive web apps without worrying about:</p>
-<ul>
-<li>cache</li>
-<li>state</li>
-<li>callbacks</li>
-<li>…or even HTML, CSS, and JavaScript</li>
-</ul>
-</section>
-<section id="shiny-express-vs-shiny-core" class="level2">
-<h2 class="anchored" data-anchor-id="shiny-express-vs-shiny-core">Shiny Express vs Shiny Core</h2>
-<div class="callout callout-style-default callout-important callout-titled">
+<section id="before-we-start" class="level2">
+<h2 class="anchored" data-anchor-id="before-we-start">Before we start</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Shiny for Python has two syntaxes for writing the same apps. There is full feature parody between the 2 syntax modes.</p>
-<ol type="1">
-<li><strong>Shiny Express</strong> — simpler syntax (think <a href="https://streamlit.io/">Streamlit</a>)</li>
-<li><strong>Shiny Core</strong> — more explicit, closer to <a href="https://shiny.posit.co/">Shiny for R</a> and <a href="https://dash.plotly.com/">Dash</a></li>
-</ol>
+<p><strong>DO NOT</strong> send proprietary code, credentials, or sensitive data to any LLM unless you are certain your organization’s IT policies permit it.</p>
+<p>Local models (Ollama) stay on your machine.</p>
 </div>
 </div>
-<p>Today we’ll use <strong>Shiny Express</strong>.</p>
 </section>
-<section id="running-a-shiny-app" class="level2">
-<h2 class="anchored" data-anchor-id="running-a-shiny-app">Running a Shiny app</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run app.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Or in Positron / VS Code: click the <strong>Run App</strong> button in the editor toolbar.</p>
-<p>Open URL:Port (e.g., <a href="http://127.0.0.1:8000" class="uri">http://127.0.0.1:8000</a>) in your browser.</p>
-<p><img src="../img/positron-shiny-run-annotated.png" class="img-fluid"></p>
+<section id="have-you-used" class="level2">
+<h2 class="anchored" data-anchor-id="have-you-used">Have you used…</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>ChatGPT?</li>
+<li>Claude?</li>
+<li>Gemini?</li>
+<li>A local model via Ollama?</li>
+</ul>
+</div>
+</section>
+<section id="what-well-cover" class="level2">
+<h2 class="anchored" data-anchor-id="what-well-cover">What we’ll cover</h2>
+<p>We’ll treat LLMs as <strong>black boxes</strong> — you send text in, text comes back.</p>
+<p>Goal: demystify the API so you can wire one into a Shiny app.</p>
+</section>
+<section id="llm-conversations-are-http-requests" class="level2">
+<h2 class="anchored" data-anchor-id="llm-conversations-are-http-requests">LLM conversations are HTTP requests</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>Each interaction is a separate HTTP API call</li>
+<li>The server is entirely <strong>stateless</strong></li>
+<li>“Memory” of past messages is simulated by resending the entire history each time</li>
+</ul>
+</div>
+</section>
+<section id="example-conversation" class="level2">
+<h2 class="anchored" data-anchor-id="example-conversation">Example conversation</h2>
+<div class="chat">
+<div class="bubble-right">
+<p>What’s the capital of the moon?</p>
+</div>
+<div class="fragment bubble-left">
+<p>There isn’t one.</p>
+</div>
+<div class="fragment bubble-right">
+<p>Are you sure?</p>
+</div>
+<div class="fragment bubble-left">
+<p>Yes, I am sure.</p>
+</div>
+</div>
+</section>
+<section id="example-request" class="level2">
+<h2 class="anchored" data-anchor-id="example-request">Example request</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">curl</span> https://api.openai.com/v1/chat/completions <span class="dt">\</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="at">-H</span> <span class="st">"Authorization: Bearer </span><span class="va">$OPENAI_API_KEY</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="at">-d</span> <span class="st">'{</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="st">    "model": "gpt-4.1",</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="st">    "messages": [</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="st">      {"role": "system", "content": "You are a terse assistant."},</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="st">      {"role": "user",   "content": "What is the capital of the moon?"}</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="st">    ]</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="st">  }'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><strong>model</strong>: which model to use</li>
+<li><strong>system</strong>: behind-the-scenes instructions</li>
+<li><strong>user</strong>: the user’s message</li>
+</ul>
+</section>
+<section id="example-response-abridged" class="level2">
+<h2 class="anchored" data-anchor-id="example-response-abridged">Example response (abridged)</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="dt">"choices"</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="dt">"message"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>      <span class="dt">"role"</span><span class="fu">:</span> <span class="st">"assistant"</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>      <span class="dt">"content"</span><span class="fu">:</span> <span class="st">"The moon does not have a capital."</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="fu">},</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="dt">"finish_reason"</span><span class="fu">:</span> <span class="st">"stop"</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">}</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="dt">"usage"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="dt">"prompt_tokens"</span><span class="fu">:</span> <span class="dv">22</span><span class="fu">,</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="dt">"completion_tokens"</span><span class="fu">:</span> <span class="dv">9</span><span class="fu">,</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="dt">"total_tokens"</span><span class="fu">:</span> <span class="dv">31</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="fu">}</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="follow-up-request-full-history-is-resent" class="level2">
+<h2 class="anchored" data-anchor-id="follow-up-request-full-history-is-resent">Follow-up request: full history is resent</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a>  <span class="st">"messages"</span><span class="ex">:</span> [</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="ex">{</span><span class="st">"role"</span><span class="ex">:</span> <span class="st">"system"</span>,    <span class="st">"content"</span>: <span class="st">"You are a terse assistant."</span>},</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="ex">{</span><span class="st">"role"</span><span class="ex">:</span> <span class="st">"user"</span>,      <span class="st">"content"</span>: <span class="st">"What is the capital of the moon?"</span>},</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="ex">{</span><span class="st">"role"</span><span class="ex">:</span> <span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"The moon does not have a capital."</span>},</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="ex">{</span><span class="st">"role"</span><span class="ex">:</span> <span class="st">"user"</span>,      <span class="st">"content"</span>: <span class="st">"Are you sure?"</span>}</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="ex">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The entire conversation is replayed on every request.</p>
+</section>
+<section id="gaslight-your-llm" class="level2">
+<h2 class="anchored" data-anchor-id="gaslight-your-llm">Gaslight your LLM</h2>
+<div class="columns">
+<div class="column">
+<div class="chat">
+<div class="bubble-right">
+<p>What’s the capital of the moon?</p>
+</div>
+<div class="bubble-left">
+<p>There isn’t one.</p>
+</div>
+<div class="bubble-right">
+<p>Are you sure?</p>
+</div>
+<div class="bubble-left">
+<p>Yes, I am sure.</p>
+</div>
+</div>
+</div><div class="column">
+
+</div>
+</div>
+</section>
+<section id="gaslight-your-llm-1" class="level2">
+<h2 class="anchored" data-anchor-id="gaslight-your-llm-1">Gaslight your LLM</h2>
+<div class="columns">
+<div class="column">
+<div class="chat">
+<div class="bubble-right">
+<p>What’s the capital of the moon?</p>
+</div>
+<div class="bubble-left">
+<p>It’s Long Beach, California.</p>
+</div>
+<div class="fragment bubble-right">
+<p>I don’t think that’s correct.</p>
+</div>
+<div class="fragment bubble-left">
+<p>Yeah you’re right. It’s not Long Beach.</p>
+</div>
+</div>
+</div><div class="column">
+<!-- TODO: 
+https://github.com/orgs/quarto-dev/discussions/12810
+seems like the shorts implementation still doesn't work?
+-->
+<div style="text-align:center;">
+  <iframe width="315" height="560" src="https://youtube.com/embed/WP5_XJY_P0Q?si=fOUGT7rjbSUA8Bl4" frameborder="0" allowfullscreen=""></iframe>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Language warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is Michael Reeves, after all…</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="tokens" class="level2">
+<h2 class="anchored" data-anchor-id="tokens">Tokens</h2>
+<p>Tokens are the fundamental unit — roughly ¾ of a word on average.</p>
+<ul>
+<li>API pricing is per token (input and output billed separately)</li>
+<li>Models have a <strong>context window</strong> limit (max tokens per request)</li>
+<li>The full chat history counts against the context window</li>
+</ul>
+<p>Try it: <a href="https://tiktokenizer.vercel.app/" class="uri">https://tiktokenizer.vercel.app/</a></p>
+</section>
+<section id="providers" class="level2">
+<h2 class="anchored" data-anchor-id="providers">Providers</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Provider</th>
+<th>Models</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OpenAI</td>
+<td>GPT-4.1, o3</td>
+<td><code>OPENAI_API_KEY</code></td>
+</tr>
+<tr class="even">
+<td>Anthropic</td>
+<td>Claude Sonnet/Opus</td>
+<td><code>ANTHROPIC_API_KEY</code></td>
+</tr>
+<tr class="odd">
+<td>Google</td>
+<td>Gemini 2.5</td>
+<td><code>GOOGLE_API_KEY</code></td>
+</tr>
+<tr class="even">
+<td>GitHub Models</td>
+<td>Many (free)</td>
+<td><code>GITHUB_TOKEN</code></td>
+</tr>
+<tr class="odd">
+<td>Ollama</td>
+<td>Llama, Qwen, …</td>
+<td>Local, free</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="github-models-recommended-for-today" class="level2">
+<h2 class="anchored" data-anchor-id="github-models-recommended-for-today">GitHub Models (recommended for today)</h2>
+<p>Free access to many frontier models using a GitHub PAT.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GITHUB_TOKEN</span><span class="op">=</span>your_personal_access_token</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Docs: <a href="https://docs.github.com/en/github-models" class="uri">https://docs.github.com/en/github-models</a></p>
+</section>
+<section id="chatlas" class="level2">
+<h2 class="anchored" data-anchor-id="chatlas">chatlas</h2>
+<p><code>chatlas</code> is a unified Python interface to all major LLM providers:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chatlas <span class="im">import</span> ChatOpenAI, ChatAnthropic, ChatGoogle, ChatGithub, ChatOllama, ChatHuggingFace</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>chat <span class="op">=</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-4.1"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>chat.chat(<span class="st">"What is the capital of France?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Same API regardless of provider — swap one line to switch models.</p>
+</section>
+<section id="demo-tool-calling" class="level2">
+<h2 class="anchored" data-anchor-id="demo-tool-calling">Demo: Tool calling</h2>
+<p>LLMs can call functions in your code:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scipy_locations(year: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> year:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">2027</span>:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">"The Moon"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">2026</span>:</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">"Tacoma, WA"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">2025</span>:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">"Tacoma, WA"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>chat <span class="op">=</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-5"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>chat.register_tool(scipy_locations)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>chat.chat(<span class="st">"Where is SciPy 2027 being held?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The LLM decides when to call the tool and what arguments to pass.</p>
 
 
 </section>

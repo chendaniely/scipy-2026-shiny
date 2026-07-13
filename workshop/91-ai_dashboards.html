@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Welcome – SciPy 2026: Shiny Dashboards</title>
+<title>AI + LLM Dashboards – SciPy 2026: Shiny Dashboards</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -207,7 +207,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/01-welcome.html">Welcome + Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/91-ai_dashboards.html">AI + LLM dashboards</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -238,7 +238,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/01-welcome.html" class="sidebar-item-text sidebar-link active">
+  <a href="../workshop/01-welcome.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome + Introduction</span></a>
   </div>
 </li>
@@ -313,7 +313,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/91-ai_dashboards.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/91-ai_dashboards.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">AI + LLM dashboards</span></a>
   </div>
 </li>
@@ -329,11 +329,15 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <ul>
   <li><a href="#slide-contents" id="toc-slide-contents" class="nav-link active" data-scroll-target="#slide-contents">Slide Contents</a>
   <ul class="collapse">
-  <li><a href="#get-your-computer-ready" id="toc-get-your-computer-ready" class="nav-link" data-scroll-target="#get-your-computer-ready">Get your computer ready</a></li>
-  <li><a href="#todays-goal" id="toc-todays-goal" class="nav-link" data-scroll-target="#todays-goal">Today’s goal</a></li>
-  <li><a href="#whos-in-the-room" id="toc-whos-in-the-room" class="nav-link" data-scroll-target="#whos-in-the-room">Who’s in the room?</a></li>
-  <li><a href="#agenda" id="toc-agenda" class="nav-link" data-scroll-target="#agenda">Agenda</a></li>
-  <li><a href="#house-rules" id="toc-house-rules" class="nav-link" data-scroll-target="#house-rules">House rules</a></li>
+  <li><a href="#putting-llms-in-shiny-apps" id="toc-putting-llms-in-shiny-apps" class="nav-link" data-scroll-target="#putting-llms-in-shiny-apps">Putting LLMs in Shiny apps</a></li>
+  <li><a href="#shinychat" id="toc-shinychat" class="nav-link" data-scroll-target="#shinychat">shinychat</a></li>
+  <li><a href="#demo-shinychat" id="toc-demo-shinychat" class="nav-link" data-scroll-target="#demo-shinychat">Demo: shinychat</a></li>
+  <li><a href="#chatting-with-your-data" id="toc-chatting-with-your-data" class="nav-link" data-scroll-target="#chatting-with-your-data">Chatting with your data</a></li>
+  <li><a href="#demo-querychat" id="toc-demo-querychat" class="nav-link" data-scroll-target="#demo-querychat">Demo: querychat</a></li>
+  <li><a href="#sidebot-pattern" id="toc-sidebot-pattern" class="nav-link" data-scroll-target="#sidebot-pattern">Sidebot pattern</a></li>
+  <li><a href="#demo-llms-chat" id="toc-demo-llms-chat" class="nav-link" data-scroll-target="#demo-llms-chat">Demo: LLMs + Chat</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#sql-is-a-great-communication-layer" id="toc-sql-is-a-great-communication-layer" class="nav-link" data-scroll-target="#sql-is-a-great-communication-layer">SQL is a great communication layer</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -343,7 +347,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Welcome</h1>
+<h1 class="title">AI + LLM Dashboards</h1>
 </div>
 
 
@@ -361,139 +365,125 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 
 <div class="column-page-inset-right">
-    <p><a href="../slides/01-welcome.html" target="_blank">View slides in full screen</a></p>
+    <p><a href="../slides/91-ai_dashboards.html" target="_blank">View slides in full screen</a></p>
        <div class="ratio ratio-16x9">
-      <iframe class="slide-deck" src="../slides/01-welcome.html" height="500px" width="100%"></iframe>
+      <iframe class="slide-deck" src="../slides/91-ai_dashboards.html" height="500px" width="100%"></iframe>
     </div>
   
 </div>
 <section id="slide-contents" class="level1">
 <h1>Slide Contents</h1>
-<section id="get-your-computer-ready" class="level2">
-<h2 class="anchored" data-anchor-id="get-your-computer-ready">Get your computer ready</h2>
+<section id="putting-llms-in-shiny-apps" class="level2">
+<h2 class="anchored" data-anchor-id="putting-llms-in-shiny-apps">Putting LLMs in Shiny apps</h2>
+<p>Three patterns, increasing complexity:</p>
+<ol type="1">
+<li><strong>Chat interface</strong> — a conversational UI (<code>shinychat</code>)</li>
+<li><strong>Tool calling</strong> — let the LLM take actions in your app</li>
+<li><strong>Data chat</strong> — query your dataframe with natural language (<code>querychat</code>)</li>
+</ol>
+</section>
+<section id="shinychat" class="level2">
+<h2 class="anchored" data-anchor-id="shinychat">shinychat</h2>
+<p><code>shinychat</code> provides a ready-made chat UI component for Shiny:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> ui</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shinychat <span class="im">import</span> chat_ui, chat_server</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chatlas <span class="im">import</span> ChatGithub</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ui.page_opts(title<span class="op">=</span><span class="st">"My Chatbot"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>chat_ui(<span class="st">"chat"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">@chat_server</span>(<span class="st">"chat"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _():</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-4.1"</span>, system_prompt<span class="op">=</span><span class="st">"You are a helpful assistant."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Docs: <a href="https://posit-dev.github.io/shinychat/py/" class="uri">https://posit-dev.github.io/shinychat/py/</a></p>
+</section>
+<section id="demo-shinychat" class="level2">
+<h2 class="anchored" data-anchor-id="demo-shinychat">Demo: shinychat</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>code/03-llm/app-shinychat.py</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="code/03-llm/app-shinychat.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> ui</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shinychat <span class="im">import</span> chat_ui, chat_server</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chatlas <span class="im">import</span> ChatGithub</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ui.page_opts(title<span class="op">=</span><span class="st">"Shiny Chatbot"</span>, fillable<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>chat_ui(<span class="st">"chat"</span>, height<span class="op">=</span><span class="st">"100%"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">@chat_server</span>(<span class="st">"chat"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _():</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-4.1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="chatting-with-your-data" class="level2">
+<h2 class="anchored" data-anchor-id="chatting-with-your-data">Chatting with your data</h2>
+<p>What if users could ask questions about your dataset in plain English?</p>
+<p><code>querychat</code> translates natural language → SQL → runs against a DuckDB table:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> querychat</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>qc <span class="op">=</span> querychat.init(tips, <span class="st">"tips"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Docs: <a href="https://github.com/posit-dev/querychat" class="uri">https://github.com/posit-dev/querychat</a></p>
+</section>
+<section id="demo-querychat" class="level2">
+<h2 class="anchored" data-anchor-id="demo-querychat">Demo: querychat</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> querychat</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> ui</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>qc <span class="op">=</span> querychat.init(tips, <span class="st">"tips"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                    greeting<span class="op">=</span><span class="st">"Ask me about the tips dataset!"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ui.page_opts(title<span class="op">=</span><span class="st">"Tips Q&amp;A"</span>, fillable<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>querychat.chat_ui(<span class="st">"chat"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>querychat.dataframe_ui(<span class="st">"df"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>querychat.chat_server(<span class="st">"chat"</span>, qc)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>querychat.dataframe_server(<span class="st">"df"</span>, qc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="sidebot-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="sidebot-pattern">Sidebot pattern</h2>
+<p>Use an LLM to drive filters in a dashboard via natural language:</p>
+<ul>
+<li>User types “show me only lunch orders over $20”</li>
+<li>LLM translates to filter parameters</li>
+<li>Dashboard updates reactively</li>
+</ul>
+<p>Template: <code>shiny create --mode core --github jcheng5/py-databot</code></p>
+</section>
+<section id="demo-llms-chat" class="level2">
+<h2 class="anchored" data-anchor-id="demo-llms-chat">Demo: LLMs + Chat</h2>
+<p>Generative AI shiny templates: <a href="https://shiny.posit.co/py/templates/#generative-ai" class="uri">https://shiny.posit.co/py/templates/#generative-ai</a></p>
+<ul>
+<li><a href="https://shiny.posit.co/py/templates/basic-chatbot/" class="uri">https://shiny.posit.co/py/templates/basic-chatbot/</a></li>
+<li><a href="https://shiny.posit.co/py/templates/querychat/" class="uri">https://shiny.posit.co/py/templates/querychat/</a></li>
+<li><a href="https://shiny.posit.co/py/templates/sidebot/" class="uri">https://shiny.posit.co/py/templates/sidebot/</a></li>
+</ul>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+</section>
+<section id="sql-is-a-great-communication-layer" class="level2">
+<h2 class="anchored" data-anchor-id="sql-is-a-great-communication-layer">SQL is a great communication layer</h2>
+<p>Upcoming tool: ggsql <a href="https://ggsql.org/" class="uri">https://ggsql.org/</a></p>
+<p>Trt it: <a href="https://ggsql.org/wasm/" class="uri">https://ggsql.org/wasm/</a></p>
+<p>See also: Querychat + Vis docs: <a href="https://posit-dev.github.io/querychat/py/visualize.html" class="uri">https://posit-dev.github.io/querychat/py/visualize.html</a></p>
 <div class="columns">
 <div class="column">
-<section id="installation" class="level3">
-<h3 class="anchored" data-anchor-id="installation">Installation</h3>
-<p><a href="https://chendaniely.github.io/scipy-2026-shiny/setup.html" class="uri">https://chendaniely.github.io/scipy-2026-shiny/setup.html</a></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../img/qr-setup.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
-</figure>
-</div>
-<p>If you cloned the repository and did the installation update your materials with:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
+<pre><code>VISUALISE FROM ggsql:penguins
+DRAW point
+    MAPPING
+      bill_dep AS x,
+      body_mass AS y,
+      species AS color</code></pre>
 </div><div class="column">
-<section id="wifi" class="level3">
-<h3 class="anchored" data-anchor-id="wifi">Wifi</h3>
-<!-- TODO: Add SciPy 2026 wifi SSID and password -->
-<p>SSID: TBD<br>
-Password: TBD<br>
-<img src="../img/wifi.jpg" class="img-fluid"></p>
-</section>
+<p><img src="../img/ggsql-example.png" class="img-fluid"></p>
 </div>
 </div>
-</section>
-<section id="todays-goal" class="level2">
-<h2 class="anchored" data-anchor-id="todays-goal">Today’s goal</h2>
-<p>Learn how to build reactive web apps with Shiny for Python, from the simple to the mission critical.</p>
-</section>
-<section id="whos-in-the-room" class="level2">
-<h2 class="anchored" data-anchor-id="whos-in-the-room">Who’s in the room?</h2>
-<p>Have you used…</p>
-<div class="incremental">
-<ul class="incremental">
-<li>Python?</li>
-<li>Data visualization in Python (matplotlib, plotnine, plotly, …)?</li>
-<li>Interactive dashboards (Dash, Streamlit, Panel, …)?</li>
-<li>Shiny for R?</li>
-<li>Shiny for Python?</li>
-</ul>
-</div>
-</section>
-<section id="agenda" class="level2">
-<h2 class="anchored" data-anchor-id="agenda">Agenda</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Time</th>
-<th>Topic</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>:00</td>
-<td><a href="workshop/02-building_blocks.qmd">Welcome + Basic building blocks</a></td>
-</tr>
-<tr class="even">
-<td>:20</td>
-<td><a href="workshop/03-first_app.qmd">Your first application — inputs</a></td>
-</tr>
-<tr class="odd">
-<td>:35</td>
-<td><a href="workshop/03-first_app.qmd">Your first application — outputs</a></td>
-</tr>
-<tr class="even">
-<td>:50</td>
-<td>☕ Break</td>
-</tr>
-<tr class="odd">
-<td>1:00</td>
-<td><a href="workshop/04-reactivity.qmd">Shiny reactivity</a></td>
-</tr>
-<tr class="even">
-<td>1:15</td>
-<td><a href="workshop/05-complex_app.qmd">A more complex application</a></td>
-</tr>
-<tr class="odd">
-<td>1:50</td>
-<td>☕ Break</td>
-</tr>
-<tr class="even">
-<td>2:00</td>
-<td><a href="workshop/06-modules_intro.qmd">Introduction to Shiny modules</a></td>
-</tr>
-<tr class="odd">
-<td>2:15</td>
-<td><a href="workshop/07-modules_refactor.qmd">Refactor your app into a module</a></td>
-</tr>
-<tr class="even">
-<td>2:30</td>
-<td><a href="workshop/08-modules_compose.qmd">Reuse your Shiny module</a></td>
-</tr>
-<tr class="odd">
-<td>2:50</td>
-<td>☕ Break</td>
-</tr>
-<tr class="even">
-<td>3:00</td>
-<td><a href="workshop/09-testing.qmd">Testing</a> your shiny apps with playwright</td>
-</tr>
-<tr class="odd">
-<td>3:30</td>
-<td><a href="workshop/10-deploy.qmd">Deploying your application</a></td>
-</tr>
-<tr class="even">
-<td>3:50</td>
-<td><a href="workshop/11-wrap_up.qmd">Wrap up</a> + Feedback Survey</td>
-</tr>
-<tr class="odd">
-<td>4:00</td>
-<td>Finish</td>
-</tr>
-</tbody>
-</table>
-<!-- TODO: Add SciPy 2026 start time so relative times above can be converted to clock times -->
-</section>
-<section id="house-rules" class="level2">
-<h2 class="anchored" data-anchor-id="house-rules">House rules</h2>
-<ul>
-<li>Ask questions any time</li>
-<li>Help your neighbor - teaching is the best way to learn</li>
-<li>Stuck? Raise your hand - helpers are roaming the room</li>
-<li>Everything is at: <a href="https://github.com/chendaniely/scipy-2026-shiny" class="uri">https://github.com/chendaniely/scipy-2026-shiny</a></li>
-</ul>
 
 
 </section>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Welcome – SciPy 2026: Shiny Dashboards</title>
+<title>Introduction to Shiny Modules – SciPy 2026: Shiny Dashboards</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -207,7 +207,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/01-welcome.html">Welcome + Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/06-modules_intro.html">Introduction to Shiny modules</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -238,7 +238,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/01-welcome.html" class="sidebar-item-text sidebar-link active">
+  <a href="../workshop/01-welcome.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome + Introduction</span></a>
   </div>
 </li>
@@ -268,7 +268,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Introduction to Shiny modules</span></a>
   </div>
 </li>
@@ -329,12 +329,15 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <ul>
   <li><a href="#slide-contents" id="toc-slide-contents" class="nav-link active" data-scroll-target="#slide-contents">Slide Contents</a>
   <ul class="collapse">
-  <li><a href="#get-your-computer-ready" id="toc-get-your-computer-ready" class="nav-link" data-scroll-target="#get-your-computer-ready">Get your computer ready</a></li>
-  <li><a href="#todays-goal" id="toc-todays-goal" class="nav-link" data-scroll-target="#todays-goal">Today’s goal</a></li>
-  <li><a href="#whos-in-the-room" id="toc-whos-in-the-room" class="nav-link" data-scroll-target="#whos-in-the-room">Who’s in the room?</a></li>
-  <li><a href="#agenda" id="toc-agenda" class="nav-link" data-scroll-target="#agenda">Agenda</a></li>
-  <li><a href="#house-rules" id="toc-house-rules" class="nav-link" data-scroll-target="#house-rules">House rules</a></li>
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The problem</a></li>
+  <li><a href="#functions-dont-fully-solve-this" id="toc-functions-dont-fully-solve-this" class="nav-link" data-scroll-target="#functions-dont-fully-solve-this">Functions don’t fully solve this</a></li>
+  <li><a href="#shiny-modules" id="toc-shiny-modules" class="nav-link" data-scroll-target="#shiny-modules">Shiny modules</a></li>
+  <li><a href="#shiny-core-module.ui-module.server" id="toc-shiny-core-module.ui-module.server" class="nav-link" data-scroll-target="#shiny-core-module.ui-module.server">Shiny Core: <code>@module.ui</code> / <code>@module.server</code></a></li>
+  <li><a href="#shiny-express-module" id="toc-shiny-express-module" class="nav-link" data-scroll-target="#shiny-express-module">Shiny Express: <code>@module</code></a></li>
+  <li><a href="#our-filter-module" id="toc-our-filter-module" class="nav-link" data-scroll-target="#our-filter-module">Our filter module</a></li>
+  <li><a href="#next" id="toc-next" class="nav-link" data-scroll-target="#next">Next</a></li>
   </ul></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   </ul>
 </nav>
     </div>
@@ -343,7 +346,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Welcome</h1>
+<h1 class="title">Introduction to Shiny Modules</h1>
 </div>
 
 
@@ -361,142 +364,205 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 
 <div class="column-page-inset-right">
-    <p><a href="../slides/01-welcome.html" target="_blank">View slides in full screen</a></p>
+    <p><a href="../slides/06-modules_intro.html" target="_blank">View slides in full screen</a></p>
        <div class="ratio ratio-16x9">
-      <iframe class="slide-deck" src="../slides/01-welcome.html" height="500px" width="100%"></iframe>
+      <iframe class="slide-deck" src="../slides/06-modules_intro.html" height="500px" width="100%"></iframe>
     </div>
   
 </div>
 <section id="slide-contents" class="level1">
 <h1>Slide Contents</h1>
-<section id="get-your-computer-ready" class="level2">
-<h2 class="anchored" data-anchor-id="get-your-computer-ready">Get your computer ready</h2>
-<div class="columns">
-<div class="column">
-<section id="installation" class="level3">
-<h3 class="anchored" data-anchor-id="installation">Installation</h3>
-<p><a href="https://chendaniely.github.io/scipy-2026-shiny/setup.html" class="uri">https://chendaniely.github.io/scipy-2026-shiny/setup.html</a></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../img/qr-setup.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
-</figure>
-</div>
-<p>If you cloned the repository and did the installation update your materials with:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
+<p>Your tips dashboard’s sidebar has a slider, a checkbox group, and a <code>@reactive.calc</code> that filters the data.</p>
+<p>Now imagine a second dataset, with its own filters. Copy-paste the sidebar code. Copy-paste the filter logic. Now you have <strong>two places</strong> to fix every bug and <strong>two places</strong> to add every new feature.</p>
 </section>
-</div><div class="column">
-<section id="wifi" class="level3">
-<h3 class="anchored" data-anchor-id="wifi">Wifi</h3>
-<!-- TODO: Add SciPy 2026 wifi SSID and password -->
-<p>SSID: TBD<br>
-Password: TBD<br>
-<img src="../img/wifi.jpg" class="img-fluid"></p>
+<section id="functions-dont-fully-solve-this" class="level2">
+<h2 class="anchored" data-anchor-id="functions-dont-fully-solve-this">Functions don’t fully solve this</h2>
+<p>You could wrap the filter UI in a plain function — but Shiny input/output <strong>IDs must be unique across the whole app</strong>. Call that function twice and you get two <code>input_slider()</code>s both named <code>"filter_total_bill"</code> — Shiny can’t tell them apart.</p>
 </section>
-</div>
-</div>
-</section>
-<section id="todays-goal" class="level2">
-<h2 class="anchored" data-anchor-id="todays-goal">Today’s goal</h2>
-<p>Learn how to build reactive web apps with Shiny for Python, from the simple to the mission critical.</p>
-</section>
-<section id="whos-in-the-room" class="level2">
-<h2 class="anchored" data-anchor-id="whos-in-the-room">Who’s in the room?</h2>
-<p>Have you used…</p>
-<div class="incremental">
-<ul class="incremental">
-<li>Python?</li>
-<li>Data visualization in Python (matplotlib, plotnine, plotly, …)?</li>
-<li>Interactive dashboards (Dash, Streamlit, Panel, …)?</li>
-<li>Shiny for R?</li>
-<li>Shiny for Python?</li>
-</ul>
-</div>
-</section>
-<section id="agenda" class="level2">
-<h2 class="anchored" data-anchor-id="agenda">Agenda</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Time</th>
-<th>Topic</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>:00</td>
-<td><a href="workshop/02-building_blocks.qmd">Welcome + Basic building blocks</a></td>
-</tr>
-<tr class="even">
-<td>:20</td>
-<td><a href="workshop/03-first_app.qmd">Your first application — inputs</a></td>
-</tr>
-<tr class="odd">
-<td>:35</td>
-<td><a href="workshop/03-first_app.qmd">Your first application — outputs</a></td>
-</tr>
-<tr class="even">
-<td>:50</td>
-<td>☕ Break</td>
-</tr>
-<tr class="odd">
-<td>1:00</td>
-<td><a href="workshop/04-reactivity.qmd">Shiny reactivity</a></td>
-</tr>
-<tr class="even">
-<td>1:15</td>
-<td><a href="workshop/05-complex_app.qmd">A more complex application</a></td>
-</tr>
-<tr class="odd">
-<td>1:50</td>
-<td>☕ Break</td>
-</tr>
-<tr class="even">
-<td>2:00</td>
-<td><a href="workshop/06-modules_intro.qmd">Introduction to Shiny modules</a></td>
-</tr>
-<tr class="odd">
-<td>2:15</td>
-<td><a href="workshop/07-modules_refactor.qmd">Refactor your app into a module</a></td>
-</tr>
-<tr class="even">
-<td>2:30</td>
-<td><a href="workshop/08-modules_compose.qmd">Reuse your Shiny module</a></td>
-</tr>
-<tr class="odd">
-<td>2:50</td>
-<td>☕ Break</td>
-</tr>
-<tr class="even">
-<td>3:00</td>
-<td><a href="workshop/09-testing.qmd">Testing</a> your shiny apps with playwright</td>
-</tr>
-<tr class="odd">
-<td>3:30</td>
-<td><a href="workshop/10-deploy.qmd">Deploying your application</a></td>
-</tr>
-<tr class="even">
-<td>3:50</td>
-<td><a href="workshop/11-wrap_up.qmd">Wrap up</a> + Feedback Survey</td>
-</tr>
-<tr class="odd">
-<td>4:00</td>
-<td>Finish</td>
-</tr>
-</tbody>
-</table>
-<!-- TODO: Add SciPy 2026 start time so relative times above can be converted to clock times -->
-</section>
-<section id="house-rules" class="level2">
-<h2 class="anchored" data-anchor-id="house-rules">House rules</h2>
+<section id="shiny-modules" class="level2">
+<h2 class="anchored" data-anchor-id="shiny-modules">Shiny modules</h2>
+<p>A module is a function that:</p>
 <ul>
-<li>Ask questions any time</li>
-<li>Help your neighbor - teaching is the best way to learn</li>
-<li>Stuck? Raise your hand - helpers are roaming the room</li>
-<li>Everything is at: <a href="https://github.com/chendaniely/scipy-2026-shiny" class="uri">https://github.com/chendaniely/scipy-2026-shiny</a></li>
+<li>Encapsulates UI <em>and</em> server logic together</li>
+<li>Gets its own <strong>namespace</strong> — an ID prefix Shiny manages for you, so duplicate inner IDs never collide</li>
+<li>Otherwise behaves like a normal Python function: takes arguments, returns values</li>
 </ul>
-
-
+<p><a href="https://shiny.posit.co/py/docs/modules.html" class="uri">https://shiny.posit.co/py/docs/modules.html</a></p>
 </section>
+<section id="shiny-core-module.ui-module.server" class="level2">
+<h2 class="anchored" data-anchor-id="shiny-core-module.ui-module.server">Shiny Core: <code>@module.ui</code> / <code>@module.server</code></h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny <span class="im">import</span> module, reactive, render, ui</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">@module.ui</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_ui():</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ui.output_ui(<span class="st">"filters"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">@module.server</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_server(<span class="bu">input</span>, output, session, data, columns):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"mask"</span>: mask}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use it with an explicit id: <code>filter_ui("tips_filter")</code>, <code>filter_server("tips_filter", data=tips, columns=[...])</code>.</p>
+</section>
+<section id="shiny-express-module" class="level2">
+<h2 class="anchored" data-anchor-id="shiny-express-module">Shiny Express: <code>@module</code></h2>
+<p>One function is both UI and server. Modules are supported in Express as of Shiny 0.10.0.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> module, render, ui</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">@module</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_panel(<span class="bu">input</span>, output, session, data, columns):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"mask"</span>: mask}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use it the same way: <code>filter_panel("tips_filter", data=tips, columns=[...])</code>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A module written in Core syntax can be used from an Express app, and vice versa — the two are interchangeable.</p>
+</div>
+</div>
+</section>
+<section id="our-filter-module" class="level2">
+<h2 class="anchored" data-anchor-id="our-filter-module">Our filter module</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Reusable Shiny Express module: same behavior as filter_module_core.py,</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">using the Express `@module` decorator (one function is both UI and server)."""</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny <span class="im">import</span> reactive</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> module, render, ui</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _make_filters(data, columns):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    filters <span class="op">=</span> {}</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> columns:</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> pd.api.types.is_numeric_dtype(data[col]):</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            lo, hi <span class="op">=</span> <span class="bu">float</span>(data[col].<span class="bu">min</span>()), <span class="bu">float</span>(data[col].<span class="bu">max</span>())</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            filters[col] <span class="op">=</span> {</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">"kind"</span>: <span class="st">"range"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">"component"</span>: ui.input_slider(</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                    <span class="ss">f"filter_</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                    <span class="ss">f"Range for </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">min</span><span class="op">=</span>lo,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">max</span><span class="op">=</span>hi,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                    value<span class="op">=</span>[lo, hi],</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                ),</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>            choices <span class="op">=</span> <span class="bu">sorted</span>(data[col].unique())</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            filters[col] <span class="op">=</span> {</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                <span class="st">"kind"</span>: <span class="st">"isin"</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                <span class="st">"component"</span>: ui.input_checkbox_group(</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                    <span class="ss">f"filter_</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                    <span class="ss">f"Select </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                    choices<span class="op">=</span>choices,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>                    selected<span class="op">=</span>choices,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>                ),</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> filters</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="at">@module</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_panel(<span class="bu">input</span>, output, session, data, columns):</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    ui_filters <span class="op">=</span> _make_filters(data, columns)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">@render.ui</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> filters():</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> [ui_filters[col][<span class="st">"component"</span>] <span class="cf">for</span> col <span class="kw">in</span> columns]</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">@reactive.calc</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mask():</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> pd.Series(<span class="va">True</span>, index<span class="op">=</span>data.index)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> col <span class="kw">in</span> columns:</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> ui_filters[col][<span class="st">"kind"</span>] <span class="op">==</span> <span class="st">"range"</span>:</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>                lo, hi <span class="op">=</span> <span class="bu">input</span>[<span class="ss">f"filter_</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>]()</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>                m <span class="op">=</span> m <span class="op">&amp;</span> data[col].between(lo, hi)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>                m <span class="op">=</span> m <span class="op">&amp;</span> data[col].isin(<span class="bu">input</span>[<span class="ss">f"filter_</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>]())</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> m</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"mask"</span>: mask}</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Numeric columns get a range slider, everything else gets a checkbox group — same idea as the sidebar you already built by hand for tips.</p>
+</section>
+<section id="next" class="level2">
+<h2 class="anchored" data-anchor-id="next">Next</h2>
+<p>We’ll refactor the tips dashboard’s sidebar into this module, then reuse it on a second dataset without writing any new filter code.</p>
+</section>
+</section>
+<section id="code" class="level1 page-columns page-full">
+<h1>Code</h1>
+<div class="column-page-inset">
+<p>Shiny Core version:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Reusable Shiny Core module: render one filter per column, return a mask."""</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny <span class="im">import</span> module, reactive, render, ui</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _make_filters(data, columns):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    filters <span class="op">=</span> {}</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> columns:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> pd.api.types.is_numeric_dtype(data[col]):</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            lo, hi <span class="op">=</span> <span class="bu">float</span>(data[col].<span class="bu">min</span>()), <span class="bu">float</span>(data[col].<span class="bu">max</span>())</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            filters[col] <span class="op">=</span> {</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                <span class="st">"kind"</span>: <span class="st">"range"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                <span class="st">"component"</span>: ui.input_slider(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                    <span class="ss">f"filter_</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                    <span class="ss">f"Range for </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">min</span><span class="op">=</span>lo,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">max</span><span class="op">=</span>hi,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                    value<span class="op">=</span>[lo, hi],</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                ),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>            choices <span class="op">=</span> <span class="bu">sorted</span>(data[col].unique())</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>            filters[col] <span class="op">=</span> {</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                <span class="st">"kind"</span>: <span class="st">"isin"</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                <span class="st">"component"</span>: ui.input_checkbox_group(</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                    <span class="ss">f"filter_</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                    <span class="ss">f"Select </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                    choices<span class="op">=</span>choices,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                    selected<span class="op">=</span>choices,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                ),</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> filters</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="at">@module.ui</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_ui():</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ui.output_ui(<span class="st">"filters"</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="at">@module.server</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_server(<span class="bu">input</span>, output, session, data, columns):</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    ui_filters <span class="op">=</span> _make_filters(data, columns)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">@render.ui</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> filters():</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> [ui_filters[col][<span class="st">"component"</span>] <span class="cf">for</span> col <span class="kw">in</span> columns]</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">@reactive.calc</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mask():</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> pd.Series(<span class="va">True</span>, index<span class="op">=</span>data.index)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> col <span class="kw">in</span> columns:</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> ui_filters[col][<span class="st">"kind"</span>] <span class="op">==</span> <span class="st">"range"</span>:</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>                lo, hi <span class="op">=</span> <span class="bu">input</span>[<span class="ss">f"filter_</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>]()</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>                m <span class="op">=</span> m <span class="op">&amp;</span> data[col].between(lo, hi)</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>                m <span class="op">=</span> m <span class="op">&amp;</span> data[col].isin(<span class="bu">input</span>[<span class="ss">f"filter_</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>]())</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> m</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"mask"</span>: mask}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
