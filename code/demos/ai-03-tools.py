@@ -24,7 +24,7 @@ def scipy_locations(year: int) -> str:
         case 2027:
             return "The Moon"
         case 2026:
-            return "Tacoma, WA"
+            return " Minneapolis, MN"
         case 2025:
             return "Tacoma, WA"
 
