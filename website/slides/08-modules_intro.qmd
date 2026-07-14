@@ -106,3 +106,12 @@ and used once per pair of columns:
   second dataset, anywhere, and its inner IDs never collide
 - `x`, `y`, and `data` are just arguments, captured normally on each call
 - Same idea works from Shiny Core or Shiny Express
+
+## Modules are also how you build a Shiny extension
+
+- A module is just a function, so it can move to its own file
+- Once it's in its own file, you can `import` it into any app
+- Once you can import it, you can put it in a package
+- Put it on PyPI and anyone can `pip install` it and use your module
+- This is how packages like `shinywidgets` and `shinychat` are built:
+  a module (or a few) packaged up for reuse across projects

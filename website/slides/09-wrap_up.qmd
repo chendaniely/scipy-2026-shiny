@@ -12,6 +12,29 @@ title: "Wrap Up"
 - Testing with Playwright
 - Deploying to Posit Connect Cloud
 
+## Handling messy input & secrets
+
+We didn't have time to cover these, but you'll want them soon:
+
+- `req()`: stop execution until an input is valid/present, instead of erroring
+    - <https://shiny.posit.co/py/api/core/req.html>
+- `ui.notification_show()`: tell users what's wrong instead of failing silently
+    - <https://shiny.posit.co/py/components/display-messages/notifications/>
+- `python-dotenv`: keep API keys and other secrets out of your code with a `.env` file
+    - <https://pypi.org/project/python-dotenv/>
+
+## Other cool components to explore
+
+- File upload / download
+    - <https://shiny.posit.co/py/components/inputs/file/>
+    - <https://shiny.posit.co/py/api/core/render.download.html>
+- Multi-page apps with navbars (`ui.page_navbar()`, `ui.nav_panel()`)
+    - <https://shiny.posit.co/py/layouts/navbars/>
+- Progress bars for long-running tasks
+    - <https://shiny.posit.co/py/components/display-messages/progress-bar/>
+- Full component gallery
+    - <https://shiny.posit.co/py/components/>
+
 ## This workshop
 
 Everything from today:
@@ -25,6 +48,3 @@ is in the "🎁 Bonus" section of the sidebar. Try it on your own time.
 
 - Please take 2 minutes to fill out the SciPy session feedback
 - It directly influences future tutorial selections
-
-<!-- TODO: Add SciPy 2026 feedback survey link -->
-Survey link is in your email / QR Code
