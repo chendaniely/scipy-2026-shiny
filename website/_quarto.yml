@@ -38,7 +38,7 @@ website:
     style: "docked"
     search: true
     contents:
-      - text: "Workshop Materials"
+      - text: "👩🏻‍💻 Workshop Materials"
       - text: "Welcome + Introduction"
         href: workshop/01-welcome.qmd
       - text: "Basic building blocks"
