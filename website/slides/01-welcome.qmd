@@ -2,7 +2,7 @@
 title: "Welcome"
 ---
 
-## Get your computer ready
+## Get your computer ready {footer=false}
 
 
 <https://chendaniely.github.io/scipy-2026-shiny/setup.html>
@@ -33,7 +33,7 @@ Have you used...
 - Shiny for Python?
 :::
 
-## Agenda
+## Agenda {.smaller}
 
 {{< include /_schedule.qmd >}}
 
