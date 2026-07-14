@@ -11,15 +11,3 @@ title: "Introduction to Shiny Modules"
 # Slide Contents
 
 {{< include /slides/08-modules_intro.qmd >}}
-
-# Code
-
-:::{.column-page-inset}
-
-Shiny Core version:
-
-```{.python}
-{{< include /../code/demos/filter_module_core.py >}}
-```
-
-:::

@@ -15,11 +15,11 @@ The Python process runs your code and sends results back to the browser.
 
 Each Shiny app consists of:
 
-1. **Input** components — widgets the user can interact with (sliders, dropdowns, checkboxes, ...)
+1. **Input** components: widgets the user can interact with (sliders, dropdowns, checkboxes, ...)
     - <https://shiny.posit.co/py/components/#inputs/>
-2. **Output** components — things Shiny renders and displays (plots, tables, text, ...)
+2. **Output** components: things Shiny renders and displays (plots, tables, text, ...)
     - <https://shiny.posit.co/py/components/#outputs/>
-3. **Layout** — how the components are laid out on the page (columns, sidebar, boxes, cards, ...)
+3. **Layout**: how the components are laid out on the page (columns, sidebar, boxes, cards, ...)
     - <https://shiny.posit.co/py/layouts/>
 
 ## Example application {footer=false}
@@ -35,10 +35,10 @@ Each Shiny app consists of:
 
 ## Reactivity
 
-When an input changes, Shiny reacts by rebuilding the outputs that depend on it —
-and _only those outputs_.
-
-No callbacks. No manual refresh. No cache management.
+- Rebuilds only the outputs that depend on the changed input
+- No callbacks
+- No manual refresh
+- No cache management
 
 ## Spreadsheet analogy
 
@@ -47,10 +47,8 @@ Think of a spreadsheet:
 - **Inputs** = cells you type values into
 - **Outputs** = formula cells
 - **Instructions** = the formulas
-
-When you change a value cell, only the formula cells that depend on it recalculate.
-
-Shiny works the same way.
+- Change a value cell, and only its dependent formula cells recalculate
+- Shiny works the same way
 
 ### Other reactive tools
 
@@ -76,10 +74,10 @@ Shiny lets you build reactive web apps without worrying about:
 
 ::: {.callout-important}
 Shiny for Python has two syntaxes for writing the same apps.
-There is full feature parody between the 2 syntax modes.
+There is full feature parity between the 2 syntax modes.
 
-1. **Shiny Express** — simpler syntax (think [Streamlit](https://streamlit.io/))
-2. **Shiny Core** — more explicit, closer to [Shiny for R](https://shiny.posit.co/) and [Dash](https://dash.plotly.com/)
+1. **Shiny Express**: simpler syntax (think [Streamlit](https://streamlit.io/))
+2. **Shiny Core**: more explicit, closer to [Shiny for R](https://shiny.posit.co/) and [Dash](https://dash.plotly.com/)
 :::
 
 Today we'll use **Shiny Express**.

@@ -45,7 +45,7 @@ In Positron or VS Code with the Shiny extension:
 
 ## Updating a deployed app
 
-Push to the connected branch — Connect Cloud redeploys automatically.
+Push to the connected branch, and Connect Cloud redeploys automatically.
 
 Or click **Redeploy** in the Connect Cloud dashboard.
 

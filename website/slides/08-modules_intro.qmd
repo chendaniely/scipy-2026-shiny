@@ -17,98 +17,92 @@ Source: [Mastering Shiny, ch. 19](https://mastering-shiny.org/scaling-modules.ht
 ## What changed
 
 - Related boxes get grouped into a named unit (`session`, `data`, `results`, ...)
-- The **same shape** (yellow) shows up twice — written once, used twice
-- That's the whole pitch for modules: **isolate** pieces so you can reason
-  about them alone, **reuse** pieces so you don't rewrite them
+- The **same shape** (yellow) shows up twice: written once, used twice
+- The pitch for modules: **isolate** pieces so you can reason about them
+  alone, **reuse** pieces so you don't rewrite them
 
 ## A module is just a function
 
-Abstraction is why we write functions at all — hide the details, expose a
-small interface, reuse the logic without re-deriving it.
+- Abstraction is why we write functions at all: hide the details, expose a
+  small interface, reuse the logic without re-deriving it
+- A plain function already gives you that
 
-A plain function already gives you that. So why isn't it enough here?
+So why isn't it enough here?
 
 ## The same problem, at our scale
 
-Your tips dashboard's sidebar has a slider, a checkbox group, and a
-`@reactive.calc` that filters the data.
-
-Now imagine a second dataset, with its own filters. Copy-paste the sidebar
-code. Copy-paste the filter logic. Now you have **two places** to fix every
-bug and **two places** to add every new feature.
+- Your tips dashboard's sidebar: a slider, a checkbox group, and a
+  `@reactive.calc` that filters the data
+- Imagine a second dataset with its own filters: copy-paste the sidebar
+  code, copy-paste the filter logic
+- Now there are **two places** to fix every bug and **two places** to add
+  every new feature
 
 ## Functions don't fully solve this
 
-Remember: every input/output **ID must be unique across the whole app**.
-
-Python's function scoping gives two calls independent local variables for
-free — but `"filter_total_bill"` isn't a variable. It's a string shipped to
-the browser and tracked in Shiny's session-wide input list, and Python's
-scope has no jurisdiction over it. Call the function twice and you get two
-`input_slider()`s both named `"filter_total_bill"` — Shiny can't tell them
-apart.
+- Remember: every input/output **ID must be unique across the whole app**
+- Python's function scoping gives two calls independent local variables for
+  free
+- But `"filter_total_bill"` isn't a variable: it's a string shipped to the
+  browser and tracked in Shiny's session-wide input list, and Python's
+  scope has no jurisdiction over it
+- Call the function twice and you get two `input_slider()`s both named
+  `"filter_total_bill"`: Shiny can't tell them apart
 
 ## Shiny modules
 
 A module is a function that:
 
 - Encapsulates UI *and* server logic together
-- Gets its own **namespace** — an ID prefix Shiny manages for you, so
+- Gets its own **namespace**: an ID prefix Shiny manages for you, so
   duplicate inner IDs never collide
 - Otherwise behaves like a normal Python function: takes arguments,
   returns values
 
 <https://shiny.posit.co/py/docs/modules.html>
 
-## Shiny Core: `@module.ui` / `@module.server`
-
-```{.python}
-from shiny import module, reactive, render, ui
-
-@module.ui
-def filter_ui():
-    return ui.output_ui("filters")
-
-@module.server
-def filter_server(input, output, session, data, columns):
-    ...
-    return {"mask": mask}
-```
-
-Use it with an explicit id: `filter_ui("tips_filter")`,
-`filter_server("tips_filter", data=tips, columns=[...])`.
-
 ## Shiny Express: `@module`
 
-One function is both UI and server. Modules are supported in Express as of
-Shiny 0.10.0.
+- One function is both UI and server
+- Modules have been supported in Express since Shiny 0.10.0
 
 ```{.python}
 from shiny.express import module, render, ui
 
 @module
-def filter_panel(input, output, session, data, columns):
+def scatter_panel(input, output, session, data, x, y):
     ...
-    return {"mask": mask}
 ```
 
-Use it the same way: `filter_panel("tips_filter", data=tips, columns=[...])`.
+Call it like a normal function, plus an id:
+`scatter_panel("bill_depth_mm_bill_length_mm", data=dat, x="bill_depth_mm", y="bill_length_mm")`.
 
-::: {.callout-important}
-A module written in Core syntax can be used from an Express app, and vice
-versa — the two are interchangeable.
+::: {.callout-note}
+Shiny Core has the same idea, split into `@module.ui` / `@module.server`.
+We'll stick to Express here.
 :::
 
-## Our filter module
+## Our scatter module
 
-```{.python}
-{{< include /../code/demos/filter_module_express.py >}}
+One scatterplot panel with its own "Points" vs "Density" toggle, built once
+and used once per pair of columns:
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 550
+
+{{< include /../code/demos/app-06-modules_scatter_combos.py >}}
 ```
 
-Numeric columns get a range slider, everything else gets a checkbox group —
-same idea as the sidebar you already built by hand for tips.
+- Each panel's `view` id is namespaced by its own `f"{x}_{y}"` instance id
+- Toggling one panel never touches any other
+- Nothing here was hand-rolled to make that true
 
-## Next
+## Recap
 
-We'll refactor the tips dashboard's sidebar into this module, then reuse it
-on a second dataset without writing any new filter code.
+- A module is a function with its own namespace: call it in a loop, on a
+  second dataset, anywhere, and its inner IDs never collide
+- `x`, `y`, and `data` are just arguments, captured normally on each call
+- Same idea works from Shiny Core or Shiny Express

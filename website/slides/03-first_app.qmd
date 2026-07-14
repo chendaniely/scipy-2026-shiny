@@ -13,7 +13,7 @@ Start **static**, then add interactivity.
 4. Connect inputs to outputs
 :::
 
-## Step 1 — static plot
+## Step 1: static plot
 
 ```{python}
 from palmerpenguins import load_penguins
@@ -28,7 +28,7 @@ dat = load_penguins().dropna()
 )
 ```
 
-## Step 1b - parameterize your output
+## Step 1b: parameterize your output
 
 ```{python}
 from palmerpenguins import load_penguins
@@ -46,7 +46,7 @@ y = "body_mass_g"
 )
 ```
 
-## Step 2 — add Shiny imports
+## Step 2: add Shiny imports
 
 ```{python}
 from palmerpenguins import load_penguins
@@ -58,7 +58,7 @@ dat = load_penguins().dropna()
 
 1. Import `input`, `render`, and `ui` from `shiny.express`
 
-## Step 3 — discover the axis choices
+## Step 3: discover the axis choices
 
 ```{python}
 from palmerpenguins import load_penguins
@@ -69,11 +69,11 @@ dat = load_penguins().dropna()
 num_cols = dat.select_dtypes("float64").columns.tolist()  # <1>
 ```
 
-1. Automatically finds all numeric columns — no hard-coded list needed
+1. Automatically finds all numeric columns: no hard-coded list needed
 
 You can still use your normal Python skills!
 
-## Step 4 — add inputs
+## Step 4: add inputs
 
 ```{shinylive-python}
 #| standalone: true
@@ -89,11 +89,11 @@ ui.input_select("x", "", num_cols, selected="bill_depth_mm")
 ui.input_select("y", "", num_cols, selected="body_mass_g")
 ```
 
-1. Dropdown for the X axis — input ID is `"x"`
-2. Dropdown for the Y axis — input ID is `"y"`
+1. Dropdown for the X axis: input ID is `"x"`
+2. Dropdown for the Y axis: input ID is `"y"`
 3. Every ID must be unique across the whole app.
 
-## Step 5 — make the output reactive
+## Step 5: make the output reactive
 
 ```{shinylive-python}
 #| standalone: true
@@ -123,10 +123,10 @@ def plot():
 
 ## What just happened?
 
-- `input.x()` and `input.y()` are **reactive values** — they change when the user picks
-    - `input.*()` - signals reading from an input component
-- `@render.plot` creates a **reactive context** — it re-runs whenever its inputs change
-    - `@render*` - signals an output component
+- `input.x()` and `input.y()` are **reactive values**: they change when the user picks
+    - `input.*()`: signals reading from an input component
+- `@render.plot` creates a **reactive context**: it re-runs whenever its inputs change
+    - `@render*`: signals an output component
 - Both dropdowns drive the same output with no extra wiring
 
 Shiny tracked both dependencies automatically.

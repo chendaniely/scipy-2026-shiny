@@ -6,9 +6,9 @@ title: "AI + LLM Dashboards"
 
 Three patterns, increasing complexity:
 
-1. **Chat interface** — a conversational UI (`shinychat`)
-2. **Tool calling** — let the LLM take actions in your app
-3. **Data chat** — query your dataframe with natural language (`querychat`)
+1. **Chat interface**: a conversational UI (`shinychat`)
+2. **Tool calling**: let the LLM take actions in your app
+3. **Data chat**: query your dataframe with natural language (`querychat`)
 
 ## shinychat
 
@@ -32,7 +32,7 @@ Docs: <https://posit-dev.github.io/shinychat/py/>
 
 ## Demo: shinychat
 
-```{.python filename="code/03-llm/app-shinychat.py"}
+```python
 from shiny.express import ui
 from shinychat import chat_ui, chat_server
 from chatlas import ChatGithub
@@ -81,6 +81,13 @@ querychat.chat_server("chat", qc)
 querychat.dataframe_server("df", qc)
 ```
 
+::: {.callout-tip}
+## 🎯 Live Demo
+
+- Run `code/demos/app-90-querychat.py`
+- Or click and run: [View App](https://posit-ai-querychat.share.connect.posit.cloud/) · [View Code](https://github.com/posit-dev/py-shiny-templates/tree/main/gen-ai/querychat)
+:::
+
 ## Sidebot pattern
 
 Use an LLM to drive filters in a dashboard via natural language:
@@ -89,7 +96,13 @@ Use an LLM to drive filters in a dashboard via natural language:
 - LLM translates to filter parameters
 - Dashboard updates reactively
 
-Template: `shiny create --mode core --github jcheng5/py-databot`
+Template: `shiny create --github jcheng5/py-sidebot`
+
+::: {.callout-tip}
+## 🎯 Live Demo
+
+Click and run: [View App](https://jcheng.shinyapps.io/sidebot) · [View Code](https://github.com/jcheng5/py-sidebot)
+:::
 
 ## Demo: LLMs + Chat
 

@@ -2,6 +2,15 @@
 title: "An AI + LLM Primer"
 ---
 
+## More AI + LLM at SciPy
+
+For more AI things, follow these other LLM tutorials from SciPy:
+
+- **Build a Deep Research Agent**: Ben Batorsky & Eric Ma
+    - <https://github.com/ericmjl/build-deep-research-agent>
+- **Safe & Maintainable AI Apps in Python**: Carson Sievert
+    - <https://github.com/cpsievert/scipy26-tutorial>
+
 ## Before we start
 
 ::: {.callout-warning}
@@ -22,9 +31,8 @@ Local models (Ollama) stay on your machine.
 
 ## What we'll cover
 
-We'll treat LLMs as **black boxes** — you send text in, text comes back.
-
-Goal: demystify the API so you can wire one into a Shiny app.
+- Treat LLMs as **black boxes**: you send text in, text comes back
+- Goal: demystify the API so you can wire one into a Shiny app
 
 ## LLM conversations are HTTP requests
 
@@ -204,7 +212,7 @@ It is Michael Reeves, after all...
 
 ## Tokens
 
-Tokens are the fundamental unit — roughly ¾ of a word on average.
+Tokens are the fundamental unit, roughly ¾ of a word on average.
 
 - API pricing is per token (input and output billed separately)
 - Models have a **context window** limit (max tokens per request)
@@ -243,7 +251,13 @@ chat = ChatGithub(model="gpt-4.1")
 chat.chat("What is the capital of France?")
 ```
 
-Same API regardless of provider — swap one line to switch models.
+Same API regardless of provider: swap one line to switch models.
+
+::: {.callout-tip}
+## 🎯 Live Demo
+
+Run `code/demos/ai-01-chatlas-github.py`, then `code/demos/ai-02-dotenv.py`.
+:::
 
 ## Demo: Tool calling
 
@@ -267,3 +281,9 @@ chat.chat("Where is SciPy 2027 being held?")
 ```
 
 The LLM decides when to call the tool and what arguments to pass.
+
+::: {.callout-tip}
+## 🎯 Live Demo
+
+Run `code/demos/ai-03-tools.py`.
+:::

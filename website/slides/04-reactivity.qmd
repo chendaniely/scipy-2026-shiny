@@ -12,13 +12,13 @@ execute:
 </style>
 ```
 
-- [Gordon Shotwell & Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023](https://www.youtube.com/watch?v=9RC8PobU5oQ)
+- [Gordon Shotwell & Tracy Teal: Build Simple and Scalable Apps with Shiny | PyData NYC 2023](https://www.youtube.com/watch?v=9RC8PobU5oQ)
   - Slides: <https://github.com/gshotwell/shiny-algorithm>
-- [Joe Cheng — Shiny: Data-centric web applications in Python | PyData Seattle 2023](https://www.youtube.com/watch?v=0ovCLxttJGE)
+- [Joe Cheng: Shiny: Data-centric web applications in Python | PyData Seattle 2023](https://www.youtube.com/watch?v=0ovCLxttJGE)
 
 ## What makes Shiny special?
 
-**Reactivity** — outputs update automatically when their inputs change, with no callbacks.
+**Reactivity**: outputs update automatically when their inputs change, with no callbacks.
 
 ### The reactive graph
 
@@ -64,15 +64,15 @@ flowchart TD
 ```
 :::
 ::: {.column width="50%"}
-- **Species** — checkbox group
-- **X Axis / Y Axis** — dropdowns
-- **filtered** — `@reactive.calc`
-- **plot** — `@render.plot`
-- **count** — `@render.text`
+- **Species**: checkbox group
+- **X Axis / Y Axis**: dropdowns
+- **filtered**: `@reactive.calc`
+- **plot**: `@render.plot`
+- **count**: `@render.text`
 :::
 ::::
 
-## Shiny is lazy — nothing runs until needed
+## Shiny is lazy: nothing runs until needed
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -92,9 +92,8 @@ flowchart TD
 ```
 :::
 ::: {.column width="50%"}
-Both outputs need to render.
-
-Shiny runs them and tracks every reactive value they read.
+- Both outputs need to render
+- Shiny runs them and tracks every reactive value they read
 :::
 ::::
 
@@ -118,12 +117,10 @@ flowchart TD
 ```
 :::
 ::: {.column width="50%"}
-`filtered()` is called by both outputs.
-
-Shiny runs it **once**, caches the result, and records:
-
-- **filtered → plot**
-- **filtered → count**
+- `filtered()` is called by both outputs
+- Shiny runs it **once**, caches the result, and records:
+    - **filtered → plot**
+    - **filtered → count**
 :::
 ::::
 
@@ -146,13 +143,12 @@ flowchart TD
 ```
 :::
 ::: {.column width="50%"}
-All dependencies recorded. The full graph is built.
-
-Shiny now **watches** it — any change triggers only the affected branch.
+- All dependencies recorded, the full graph is built
+- Shiny now **watches** it: any change triggers only the affected branch
 :::
 ::::
 
-## Species changes — invalidation cascades
+## Species changes: invalidation cascades
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -171,11 +167,9 @@ flowchart TD
 ```
 :::
 ::: {.column width="50%"}
-Species changes → **filtered** cache discarded → **plot** and **count** marked stale.
-
-X Axis and Y Axis are untouched — only the affected branch re-runs.
-
-`filtered()` executes **once**. Both outputs share the new result.
+- Species changes: **filtered** cache discarded, **plot** and **count** marked stale
+- X Axis and Y Axis are untouched: only the affected branch re-runs
+- `filtered()` executes **once**, both outputs share the new result
 :::
 ::::
 
@@ -191,12 +185,12 @@ def plot():
 
 @render.text
 def count():
-    sel = dat[dat["species"].isin(input.species())]  # filter #2 — redundant!
+    sel = dat[dat["species"].isin(input.species())]  # filter #2, redundant!
     return f"{len(sel)} penguins selected"
 ```
 
-Species changes → the filter runs **twice**.
-With more outputs this keeps getting worse.
+- Species changes: the filter runs **twice**
+- More outputs make this worse
 
 ## The solution: `@reactive.calc`
 
@@ -216,8 +210,14 @@ def count():            # <2>
     return f"{len(filtered())} penguins selected"
 ```
 
-1. `@reactive.calc` allows you to create `filtered()` - it runs once per change and caches the result
-2. Both outputs call `filtered()` — they get the cached dataframe
+1. `@reactive.calc` allows you to create `filtered()`: it runs once per change and caches the result
+2. Both outputs call `filtered()`: they get the cached dataframe
+
+::: {.callout-tip}
+## 🎯 Live Demo
+
+Run `code/demos/app-03-reactivity.py`.
+:::
 
 # Part 3: Chaining reactive calcs {.center}
 
@@ -228,10 +228,10 @@ What if we also want a **summary table** of per-species statistics?
 
 The summary depends on:
 
-- `filtered()` — which rows to include
-- `input.y()` — which column to summarise
+- `filtered()`: which rows to include
+- `input.y()`: which column to summarise
 
-Rather than re-filtering inside the table render, we build a **second calc** that sits downstream of the first.
+We build a **second calc** downstream of the first, instead of re-filtering inside the table render.
 
 ## The chained reactive graph
 
@@ -256,15 +256,15 @@ flowchart TD
 ```
 :::
 ::: {.column width="50%"}
-- **filtered** — species filter (as before)
-- **summary** — per-species stats for the selected Y column
-- **table** — `@render.data_frame` fed by summary
+- **filtered**: species filter (as before)
+- **summary**: per-species stats for the selected Y column
+- **table**: `@render.data_frame` fed by summary
 
 `summary` depends on **both** filtered *and* Y Axis.
 :::
 ::::
 
-## Y Axis changes — surgical invalidation
+## Y Axis changes: surgical invalidation
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -287,15 +287,13 @@ flowchart TD
 ```
 :::
 ::: {.column width="50%"}
-Y Axis changes → **plot**, **summary**, and **table** re-run.
-
-**filtered** and **count** are unaffected — Species didn't change, so that branch stays cached.
-
-Shiny re-runs the minimum necessary.
+- Y Axis changes: **plot**, **summary**, and **table** re-run
+- **filtered** and **count** are unaffected: Species didn't change, so that branch stays cached
+- Shiny re-runs the minimum necessary
 :::
 ::::
 
-## Species changes — cascade through both calcs
+## Species changes: cascade through both calcs
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -318,9 +316,9 @@ flowchart TD
 ```
 :::
 ::: {.column width="50%"}
-Species changes → **filtered** cache discarded → everything downstream is stale.
-
-`filtered()` runs **once**. `summary()` runs **once** using the new filtered result. All four outputs update.
+- Species changes: **filtered** cache discarded, everything downstream is stale
+- `filtered()` runs **once**, `summary()` runs **once** using the new filtered result
+- All four outputs update
 :::
 ::::
 
@@ -355,8 +353,14 @@ def table():
 ```
 
 1. First calc: filters rows
-2. Second calc: derives stats from `filtered()` — reads Y Axis too
-3. Table only calls `summary()` — no filtering logic here
+2. Second calc: derives stats from `filtered()`, also reads Y Axis
+3. Table only calls `summary()`, no filtering logic here
+
+::: {.callout-tip}
+## 🎯 Live Demo
+
+Run `code/demos/app-04-reactivity_chained.py`.
+:::
 
 ## When to use what
 

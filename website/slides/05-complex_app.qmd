@@ -38,6 +38,12 @@ ridgeplot
 {{< include /../code/demos/app-05a-tips-layout.py >}}
 ```
 
+::: {.callout-tip}
+## 🎯 Live Demo
+
+Run `code/demos/app-05a-tips-layout.py`.
+:::
+
 
 
 ## Value boxes
@@ -71,7 +77,7 @@ def filtered():
     return df
 ```
 
-All outputs call `filtered()` — the filter runs once per change.
+All outputs call `filtered()`: the filter runs once per change.
 
 ## Full app structure
 
@@ -101,21 +107,21 @@ with ui.layout_columns():
 
 ## Pausing computations
 
-Sometimes you want an action to wait until you say so (e.g., do something when I push a button)
+Sometimes you want to wait for explicit user action instead of reacting immediately:
 
-- Using user text input to filter
-- Adjusting multiple filters
+- Filtering only after the user finishes typing
+- Applying several filter changes at once
 
-We can use a `ui.innput_action_buttion()` input component to trigger a reactive event.
+Use `ui.input_action_button()` to trigger a reactive event on click.
 
 <https://shiny.posit.co/py/components/inputs/action-button/>
 
 ## Parts of an action button
 
-1. UI input component: `ui.innput_action_buttion()`
-2. A function that gets called when the button gets clicked
-    - `@reactive.event(input.<ID>)` decorator which button triggers which function
-    - `@reactive.effect` decorator a button click doesn't return a result, it creates a side effect
+1. UI input component: `ui.input_action_button()`
+2. A function that gets called when the button is clicked
+    - `@reactive.event(input.<ID>)`: ties the function to that specific button
+    - `@reactive.effect`: marks it as a side effect, since a click doesn't return a value
 
 ## Exercise
 

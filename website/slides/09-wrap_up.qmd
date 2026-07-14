@@ -19,12 +19,12 @@ Everything from today:
 <https://github.com/chendaniely/scipy-2026-shiny>
 
 Bonus material (AI + LLM dashboards with `chatlas`, `shinychat`, `querychat`)
-is in the "🎁 Bonus" section of the sidebar — try it on your own time.
+is in the "🎁 Bonus" section of the sidebar. Try it on your own time.
 
 ## Feedback survey
 
-Please take 2 minutes to fill out the SciPy session feedback — it directly
-influences future tutorial selections.
+- Please take 2 minutes to fill out the SciPy session feedback
+- It directly influences future tutorial selections
 
 <!-- TODO: Add SciPy 2026 feedback survey link -->
 Survey link is in your email / QR Code

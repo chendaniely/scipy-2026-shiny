@@ -9,7 +9,7 @@ title: "Welcome"
 
 ![](/img/qr-setup.png){width="350px" fig-align="center"}
 
-If you cloned the repository and did the installation update your materials with:
+If you already cloned the repo and installed everything, update your materials with:
 
 ```bash
 git pull origin main
@@ -18,8 +18,8 @@ git pull origin main
 
 ## Today's goal
 
-Learn how to build reactive web apps with Shiny for Python,
-from the simple to the mission critical.
+- Build reactive web apps with Shiny for Python
+- From quick prototypes to production-ready dashboards
 
 ## Who's in the room?
 
@@ -40,6 +40,6 @@ Have you used...
 ## House rules
 
 - Ask questions any time
-- Help your neighbor - teaching is the best way to learn
-- Stuck? Raise your hand - helpers are roaming the room
+- Help your neighbor: teaching is the best way to learn
+- Stuck? Raise your hand: helpers are roaming the room
 - Everything is at: <https://github.com/chendaniely/scipy-2026-shiny>
