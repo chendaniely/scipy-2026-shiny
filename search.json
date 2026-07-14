@@ -60,7 +60,7 @@
     "href": "index.html#schedule",
     "title": "Shiny for Python",
     "section": "Schedule",
-    "text": "Schedule\n\n\n\nTime\nTopic\n\n\n\n\n8:00\nWelcome + Basic building blocks\n\n\n8:20\nYour first application — inputs\n\n\n8:35\nYour first application — outputs\n\n\n8:50\n☕ Break\n\n\n9:00\nShiny reactivity\n\n\n9:15\nA more complex application\n\n\n9:50\n☕ Break\n\n\n10:00\nIntroduction to Shiny modules\n\n\n10:15\nRefactor your app into a module\n\n\n10:30\nReuse your Shiny module\n\n\n10:50\n☕ Break\n\n\n11:00\nTesting your shiny apps with playwright\n\n\n11:30\nDeploying your application\n\n\n11:50\nWrap up\n\n\n12:00\nFinish"
+    "text": "Schedule\n\n\n\nTime\nTopic\n\n\n\n\n8:00\nWelcome + Basic building blocks\n\n\n8:20\nYour first application\n\n\n8:50\n☕ Break\n\n\n9:00\nShiny reactivity\n\n\n9:15\nA more complex application\n\n\n9:50\n☕ Break\n\n\n10:00\nIntroduction to Shiny modules\n\n\n10:15\nRefactor your app into a module\n\n\n10:30\nReuse your Shiny module\n\n\n10:50\n☕ Break\n\n\n11:00\nTesting your shiny apps with playwright\n\n\n11:30\nDeploying your application\n\n\n11:50\nWrap up\n\n\n12:00\nFinish"
   },
   {
     "objectID": "cloud.html",
@@ -645,7 +645,7 @@
     "href": "workshop/01-welcome.html#agenda",
     "title": "Welcome",
     "section": "Agenda",
-    "text": "Agenda\n\n\n\nTime\nTopic\n\n\n\n\n8:00\nWelcome + Basic building blocks\n\n\n8:20\nYour first application — inputs\n\n\n8:35\nYour first application — outputs\n\n\n8:50\n☕ Break\n\n\n9:00\nShiny reactivity\n\n\n9:15\nA more complex application\n\n\n9:50\n☕ Break\n\n\n10:00\nIntroduction to Shiny modules\n\n\n10:15\nRefactor your app into a module\n\n\n10:30\nReuse your Shiny module\n\n\n10:50\n☕ Break\n\n\n11:00\nTesting your shiny apps with playwright\n\n\n11:30\nDeploying your application\n\n\n11:50\nWrap up\n\n\n12:00\nFinish",
+    "text": "Agenda\n\n\n\nTime\nTopic\n\n\n\n\n8:00\nWelcome + Basic building blocks\n\n\n8:20\nYour first application\n\n\n8:50\n☕ Break\n\n\n9:00\nShiny reactivity\n\n\n9:15\nA more complex application\n\n\n9:50\n☕ Break\n\n\n10:00\nIntroduction to Shiny modules\n\n\n10:15\nRefactor your app into a module\n\n\n10:30\nReuse your Shiny module\n\n\n10:50\n☕ Break\n\n\n11:00\nTesting your shiny apps with playwright\n\n\n11:30\nDeploying your application\n\n\n11:50\nWrap up\n\n\n12:00\nFinish",
     "crumbs": [
       "Home",
       "Welcome + Introduction"
@@ -1296,7 +1296,7 @@
     "href": "slides/01-welcome.html#agenda",
     "title": "Welcome",
     "section": "Agenda",
-    "text": "Agenda\n\n\n\nTime\nTopic\n\n\n\n\n8:00\nWelcome + Basic building blocks\n\n\n8:20\nYour first application — inputs\n\n\n8:35\nYour first application — outputs\n\n\n8:50\n☕ Break\n\n\n9:00\nShiny reactivity\n\n\n9:15\nA more complex application\n\n\n9:50\n☕ Break\n\n\n10:00\nIntroduction to Shiny modules\n\n\n10:15\nRefactor your app into a module\n\n\n10:30\nReuse your Shiny module\n\n\n10:50\n☕ Break\n\n\n11:00\nTesting your shiny apps with playwright\n\n\n11:30\nDeploying your application\n\n\n11:50\nWrap up\n\n\n12:00\nFinish"
+    "text": "Agenda\n\n\n\nTime\nTopic\n\n\n\n\n8:00\nWelcome + Basic building blocks\n\n\n8:20\nYour first application\n\n\n8:50\n☕ Break\n\n\n9:00\nShiny reactivity\n\n\n9:15\nA more complex application\n\n\n9:50\n☕ Break\n\n\n10:00\nIntroduction to Shiny modules\n\n\n10:15\nRefactor your app into a module\n\n\n10:30\nReuse your Shiny module\n\n\n10:50\n☕ Break\n\n\n11:00\nTesting your shiny apps with playwright\n\n\n11:30\nDeploying your application\n\n\n11:50\nWrap up\n\n\n12:00\nFinish"
   },
   {
     "objectID": "slides/01-welcome.html#house-rules",
@@ -2391,7 +2391,7 @@
     "href": "exercises.html#ex-reactivity",
     "title": "Exercises",
     "section": "2 Reactivity",
-    "text": "2 Reactivity\n\n\n\n\n\n\nExerciseExercise\n\n\n\nPart A — open code/demos/app-03-reactivity.py file in the repository.\nBefore doing the exercise make a copy of the file for your solution.\n\nRun it and confirm the scatter plot and count update together\nAdd a print(\"filtering...\") inside filtered() — change Species and verify it prints only once\n\nPart B — open code/demos/app-04-reactivity_chained.py file in the repository.\nBefore doing the exercise make a copy of the file for your solution.\n\nRun it and explore all three outputs (plot, count, table)\nChange Y Axis — notice count does not change (filtered is still cached)\nAdd a print to each calc to confirm which ones re-run for each input change"
+    "text": "2 Reactivity\n\n\n\n\n\n\nExerciseExercise\n\n\n\nPart A — open code/demos/app-03-reactivity.py file in the repository.\nBefore doing the exercise make a copy of the file for your solution.\n\nRun it and confirm the scatter plot and count update together\nAdd a print(\"filtering...\") inside filtered() — change Species what do you see?\n\nPart B — open code/demos/app-04-reactivity_chained.py file in the repository.\nBefore doing the exercise make a copy of the file for your solution.\n\nRun it and explore all three outputs (plot, count, table)\nChange Y Axis — notice count does not change (filtered is still cached)\nAdd a print to each calc to confirm which ones re-run for each input change\n\nChange the various input components. What do you see?\n\n\n\n\n\n\n\n\nNoteSolution - part A\n\n\n\n\n\nWhen you make a change to species, the filter call will only be called once.\n\n\n\n\n\n\n\n\n\nNoteSolution - part B\n\n\n\n\n\n\nWhen you make a change to species, both @reactive.calcs run.\nWhen you change input.x() nothing only the figure changes.\nWhen you change input.y(), the summary @reactive.calc runs, and the figure changes, but the filtered @reactive.calc() does not run."
   },
   {
     "objectID": "exercises.html#ex-tips",

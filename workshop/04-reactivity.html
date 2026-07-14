@@ -239,7 +239,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
- <span class="menu-text">Workshop Materials</span>
+ <span class="menu-text">👩🏻‍💻 Workshop Materials</span>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -690,8 +690,8 @@ flowchart TD
 </div>
 </div>
 </section>
-<section id="the-chained-code" class="level2">
-<h2 class="anchored" data-anchor-id="the-chained-code">The chained code</h2>
+<section id="the-chained-code" class="level2" data-footer="false">
+<h2 data-footer="false" class="anchored" data-anchor-id="the-chained-code">The chained code</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="at">@reactive.calc</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filtered():</span>
 <span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]</span>
@@ -800,6 +800,7 @@ ui.input_select("y", "Y", num_cols, selected="body_mass_g")
 
 @reactive.calc
 def filtered():
+    print("filtering...")
     return dat[dat["species"].isin(input.species())]
 
 
@@ -845,14 +846,16 @@ with ui.sidebar():
 
 @reactive.calc
 def filtered():
-    return dat[dat["species"].isin(input.species())]
+    print("reactive calc: filtered()")
+    return dat[dat["species"].isin(input.species())] # reactive to only species()
 
 
 @reactive.calc
 def summary():
+    print("reactive calc: summary()")
     return (
-        filtered()
-        .groupby("species")[input.y()]
+        filtered() # &lt;&lt; reactive to filtered()
+        .groupby("species")[input.y()] # &lt;&lt; reactive to input.y()
         .agg(Mean="mean", Median="median", SD="std")
         .round(2)
         .reset_index()
