@@ -49,18 +49,14 @@ website:
         href: workshop/04-reactivity.qmd
       - text: "A more complex application"
         href: workshop/05-complex_app.qmd
-      - text: "Introduction to Shiny modules"
-        href: workshop/06-modules_intro.qmd
-      - text: "Refactor your app into a module"
-        href: workshop/07-modules_refactor.qmd
-      - text: "Reuse your Shiny module"
-        href: workshop/08-modules_compose.qmd
       - text: "Testing"
-        href: workshop/09-testing.qmd
+        href: workshop/06-testing.qmd
       - text: "Deploying your application"
-        href: workshop/10-deploy.qmd
+        href: workshop/07-deploy.qmd
+      - text: "Introduction to Shiny modules"
+        href: workshop/08-modules_intro.qmd
       - text: "Wrap up"
-        href: workshop/11-wrap_up.qmd
+        href: workshop/09-wrap_up.qmd
       - text: "🎁 Bonus"
       - text: "An AI + LLM primer"
         href: workshop/90-ai_primer.qmd

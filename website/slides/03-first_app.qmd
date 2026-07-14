@@ -91,6 +91,7 @@ ui.input_select("y", "", num_cols, selected="body_mass_g")
 
 1. Dropdown for the X axis — input ID is `"x"`
 2. Dropdown for the Y axis — input ID is `"y"`
+3. Every ID must be unique across the whole app.
 
 ## Step 5 — make the output reactive
 

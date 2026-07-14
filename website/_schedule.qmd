@@ -6,11 +6,9 @@
 | 9:00  | [Shiny reactivity](workshop/04-reactivity.qmd)                                                |
 | 9:15  | [A more complex application](workshop/05-complex_app.qmd)                                     |
 | 9:50  | ☕ Break                                                                                       |
-| 10:00 | [Introduction to Shiny modules](workshop/06-modules_intro.qmd)                                |
-| 10:15 | [Refactor your app into a module](workshop/07-modules_refactor.qmd)                           |
-| 10:30 | [Reuse your Shiny module](workshop/08-modules_compose.qmd)                                    |
+| 10:00 | [Testing](workshop/06-testing.qmd) your shiny apps with playwright                            |
+| 10:30 | [Deploying your application](workshop/07-deploy.qmd)                                          |
 | 10:50 | ☕ Break                                                                                       |
-| 11:00 | [Testing](workshop/09-testing.qmd) your shiny apps with playwright                            |
-| 11:30 | [Deploying your application](workshop/10-deploy.qmd)                                          |
-| 11:50 | [Wrap up](workshop/11-wrap_up.qmd)                                                            |
+| 11:00 | [Introduction to Shiny modules](workshop/08-modules_intro.qmd)                                |
+| 11:50 | [Wrap up](workshop/09-wrap_up.qmd)                                                            |
 | 12:00 | Finish                                                                                        |

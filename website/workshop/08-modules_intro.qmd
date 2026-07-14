@@ -4,13 +4,13 @@ title: "Introduction to Shiny Modules"
 
 :::{.column-page-inset-right}
 
-{{< revealjs file="/slides/06-modules_intro.html" height="500px" class="ratio ratio-16x9" >}}
+{{< revealjs file="/slides/08-modules_intro.html" height="500px" class="ratio ratio-16x9" >}}
 
 :::
 
 # Slide Contents
 
-{{< include /slides/06-modules_intro.qmd >}}
+{{< include /slides/08-modules_intro.qmd >}}
 
 # Code
 
