@@ -120,7 +120,7 @@ See exercise: [AI Dashboards](../exercises.qmd#ex-ai-dashboards).
 
 Upcoming tool: ggsql <https://ggsql.org/>
 
-Trt it: <https://ggsql.org/wasm/>
+Try it: <https://ggsql.org/wasm/>
 
 See also: Querychat + Vis docs: <https://posit-dev.github.io/querychat/py/visualize.html>
 

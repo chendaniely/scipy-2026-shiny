@@ -103,7 +103,7 @@ When you make a change to species, the filter call will only be called once.
 
 ::: {.exercise}
 
-Take a look at the `code/exercise/app-ex03-tips.py` file in the [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/exercises).
+Take a look at the `code/exercises/app-ex03-tips.py` file in the [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/exercises).
 
 Before doing the exercise make a copy of the file for your solution.
 

@@ -3,7 +3,6 @@ title: "Shiny for Python"
 subtitle: "Building Production-Ready Dashboards in Python"
 ---
 
-<!-- TODO: Add SciPy 2026 date, time, and room once confirmed -->
 📅 Tuesday July 13\
 🕘 8:00 AM\
 🏢 PWB 3-152\
