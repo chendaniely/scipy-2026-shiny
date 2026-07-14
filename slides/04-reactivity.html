@@ -235,16 +235,16 @@
 .nodeLabel > p { white-space: normal; }
 </style>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=9RC8PobU5oQ">Gordon Shotwell &amp; Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023</a>
+<li><a href="https://www.youtube.com/watch?v=9RC8PobU5oQ">Gordon Shotwell &amp; Tracy Teal: Build Simple and Scalable Apps with Shiny | PyData NYC 2023</a>
 <ul>
 <li>Slides: <a href="https://github.com/gshotwell/shiny-algorithm" class="uri">https://github.com/gshotwell/shiny-algorithm</a></li>
 </ul></li>
-<li><a href="https://www.youtube.com/watch?v=0ovCLxttJGE">Joe Cheng — Shiny: Data-centric web applications in Python | PyData Seattle 2023</a></li>
+<li><a href="https://www.youtube.com/watch?v=0ovCLxttJGE">Joe Cheng: Shiny: Data-centric web applications in Python | PyData Seattle 2023</a></li>
 </ul>
 </section>
 <section id="what-makes-shiny-special" class="slide level2">
 <h2>What makes Shiny special?</h2>
-<p><strong>Reactivity</strong> — outputs update automatically when their inputs change, with no callbacks.</p>
+<p><strong>Reactivity</strong>: outputs update automatically when their inputs change, with no callbacks.</p>
 <h3 id="the-reactive-graph">The reactive graph</h3>
 <p>Shiny builds and maintains a dependency graph for your app:</p>
 <div class="columns">
@@ -292,16 +292,16 @@
 </div>
 </div><div class="column" style="width:50%;">
 <ul>
-<li><strong>Species</strong> — checkbox group</li>
-<li><strong>X Axis / Y Axis</strong> — dropdowns</li>
-<li><strong>filtered</strong> — <code>@reactive.calc</code></li>
-<li><strong>plot</strong> — <code>@render.plot</code></li>
-<li><strong>count</strong> — <code>@render.text</code></li>
+<li><strong>Species</strong>: checkbox group</li>
+<li><strong>X Axis / Y Axis</strong>: dropdowns</li>
+<li><strong>filtered</strong>: <code>@reactive.calc</code></li>
+<li><strong>plot</strong>: <code>@render.plot</code></li>
+<li><strong>count</strong>: <code>@render.text</code></li>
 </ul>
 </div></div>
 </section>
 <section id="shiny-is-lazy-nothing-runs-until-needed" class="slide level2">
-<h2>Shiny is lazy — nothing runs until needed</h2>
+<h2>Shiny is lazy: nothing runs until needed</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
@@ -327,8 +327,10 @@
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p>Both outputs need to render.</p>
-<p>Shiny runs them and tracks every reactive value they read.</p>
+<ul>
+<li>Both outputs need to render</li>
+<li>Shiny runs them and tracks every reactive value they read</li>
+</ul>
 </div></div>
 </section>
 <section id="plot-and-count-both-read-filtered" class="slide level2">
@@ -358,11 +360,13 @@
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p><code>filtered()</code> is called by both outputs.</p>
-<p>Shiny runs it <strong>once</strong>, caches the result, and records:</p>
+<ul>
+<li><code>filtered()</code> is called by both outputs</li>
+<li>Shiny runs it <strong>once</strong>, caches the result, and records:
 <ul>
 <li><strong>filtered → plot</strong></li>
 <li><strong>filtered → count</strong></li>
+</ul></li>
 </ul>
 </div></div>
 </section>
@@ -392,12 +396,14 @@
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p>All dependencies recorded. The full graph is built.</p>
-<p>Shiny now <strong>watches</strong> it — any change triggers only the affected branch.</p>
+<ul>
+<li>All dependencies recorded, the full graph is built</li>
+<li>Shiny now <strong>watches</strong> it: any change triggers only the affected branch</li>
+</ul>
 </div></div>
 </section>
 <section id="species-changes-invalidation-cascades" class="slide level2">
-<h2>Species changes — invalidation cascades</h2>
+<h2>Species changes: invalidation cascades</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
@@ -422,9 +428,11 @@
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p>Species changes → <strong>filtered</strong> cache discarded → <strong>plot</strong> and <strong>count</strong> marked stale.</p>
-<p>X Axis and Y Axis are untouched — only the affected branch re-runs.</p>
-<p><code>filtered()</code> executes <strong>once</strong>. Both outputs share the new result.</p>
+<ul>
+<li>Species changes: <strong>filtered</strong> cache discarded, <strong>plot</strong> and <strong>count</strong> marked stale</li>
+<li>X Axis and Y Axis are untouched: only the affected branch re-runs</li>
+<li><code>filtered()</code> executes <strong>once</strong>, both outputs share the new result</li>
+</ul>
 </div></div>
 </section></section>
 <section>
@@ -441,9 +449,12 @@
 <span id="cb1-5"><a></a></span>
 <span id="cb1-6"><a></a><span class="at">@render.text</span></span>
 <span id="cb1-7"><a></a><span class="kw">def</span> count():</span>
-<span id="cb1-8"><a></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #2 — redundant!</span></span>
+<span id="cb1-8"><a></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #2, redundant!</span></span>
 <span id="cb1-9"><a></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(sel)<span class="sc">}</span><span class="ss"> penguins selected"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Species changes → the filter runs <strong>twice</strong>. With more outputs this keeps getting worse.</p>
+<ul>
+<li>Species changes: the filter runs <strong>twice</strong></li>
+<li>More outputs make this worse</li>
+</ul>
 </section>
 <section id="the-solution-reactive.calc" class="slide level2">
 <h2>The solution: <code>@reactive.calc</code></h2>
@@ -463,13 +474,26 @@
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="1"><code>@reactive.calc</code> allows you to create <code>filtered()</code> - it runs once per change and caches the result</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="1"><code>@reactive.calc</code> allows you to create <code>filtered()</code>: it runs once per change and caches the result</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="8,12" data-code-annotation="2">Both outputs call <code>filtered()</code> — they get the cached dataframe</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="8,12" data-code-annotation="2">Both outputs call <code>filtered()</code>: they get the cached dataframe</span>
 </dd>
 </dl>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🎯 Live Demo</strong></p>
+</div>
+<div class="callout-content">
+<p>Run <code>code/demos/app-03-reactivity.py</code>.</p>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="part-3-chaining-reactive-calcs" class="title-slide slide level1 center">
@@ -481,10 +505,10 @@
 <p>What if we also want a <strong>summary table</strong> of per-species statistics?</p>
 <p>The summary depends on:</p>
 <ul>
-<li><code>filtered()</code> — which rows to include</li>
-<li><code>input.y()</code> — which column to summarise</li>
+<li><code>filtered()</code>: which rows to include</li>
+<li><code>input.y()</code>: which column to summarise</li>
 </ul>
-<p>Rather than re-filtering inside the table render, we build a <strong>second calc</strong> that sits downstream of the first.</p>
+<p>We build a <strong>second calc</strong> downstream of the first, instead of re-filtering inside the table render.</p>
 </section>
 <section id="the-chained-reactive-graph" class="slide level2">
 <h2>The chained reactive graph</h2>
@@ -517,15 +541,15 @@
 </div>
 </div><div class="column" style="width:50%;">
 <ul>
-<li><strong>filtered</strong> — species filter (as before)</li>
-<li><strong>summary</strong> — per-species stats for the selected Y column</li>
-<li><strong>table</strong> — <code>@render.data_frame</code> fed by summary</li>
+<li><strong>filtered</strong>: species filter (as before)</li>
+<li><strong>summary</strong>: per-species stats for the selected Y column</li>
+<li><strong>table</strong>: <code>@render.data_frame</code> fed by summary</li>
 </ul>
 <p><code>summary</code> depends on <strong>both</strong> filtered <em>and</em> Y Axis.</p>
 </div></div>
 </section>
 <section id="y-axis-changes-surgical-invalidation" class="slide level2">
-<h2>Y Axis changes — surgical invalidation</h2>
+<h2>Y Axis changes: surgical invalidation</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
@@ -554,13 +578,15 @@
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p>Y Axis changes → <strong>plot</strong>, <strong>summary</strong>, and <strong>table</strong> re-run.</p>
-<p><strong>filtered</strong> and <strong>count</strong> are unaffected — Species didn’t change, so that branch stays cached.</p>
-<p>Shiny re-runs the minimum necessary.</p>
+<ul>
+<li>Y Axis changes: <strong>plot</strong>, <strong>summary</strong>, and <strong>table</strong> re-run</li>
+<li><strong>filtered</strong> and <strong>count</strong> are unaffected: Species didn’t change, so that branch stays cached</li>
+<li>Shiny re-runs the minimum necessary</li>
+</ul>
 </div></div>
 </section>
 <section id="species-changes-cascade-through-both-calcs" class="slide level2">
-<h2>Species changes — cascade through both calcs</h2>
+<h2>Species changes: cascade through both calcs</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
@@ -589,8 +615,11 @@
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p>Species changes → <strong>filtered</strong> cache discarded → everything downstream is stale.</p>
-<p><code>filtered()</code> runs <strong>once</strong>. <code>summary()</code> runs <strong>once</strong> using the new filtered result. All four outputs update.</p>
+<ul>
+<li>Species changes: <strong>filtered</strong> cache discarded, everything downstream is stale</li>
+<li><code>filtered()</code> runs <strong>once</strong>, <code>summary()</code> runs <strong>once</strong> using the new filtered result</li>
+<li>All four outputs update</li>
+</ul>
 </div></div>
 </section>
 <section id="the-chained-code" class="slide level2" data-footer="false">
@@ -627,13 +656,26 @@
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="2">Second calc: derives stats from <code>filtered()</code> — reads Y Axis too</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="2">Second calc: derives stats from <code>filtered()</code>, also reads Y Axis</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="25" data-code-annotation="3">Table only calls <code>summary()</code> — no filtering logic here</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="25" data-code-annotation="3">Table only calls <code>summary()</code>, no filtering logic here</span>
 </dd>
 </dl>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🎯 Live Demo</strong></p>
+</div>
+<div class="callout-content">
+<p>Run <code>code/demos/app-04-reactivity_chained.py</code>.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="when-to-use-what" class="slide level2">
 <h2>When to use what</h2>

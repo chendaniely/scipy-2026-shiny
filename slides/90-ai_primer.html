@@ -226,6 +226,20 @@
 </div>
 
 </section>
+<section id="more-ai-llm-at-scipy" class="slide level2">
+<h2>More AI + LLM at SciPy</h2>
+<p>For more AI things, follow these other LLM tutorials from SciPy:</p>
+<ul>
+<li><strong>Build a Deep Research Agent</strong>: Ben Batorsky &amp; Eric Ma
+<ul>
+<li><a href="https://github.com/ericmjl/build-deep-research-agent" class="uri">https://github.com/ericmjl/build-deep-research-agent</a></li>
+</ul></li>
+<li><strong>Safe &amp; Maintainable AI Apps in Python</strong>: Carson Sievert
+<ul>
+<li><a href="https://github.com/cpsievert/scipy26-tutorial" class="uri">https://github.com/cpsievert/scipy26-tutorial</a></li>
+</ul></li>
+</ul>
+</section>
 <section id="before-we-start" class="slide level2">
 <h2>Before we start</h2>
 <div class="callout callout-warning callout-titled callout-style-default">
@@ -254,8 +268,10 @@
 </section>
 <section id="what-well-cover" class="slide level2">
 <h2>What we’ll cover</h2>
-<p>We’ll treat LLMs as <strong>black boxes</strong> — you send text in, text comes back.</p>
-<p>Goal: demystify the API so you can wire one into a Shiny app.</p>
+<ul>
+<li>Treat LLMs as <strong>black boxes</strong>: you send text in, text comes back</li>
+<li>Goal: demystify the API so you can wire one into a Shiny app</li>
+</ul>
 </section>
 <section id="llm-conversations-are-http-requests" class="slide level2">
 <h2>LLM conversations are HTTP requests</h2>
@@ -392,7 +408,7 @@ seems like the shorts implementation still doesn't work?
 </section>
 <section id="tokens" class="slide level2">
 <h2>Tokens</h2>
-<p>Tokens are the fundamental unit — roughly ¾ of a word on average.</p>
+<p>Tokens are the fundamental unit, roughly ¾ of a word on average.</p>
 <ul>
 <li>API pricing is per token (input and output billed separately)</li>
 <li>Models have a <strong>context window</strong> limit (max tokens per request)</li>
@@ -452,7 +468,20 @@ seems like the shorts implementation still doesn't work?
 <span id="cb5-2"><a></a></span>
 <span id="cb5-3"><a></a>chat <span class="op">=</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-4.1"</span>)</span>
 <span id="cb5-4"><a></a>chat.chat(<span class="st">"What is the capital of France?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Same API regardless of provider — swap one line to switch models.</p>
+<p>Same API regardless of provider: swap one line to switch models.</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🎯 Live Demo</strong></p>
+</div>
+<div class="callout-content">
+<p>Run <code>code/demos/ai-01-chatlas-github.py</code>, then <code>code/demos/ai-02-dotenv.py</code>.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="demo-tool-calling" class="slide level2">
 <h2>Demo: Tool calling</h2>
@@ -472,6 +501,19 @@ seems like the shorts implementation still doesn't work?
 <span id="cb6-13"><a></a></span>
 <span id="cb6-14"><a></a>chat.chat(<span class="st">"Where is SciPy 2027 being held?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The LLM decides when to call the tool and what arguments to pass.</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🎯 Live Demo</strong></p>
+</div>
+<div class="callout-content">
+<p>Run <code>code/demos/ai-03-tools.py</code>.</p>
+</div>
+</div>
+</div>
 
 
 </section>

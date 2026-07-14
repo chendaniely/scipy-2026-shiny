@@ -273,37 +273,25 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Shiny modules</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Refactor your app into a module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reuse your Shiny module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/09-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/06-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Testing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-deploy.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/07-deploy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deploying your application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/08-modules_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/09-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
   </div>
 </li>
@@ -343,10 +331,10 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#part-1-how-shiny-evaluates-your-app" id="toc-part-1-how-shiny-evaluates-your-app" class="nav-link" data-scroll-target="#part-1-how-shiny-evaluates-your-app">Part 1: How Shiny evaluates your app</a>
   <ul class="collapse">
   <li><a href="#the-apps-reactive-graph" id="toc-the-apps-reactive-graph" class="nav-link" data-scroll-target="#the-apps-reactive-graph">The app’s reactive graph</a></li>
-  <li><a href="#shiny-is-lazy-nothing-runs-until-needed" id="toc-shiny-is-lazy-nothing-runs-until-needed" class="nav-link" data-scroll-target="#shiny-is-lazy-nothing-runs-until-needed">Shiny is lazy — nothing runs until needed</a></li>
+  <li><a href="#shiny-is-lazy-nothing-runs-until-needed" id="toc-shiny-is-lazy-nothing-runs-until-needed" class="nav-link" data-scroll-target="#shiny-is-lazy-nothing-runs-until-needed">Shiny is lazy: nothing runs until needed</a></li>
   <li><a href="#plot-and-count-both-read-filtered" id="toc-plot-and-count-both-read-filtered" class="nav-link" data-scroll-target="#plot-and-count-both-read-filtered">plot and count both read filtered</a></li>
   <li><a href="#filtered-reads-species-plot-reads-x-and-y" id="toc-filtered-reads-species-plot-reads-x-and-y" class="nav-link" data-scroll-target="#filtered-reads-species-plot-reads-x-and-y">filtered reads Species; plot reads X and Y</a></li>
-  <li><a href="#species-changes-invalidation-cascades" id="toc-species-changes-invalidation-cascades" class="nav-link" data-scroll-target="#species-changes-invalidation-cascades">Species changes — invalidation cascades</a></li>
+  <li><a href="#species-changes-invalidation-cascades" id="toc-species-changes-invalidation-cascades" class="nav-link" data-scroll-target="#species-changes-invalidation-cascades">Species changes: invalidation cascades</a></li>
   </ul></li>
   <li><a href="#part-2-sharing-an-intermediate-dataframe" id="toc-part-2-sharing-an-intermediate-dataframe" class="nav-link" data-scroll-target="#part-2-sharing-an-intermediate-dataframe">Part 2: Sharing an intermediate dataframe</a>
   <ul class="collapse">
@@ -357,14 +345,13 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <ul class="collapse">
   <li><a href="#adding-a-second-calc-downstream" id="toc-adding-a-second-calc-downstream" class="nav-link" data-scroll-target="#adding-a-second-calc-downstream">Adding a second calc downstream</a></li>
   <li><a href="#the-chained-reactive-graph" id="toc-the-chained-reactive-graph" class="nav-link" data-scroll-target="#the-chained-reactive-graph">The chained reactive graph</a></li>
-  <li><a href="#y-axis-changes-surgical-invalidation" id="toc-y-axis-changes-surgical-invalidation" class="nav-link" data-scroll-target="#y-axis-changes-surgical-invalidation">Y Axis changes — surgical invalidation</a></li>
-  <li><a href="#species-changes-cascade-through-both-calcs" id="toc-species-changes-cascade-through-both-calcs" class="nav-link" data-scroll-target="#species-changes-cascade-through-both-calcs">Species changes — cascade through both calcs</a></li>
+  <li><a href="#y-axis-changes-surgical-invalidation" id="toc-y-axis-changes-surgical-invalidation" class="nav-link" data-scroll-target="#y-axis-changes-surgical-invalidation">Y Axis changes: surgical invalidation</a></li>
+  <li><a href="#species-changes-cascade-through-both-calcs" id="toc-species-changes-cascade-through-both-calcs" class="nav-link" data-scroll-target="#species-changes-cascade-through-both-calcs">Species changes: cascade through both calcs</a></li>
   <li><a href="#the-chained-code" id="toc-the-chained-code" class="nav-link" data-scroll-target="#the-chained-code">The chained code</a></li>
   <li><a href="#when-to-use-what" id="toc-when-to-use-what" class="nav-link" data-scroll-target="#when-to-use-what">When to use what</a></li>
   <li><a href="#demo-exercises" id="toc-demo-exercises" class="nav-link" data-scroll-target="#demo-exercises">Demo + Exercises</a></li>
   </ul></li>
-  <li><a href="#demo-shared-reactive.calc" id="toc-demo-shared-reactive.calc" class="nav-link" data-scroll-target="#demo-shared-reactive.calc">Demo: shared <code>@reactive.calc</code></a></li>
-  <li><a href="#demo-chained-reactive.calc" id="toc-demo-chained-reactive.calc" class="nav-link" data-scroll-target="#demo-chained-reactive.calc">Demo: chained <code>@reactive.calc</code></a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   </ul>
 </nav>
     </div>
@@ -407,16 +394,16 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 .nodeLabel > p { white-space: normal; }
 </style>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=9RC8PobU5oQ">Gordon Shotwell &amp; Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023</a>
+<li><a href="https://www.youtube.com/watch?v=9RC8PobU5oQ">Gordon Shotwell &amp; Tracy Teal: Build Simple and Scalable Apps with Shiny | PyData NYC 2023</a>
 <ul>
 <li>Slides: <a href="https://github.com/gshotwell/shiny-algorithm" class="uri">https://github.com/gshotwell/shiny-algorithm</a></li>
 </ul></li>
-<li><a href="https://www.youtube.com/watch?v=0ovCLxttJGE">Joe Cheng — Shiny: Data-centric web applications in Python | PyData Seattle 2023</a></li>
+<li><a href="https://www.youtube.com/watch?v=0ovCLxttJGE">Joe Cheng: Shiny: Data-centric web applications in Python | PyData Seattle 2023</a></li>
 </ul>
 </section>
 <section id="what-makes-shiny-special" class="level2">
 <h2 class="anchored" data-anchor-id="what-makes-shiny-special">What makes Shiny special?</h2>
-<p><strong>Reactivity</strong> — outputs update automatically when their inputs change, with no callbacks.</p>
+<p><strong>Reactivity</strong>: outputs update automatically when their inputs change, with no callbacks.</p>
 <section id="the-reactive-graph" class="level3">
 <h3 class="anchored" data-anchor-id="the-reactive-graph">The reactive graph</h3>
 <p>Shiny builds and maintains a dependency graph for your app:</p>
@@ -455,17 +442,17 @@ flowchart TD
   linkStyle 0,1,2,3,4 display:none</code></pre>
 </div><div class="column" style="width:50%;">
 <ul>
-<li><strong>Species</strong> — checkbox group</li>
-<li><strong>X Axis / Y Axis</strong> — dropdowns</li>
-<li><strong>filtered</strong> — <code>@reactive.calc</code></li>
-<li><strong>plot</strong> — <code>@render.plot</code></li>
-<li><strong>count</strong> — <code>@render.text</code></li>
+<li><strong>Species</strong>: checkbox group</li>
+<li><strong>X Axis / Y Axis</strong>: dropdowns</li>
+<li><strong>filtered</strong>: <code>@reactive.calc</code></li>
+<li><strong>plot</strong>: <code>@render.plot</code></li>
+<li><strong>count</strong>: <code>@render.text</code></li>
 </ul>
 </div>
 </div>
 </section>
 <section id="shiny-is-lazy-nothing-runs-until-needed" class="level2">
-<h2 class="anchored" data-anchor-id="shiny-is-lazy-nothing-runs-until-needed">Shiny is lazy — nothing runs until needed</h2>
+<h2 class="anchored" data-anchor-id="shiny-is-lazy-nothing-runs-until-needed">Shiny is lazy: nothing runs until needed</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <pre class="{mermaid}"><code>%%| fig-width: 4
@@ -481,8 +468,10 @@ flowchart TD
   classDef invalid fill:#EA1F26,color:#FFFFFF,font-weight:bold
   linkStyle 0,1,2,3,4 display:none</code></pre>
 </div><div class="column" style="width:50%;">
-<p>Both outputs need to render.</p>
-<p>Shiny runs them and tracks every reactive value they read.</p>
+<ul>
+<li>Both outputs need to render</li>
+<li>Shiny runs them and tracks every reactive value they read</li>
+</ul>
 </div>
 </div>
 </section>
@@ -503,11 +492,13 @@ flowchart TD
   classDef invalid fill:#EA1F26,color:#FFFFFF,font-weight:bold
   linkStyle 0,1,2 display:none</code></pre>
 </div><div class="column" style="width:50%;">
-<p><code>filtered()</code> is called by both outputs.</p>
-<p>Shiny runs it <strong>once</strong>, caches the result, and records:</p>
+<ul>
+<li><code>filtered()</code> is called by both outputs</li>
+<li>Shiny runs it <strong>once</strong>, caches the result, and records:
 <ul>
 <li><strong>filtered → plot</strong></li>
 <li><strong>filtered → count</strong></li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -528,13 +519,15 @@ flowchart TD
   classDef active fill:#3853A3,color:#FFFFFF,font-weight:bold
   classDef invalid fill:#EA1F26,color:#FFFFFF,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
-<p>All dependencies recorded. The full graph is built.</p>
-<p>Shiny now <strong>watches</strong> it — any change triggers only the affected branch.</p>
+<ul>
+<li>All dependencies recorded, the full graph is built</li>
+<li>Shiny now <strong>watches</strong> it: any change triggers only the affected branch</li>
+</ul>
 </div>
 </div>
 </section>
 <section id="species-changes-invalidation-cascades" class="level2">
-<h2 class="anchored" data-anchor-id="species-changes-invalidation-cascades">Species changes — invalidation cascades</h2>
+<h2 class="anchored" data-anchor-id="species-changes-invalidation-cascades">Species changes: invalidation cascades</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <pre class="{mermaid}"><code>%%| fig-width: 4
@@ -549,9 +542,11 @@ flowchart TD
   classDef active fill:#3853A3,color:#FFFFFF,font-weight:bold
   classDef invalid fill:#EA1F26,color:#FFFFFF,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
-<p>Species changes → <strong>filtered</strong> cache discarded → <strong>plot</strong> and <strong>count</strong> marked stale.</p>
-<p>X Axis and Y Axis are untouched — only the affected branch re-runs.</p>
-<p><code>filtered()</code> executes <strong>once</strong>. Both outputs share the new result.</p>
+<ul>
+<li>Species changes: <strong>filtered</strong> cache discarded, <strong>plot</strong> and <strong>count</strong> marked stale</li>
+<li>X Axis and Y Axis are untouched: only the affected branch re-runs</li>
+<li><code>filtered()</code> executes <strong>once</strong>, both outputs share the new result</li>
+</ul>
 </div>
 </div>
 </section>
@@ -567,9 +562,12 @@ flowchart TD
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">@render.text</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count():</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #2 — redundant!</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #2, redundant!</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(sel)<span class="sc">}</span><span class="ss"> penguins selected"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Species changes → the filter runs <strong>twice</strong>. With more outputs this keeps getting worse.</p>
+<ul>
+<li>Species changes: the filter runs <strong>twice</strong></li>
+<li>More outputs make this worse</li>
+</ul>
 </section>
 <section id="the-solution-reactive.calc" class="level2">
 <h2 class="anchored" data-anchor-id="the-solution-reactive.calc">The solution: <code>@reactive.calc</code></h2>
@@ -589,13 +587,26 @@ flowchart TD
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="1"><code>@reactive.calc</code> allows you to create <code>filtered()</code> - it runs once per change and caches the result</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="1"><code>@reactive.calc</code> allows you to create <code>filtered()</code>: it runs once per change and caches the result</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="8,12" data-code-annotation="2">Both outputs call <code>filtered()</code> — they get the cached dataframe</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="8,12" data-code-annotation="2">Both outputs call <code>filtered()</code>: they get the cached dataframe</span>
 </dd>
 </dl>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎯 Live Demo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run <code>code/demos/app-03-reactivity.py</code>.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="part-3-chaining-reactive-calcs" class="level1 center">
@@ -605,10 +616,10 @@ flowchart TD
 <p>What if we also want a <strong>summary table</strong> of per-species statistics?</p>
 <p>The summary depends on:</p>
 <ul>
-<li><code>filtered()</code> — which rows to include</li>
-<li><code>input.y()</code> — which column to summarise</li>
+<li><code>filtered()</code>: which rows to include</li>
+<li><code>input.y()</code>: which column to summarise</li>
 </ul>
-<p>Rather than re-filtering inside the table render, we build a <strong>second calc</strong> that sits downstream of the first.</p>
+<p>We build a <strong>second calc</strong> downstream of the first, instead of re-filtering inside the table render.</p>
 </section>
 <section id="the-chained-reactive-graph" class="level2">
 <h2 class="anchored" data-anchor-id="the-chained-reactive-graph">The chained reactive graph</h2>
@@ -631,16 +642,16 @@ flowchart TD
   classDef cached fill:#86BAE4,color:#231522,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
 <ul>
-<li><strong>filtered</strong> — species filter (as before)</li>
-<li><strong>summary</strong> — per-species stats for the selected Y column</li>
-<li><strong>table</strong> — <code>@render.data_frame</code> fed by summary</li>
+<li><strong>filtered</strong>: species filter (as before)</li>
+<li><strong>summary</strong>: per-species stats for the selected Y column</li>
+<li><strong>table</strong>: <code>@render.data_frame</code> fed by summary</li>
 </ul>
 <p><code>summary</code> depends on <strong>both</strong> filtered <em>and</em> Y Axis.</p>
 </div>
 </div>
 </section>
 <section id="y-axis-changes-surgical-invalidation" class="level2">
-<h2 class="anchored" data-anchor-id="y-axis-changes-surgical-invalidation">Y Axis changes — surgical invalidation</h2>
+<h2 class="anchored" data-anchor-id="y-axis-changes-surgical-invalidation">Y Axis changes: surgical invalidation</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <pre class="{mermaid}"><code>%%| fig-width: 4
@@ -659,14 +670,16 @@ flowchart TD
   classDef invalid fill:#EA1F26,color:#FFFFFF,font-weight:bold
   classDef cached fill:#86BAE4,color:#231522,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
-<p>Y Axis changes → <strong>plot</strong>, <strong>summary</strong>, and <strong>table</strong> re-run.</p>
-<p><strong>filtered</strong> and <strong>count</strong> are unaffected — Species didn’t change, so that branch stays cached.</p>
-<p>Shiny re-runs the minimum necessary.</p>
+<ul>
+<li>Y Axis changes: <strong>plot</strong>, <strong>summary</strong>, and <strong>table</strong> re-run</li>
+<li><strong>filtered</strong> and <strong>count</strong> are unaffected: Species didn’t change, so that branch stays cached</li>
+<li>Shiny re-runs the minimum necessary</li>
+</ul>
 </div>
 </div>
 </section>
 <section id="species-changes-cascade-through-both-calcs" class="level2">
-<h2 class="anchored" data-anchor-id="species-changes-cascade-through-both-calcs">Species changes — cascade through both calcs</h2>
+<h2 class="anchored" data-anchor-id="species-changes-cascade-through-both-calcs">Species changes: cascade through both calcs</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <pre class="{mermaid}"><code>%%| fig-width: 4
@@ -685,8 +698,11 @@ flowchart TD
   classDef invalid fill:#EA1F26,color:#FFFFFF,font-weight:bold
   classDef cached fill:#86BAE4,color:#231522,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
-<p>Species changes → <strong>filtered</strong> cache discarded → everything downstream is stale.</p>
-<p><code>filtered()</code> runs <strong>once</strong>. <code>summary()</code> runs <strong>once</strong> using the new filtered result. All four outputs update.</p>
+<ul>
+<li>Species changes: <strong>filtered</strong> cache discarded, everything downstream is stale</li>
+<li><code>filtered()</code> runs <strong>once</strong>, <code>summary()</code> runs <strong>once</strong> using the new filtered result</li>
+<li>All four outputs update</li>
+</ul>
 </div>
 </div>
 </section>
@@ -724,13 +740,26 @@ flowchart TD
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="2">Second calc: derives stats from <code>filtered()</code> — reads Y Axis too</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="2">Second calc: derives stats from <code>filtered()</code>, also reads Y Axis</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="25" data-code-annotation="3">Table only calls <code>summary()</code> — no filtering logic here</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="25" data-code-annotation="3">Table only calls <code>summary()</code>, no filtering logic here</span>
 </dd>
 </dl>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎯 Live Demo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run <code>code/demos/app-04-reactivity_chained.py</code>.</p>
+</div>
+</div>
 </section>
 <section id="when-to-use-what" class="level2">
 <h2 class="anchored" data-anchor-id="when-to-use-what">When to use what</h2>
@@ -774,10 +803,10 @@ flowchart TD
 <p>See exercise: <a href="../exercises.html#ex-reactivity">Reactivity</a>.</p>
 </section>
 </section>
-<section id="demo-shared-reactive.calc" class="level1 page-columns page-full">
-<h1>Demo: shared <code>@reactive.calc</code></h1>
-<p><code>code/app-03-reactivity.py</code> — species filter shared between a scatter plot and a count.</p>
+<section id="code" class="level1 page-columns page-full">
+<h1>Code</h1>
 <div class="column-page-inset">
+<p><code>code/demos/app-03-reactivity.py</code></p>
 <pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
@@ -817,12 +846,7 @@ def plot():
 def count():
     return f"{len(filtered())} penguins selected"
 </code></pre>
-</div>
-</section>
-<section id="demo-chained-reactive.calc" class="level1 page-columns page-full">
-<h1>Demo: chained <code>@reactive.calc</code></h1>
-<p><code>code/app-04-reactivity_chained.py</code> — <code>summary()</code> derives from <code>filtered()</code>, feeding a third output. Change <strong>Y Axis</strong> and watch the count stay unchanged — <code>filtered()</code> is still cached.</p>
-<div class="column-page-inset">
+<p><code>code/demos/app-04-reactivity_chained.py</code></p>
 <pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.

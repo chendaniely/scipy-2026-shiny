@@ -273,37 +273,25 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Shiny modules</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Refactor your app into a module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reuse your Shiny module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/09-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/06-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Testing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-deploy.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/07-deploy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deploying your application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/08-modules_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/09-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
   </div>
 </li>
@@ -348,6 +336,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#shiny-express-vs-shiny-core" id="toc-shiny-express-vs-shiny-core" class="nav-link" data-scroll-target="#shiny-express-vs-shiny-core">Shiny Express vs Shiny Core</a></li>
   <li><a href="#running-a-shiny-app" id="toc-running-a-shiny-app" class="nav-link" data-scroll-target="#running-a-shiny-app">Running a Shiny app</a></li>
   </ul></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   </ul>
 </nav>
     </div>
@@ -399,15 +388,15 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <h2 class="anchored" data-anchor-id="components">Components</h2>
 <p>Each Shiny app consists of:</p>
 <ol type="1">
-<li><strong>Input</strong> components — widgets the user can interact with (sliders, dropdowns, checkboxes, …)
+<li><strong>Input</strong> components: widgets the user can interact with (sliders, dropdowns, checkboxes, …)
 <ul>
 <li><a href="https://shiny.posit.co/py/components/#inputs/" class="uri">https://shiny.posit.co/py/components/#inputs/</a></li>
 </ul></li>
-<li><strong>Output</strong> components — things Shiny renders and displays (plots, tables, text, …)
+<li><strong>Output</strong> components: things Shiny renders and displays (plots, tables, text, …)
 <ul>
 <li><a href="https://shiny.posit.co/py/components/#outputs/" class="uri">https://shiny.posit.co/py/components/#outputs/</a></li>
 </ul></li>
-<li><strong>Layout</strong> — how the components are laid out on the page (columns, sidebar, boxes, cards, …)
+<li><strong>Layout</strong>: how the components are laid out on the page (columns, sidebar, boxes, cards, …)
 <ul>
 <li><a href="https://shiny.posit.co/py/layouts/" class="uri">https://shiny.posit.co/py/layouts/</a></li>
 </ul></li>
@@ -444,8 +433,12 @@ def plot():
 </section>
 <section id="reactivity" class="level2">
 <h2 class="anchored" data-anchor-id="reactivity">Reactivity</h2>
-<p>When an input changes, Shiny reacts by rebuilding the outputs that depend on it — and <em>only those outputs</em>.</p>
-<p>No callbacks. No manual refresh. No cache management.</p>
+<ul>
+<li>Rebuilds only the outputs that depend on the changed input</li>
+<li>No callbacks</li>
+<li>No manual refresh</li>
+<li>No cache management</li>
+</ul>
 </section>
 <section id="spreadsheet-analogy" class="level2">
 <h2 class="anchored" data-anchor-id="spreadsheet-analogy">Spreadsheet analogy</h2>
@@ -454,9 +447,9 @@ def plot():
 <li><strong>Inputs</strong> = cells you type values into</li>
 <li><strong>Outputs</strong> = formula cells</li>
 <li><strong>Instructions</strong> = the formulas</li>
+<li>Change a value cell, and only its dependent formula cells recalculate</li>
+<li>Shiny works the same way</li>
 </ul>
-<p>When you change a value cell, only the formula cells that depend on it recalculate.</p>
-<p>Shiny works the same way.</p>
 <section id="other-reactive-tools" class="level3">
 <h3 class="anchored" data-anchor-id="other-reactive-tools">Other reactive tools</h3>
 <ul>
@@ -495,10 +488,10 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Shiny for Python has two syntaxes for writing the same apps. There is full feature parody between the 2 syntax modes.</p>
+<p>Shiny for Python has two syntaxes for writing the same apps. There is full feature parity between the 2 syntax modes.</p>
 <ol type="1">
-<li><strong>Shiny Express</strong> — simpler syntax (think <a href="https://streamlit.io/">Streamlit</a>)</li>
-<li><strong>Shiny Core</strong> — more explicit, closer to <a href="https://shiny.posit.co/">Shiny for R</a> and <a href="https://dash.plotly.com/">Dash</a></li>
+<li><strong>Shiny Express</strong>: simpler syntax (think <a href="https://streamlit.io/">Streamlit</a>)</li>
+<li><strong>Shiny Core</strong>: more explicit, closer to <a href="https://shiny.posit.co/">Shiny for R</a> and <a href="https://dash.plotly.com/">Dash</a></li>
 </ol>
 </div>
 </div>
@@ -510,9 +503,40 @@ Important
 <p>Or in Positron / VS Code: click the <strong>Run App</strong> button in the editor toolbar.</p>
 <p>Open URL:Port (e.g., <a href="http://127.0.0.1:8000" class="uri">http://127.0.0.1:8000</a>) in your browser.</p>
 <p><img src="../img/positron-shiny-run-annotated.png" class="img-fluid"></p>
-
-
 </section>
+</section>
+<section id="code" class="level1 page-columns page-full">
+<h1>Code</h1>
+<div class="column-page-inset">
+<p><code>code/demos/app-01-intro.py</code></p>
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [editor, viewer]
+#| viewerHeight: 520
+
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+from shiny.express import input, render, ui
+
+dat = load_penguins().dropna()
+num_cols = dat.select_dtypes("float64").columns.tolist()
+
+ui.input_select("x", "", num_cols, selected="bill_depth_mm")
+ui.input_select("y", "", num_cols, selected="body_mass_g")
+
+
+@render.plot
+def plot():
+    return (ggplot(dat, aes(x=input.x(), y=input.y(), color="species")) +
+        geom_point(alpha=0.7) +
+        theme_minimal()
+    )
+</code></pre>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

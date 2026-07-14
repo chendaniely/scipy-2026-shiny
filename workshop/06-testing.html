@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Refactor Your App Into a Module – SciPy 2026: Shiny Dashboards</title>
+<title>Testing – SciPy 2026: Shiny Dashboards</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -83,11 +83,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-574c440e15a1098b5c8632c39aa1c88b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-661ee3a551d89fab38b2ea5a2675dcf6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-574c440e15a1098b5c8632c39aa1c88b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -212,7 +207,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/07-modules_refactor.html">Refactor your app into a module</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/06-testing.html">Testing</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -273,37 +268,25 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Shiny modules</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Refactor your app into a module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reuse your Shiny module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/09-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/06-testing.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Testing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-deploy.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/07-deploy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deploying your application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/08-modules_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/09-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
   </div>
 </li>
@@ -334,13 +317,16 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <ul>
   <li><a href="#slide-contents" id="toc-slide-contents" class="nav-link active" data-scroll-target="#slide-contents">Slide Contents</a>
   <ul class="collapse">
-  <li><a href="#title-refactor-your-app-into-a-module" id="toc-title-refactor-your-app-into-a-module" class="nav-link" data-scroll-target="#title-refactor-your-app-into-a-module">title: “Refactor Your App Into a Module”</a></li>
-  <li><a href="#where-were-starting" id="toc-where-were-starting" class="nav-link" data-scroll-target="#where-were-starting">Where we’re starting</a></li>
-  <li><a href="#step-1-identify-the-reusable-part" id="toc-step-1-identify-the-reusable-part" class="nav-link" data-scroll-target="#step-1-identify-the-reusable-part">Step 1 — identify the reusable part</a></li>
-  <li><a href="#step-2-write-the-module" id="toc-step-2-write-the-module" class="nav-link" data-scroll-target="#step-2-write-the-module">Step 2 — write the module</a></li>
-  <li><a href="#step-3-swap-the-sidebar-for-the-module" id="toc-step-3-swap-the-sidebar-for-the-module" class="nav-link" data-scroll-target="#step-3-swap-the-sidebar-for-the-module">Step 3 — swap the sidebar for the module</a></li>
-  <li><a href="#the-refactored-app" id="toc-the-refactored-app" class="nav-link" data-scroll-target="#the-refactored-app">The refactored app</a></li>
-  <li><a href="#what-we-dropped" id="toc-what-we-dropped" class="nav-link" data-scroll-target="#what-we-dropped">What we dropped</a></li>
+  <li><a href="#title-testing-shiny-apps" id="toc-title-testing-shiny-apps" class="nav-link" data-scroll-target="#title-testing-shiny-apps">title: “Testing Shiny Apps”</a></li>
+  <li><a href="#why-test" id="toc-why-test" class="nav-link" data-scroll-target="#why-test">Why test?</a></li>
+  <li><a href="#visual-check-assert-statements" id="toc-visual-check-assert-statements" class="nav-link" data-scroll-target="#visual-check-assert-statements">Visual check + assert statements</a></li>
+  <li><a href="#unit-testing---pytest" id="toc-unit-testing---pytest" class="nav-link" data-scroll-target="#unit-testing---pytest">Unit testing - pytest</a></li>
+  <li><a href="#python-functions-shiny" id="toc-python-functions-shiny" class="nav-link" data-scroll-target="#python-functions-shiny">Python functions + Shiny</a></li>
+  <li><a href="#playwright---end-to-end-testing" id="toc-playwright---end-to-end-testing" class="nav-link" data-scroll-target="#playwright---end-to-end-testing">Playwright - end-to-end testing</a></li>
+  <li><a href="#test-structure" id="toc-test-structure" class="nav-link" data-scroll-target="#test-structure">Test structure</a></li>
+  <li><a href="#running-tests" id="toc-running-tests" class="nav-link" data-scroll-target="#running-tests">Running tests</a></li>
+  <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers">Controllers</a></li>
+  <li><a href="#what-to-test" id="toc-what-to-test" class="nav-link" data-scroll-target="#what-to-test">What to test</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
@@ -352,7 +338,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Refactor Your App Into a Module</h1>
+<h1 class="title">Testing</h1>
 </div>
 
 
@@ -370,192 +356,200 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 
 <div class="column-page-inset-right">
-    <p><a href="../slides/07-modules_refactor.html" target="_blank">View slides in full screen</a></p>
+    <p><a href="../slides/06-testing.html" target="_blank">View slides in full screen</a></p>
        <div class="ratio ratio-16x9">
-      <iframe class="slide-deck" src="../slides/07-modules_refactor.html" height="500px" width="100%"></iframe>
+      <iframe class="slide-deck" src="../slides/06-testing.html" height="500px" width="100%"></iframe>
     </div>
   
 </div>
 <section id="slide-contents" class="level1">
 <h1>Slide Contents</h1>
 <hr>
-<section id="title-refactor-your-app-into-a-module" class="level2">
-<h2 class="anchored" data-anchor-id="title-refactor-your-app-into-a-module">title: “Refactor Your App Into a Module”</h2>
+<section id="title-testing-shiny-apps" class="level2">
+<h2 class="anchored" data-anchor-id="title-testing-shiny-apps">title: “Testing Shiny Apps”</h2>
 </section>
-<section id="where-were-starting" class="level2">
-<h2 class="anchored" data-anchor-id="where-were-starting">Where we’re starting</h2>
-<p>The tips dashboard’s sidebar today: one slider (<code>total_bill</code>), one checkbox group (<code>time</code>), one <code>@reactive.calc filtered_data()</code>. All hand-written, all tied to the <code>tips</code> dataframe specifically.</p>
-</section>
-<section id="step-1-identify-the-reusable-part" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-identify-the-reusable-part">Step 1 — identify the reusable part</h2>
+<section id="why-test" class="level2">
+<h2 class="anchored" data-anchor-id="why-test">Why test?</h2>
 <ul>
-<li>The sidebar UI (slider + checkbox group)</li>
-<li>The filtering logic (<code>@reactive.calc</code>)</li>
-<li>Everything <em>else</em> (value boxes, plots, tables) stays in the app — it’s specific to how <em>this</em> app wants to display the filtered data</li>
+<li>Manual “click around and check” doesn’t scale</li>
+<li>Catch regressions before users do</li>
+<li>Document expected behavior as executable code</li>
 </ul>
 </section>
-<section id="step-2-write-the-module" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-write-the-module">Step 2 — write the module</h2>
-<p>We already built this in the last section: <code>filter_panel(input, output, session, data, columns)</code> — pass in any dataframe and any list of columns, get back <code>{"mask": &lt;reactive.calc&gt;}</code>.</p>
+<section id="visual-check-assert-statements" class="level2">
+<h2 class="anchored" data-anchor-id="visual-check-assert-statements">Visual check + assert statements</h2>
+<div id="f218b8d6" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_add(x, y):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="c5d3f83b" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_add(<span class="dv">3</span>, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>13</code></pre>
+</div>
+</div>
+<div id="565608cc" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> my_add(<span class="dv">3</span>, <span class="dv">10</span>) <span class="op">==</span> <span class="dv">13</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="9ed3f2df" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> my_add(<span class="dv">3</span>, <span class="dv">10</span>) <span class="op">==</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> my_add(<span class="ansi-green-fg">3</span>, <span class="ansi-green-fg">10</span>) == <span class="ansi-green-fg">100</span>
+
+<span class="ansi-red-fg">AssertionError</span>: </pre>
+</div>
+</div>
+</div>
 </section>
-<section id="step-3-swap-the-sidebar-for-the-module" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-swap-the-sidebar-for-the-module">Step 3 — swap the sidebar for the module</h2>
-<p>Before:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ui.sidebar(<span class="bu">open</span><span class="op">=</span><span class="st">"desktop"</span>):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    ui.input_slider(<span class="bu">id</span><span class="op">=</span><span class="st">"slider"</span>, label<span class="op">=</span><span class="st">"Bill amount"</span>, ...)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    ui.input_checkbox_group(<span class="bu">id</span><span class="op">=</span><span class="st">"checkbox_group"</span>, label<span class="op">=</span><span class="st">"Food service"</span>, ...)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">@reactive.calc</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filtered_data():</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    idx1 <span class="op">=</span> tips.total_bill.between(...)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    idx2 <span class="op">=</span> tips.time.isin(...)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tips[idx1 <span class="op">&amp;</span> idx2]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>After:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ui.sidebar():</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    tips_filter <span class="op">=</span> filter_panel(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"tips_filter"</span>, data<span class="op">=</span>tips, columns<span class="op">=</span>[<span class="st">"total_bill"</span>, <span class="st">"time"</span>]</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Everywhere the app used <code>filtered_data()</code>, it now uses <code>tips.loc[tips_filter["mask"]()]</code>.</p>
+<section id="unit-testing---pytest" class="level2">
+<h2 class="anchored" data-anchor-id="unit-testing---pytest">Unit testing - pytest</h2>
+<ul>
+<li>Need to know a bit of how packages are set up</li>
+</ul>
 </section>
-<section id="the-refactored-app" class="level2">
-<h2 class="anchored" data-anchor-id="the-refactored-app">The refactored app</h2>
-<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
-#|   shinylive does not work in self-contained HTML documents.
-#|   Please set `embed-resources: false` in your metadata.
-#| standalone: true
-#| components: [editor, viewer]
-#| layout: vertical
-#| viewerHeight: 650
-
-"""Tips dashboard, Express syntax, filter sidebar extracted into a module."""
-
-import seaborn as sns
-from shiny.express import render, ui
-
-from filter_module_express import filter_panel
-
-tips = sns.load_dataset("tips")
-
-ui.page_opts(title="Restaurant tipping", fillable=True)
-
-with ui.sidebar():
-    tips_filter = filter_panel(
-        "tips_filter", data=tips, columns=["total_bill", "time"]
-    )
-
-with ui.card():
-    ui.card_header("Filtered tips")
-
-    @render.data_frame
-    def tips_table():
-        return tips.loc[tips_filter["mask"]()]
-
-
-
-## file: filter_module_express.py
-"""Reusable Shiny Express module: same behavior as filter_module_core.py,
-using the Express `@module` decorator (one function is both UI and server)."""
-
-import pandas as pd
-from shiny import reactive
-from shiny.express import module, render, ui
-
-
-def _make_filters(data, columns):
-    filters = {}
-    for col in columns:
-        if pd.api.types.is_numeric_dtype(data[col]):
-            lo, hi = float(data[col].min()), float(data[col].max())
-            filters[col] = {
-                "kind": "range",
-                "component": ui.input_slider(
-                    f"filter_{col}",
-                    f"Range for {col}",
-                    min=lo,
-                    max=hi,
-                    value=[lo, hi],
-                ),
-            }
-        else:
-            choices = sorted(data[col].unique())
-            filters[col] = {
-                "kind": "isin",
-                "component": ui.input_checkbox_group(
-                    f"filter_{col}",
-                    f"Select {col}",
-                    choices=choices,
-                    selected=choices,
-                ),
-            }
-    return filters
-
-
-@module
-def filter_panel(input, output, session, data, columns):
-    ui_filters = _make_filters(data, columns)
-
-    @render.ui
-    def filters():
-        return [ui_filters[col]["component"] for col in columns]
-
-    @reactive.calc
-    def mask():
-        m = pd.Series(True, index=data.index)
-        for col in columns:
-            if ui_filters[col]["kind"] == "range":
-                lo, hi = input[f"filter_{col}"]()
-                m = m &amp; data[col].between(lo, hi)
-            else:
-                m = m &amp; data[col].isin(input[f"filter_{col}"]())
-        return m
-
-    return {"mask": mask}
-
-</code></pre>
+<section id="python-functions-shiny" class="level2">
+<h2 class="anchored" data-anchor-id="python-functions-shiny">Python functions + Shiny</h2>
+<ul>
+<li>If you have a normal python function, you can still pass in reactive values as the arguments!
+<ul>
+<li>Import your existing functions / modules</li>
+<li>Use other packages</li>
+</ul></li>
+<li>As long as you don’t plan on having reactive calls <em>inside</em> the function body
+<ul>
+<li>Remember: reactive things must happen inside a reactive context</li>
+</ul></li>
+<li><code>pytest</code> is the package / tool to do unit testing</li>
+</ul>
 </section>
-<section id="what-we-dropped" class="level2">
-<h2 class="anchored" data-anchor-id="what-we-dropped">What we dropped</h2>
-<p>The original app had a “Reset filter” button. We left it out of the module to keep this refactor focused — adding it back is your exercise.</p>
+<section id="playwright---end-to-end-testing" class="level2">
+<h2 class="anchored" data-anchor-id="playwright---end-to-end-testing">Playwright - end-to-end testing</h2>
+<p>Playwright is a modern browser automation library.</p>
+<p>Shiny provides a <strong>Playwright controller</strong> that understands Shiny-specific widgets:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Page</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.playwright <span class="im">import</span> controller</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.run <span class="im">import</span> ShinyAppProc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Docs: <a href="https://shiny.posit.co/py/docs/testing.html" class="uri">https://shiny.posit.co/py/docs/testing.html</a></p>
+</section>
+<section id="test-structure" class="level2">
+<h2 class="anchored" data-anchor-id="test-structure">Test structure</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Page</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.playwright <span class="im">import</span> controller</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.run <span class="im">import</span> run_shiny_app</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>APP <span class="op">=</span> Path(<span class="va">__file__</span>).parent <span class="op">/</span> <span class="st">"app.py"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_species_filter(page: Page):</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> run_shiny_app(<span class="bu">str</span>(APP)) <span class="im">as</span> app:</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        page.goto(app.url)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        radio <span class="op">=</span> controller.InputRadioButtons(page, <span class="st">"species"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        text  <span class="op">=</span> controller.OutputText(page, <span class="st">"n_rows"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        radio.expect_choices([<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>])</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        radio.<span class="bu">set</span>(<span class="st">"Chinstrap"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        text.expect_value(<span class="st">"68 penguins"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="running-tests" class="level2">
+<h2 class="anchored" data-anchor-id="running-tests">Running tests</h2>
+<pre><code>code/demos/testing/
+├── app.py          ← the Shiny app
+└── test_app.py     ← tests</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code/demos/testing</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or from the repo root:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> code/demos/testing/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎯 Live Demo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run <code>pytest code/demos/testing/</code> in the terminal.</p>
+</div>
+</div>
+</section>
+<section id="controllers" class="level2">
+<h2 class="anchored" data-anchor-id="controllers">Controllers</h2>
+<p>Shiny provides typed controllers for every input and output type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inputs</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>controller.InputRadioButtons(page, <span class="st">"id"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>controller.InputSlider(page, <span class="st">"id"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>controller.InputSelect(page, <span class="st">"id"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>controller.InputCheckboxGroup(page, <span class="st">"id"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Outputs</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>controller.OutputPlot(page, <span class="st">"id"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>controller.OutputText(page, <span class="st">"id"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>controller.OutputDataFrame(page, <span class="st">"id"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="what-to-test" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-test">What to test</h2>
+<ul>
+<li>Default state renders without errors</li>
+<li>Each input change produces the expected output change</li>
+<li>Edge cases: empty selections, out-of-range values</li>
+<li>Error messages appear when they should</li>
+</ul>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<p>See exercise: <a href="../exercises.html#ex-modules-refactor">Refactor into a Module</a>.</p>
+<p>See exercise: <a href="../exercises.html#ex-testing">Testing</a>.</p>
 </section>
 </section>
 <section id="code" class="level1 page-columns page-full">
 <h1>Code</h1>
 <div class="column-page-inset">
-<p>Shiny Core version:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Tips dashboard, Core syntax, filter sidebar extracted into a module."""</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> filter_module_core <span class="im">import</span> filter_server, filter_ui</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>app_ui <span class="op">=</span> ui.page_sidebar(</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    ui.sidebar(filter_ui(<span class="st">"tips_filter"</span>)),</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    ui.card(</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        ui.card_header(<span class="st">"Filtered tips"</span>),</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        ui.output_data_frame(<span class="st">"tips_table"</span>),</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Restaurant tipping"</span>,</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    tips_filter <span class="op">=</span> filter_server(</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"tips_filter"</span>, data<span class="op">=</span>tips, columns<span class="op">=</span>[<span class="st">"total_bill"</span>, <span class="st">"time"</span>]</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">@render.data_frame</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tips_table():</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tips.loc[tips_filter[<span class="st">"mask"</span>]()]</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> App(app_ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>code/demos/testing/app.py</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>dat <span class="op">=</span> load_penguins().dropna()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>ui.input_radio_buttons(<span class="st">"species"</span>, <span class="st">"Species"</span>, [<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>])</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ui.card():</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">@render.text</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> n_rows():</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        filtered <span class="op">=</span> dat[dat[<span class="st">"species"</span>] <span class="op">==</span> <span class="bu">input</span>.species()]</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(filtered)<span class="sc">}</span><span class="ss"> penguins"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>code/demos/testing/test_app.py</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Page</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.playwright <span class="im">import</span> controller</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.run <span class="im">import</span> run_shiny_app</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>APP <span class="op">=</span> Path(<span class="va">__file__</span>).parent <span class="op">/</span> <span class="st">"app.py"</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_default_state(page: Page):</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> run_shiny_app(<span class="bu">str</span>(APP)) <span class="im">as</span> app:</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        page.goto(app.url)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        radio <span class="op">=</span> controller.InputRadioButtons(page, <span class="st">"species"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        radio.expect_selected(<span class="st">"Adelie"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        radio.expect_choices([<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>])</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_species_filter(page: Page):</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> run_shiny_app(<span class="bu">str</span>(APP)) <span class="im">as</span> app:</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        page.goto(app.url)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        radio <span class="op">=</span> controller.InputRadioButtons(page, <span class="st">"species"</span>)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>        text <span class="op">=</span> controller.OutputText(page, <span class="st">"n_rows"</span>)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>        radio.<span class="bu">set</span>(<span class="st">"Chinstrap"</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>        text.expect_value(<span class="st">"68 penguins"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 

@@ -244,15 +244,15 @@
 <h2>Components</h2>
 <p>Each Shiny app consists of:</p>
 <ol type="1">
-<li><strong>Input</strong> components — widgets the user can interact with (sliders, dropdowns, checkboxes, …)
+<li><strong>Input</strong> components: widgets the user can interact with (sliders, dropdowns, checkboxes, …)
 <ul>
 <li><a href="https://shiny.posit.co/py/components/#inputs/" class="uri">https://shiny.posit.co/py/components/#inputs/</a></li>
 </ul></li>
-<li><strong>Output</strong> components — things Shiny renders and displays (plots, tables, text, …)
+<li><strong>Output</strong> components: things Shiny renders and displays (plots, tables, text, …)
 <ul>
 <li><a href="https://shiny.posit.co/py/components/#outputs/" class="uri">https://shiny.posit.co/py/components/#outputs/</a></li>
 </ul></li>
-<li><strong>Layout</strong> — how the components are laid out on the page (columns, sidebar, boxes, cards, …)
+<li><strong>Layout</strong>: how the components are laid out on the page (columns, sidebar, boxes, cards, …)
 <ul>
 <li><a href="https://shiny.posit.co/py/layouts/" class="uri">https://shiny.posit.co/py/layouts/</a></li>
 </ul></li>
@@ -287,8 +287,12 @@
 </section>
 <section id="reactivity" class="slide level2">
 <h2>Reactivity</h2>
-<p>When an input changes, Shiny reacts by rebuilding the outputs that depend on it — and <em>only those outputs</em>.</p>
-<p>No callbacks. No manual refresh. No cache management.</p>
+<ul>
+<li>Rebuilds only the outputs that depend on the changed input</li>
+<li>No callbacks</li>
+<li>No manual refresh</li>
+<li>No cache management</li>
+</ul>
 </section>
 <section id="spreadsheet-analogy" class="slide level2">
 <h2>Spreadsheet analogy</h2>
@@ -297,9 +301,9 @@
 <li><strong>Inputs</strong> = cells you type values into</li>
 <li><strong>Outputs</strong> = formula cells</li>
 <li><strong>Instructions</strong> = the formulas</li>
+<li>Change a value cell, and only its dependent formula cells recalculate</li>
+<li>Shiny works the same way</li>
 </ul>
-<p>When you change a value cell, only the formula cells that depend on it recalculate.</p>
-<p>Shiny works the same way.</p>
 <h3 id="other-reactive-tools">Other reactive tools</h3>
 <ul>
 <li>Pluto Notebooks: <a href="https://plutojl.org//" class="uri">https://plutojl.org//</a></li>
@@ -335,10 +339,10 @@
 <p><strong>Important</strong></p>
 </div>
 <div class="callout-content">
-<p>Shiny for Python has two syntaxes for writing the same apps. There is full feature parody between the 2 syntax modes.</p>
+<p>Shiny for Python has two syntaxes for writing the same apps. There is full feature parity between the 2 syntax modes.</p>
 <ol type="1">
-<li><strong>Shiny Express</strong> — simpler syntax (think <a href="https://streamlit.io/">Streamlit</a>)</li>
-<li><strong>Shiny Core</strong> — more explicit, closer to <a href="https://shiny.posit.co/">Shiny for R</a> and <a href="https://dash.plotly.com/">Dash</a></li>
+<li><strong>Shiny Express</strong>: simpler syntax (think <a href="https://streamlit.io/">Streamlit</a>)</li>
+<li><strong>Shiny Core</strong>: more explicit, closer to <a href="https://shiny.posit.co/">Shiny for R</a> and <a href="https://dash.plotly.com/">Dash</a></li>
 </ol>
 </div>
 </div>

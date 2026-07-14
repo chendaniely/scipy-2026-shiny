@@ -268,37 +268,25 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Shiny modules</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Refactor your app into a module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reuse your Shiny module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/09-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/06-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Testing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-deploy.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/07-deploy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deploying your application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/08-modules_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/09-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
   </div>
 </li>
@@ -339,6 +327,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#sql-is-a-great-communication-layer" id="toc-sql-is-a-great-communication-layer" class="nav-link" data-scroll-target="#sql-is-a-great-communication-layer">SQL is a great communication layer</a></li>
   </ul></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   </ul>
 </nav>
     </div>
@@ -377,9 +366,9 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <h2 class="anchored" data-anchor-id="putting-llms-in-shiny-apps">Putting LLMs in Shiny apps</h2>
 <p>Three patterns, increasing complexity:</p>
 <ol type="1">
-<li><strong>Chat interface</strong> — a conversational UI (<code>shinychat</code>)</li>
-<li><strong>Tool calling</strong> — let the LLM take actions in your app</li>
-<li><strong>Data chat</strong> — query your dataframe with natural language (<code>querychat</code>)</li>
+<li><strong>Chat interface</strong>: a conversational UI (<code>shinychat</code>)</li>
+<li><strong>Tool calling</strong>: let the LLM take actions in your app</li>
+<li><strong>Data chat</strong>: query your dataframe with natural language (<code>querychat</code>)</li>
 </ol>
 </section>
 <section id="shinychat" class="level2">
@@ -400,11 +389,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </section>
 <section id="demo-shinychat" class="level2">
 <h2 class="anchored" data-anchor-id="demo-shinychat">Demo: shinychat</h2>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>code/03-llm/app-shinychat.py</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="code/03-llm/app-shinychat.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> ui</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> ui</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shinychat <span class="im">import</span> chat_ui, chat_server</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chatlas <span class="im">import</span> ChatGithub</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -415,7 +400,6 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">@chat_server</span>(<span class="st">"chat"</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _():</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-4.1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 </section>
 <section id="chatting-with-your-data" class="level2">
 <h2 class="anchored" data-anchor-id="chatting-with-your-data">Chatting with your data</h2>
@@ -444,6 +428,22 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>querychat.chat_server(<span class="st">"chat"</span>, qc)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>querychat.dataframe_server(<span class="st">"df"</span>, qc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎯 Live Demo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Run <code>code/demos/app-90-querychat.py</code></li>
+<li>Or click and run: <a href="https://posit-ai-querychat.share.connect.posit.cloud/">View App</a> · <a href="https://github.com/posit-dev/py-shiny-templates/tree/main/gen-ai/querychat">View Code</a></li>
+</ul>
+</div>
+</div>
 </section>
 <section id="sidebot-pattern" class="level2">
 <h2 class="anchored" data-anchor-id="sidebot-pattern">Sidebot pattern</h2>
@@ -453,7 +453,20 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <li>LLM translates to filter parameters</li>
 <li>Dashboard updates reactively</li>
 </ul>
-<p>Template: <code>shiny create --mode core --github jcheng5/py-databot</code></p>
+<p>Template: <code>shiny create --github jcheng5/py-sidebot</code></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎯 Live Demo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Click and run: <a href="https://jcheng.shinyapps.io/sidebot">View App</a> · <a href="https://github.com/jcheng5/py-sidebot">View Code</a></p>
+</div>
+</div>
 </section>
 <section id="demo-llms-chat" class="level2">
 <h2 class="anchored" data-anchor-id="demo-llms-chat">Demo: LLMs + Chat</h2>
@@ -471,7 +484,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <section id="sql-is-a-great-communication-layer" class="level2">
 <h2 class="anchored" data-anchor-id="sql-is-a-great-communication-layer">SQL is a great communication layer</h2>
 <p>Upcoming tool: ggsql <a href="https://ggsql.org/" class="uri">https://ggsql.org/</a></p>
-<p>Trt it: <a href="https://ggsql.org/wasm/" class="uri">https://ggsql.org/wasm/</a></p>
+<p>Try it: <a href="https://ggsql.org/wasm/" class="uri">https://ggsql.org/wasm/</a></p>
 <p>See also: Querychat + Vis docs: <a href="https://posit-dev.github.io/querychat/py/visualize.html" class="uri">https://posit-dev.github.io/querychat/py/visualize.html</a></p>
 <div class="columns">
 <div class="column">
@@ -485,9 +498,40 @@ DRAW point
 <p><img src="../img/ggsql-example.png" class="img-fluid"></p>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="code" class="level1 page-columns page-full">
+<h1>Code</h1>
+<div class="column-page-inset">
+<p><code>code/demos/app-90-querychat.py</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> render, ui</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> querychat.express <span class="im">import</span> QueryChat</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> querychat.data <span class="im">import</span> titanic</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Provide data source to QueryChat</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>qc <span class="op">=</span> QueryChat(titanic(), <span class="st">"titanic"</span>, client<span class="op">=</span><span class="st">"github/gpt-4.1"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Add sidebar chat control</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>qc.sidebar()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Add a card with reactive title and data frame</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ui.card():</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.card_header():</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">@render.text</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> title():</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> qc.title() <span class="kw">or</span> <span class="st">"Titanic Dataset"</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">@render.text</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> query():</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> qc.sql()</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">@render.data_frame</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> data_table():</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> qc.df()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

@@ -268,37 +268,25 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Shiny modules</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Refactor your app into a module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reuse your Shiny module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/09-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/06-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Testing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-deploy.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/07-deploy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deploying your application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/08-modules_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/09-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
   </div>
 </li>
@@ -329,6 +317,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <ul>
   <li><a href="#slide-contents" id="toc-slide-contents" class="nav-link active" data-scroll-target="#slide-contents">Slide Contents</a>
   <ul class="collapse">
+  <li><a href="#more-ai-llm-at-scipy" id="toc-more-ai-llm-at-scipy" class="nav-link" data-scroll-target="#more-ai-llm-at-scipy">More AI + LLM at SciPy</a></li>
   <li><a href="#before-we-start" id="toc-before-we-start" class="nav-link" data-scroll-target="#before-we-start">Before we start</a></li>
   <li><a href="#have-you-used" id="toc-have-you-used" class="nav-link" data-scroll-target="#have-you-used">Have you used…</a></li>
   <li><a href="#what-well-cover" id="toc-what-well-cover" class="nav-link" data-scroll-target="#what-well-cover">What we’ll cover</a></li>
@@ -345,6 +334,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#chatlas" id="toc-chatlas" class="nav-link" data-scroll-target="#chatlas">chatlas</a></li>
   <li><a href="#demo-tool-calling" id="toc-demo-tool-calling" class="nav-link" data-scroll-target="#demo-tool-calling">Demo: Tool calling</a></li>
   </ul></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   </ul>
 </nav>
     </div>
@@ -379,6 +369,20 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </div>
 <section id="slide-contents" class="level1">
 <h1>Slide Contents</h1>
+<section id="more-ai-llm-at-scipy" class="level2">
+<h2 class="anchored" data-anchor-id="more-ai-llm-at-scipy">More AI + LLM at SciPy</h2>
+<p>For more AI things, follow these other LLM tutorials from SciPy:</p>
+<ul>
+<li><strong>Build a Deep Research Agent</strong>: Ben Batorsky &amp; Eric Ma
+<ul>
+<li><a href="https://github.com/ericmjl/build-deep-research-agent" class="uri">https://github.com/ericmjl/build-deep-research-agent</a></li>
+</ul></li>
+<li><strong>Safe &amp; Maintainable AI Apps in Python</strong>: Carson Sievert
+<ul>
+<li><a href="https://github.com/cpsievert/scipy26-tutorial" class="uri">https://github.com/cpsievert/scipy26-tutorial</a></li>
+</ul></li>
+</ul>
+</section>
 <section id="before-we-start" class="level2">
 <h2 class="anchored" data-anchor-id="before-we-start">Before we start</h2>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -409,8 +413,10 @@ Warning
 </section>
 <section id="what-well-cover" class="level2">
 <h2 class="anchored" data-anchor-id="what-well-cover">What we’ll cover</h2>
-<p>We’ll treat LLMs as <strong>black boxes</strong> — you send text in, text comes back.</p>
-<p>Goal: demystify the API so you can wire one into a Shiny app.</p>
+<ul>
+<li>Treat LLMs as <strong>black boxes</strong>: you send text in, text comes back</li>
+<li>Goal: demystify the API so you can wire one into a Shiny app</li>
+</ul>
 </section>
 <section id="llm-conversations-are-http-requests" class="level2">
 <h2 class="anchored" data-anchor-id="llm-conversations-are-http-requests">LLM conversations are HTTP requests</h2>
@@ -551,7 +557,7 @@ seems like the shorts implementation still doesn't work?
 </section>
 <section id="tokens" class="level2">
 <h2 class="anchored" data-anchor-id="tokens">Tokens</h2>
-<p>Tokens are the fundamental unit — roughly ¾ of a word on average.</p>
+<p>Tokens are the fundamental unit, roughly ¾ of a word on average.</p>
 <ul>
 <li>API pricing is per token (input and output billed separately)</li>
 <li>Models have a <strong>context window</strong> limit (max tokens per request)</li>
@@ -611,7 +617,20 @@ seems like the shorts implementation still doesn't work?
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>chat <span class="op">=</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-4.1"</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>chat.chat(<span class="st">"What is the capital of France?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Same API regardless of provider — swap one line to switch models.</p>
+<p>Same API regardless of provider: swap one line to switch models.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎯 Live Demo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run <code>code/demos/ai-01-chatlas-github.py</code>, then <code>code/demos/ai-02-dotenv.py</code>.</p>
+</div>
+</div>
 </section>
 <section id="demo-tool-calling" class="level2">
 <h2 class="anchored" data-anchor-id="demo-tool-calling">Demo: Tool calling</h2>
@@ -631,9 +650,89 @@ seems like the shorts implementation still doesn't work?
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>chat.chat(<span class="st">"Where is SciPy 2027 being held?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The LLM decides when to call the tool and what arguments to pass.</p>
-
-
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎯 Live Demo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run <code>code/demos/ai-03-tools.py</code>.</p>
+</div>
+</div>
 </section>
+</section>
+<section id="code" class="level1 page-columns page-full">
+<h1>Code</h1>
+<div class="column-page-inset">
+<p><code>code/demos/ai-01-chatlas-github.py</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run this script with</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># export GITHUB_TOKEN=your_personal_access_token</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># python code/demos/ai-01-chatlas-github.py</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chatlas <span class="im">import</span> ChatOpenAI, ChatAnthropic, ChatGoogle, ChatGithub, ChatOllama, ChatHuggingFace</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>chat <span class="op">=</span> ChatGithub()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(chat)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>chat.chat(<span class="st">"What is the capital of France?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>code/demos/ai-02-dotenv.py</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run this script with</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># python code/demos/ai-02-dotenv.py</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chatlas <span class="im">import</span> ChatGithub</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># this is the path to the .env file relative to working directory</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>load_dotenv(<span class="st">'.env'</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>chat <span class="op">=</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-5"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(chat.list_models())</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>chat.chat(<span class="st">"Where is SciPy 2026 being held?"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>chat.chat(<span class="st">"Where is SciPy 2027 being held?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>code/demos/ai-03-tools.py</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run this script with</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># python code/demos/ai-03-tools.py</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chatlas <span class="im">import</span> ChatGithub, ChatAnthropic</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># this is the path to the .env file relative to working directory</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>load_dotenv(<span class="st">'.env'</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scipy_locations(year: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Looks up the location SciPy is held given a year.</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">    year : int</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">        The year of the SciPy conference.</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">    str</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">        The city and region where SciPy is held that year, or a message</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">        indicating the location is unknown.</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> year:</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">2027</span>:</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">"The Moon"</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">2026</span>:</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">" Minneapolis, MN"</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dv">2025</span>:</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">"Tacoma, WA"</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>chat <span class="op">=</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-5"</span>)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co">#chat = ChatAnthropic()</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>chat.register_tool(scipy_locations)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>chat.chat(<span class="st">"Where is SciPy 2027 being held?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

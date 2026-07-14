@@ -242,8 +242,8 @@
 </ol>
 </section>
 <section id="step-1-static-plot" class="slide level2">
-<h2>Step 1 — static plot</h2>
-<div id="357321e6" class="cell" data-execution_count="1">
+<h2>Step 1: static plot</h2>
+<div id="3ef6524c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="cb1-2"><a></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="cb1-3"><a></a></span>
@@ -263,9 +263,9 @@
 </div>
 </div>
 </section>
-<section id="step-1b---parameterize-your-output" class="slide level2">
-<h2>Step 1b - parameterize your output</h2>
-<div id="908db999" class="cell" data-execution_count="2">
+<section id="step-1b-parameterize-your-output" class="slide level2">
+<h2>Step 1b: parameterize your output</h2>
+<div id="ef3ece6e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="cb2-2"><a></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="cb2-3"><a></a></span>
@@ -289,8 +289,8 @@
 </div>
 </section>
 <section id="step-2-add-shiny-imports" class="slide level2">
-<h2>Step 2 — add Shiny imports</h2>
-<div id="2c0e6d4f" class="cell" data-execution_count="3">
+<h2>Step 2: add Shiny imports</h2>
+<div id="72ef5e1c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="annotated-cell-3-2"><a href="#annotated-cell-3-2"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
@@ -307,8 +307,8 @@
 </div>
 </section>
 <section id="step-3-discover-the-axis-choices" class="slide level2">
-<h2>Step 3 — discover the axis choices</h2>
-<div id="952bf53c" class="cell" data-execution_count="4">
+<h2>Step 3: discover the axis choices</h2>
+<div id="c72bfd3b" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="annotated-cell-4-2"><a href="#annotated-cell-4-2"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="annotated-cell-4-3"><a href="#annotated-cell-4-3"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
@@ -319,7 +319,7 @@
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="6" data-code-annotation="1">Automatically finds all numeric columns — no hard-coded list needed</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="6" data-code-annotation="1">Automatically finds all numeric columns: no hard-coded list needed</span>
 </dd>
 </dl>
 </div>
@@ -327,7 +327,7 @@
 <p>You can still use your normal Python skills!</p>
 </section>
 <section id="step-4-add-inputs" class="slide level2">
-<h2>Step 4 — add inputs</h2>
+<h2>Step 4: add inputs</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a>#| '!! shinylive warning !!': |</span>
 <span id="cb3-2"><a></a>#|   shinylive does not work in self-contained HTML documents.</span>
 <span id="cb3-3"><a></a>#|   Please set `embed-resources: false` in your metadata.</span>
@@ -343,12 +343,13 @@
 <span id="cb3-13"><a></a>ui.input_select("x", "", num_cols, selected="bill_depth_mm")</span>
 <span id="cb3-14"><a></a>ui.input_select("y", "", num_cols, selected="body_mass_g")</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
-<li>Dropdown for the X axis — input ID is <code>"x"</code></li>
-<li>Dropdown for the Y axis — input ID is <code>"y"</code></li>
+<li>Dropdown for the X axis: input ID is <code>"x"</code></li>
+<li>Dropdown for the Y axis: input ID is <code>"y"</code></li>
+<li>Every ID must be unique across the whole app.</li>
 </ol>
 </section>
 <section id="step-5-make-the-output-reactive" class="slide level2">
-<h2>Step 5 — make the output reactive</h2>
+<h2>Step 5: make the output reactive</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>#| '!! shinylive warning !!': |</span>
 <span id="cb4-2"><a></a>#|   shinylive does not work in self-contained HTML documents.</span>
 <span id="cb4-3"><a></a>#|   Please set `embed-resources: false` in your metadata.</span>
@@ -380,13 +381,13 @@
 <section id="what-just-happened" class="slide level2">
 <h2>What just happened?</h2>
 <ul>
-<li><code>input.x()</code> and <code>input.y()</code> are <strong>reactive values</strong> — they change when the user picks
+<li><code>input.x()</code> and <code>input.y()</code> are <strong>reactive values</strong>: they change when the user picks
 <ul>
-<li><code>input.*()</code> - signals reading from an input component</li>
+<li><code>input.*()</code>: signals reading from an input component</li>
 </ul></li>
-<li><code>@render.plot</code> creates a <strong>reactive context</strong> — it re-runs whenever its inputs change
+<li><code>@render.plot</code> creates a <strong>reactive context</strong>: it re-runs whenever its inputs change
 <ul>
-<li><code>@render*</code> - signals an output component</li>
+<li><code>@render*</code>: signals an output component</li>
 </ul></li>
 <li>Both dropdowns drive the same output with no extra wiring</li>
 </ul>

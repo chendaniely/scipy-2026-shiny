@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Deploying Your Application – SciPy 2026: Shiny Dashboards</title>
+<title>Introduction to Shiny Modules – SciPy 2026: Shiny Dashboards</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -83,6 +83,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-574c440e15a1098b5c8632c39aa1c88b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-661ee3a551d89fab38b2ea5a2675dcf6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-574c440e15a1098b5c8632c39aa1c88b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -207,7 +212,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/10-deploy.html">Deploying your application</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/08-modules_intro.html">Introduction to Shiny modules</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -268,37 +273,25 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Shiny modules</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Refactor your app into a module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reuse your Shiny module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/09-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/06-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Testing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-deploy.html" class="sidebar-item-text sidebar-link active">
+  <a href="../workshop/07-deploy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deploying your application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/08-modules_intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/09-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
   </div>
 </li>
@@ -329,14 +322,20 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <ul>
   <li><a href="#slide-contents" id="toc-slide-contents" class="nav-link active" data-scroll-target="#slide-contents">Slide Contents</a>
   <ul class="collapse">
-  <li><a href="#options" id="toc-options" class="nav-link" data-scroll-target="#options">Options</a></li>
-  <li><a href="#requirements.txt-is-required" id="toc-requirements.txt-is-required" class="nav-link" data-scroll-target="#requirements.txt-is-required"><code>requirements.txt</code> is required</a></li>
-  <li><a href="#deploy-to-posit-connect-cloud" id="toc-deploy-to-posit-connect-cloud" class="nav-link" data-scroll-target="#deploy-to-posit-connect-cloud">Deploy to Posit Connect Cloud</a></li>
-  <li><a href="#deploy-with-the-publish-button" id="toc-deploy-with-the-publish-button" class="nav-link" data-scroll-target="#deploy-with-the-publish-button">Deploy with the publish button</a></li>
-  <li><a href="#updating-a-deployed-app" id="toc-updating-a-deployed-app" class="nav-link" data-scroll-target="#updating-a-deployed-app">Updating a deployed app</a></li>
-  <li><a href="#shinylive-no-server-required" id="toc-shinylive-no-server-required" class="nav-link" data-scroll-target="#shinylive-no-server-required">Shinylive: no server required</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#title-introduction-to-shiny-modules" id="toc-title-introduction-to-shiny-modules" class="nav-link" data-scroll-target="#title-introduction-to-shiny-modules">title: “Introduction to Shiny Modules”</a></li>
+  <li><a href="#apps-grow-into-tangled-graphs" id="toc-apps-grow-into-tangled-graphs" class="nav-link" data-scroll-target="#apps-grow-into-tangled-graphs">Apps grow into tangled graphs</a></li>
+  <li><a href="#group-the-pieces-that-belong-together" id="toc-group-the-pieces-that-belong-together" class="nav-link" data-scroll-target="#group-the-pieces-that-belong-together">Group the pieces that belong together</a></li>
+  <li><a href="#what-changed" id="toc-what-changed" class="nav-link" data-scroll-target="#what-changed">What changed</a></li>
+  <li><a href="#a-module-is-just-a-function" id="toc-a-module-is-just-a-function" class="nav-link" data-scroll-target="#a-module-is-just-a-function">A module is just a function</a></li>
+  <li><a href="#the-same-problem-at-our-scale" id="toc-the-same-problem-at-our-scale" class="nav-link" data-scroll-target="#the-same-problem-at-our-scale">The same problem, at our scale</a></li>
+  <li><a href="#functions-dont-fully-solve-this" id="toc-functions-dont-fully-solve-this" class="nav-link" data-scroll-target="#functions-dont-fully-solve-this">Functions don’t fully solve this</a></li>
+  <li><a href="#shiny-modules" id="toc-shiny-modules" class="nav-link" data-scroll-target="#shiny-modules">Shiny modules</a></li>
+  <li><a href="#shiny-express-module" id="toc-shiny-express-module" class="nav-link" data-scroll-target="#shiny-express-module">Shiny Express: <code>@module</code></a></li>
+  <li><a href="#our-scatter-module" id="toc-our-scatter-module" class="nav-link" data-scroll-target="#our-scatter-module">Our scatter module</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#modules-are-also-how-you-build-a-shiny-extension" id="toc-modules-are-also-how-you-build-a-shiny-extension" class="nav-link" data-scroll-target="#modules-are-also-how-you-build-a-shiny-extension">Modules are also how you build a Shiny extension</a></li>
   </ul></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   </ul>
 </nav>
     </div>
@@ -345,7 +344,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Deploying Your Application</h1>
+<h1 class="title">Introduction to Shiny Modules</h1>
 </div>
 
 
@@ -363,110 +362,222 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
 
 <div class="column-page-inset-right">
-    <p><a href="../slides/10-deploy.html" target="_blank">View slides in full screen</a></p>
+    <p><a href="../slides/08-modules_intro.html" target="_blank">View slides in full screen</a></p>
        <div class="ratio ratio-16x9">
-      <iframe class="slide-deck" src="../slides/10-deploy.html" height="500px" width="100%"></iframe>
+      <iframe class="slide-deck" src="../slides/08-modules_intro.html" height="500px" width="100%"></iframe>
     </div>
   
 </div>
 <section id="slide-contents" class="level1">
 <h1>Slide Contents</h1>
-<section id="options" class="level2">
-<h2 class="anchored" data-anchor-id="options">Options</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Platform</th>
-<th>Cost</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="https://connect.posit.cloud">Posit Connect Cloud</a></td>
-<td>Free tier</td>
-<td>Easiest, GitHub-based deploy</td>
-</tr>
-<tr class="even">
-<td><a href="https://render.com/">Render.com</a></td>
-<td>Free tier</td>
-<td>PaaS managed web service deployment</td>
-</tr>
-<tr class="odd">
-<td><a href="https://www.shinyapps.io">shinyapps.io</a></td>
-<td>Free tier</td>
-<td>Deprecated - Move to Posit Cloud after 2026</td>
-</tr>
-<tr class="even">
-<td><a href="https://posit.co/products/enterprise/connect">Posit Connect</a> (self-hosted)</td>
-<td>Paid</td>
-<td>Enterprise, on-prem</td>
-</tr>
-<tr class="odd">
-<td><a href="https://shiny.posit.co/py/docs/shinylive.html">Shinylive</a></td>
-<td>Free</td>
-<td>Runs entirely in the browser (no server)</td>
-</tr>
-</tbody>
-</table>
+<hr>
+<section id="title-introduction-to-shiny-modules" class="level2">
+<h2 class="anchored" data-anchor-id="title-introduction-to-shiny-modules">title: “Introduction to Shiny Modules”</h2>
 </section>
-<section id="requirements.txt-is-required" class="level2">
-<h2 class="anchored" data-anchor-id="requirements.txt-is-required"><code>requirements.txt</code> is required</h2>
-<p>Posit Connect Cloud installs packages from <code>requirements.txt</code> before running your app.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>requirements.txt</strong></pre>
+<section id="apps-grow-into-tangled-graphs" class="level2">
+<h2 class="anchored" data-anchor-id="apps-grow-into-tangled-graphs">Apps grow into tangled graphs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/modules-before.png" class="quarto-figure quarto-figure-center figure-img" height="500"></p>
+</figure>
 </div>
-<pre class="text" data-filename="requirements.txt"><code>shiny
-palmerpenguins
-plotnine
-pandas</code></pre>
+<div class="footnote">
+<p>Source: <a href="https://mastering-shiny.org/scaling-modules.html">Mastering Shiny, ch.&nbsp;19</a></p>
 </div>
-<p>If a package isn’t listed, the deployed app will crash with an <code>ImportError</code>.</p>
 </section>
-<section id="deploy-to-posit-connect-cloud" class="level2">
-<h2 class="anchored" data-anchor-id="deploy-to-posit-connect-cloud">Deploy to Posit Connect Cloud</h2>
-<ol type="1">
-<li>Go to <a href="https://connect.posit.cloud" class="uri">https://connect.posit.cloud</a> and sign in with GitHub</li>
-<li>Click <strong>New Content</strong> → <strong>Import from GitHub</strong></li>
-<li>Select your repository and branch</li>
-<li>Set the <strong>Entry point</strong> to your <code>app.py</code></li>
-<li>Click <strong>Deploy</strong></li>
-</ol>
-<p>That’s it. Posit Connect Cloud handles the environment.</p>
+<section id="group-the-pieces-that-belong-together" class="level2">
+<h2 class="anchored" data-anchor-id="group-the-pieces-that-belong-together">Group the pieces that belong together</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/modules-after.png" class="quarto-figure quarto-figure-center figure-img" height="500"></p>
+</figure>
+</div>
 </section>
-<section id="deploy-with-the-publish-button" class="level2">
-<h2 class="anchored" data-anchor-id="deploy-with-the-publish-button">Deploy with the publish button</h2>
-<p>In Positron or VS Code with the Shiny extension:</p>
-<ol type="1">
-<li>Open your <code>app.py</code></li>
-<li>Click the <strong>Publish</strong> button in the editor toolbar</li>
-<li>Follow the prompts to connect your account</li>
-</ol>
-</section>
-<section id="updating-a-deployed-app" class="level2">
-<h2 class="anchored" data-anchor-id="updating-a-deployed-app">Updating a deployed app</h2>
-<p>Push to the connected branch — Connect Cloud redeploys automatically.</p>
-<p>Or click <strong>Redeploy</strong> in the Connect Cloud dashboard.</p>
-</section>
-<section id="shinylive-no-server-required" class="level2">
-<h2 class="anchored" data-anchor-id="shinylive-no-server-required">Shinylive: no server required</h2>
-<p>Compile your app to WebAssembly and host it as a static site:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shinylive</span> export app/ site/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Limitations:</p>
+<section id="what-changed" class="level2">
+<h2 class="anchored" data-anchor-id="what-changed">What changed</h2>
 <ul>
-<li>No file I/O, no database connections</li>
-<li>Package support is limited to what Pyodide supports</li>
-<li>Startup is slower (downloads Python + packages to browser)</li>
+<li>Related boxes get grouped into a named unit (<code>session</code>, <code>data</code>, <code>results</code>, …)</li>
+<li>The <strong>same shape</strong> (yellow) shows up twice: written once, used twice</li>
+<li>The pitch for modules: <strong>isolate</strong> pieces so you can reason about them alone, <strong>reuse</strong> pieces so you don’t rewrite them</li>
 </ul>
-<p>Great for: demos, tutorials, sharing one-off apps.</p>
 </section>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<p>See exercise: <a href="../exercises.html#ex-deploy">Deploy Your App</a>.</p>
+<section id="a-module-is-just-a-function" class="level2">
+<h2 class="anchored" data-anchor-id="a-module-is-just-a-function">A module is just a function</h2>
+<ul>
+<li>Abstraction is why we write functions at all: hide the details, expose a small interface, reuse the logic without re-deriving it</li>
+<li>A plain function already gives you that</li>
+</ul>
+<p>So why isn’t it enough here?</p>
+</section>
+<section id="the-same-problem-at-our-scale" class="level2">
+<h2 class="anchored" data-anchor-id="the-same-problem-at-our-scale">The same problem, at our scale</h2>
+<ul>
+<li>Your tips dashboard’s sidebar: a slider, a checkbox group, and a <code>@reactive.calc</code> that filters the data</li>
+<li>Imagine a second dataset with its own filters: copy-paste the sidebar code, copy-paste the filter logic</li>
+<li>Now there are <strong>two places</strong> to fix every bug and <strong>two places</strong> to add every new feature</li>
+</ul>
+</section>
+<section id="functions-dont-fully-solve-this" class="level2">
+<h2 class="anchored" data-anchor-id="functions-dont-fully-solve-this">Functions don’t fully solve this</h2>
+<ul>
+<li>Remember: every input/output <strong>ID must be unique across the whole app</strong></li>
+<li>Python’s function scoping gives two calls independent local variables for free</li>
+<li>But <code>"filter_total_bill"</code> isn’t a variable: it’s a string shipped to the browser and tracked in Shiny’s session-wide input list, and Python’s scope has no jurisdiction over it</li>
+<li>Call the function twice and you get two <code>input_slider()</code>s both named <code>"filter_total_bill"</code>: Shiny can’t tell them apart</li>
+</ul>
+</section>
+<section id="shiny-modules" class="level2">
+<h2 class="anchored" data-anchor-id="shiny-modules">Shiny modules</h2>
+<p>A module is a function that:</p>
+<ul>
+<li>Encapsulates UI <em>and</em> server logic together</li>
+<li>Gets its own <strong>namespace</strong>: an ID prefix Shiny manages for you, so duplicate inner IDs never collide</li>
+<li>Otherwise behaves like a normal Python function: takes arguments, returns values</li>
+</ul>
+<p><a href="https://shiny.posit.co/py/docs/modules.html" class="uri">https://shiny.posit.co/py/docs/modules.html</a></p>
+</section>
+<section id="shiny-express-module" class="level2">
+<h2 class="anchored" data-anchor-id="shiny-express-module">Shiny Express: <code>@module</code></h2>
+<ul>
+<li>One function is both UI and server</li>
+<li>Modules have been supported in Express since Shiny 0.10.0</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> module, render, ui</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">@module</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scatter_panel(<span class="bu">input</span>, output, session, data, x, y):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Call it like a normal function, plus an id: <code>scatter_panel("bill_depth_mm_bill_length_mm", data=dat, x="bill_depth_mm", y="bill_length_mm")</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Shiny Core has the same idea, split into <code>@module.ui</code> / <code>@module.server</code>. We’ll stick to Express here.</p>
+</div>
+</div>
+</section>
+<section id="our-scatter-module" class="level2">
+<h2 class="anchored" data-anchor-id="our-scatter-module">Our scatter module</h2>
+<p>One scatterplot panel with its own “Points” vs “Density” toggle, built once and used once per pair of columns:</p>
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 550
+
+from itertools import combinations
+
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_bin2d, geom_point, ggplot, theme_minimal
+from shiny.express import module, render, ui
+
+dat = load_penguins().dropna()
+num_cols = dat.select_dtypes("float64").columns.tolist()
 
 
+@module
+def scatter_panel(input, output, session, data, x, y):
+    ui.input_radio_buttons("view", None, choices=["Points", "Density"], inline=True)
+
+    @render.plot
+    def plot():
+        p = ggplot(data, aes(x=x, y=y)) + theme_minimal()
+        if input.view() == "Points":
+            p = p + geom_point(aes(color="species"), alpha=0.6)
+        else:
+            p = p + geom_bin2d(bins=20)
+        return p
+
+
+ui.page_opts(title="Scatterplot combinations", fillable=True)
+
+with ui.layout_columns(col_widths=6):
+    for x, y in combinations(num_cols, 2):
+        with ui.card():
+            ui.card_header(f"{x} vs {y}")
+            scatter_panel(f"{x}_{y}", data=dat, x=x, y=y)
+
+</code></pre>
+<ul>
+<li>Each panel’s <code>view</code> id is namespaced by its own <code>f"{x}_{y}"</code> instance id</li>
+<li>Toggling one panel never touches any other</li>
+<li>Nothing here was hand-rolled to make that true</li>
+</ul>
 </section>
+<section id="recap" class="level2">
+<h2 class="anchored" data-anchor-id="recap">Recap</h2>
+<ul>
+<li>A module is a function with its own namespace: call it in a loop, on a second dataset, anywhere, and its inner IDs never collide</li>
+<li><code>x</code>, <code>y</code>, and <code>data</code> are just arguments, captured normally on each call</li>
+<li>Same idea works from Shiny Core or Shiny Express</li>
+</ul>
+</section>
+<section id="modules-are-also-how-you-build-a-shiny-extension" class="level2">
+<h2 class="anchored" data-anchor-id="modules-are-also-how-you-build-a-shiny-extension">Modules are also how you build a Shiny extension</h2>
+<ul>
+<li>A module is just a function, so it can move to its own file</li>
+<li>Once it’s in its own file, you can <code>import</code> it into any app</li>
+<li>Once you can import it, you can put it in a package</li>
+<li>Put it on PyPI and anyone can <code>pip install</code> it and use your module</li>
+<li>This is how packages like <code>shinywidgets</code> and <code>shinychat</code> are built: a module (or a few) packaged up for reuse across projects</li>
+</ul>
+</section>
+</section>
+<section id="code" class="level1 page-columns page-full">
+<h1>Code</h1>
+<div class="column-page-inset">
+<p><code>code/demos/app-06-modules_scatter_combos.py</code></p>
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 550
+
+from itertools import combinations
+
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_bin2d, geom_point, ggplot, theme_minimal
+from shiny.express import module, render, ui
+
+dat = load_penguins().dropna()
+num_cols = dat.select_dtypes("float64").columns.tolist()
+
+
+@module
+def scatter_panel(input, output, session, data, x, y):
+    ui.input_radio_buttons("view", None, choices=["Points", "Density"], inline=True)
+
+    @render.plot
+    def plot():
+        p = ggplot(data, aes(x=x, y=y)) + theme_minimal()
+        if input.view() == "Points":
+            p = p + geom_point(aes(color="species"), alpha=0.6)
+        else:
+            p = p + geom_bin2d(bins=20)
+        return p
+
+
+ui.page_opts(title="Scatterplot combinations", fillable=True)
+
+with ui.layout_columns(col_widths=6):
+    for x, y in combinations(num_cols, 2):
+        with ui.card():
+            ui.card_header(f"{x} vs {y}")
+            scatter_panel(f"{x}_{y}", data=dat, x=x, y=y)
+</code></pre>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

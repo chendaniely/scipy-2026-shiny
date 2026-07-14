@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-eb3626f408cec11013137802264cf11e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.3">
 
-  <title>SciPy 2026: Shiny Dashboards – Deploying Your Application</title>
+  <title>SciPy 2026: Shiny Dashboards – Testing Shiny Apps</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -220,105 +220,148 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="../img/scipy2026-loon.png" data-background-opacity="0.85" data-background-position="97% 97%" data-background-size="320px" class="quarto-title-block center">
-  <h1 class="title">Deploying Your Application</h1>
+  <h1 class="title">Testing Shiny Apps</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="options" class="slide level2">
-<h2>Options</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Platform</th>
-<th>Cost</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="https://connect.posit.cloud">Posit Connect Cloud</a></td>
-<td>Free tier</td>
-<td>Easiest, GitHub-based deploy</td>
-</tr>
-<tr class="even">
-<td><a href="https://render.com/">Render.com</a></td>
-<td>Free tier</td>
-<td>PaaS managed web service deployment</td>
-</tr>
-<tr class="odd">
-<td><a href="https://www.shinyapps.io">shinyapps.io</a></td>
-<td>Free tier</td>
-<td>Deprecated - Move to Posit Cloud after 2026</td>
-</tr>
-<tr class="even">
-<td><a href="https://posit.co/products/enterprise/connect">Posit Connect</a> (self-hosted)</td>
-<td>Paid</td>
-<td>Enterprise, on-prem</td>
-</tr>
-<tr class="odd">
-<td><a href="https://shiny.posit.co/py/docs/shinylive.html">Shinylive</a></td>
-<td>Free</td>
-<td>Runs entirely in the browser (no server)</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="requirements.txt-is-required" class="slide level2">
-<h2><code>requirements.txt</code> is required</h2>
-<p>Posit Connect Cloud installs packages from <code>requirements.txt</code> before running your app.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>requirements.txt</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="requirements.txt"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>shiny</span>
-<span id="cb1-2"><a></a>palmerpenguins</span>
-<span id="cb1-3"><a></a>plotnine</span>
-<span id="cb1-4"><a></a>pandas</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>If a package isn’t listed, the deployed app will crash with an <code>ImportError</code>.</p>
-</section>
-<section id="deploy-to-posit-connect-cloud" class="slide level2">
-<h2>Deploy to Posit Connect Cloud</h2>
-<ol type="1">
-<li>Go to <a href="https://connect.posit.cloud" class="uri">https://connect.posit.cloud</a> and sign in with GitHub</li>
-<li>Click <strong>New Content</strong> → <strong>Import from GitHub</strong></li>
-<li>Select your repository and branch</li>
-<li>Set the <strong>Entry point</strong> to your <code>app.py</code></li>
-<li>Click <strong>Deploy</strong></li>
-</ol>
-<p>That’s it. Posit Connect Cloud handles the environment.</p>
-</section>
-<section id="deploy-with-the-publish-button" class="slide level2">
-<h2>Deploy with the publish button</h2>
-<p>In Positron or VS Code with the Shiny extension:</p>
-<ol type="1">
-<li>Open your <code>app.py</code></li>
-<li>Click the <strong>Publish</strong> button in the editor toolbar</li>
-<li>Follow the prompts to connect your account</li>
-</ol>
-</section>
-<section id="updating-a-deployed-app" class="slide level2">
-<h2>Updating a deployed app</h2>
-<p>Push to the connected branch — Connect Cloud redeploys automatically.</p>
-<p>Or click <strong>Redeploy</strong> in the Connect Cloud dashboard.</p>
-</section>
-<section id="shinylive-no-server-required" class="slide level2">
-<h2>Shinylive: no server required</h2>
-<p>Compile your app to WebAssembly and host it as a static site:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">shinylive</span> export app/ site/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Limitations:</p>
+<section id="why-test" class="slide level2">
+<h2>Why test?</h2>
 <ul>
-<li>No file I/O, no database connections</li>
-<li>Package support is limited to what Pyodide supports</li>
-<li>Startup is slower (downloads Python + packages to browser)</li>
+<li>Manual “click around and check” doesn’t scale</li>
+<li>Catch regressions before users do</li>
+<li>Document expected behavior as executable code</li>
 </ul>
-<p>Great for: demos, tutorials, sharing one-off apps.</p>
+</section>
+<section id="visual-check-assert-statements" class="slide level2">
+<h2>Visual check + assert statements</h2>
+<div id="76517494" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="kw">def</span> my_add(x, y):</span>
+<span id="cb1-2"><a></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="9c6d5c7d" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>my_add(<span class="dv">3</span>, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>13</code></pre>
+</div>
+</div>
+<div id="1eac501c" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="cf">assert</span> my_add(<span class="dv">3</span>, <span class="dv">10</span>) <span class="op">==</span> <span class="dv">13</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="a7aaa066" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="cf">assert</span> my_add(<span class="dv">3</span>, <span class="dv">10</span>) <span class="op">==</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> my_add(<span class="ansi-green-fg">3</span>, <span class="ansi-green-fg">10</span>) == <span class="ansi-green-fg">100</span>
+
+<span class="ansi-red-fg">AssertionError</span>: </pre>
+</div>
+</div>
+</div>
+</section>
+<section id="unit-testing---pytest" class="slide level2">
+<h2>Unit testing - pytest</h2>
+<ul>
+<li>Need to know a bit of how packages are set up</li>
+</ul>
+</section>
+<section id="python-functions-shiny" class="slide level2">
+<h2>Python functions + Shiny</h2>
+<ul>
+<li>If you have a normal python function, you can still pass in reactive values as the arguments!
+<ul>
+<li>Import your existing functions / modules</li>
+<li>Use other packages</li>
+</ul></li>
+<li>As long as you don’t plan on having reactive calls <em>inside</em> the function body
+<ul>
+<li>Remember: reactive things must happen inside a reactive context</li>
+</ul></li>
+<li><code>pytest</code> is the package / tool to do unit testing</li>
+</ul>
+</section>
+<section id="playwright---end-to-end-testing" class="slide level2">
+<h2>Playwright - end-to-end testing</h2>
+<p>Playwright is a modern browser automation library.</p>
+<p>Shiny provides a <strong>Playwright controller</strong> that understands Shiny-specific widgets:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Page</span>
+<span id="cb6-2"><a></a><span class="im">from</span> shiny.playwright <span class="im">import</span> controller</span>
+<span id="cb6-3"><a></a><span class="im">from</span> shiny.run <span class="im">import</span> ShinyAppProc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Docs: <a href="https://shiny.posit.co/py/docs/testing.html" class="uri">https://shiny.posit.co/py/docs/testing.html</a></p>
+</section>
+<section id="test-structure" class="slide level2">
+<h2>Test structure</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb7-2"><a></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Page</span>
+<span id="cb7-3"><a></a><span class="im">from</span> shiny.playwright <span class="im">import</span> controller</span>
+<span id="cb7-4"><a></a><span class="im">from</span> shiny.run <span class="im">import</span> run_shiny_app</span>
+<span id="cb7-5"><a></a></span>
+<span id="cb7-6"><a></a>APP <span class="op">=</span> Path(<span class="va">__file__</span>).parent <span class="op">/</span> <span class="st">"app.py"</span></span>
+<span id="cb7-7"><a></a></span>
+<span id="cb7-8"><a></a><span class="kw">def</span> test_species_filter(page: Page):</span>
+<span id="cb7-9"><a></a>    <span class="cf">with</span> run_shiny_app(<span class="bu">str</span>(APP)) <span class="im">as</span> app:</span>
+<span id="cb7-10"><a></a>        page.goto(app.url)</span>
+<span id="cb7-11"><a></a></span>
+<span id="cb7-12"><a></a>        radio <span class="op">=</span> controller.InputRadioButtons(page, <span class="st">"species"</span>)</span>
+<span id="cb7-13"><a></a>        text  <span class="op">=</span> controller.OutputText(page, <span class="st">"n_rows"</span>)</span>
+<span id="cb7-14"><a></a></span>
+<span id="cb7-15"><a></a>        radio.expect_choices([<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>])</span>
+<span id="cb7-16"><a></a>        radio.<span class="bu">set</span>(<span class="st">"Chinstrap"</span>)</span>
+<span id="cb7-17"><a></a>        text.expect_value(<span class="st">"68 penguins"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="running-tests" class="slide level2">
+<h2>Running tests</h2>
+<pre><code>code/demos/testing/
+├── app.py          ← the Shiny app
+└── test_app.py     ← tests</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="bu">cd</span> code/demos/testing</span>
+<span id="cb9-2"><a></a><span class="ex">pytest</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or from the repo root:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a></a><span class="ex">pytest</span> code/demos/testing/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🎯 Live Demo</strong></p>
+</div>
+<div class="callout-content">
+<p>Run <code>pytest code/demos/testing/</code> in the terminal.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="controllers" class="slide level2">
+<h2>Controllers</h2>
+<p>Shiny provides typed controllers for every input and output type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="co"># Inputs</span></span>
+<span id="cb11-2"><a></a>controller.InputRadioButtons(page, <span class="st">"id"</span>)</span>
+<span id="cb11-3"><a></a>controller.InputSlider(page, <span class="st">"id"</span>)</span>
+<span id="cb11-4"><a></a>controller.InputSelect(page, <span class="st">"id"</span>)</span>
+<span id="cb11-5"><a></a>controller.InputCheckboxGroup(page, <span class="st">"id"</span>)</span>
+<span id="cb11-6"><a></a></span>
+<span id="cb11-7"><a></a><span class="co"># Outputs</span></span>
+<span id="cb11-8"><a></a>controller.OutputPlot(page, <span class="st">"id"</span>)</span>
+<span id="cb11-9"><a></a>controller.OutputText(page, <span class="st">"id"</span>)</span>
+<span id="cb11-10"><a></a>controller.OutputDataFrame(page, <span class="st">"id"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="what-to-test" class="slide level2">
+<h2>What to test</h2>
+<ul>
+<li>Default state renders without errors</li>
+<li>Each input change produces the expected output change</li>
+<li>Edge cases: empty selections, out-of-range values</li>
+<li>Error messages appear when they should</li>
+</ul>
 </section>
 <section id="exercise" class="slide level2">
 <h2>Exercise</h2>
-<p>See exercise: <a href="../exercises.html#ex-deploy">Deploy Your App</a>.</p>
+<p>See exercise: <a href="../exercises.html#ex-testing">Testing</a>.</p>
 
 
 </section>

@@ -273,37 +273,25 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Shiny modules</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Refactor your app into a module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reuse your Shiny module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/09-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/06-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Testing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-deploy.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/07-deploy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deploying your application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/08-modules_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/09-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
   </div>
 </li>
@@ -336,12 +324,12 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <ul class="collapse">
   <li><a href="#title-your-first-application" id="toc-title-your-first-application" class="nav-link" data-scroll-target="#title-your-first-application">title: “Your First Application”</a></li>
   <li><a href="#development-approach" id="toc-development-approach" class="nav-link" data-scroll-target="#development-approach">Development approach</a></li>
-  <li><a href="#step-1-static-plot" id="toc-step-1-static-plot" class="nav-link" data-scroll-target="#step-1-static-plot">Step 1 — static plot</a></li>
-  <li><a href="#step-1b---parameterize-your-output" id="toc-step-1b---parameterize-your-output" class="nav-link" data-scroll-target="#step-1b---parameterize-your-output">Step 1b - parameterize your output</a></li>
-  <li><a href="#step-2-add-shiny-imports" id="toc-step-2-add-shiny-imports" class="nav-link" data-scroll-target="#step-2-add-shiny-imports">Step 2 — add Shiny imports</a></li>
-  <li><a href="#step-3-discover-the-axis-choices" id="toc-step-3-discover-the-axis-choices" class="nav-link" data-scroll-target="#step-3-discover-the-axis-choices">Step 3 — discover the axis choices</a></li>
-  <li><a href="#step-4-add-inputs" id="toc-step-4-add-inputs" class="nav-link" data-scroll-target="#step-4-add-inputs">Step 4 — add inputs</a></li>
-  <li><a href="#step-5-make-the-output-reactive" id="toc-step-5-make-the-output-reactive" class="nav-link" data-scroll-target="#step-5-make-the-output-reactive">Step 5 — make the output reactive</a></li>
+  <li><a href="#step-1-static-plot" id="toc-step-1-static-plot" class="nav-link" data-scroll-target="#step-1-static-plot">Step 1: static plot</a></li>
+  <li><a href="#step-1b-parameterize-your-output" id="toc-step-1b-parameterize-your-output" class="nav-link" data-scroll-target="#step-1b-parameterize-your-output">Step 1b: parameterize your output</a></li>
+  <li><a href="#step-2-add-shiny-imports" id="toc-step-2-add-shiny-imports" class="nav-link" data-scroll-target="#step-2-add-shiny-imports">Step 2: add Shiny imports</a></li>
+  <li><a href="#step-3-discover-the-axis-choices" id="toc-step-3-discover-the-axis-choices" class="nav-link" data-scroll-target="#step-3-discover-the-axis-choices">Step 3: discover the axis choices</a></li>
+  <li><a href="#step-4-add-inputs" id="toc-step-4-add-inputs" class="nav-link" data-scroll-target="#step-4-add-inputs">Step 4: add inputs</a></li>
+  <li><a href="#step-5-make-the-output-reactive" id="toc-step-5-make-the-output-reactive" class="nav-link" data-scroll-target="#step-5-make-the-output-reactive">Step 5: make the output reactive</a></li>
   <li><a href="#what-just-happened" id="toc-what-just-happened" class="nav-link" data-scroll-target="#what-just-happened">What just happened?</a></li>
   <li><a href="#output-without-reactive-context" id="toc-output-without-reactive-context" class="nav-link" data-scroll-target="#output-without-reactive-context">Output without reactive context</a></li>
   <li><a href="#the-complete-app" id="toc-the-complete-app" class="nav-link" data-scroll-target="#the-complete-app">The complete app</a></li>
@@ -399,8 +387,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </div>
 </section>
 <section id="step-1-static-plot" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-static-plot">Step 1 — static plot</h2>
-<div id="6a3ec36a" class="cell" data-execution_count="1">
+<h2 class="anchored" data-anchor-id="step-1-static-plot">Step 1: static plot</h2>
+<div id="5ad37915" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -420,9 +408,9 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </div>
 </div>
 </section>
-<section id="step-1b---parameterize-your-output" class="level2">
-<h2 class="anchored" data-anchor-id="step-1b---parameterize-your-output">Step 1b - parameterize your output</h2>
-<div id="bc1141fa" class="cell" data-execution_count="2">
+<section id="step-1b-parameterize-your-output" class="level2">
+<h2 class="anchored" data-anchor-id="step-1b-parameterize-your-output">Step 1b: parameterize your output</h2>
+<div id="5992084b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -446,8 +434,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </div>
 </section>
 <section id="step-2-add-shiny-imports" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-add-shiny-imports">Step 2 — add Shiny imports</h2>
-<div id="4b970b4a" class="cell" data-execution_count="3">
+<h2 class="anchored" data-anchor-id="step-2-add-shiny-imports">Step 2: add Shiny imports</h2>
+<div id="50ca7dfc" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
@@ -464,8 +452,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </div>
 </section>
 <section id="step-3-discover-the-axis-choices" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-discover-the-axis-choices">Step 3 — discover the axis choices</h2>
-<div id="6da29950" class="cell" data-execution_count="4">
+<h2 class="anchored" data-anchor-id="step-3-discover-the-axis-choices">Step 3: discover the axis choices</h2>
+<div id="fc90740c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
@@ -476,7 +464,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="6" data-code-annotation="1">Automatically finds all numeric columns — no hard-coded list needed</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="6" data-code-annotation="1">Automatically finds all numeric columns: no hard-coded list needed</span>
 </dd>
 </dl>
 </div>
@@ -484,7 +472,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <p>You can still use your normal Python skills!</p>
 </section>
 <section id="step-4-add-inputs" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-add-inputs">Step 4 — add inputs</h2>
+<h2 class="anchored" data-anchor-id="step-4-add-inputs">Step 4: add inputs</h2>
 <pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
@@ -500,12 +488,13 @@ num_cols = dat.select_dtypes("float64").columns.tolist()
 ui.input_select("x", "", num_cols, selected="bill_depth_mm")
 ui.input_select("y", "", num_cols, selected="body_mass_g")</code></pre>
 <ol type="1">
-<li>Dropdown for the X axis — input ID is <code>"x"</code></li>
-<li>Dropdown for the Y axis — input ID is <code>"y"</code></li>
+<li>Dropdown for the X axis: input ID is <code>"x"</code></li>
+<li>Dropdown for the Y axis: input ID is <code>"y"</code></li>
+<li>Every ID must be unique across the whole app.</li>
 </ol>
 </section>
 <section id="step-5-make-the-output-reactive" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-make-the-output-reactive">Step 5 — make the output reactive</h2>
+<h2 class="anchored" data-anchor-id="step-5-make-the-output-reactive">Step 5: make the output reactive</h2>
 <pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
@@ -537,13 +526,13 @@ def plot():
 <section id="what-just-happened" class="level2">
 <h2 class="anchored" data-anchor-id="what-just-happened">What just happened?</h2>
 <ul>
-<li><code>input.x()</code> and <code>input.y()</code> are <strong>reactive values</strong> — they change when the user picks
+<li><code>input.x()</code> and <code>input.y()</code> are <strong>reactive values</strong>: they change when the user picks
 <ul>
-<li><code>input.*()</code> - signals reading from an input component</li>
+<li><code>input.*()</code>: signals reading from an input component</li>
 </ul></li>
-<li><code>@render.plot</code> creates a <strong>reactive context</strong> — it re-runs whenever its inputs change
+<li><code>@render.plot</code> creates a <strong>reactive context</strong>: it re-runs whenever its inputs change
 <ul>
-<li><code>@render*</code> - signals an output component</li>
+<li><code>@render*</code>: signals an output component</li>
 </ul></li>
 <li>Both dropdowns drive the same output with no extra wiring</li>
 </ul>
@@ -625,6 +614,7 @@ def plot():
 <section id="code" class="level1 page-columns page-full">
 <h1>Code</h1>
 <div class="column-page-inset">
+<p><code>code/demos/app-01-intro.py</code></p>
 <pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
@@ -651,6 +641,7 @@ def plot():
     )
 
 </code></pre>
+<p><code>code/demos/app-02-intro_ui.py</code></p>
 <pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.

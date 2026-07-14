@@ -273,37 +273,25 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-modules_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Shiny modules</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/07-modules_refactor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Refactor your app into a module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/08-modules_compose.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reuse your Shiny module</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../workshop/09-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/06-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Testing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-deploy.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/07-deploy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deploying your application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/11-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="../workshop/08-modules_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Shiny modules</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workshop/09-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
   </div>
 </li>
@@ -345,6 +333,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#parts-of-an-action-button" id="toc-parts-of-an-action-button" class="nav-link" data-scroll-target="#parts-of-an-action-button">Parts of an action button</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   </ul>
 </nav>
     </div>
@@ -597,6 +586,19 @@ ridgeplot</code></pre>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ui.card():</span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        ...  <span class="co"># ridgeplot</span></span>
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎯 Live Demo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run <code>code/demos/app-05a-tips-layout.py</code>.</p>
+</div>
+</div>
 </section>
 <section id="value-boxes" class="level2">
 <h2 class="anchored" data-anchor-id="value-boxes">Value boxes</h2>
@@ -622,7 +624,7 @@ ridgeplot</code></pre>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[df[<span class="st">"total_bill"</span>] <span class="op">&lt;=</span> <span class="bu">input</span>.bill()]</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[df[<span class="st">"time"</span>].isin(<span class="bu">input</span>.time())]</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>All outputs call <code>filtered()</code> — the filter runs once per change.</p>
+<p>All outputs call <code>filtered()</code>: the filter runs once per change.</p>
 </section>
 <section id="full-app-structure" class="level2">
 <h2 class="anchored" data-anchor-id="full-app-structure">Full app structure</h2>
@@ -650,31 +652,228 @@ ridgeplot</code></pre>
 </section>
 <section id="pausing-computations" class="level2">
 <h2 class="anchored" data-anchor-id="pausing-computations">Pausing computations</h2>
-<p>Sometimes you want an action to wait until you say so (e.g., do something when I push a button)</p>
+<p>Sometimes you want to wait for explicit user action instead of reacting immediately:</p>
 <ul>
-<li>Using user text input to filter</li>
-<li>Adjusting multiple filters</li>
+<li>Filtering only after the user finishes typing</li>
+<li>Applying several filter changes at once</li>
 </ul>
-<p>We can use a <code>ui.innput_action_buttion()</code> input component to trigger a reactive event.</p>
+<p>Use <code>ui.input_action_button()</code> to trigger a reactive event on click.</p>
 <p><a href="https://shiny.posit.co/py/components/inputs/action-button/" class="uri">https://shiny.posit.co/py/components/inputs/action-button/</a></p>
 </section>
 <section id="parts-of-an-action-button" class="level2">
 <h2 class="anchored" data-anchor-id="parts-of-an-action-button">Parts of an action button</h2>
 <ol type="1">
-<li>UI input component: <code>ui.innput_action_buttion()</code></li>
-<li>A function that gets called when the button gets clicked
+<li>UI input component: <code>ui.input_action_button()</code></li>
+<li>A function that gets called when the button is clicked
 <ul>
-<li><code>@reactive.event(input.&lt;ID&gt;)</code> decorator which button triggers which function</li>
-<li><code>@reactive.effect</code> decorator a button click doesn’t return a result, it creates a side effect</li>
+<li><code>@reactive.event(input.&lt;ID&gt;)</code>: ties the function to that specific button</li>
+<li><code>@reactive.effect</code>: marks it as a side effect, since a click doesn’t return a value</li>
 </ul></li>
 </ol>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
 <p>See exercises: <a href="../exercises.html#ex-tips">Tips</a> and <a href="../exercises.html#ex-tips-button">Tips + Button</a>.</p>
-
-
 </section>
+</section>
+<section id="code" class="level1 page-columns page-full">
+<h1>Code</h1>
+<div class="column-page-inset">
+<p><code>code/demos/app-05-tips.py</code></p>
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 550
+
+import plotly.express as px
+from ridgeplot import ridgeplot
+import seaborn as sns
+from shiny.express import input, ui, render
+from shiny import reactive
+from shinywidgets import render_plotly, render_widget
+
+tips = sns.load_dataset("tips")
+
+# title
+ui.page_opts(title="Restaurant tipping", fillable=True)
+
+# sidebar
+with ui.sidebar(open="desktop"):
+    ui.input_slider(
+        id="slider",
+        label="Bill amount",
+        min=tips.total_bill.min(),
+        max=tips.total_bill.max(),
+        value=[tips.total_bill.min(), tips.total_bill.max()],
+    )
+    ui.input_checkbox_group(
+        id="checkbox_group",
+        label="Food service",
+        choices={
+            "Lunch": "Lunch",
+            "Dinner": "Dinner",
+        },
+        selected=[
+            "Lunch",
+            "Dinner",
+        ],
+    )
+    ui.input_action_button("action_button", "Reset filter")
+
+
+@reactive.effect
+@reactive.event(input.action_button)
+def reset_filters():
+    ui.update_slider(
+        "slider",
+        value=[tips.total_bill.min(), tips.total_bill.max()],
+    )
+    ui.update_checkbox_group(
+        "checkbox_group",
+        selected=["Lunch", "Dinner"],
+    )
+
+
+@reactive.calc
+def filtered_data():
+    idx1 = tips.total_bill.between(
+        left=input.slider()[0],
+        right=input.slider()[1],
+        inclusive="both",
+    )
+    idx2 = tips.time.isin(input.checkbox_group())
+    tips_filtered = tips[idx1 &amp; idx2]
+    return tips_filtered
+
+
+# body of application
+# first row of value boxes
+with ui.layout_columns(fill=False):
+    with ui.value_box():
+        "Total tippers"
+
+        @render.text
+        def total_tippers():
+            return filtered_data().shape[0]
+
+    with ui.value_box():
+        "Average tip"
+
+        @render.text
+        def average_tip():
+            perc = filtered_data().tip / filtered_data().total_bill
+            return f"{perc.mean():.1%}"
+
+    with ui.value_box():
+        "Average bill"
+
+        @render.text
+        def average_bill():
+            bill = filtered_data().total_bill.mean()
+            return f"${bill:.2f}"
+
+
+# second row of cards
+with ui.layout_columns(col_widths=[6, 6]):
+    with ui.card(full_screen=True):
+        ui.card_header("Tips data")
+
+        @render.data_frame
+        def tips_data():
+            return filtered_data()
+
+    with ui.card(full_screen=True):
+        ui.card_header("Total bill vs tip")
+
+        @render_plotly
+        def scatterplot():
+            return px.scatter(
+                filtered_data(), x="total_bill", y="tip", trendline="lowess"
+            )
+
+
+with ui.layout_columns():
+    with ui.card(full_screen=True):
+        ui.card_header("Tip percentages")
+
+        @render_widget
+        def ridge():
+            filtered_data()["percent"] = (
+                filtered_data().tip / filtered_data().total_bill
+            )
+
+            uvals = filtered_data().day.unique()
+            samples = [
+                [filtered_data().percent[filtered_data().day == val]] for val in uvals
+            ]
+
+            plt = ridgeplot(
+                samples=samples,
+                labels=uvals,
+                bandwidth=0.01,
+                colorscale="viridis",
+                colormode="row-index",
+            )
+
+            plt.update_layout(
+                legend=dict(
+                    orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5
+                )
+            )
+
+            return plt
+
+
+## file: requirements.txt
+ridgeplot</code></pre>
+<p><code>code/demos/app-05a-tips-layout.py</code></p>
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [editor, viewer]
+
+from shiny.express import input, render, ui
+
+ui.page_opts(title="Tips Dashboard", fillable=True)
+
+with ui.sidebar():
+    ui.input_slider("bill", "Max bill ($)", 3, 50, 25)
+    ui.input_checkbox_group(
+        "time",
+        "Meal",
+        ["Lunch", "Dinner"],
+        selected=["Lunch", "Dinner"],
+    )
+    ui.input_action_button("action_button", "Reset")
+
+with ui.layout_columns():
+    with ui.card():
+        ...  # output 1
+
+    with ui.card():
+        ...  # output 2
+
+    with ui.card():
+            ...  # output 3
+
+with ui.layout_columns():
+    with ui.card():
+        ...  # data frame
+
+    with ui.card():
+        ...  # scatter plot
+
+with ui.layout_columns():
+    with ui.card():
+        ...  # ridgeplot
+</code></pre>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

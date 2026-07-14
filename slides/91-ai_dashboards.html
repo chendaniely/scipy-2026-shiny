@@ -230,9 +230,9 @@
 <h2>Putting LLMs in Shiny apps</h2>
 <p>Three patterns, increasing complexity:</p>
 <ol type="1">
-<li><strong>Chat interface</strong> — a conversational UI (<code>shinychat</code>)</li>
-<li><strong>Tool calling</strong> — let the LLM take actions in your app</li>
-<li><strong>Data chat</strong> — query your dataframe with natural language (<code>querychat</code>)</li>
+<li><strong>Chat interface</strong>: a conversational UI (<code>shinychat</code>)</li>
+<li><strong>Tool calling</strong>: let the LLM take actions in your app</li>
+<li><strong>Data chat</strong>: query your dataframe with natural language (<code>querychat</code>)</li>
 </ol>
 </section>
 <section id="shinychat" class="slide level2">
@@ -253,11 +253,7 @@
 </section>
 <section id="demo-shinychat" class="slide level2">
 <h2>Demo: shinychat</h2>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>code/03-llm/app-shinychat.py</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="code/03-llm/app-shinychat.py"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> shiny.express <span class="im">import</span> ui</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> shiny.express <span class="im">import</span> ui</span>
 <span id="cb2-2"><a></a><span class="im">from</span> shinychat <span class="im">import</span> chat_ui, chat_server</span>
 <span id="cb2-3"><a></a><span class="im">from</span> chatlas <span class="im">import</span> ChatGithub</span>
 <span id="cb2-4"><a></a></span>
@@ -268,7 +264,6 @@
 <span id="cb2-9"><a></a><span class="at">@chat_server</span>(<span class="st">"chat"</span>)</span>
 <span id="cb2-10"><a></a><span class="kw">def</span> _():</span>
 <span id="cb2-11"><a></a>    <span class="cf">return</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-4.1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 </section>
 <section id="chatting-with-your-data" class="slide level2">
 <h2>Chatting with your data</h2>
@@ -297,6 +292,22 @@
 <span id="cb4-12"><a></a></span>
 <span id="cb4-13"><a></a>querychat.chat_server(<span class="st">"chat"</span>, qc)</span>
 <span id="cb4-14"><a></a>querychat.dataframe_server(<span class="st">"df"</span>, qc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🎯 Live Demo</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Run <code>code/demos/app-90-querychat.py</code></li>
+<li>Or click and run: <a href="https://posit-ai-querychat.share.connect.posit.cloud/">View App</a> · <a href="https://github.com/posit-dev/py-shiny-templates/tree/main/gen-ai/querychat">View Code</a></li>
+</ul>
+</div>
+</div>
+</div>
 </section>
 <section id="sidebot-pattern" class="slide level2">
 <h2>Sidebot pattern</h2>
@@ -306,7 +317,20 @@
 <li>LLM translates to filter parameters</li>
 <li>Dashboard updates reactively</li>
 </ul>
-<p>Template: <code>shiny create --mode core --github jcheng5/py-databot</code></p>
+<p>Template: <code>shiny create --github jcheng5/py-sidebot</code></p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🎯 Live Demo</strong></p>
+</div>
+<div class="callout-content">
+<p>Click and run: <a href="https://jcheng.shinyapps.io/sidebot">View App</a> · <a href="https://github.com/jcheng5/py-sidebot">View Code</a></p>
+</div>
+</div>
+</div>
 </section>
 <section id="demo-llms-chat" class="slide level2">
 <h2>Demo: LLMs + Chat</h2>
@@ -324,7 +348,7 @@
 <section id="sql-is-a-great-communication-layer" class="slide level2">
 <h2>SQL is a great communication layer</h2>
 <p>Upcoming tool: ggsql <a href="https://ggsql.org/" class="uri">https://ggsql.org/</a></p>
-<p>Trt it: <a href="https://ggsql.org/wasm/" class="uri">https://ggsql.org/wasm/</a></p>
+<p>Try it: <a href="https://ggsql.org/wasm/" class="uri">https://ggsql.org/wasm/</a></p>
 <p>See also: Querychat + Vis docs: <a href="https://posit-dev.github.io/querychat/py/visualize.html" class="uri">https://posit-dev.github.io/querychat/py/visualize.html</a></p>
 <div class="columns">
 <div class="column">
