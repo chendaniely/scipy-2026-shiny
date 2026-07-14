@@ -109,7 +109,7 @@ Before doing the exercise make a copy of the file for your solution.
 
 1. Replace the plotly scatter plot with the altair scatter plot below.
 2. Wrap the scatter plot in a function, `scatterplot()`,
-3. Wse the appropriate output component decorator, `@render_altair`
+3. Use the appropriate output component decorator, `@render_altair`
 
 ```{.python}
 data = ____ # use the reactive calc dataframe here
@@ -148,7 +148,7 @@ return (points + trend).add_params(zoom).properties(width="container")
 
 ::: {.exercise}
 
-Take a look at the `code/exercises/app-ex03-tips.py` file in the [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/exercises).
+Take a look at the `code/exercises/app-ex04-tips-button.py` file in the [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/exercises).
 
 Before doing the exercise make a copy of the file for your solution.
 
@@ -183,83 +183,6 @@ def reset_filters():
 #| viewerHeight: 650
 
 {{< include /../code/exercise_solutions/app-ex04-button.py >}}
-```
-
-:::
-
-## Refactor into a Module {#ex-modules-refactor}
-
-::: {.exercise}
-
-Take a look at `code/exercises/app-ex06-modules_refactor.py` in the
-[repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/exercises) —
-it's the tips dashboard from the Tips + Button exercise, filter sidebar and all.
-
-Before doing the exercise make a copy of the file for your solution.
-
-1. Extract the sidebar's `ui.input_slider()`, `ui.input_checkbox_group()`,
-   and the `@reactive.calc` that filters `tips` into a module named
-   `filter_panel` (Express) with signature
-   `filter_panel(input, output, session, data, columns)`, returning
-   `{"mask": <reactive.calc>}`.
-2. Replace the sidebar's filter UI with `filter_panel("tips_filter", data=tips, columns=["total_bill", "time"])`.
-3. Keep the "Reset filter" action button working — remember the module's
-   inputs are namespaced, so their ids from outside the module are
-   `"tips_filter-filter_total_bill"` and `"tips_filter-filter_time"`.
-4. Simplify the body down to a single `ui.output_data_frame` showing the
-   filtered rows — drop the value boxes, the scatter plot, and the
-   ridgeplot from the original. This exercise is about the module
-   refactor, not preserving every dashboard widget.
-
-:::
-
-::: {.callout-note collapse="true"}
-## Solution
-
-```{shinylive-python}
-#| standalone: true
-#| components: [editor, viewer]
-#| layout: vertical
-#| viewerHeight: 650
-
-{{< include /../code/exercise_solutions/app-ex06-modules_refactor.py >}}
-
-## file: module.py
-{{< include /../code/exercise_solutions/module.py >}}
-```
-
-:::
-
-## Reuse Your Module {#ex-modules-compose}
-
-::: {.exercise}
-
-Start from your Refactor into a Module solution
-(`code/exercise_solutions/app-ex06-modules_refactor.py`).
-
-1. Add a `ui.navset_card_tab()` with two `ui.nav_panel()`s: "Tips" (your
-   existing content) and "Penguins" (new).
-2. In the "Penguins" panel, load `palmerpenguins.load_penguins().dropna()`
-   and call `filter_panel("penguins_filter", data=penguins, columns=["species", "bill_length_mm", "body_mass_g"])` —
-   no new filter code needed.
-3. Add a `ui.output_data_frame` in each panel showing the filtered rows for
-   that panel's dataset.
-
-:::
-
-::: {.callout-note collapse="true"}
-## Solution
-
-```{shinylive-python}
-#| standalone: true
-#| components: [editor, viewer]
-#| layout: vertical
-#| viewerHeight: 650
-
-{{< include /../code/exercise_solutions/app-ex07-modules_compose.py >}}
-
-## file: module.py
-{{< include /../code/exercise_solutions/module.py >}}
 ```
 
 :::
