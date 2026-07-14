@@ -1,8 +1,7 @@
 | Time  | Topic                                                                                         |
 |-------|-----------------------------------------------------------------------------------------------|
 | 8:00  | [Welcome](workshop/01-welcome.qmd) + [Basic building blocks](workshop/02-building_blocks.qmd) |
-| 8:20  | [Your first application — inputs](workshop/03-first_app.qmd)                                  |
-| 8:35  | [Your first application — outputs](workshop/03-first_app.qmd)                                 |
+| 8:20  | [Your first application](workshop/03-first_app.qmd)                                           |
 | 8:50  | ☕ Break                                                                                       |
 | 9:00  | [Shiny reactivity](workshop/04-reactivity.qmd)                                                |
 | 9:15  | [A more complex application](workshop/05-complex_app.qmd)                                     |
