@@ -14,6 +14,7 @@ ui.input_select("y", "Y", num_cols, selected="body_mass_g")
 
 @reactive.calc
 def filtered():
+    print("filtering...")
     return dat[dat["species"].isin(input.species())]
 
 

@@ -15,14 +15,16 @@ with ui.sidebar():
 
 @reactive.calc
 def filtered():
-    return dat[dat["species"].isin(input.species())]
+    print("reactive calc: filtered()")
+    return dat[dat["species"].isin(input.species())] # reactive to only species()
 
 
 @reactive.calc
 def summary():
+    print("reactive calc: summary()")
     return (
-        filtered()
-        .groupby("species")[input.y()]
+        filtered() # << reactive to filtered()
+        .groupby("species")[input.y()] # << reactive to input.y()
         .agg(Mean="mean", Median="median", SD="std")
         .round(2)
         .reset_index()

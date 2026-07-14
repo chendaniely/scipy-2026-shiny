@@ -69,7 +69,7 @@ Try out any one of the following changes:
 Before doing the exercise make a copy of the file for your solution.
 
 1. Run it and confirm the scatter plot and count update together
-2. Add a `print("filtering...")` inside `filtered()` — change Species and verify it prints only once
+2. Add a `print("filtering...")` inside `filtered()` — change Species what do you see?
 
 **Part B** — open `code/demos/app-04-reactivity_chained.py` file in the [repository](https://github.com/chendaniely/scipy-2026-shiny/tree/main/code/demos).
 
@@ -78,7 +78,26 @@ Before doing the exercise make a copy of the file for your solution.
 1. Run it and explore all three outputs (plot, count, table)
 2. Change Y Axis — notice count does *not* change (filtered is still cached)
 3. Add a `print` to each calc to confirm which ones re-run for each input change
+
+Change the various input components. What do you see?
 :::
+
+::: {.callout-note collapse="true"}
+## Solution - part A
+
+When you make a change to species, the filter call will only be called once.
+
+:::
+
+::: {.callout-note collapse="true"}
+## Solution - part B
+
+- When you make a change to species, both `@reactive.calc`s run.
+- When you change `input.x()` nothing only the figure changes.
+- When you change `input.y()`, the summary `@reactive.calc` runs, and the figure changes,
+  but the filtered `@reactive.calc()` does not run.
+:::
+
 
 ## Tips {#ex-tips}
 
