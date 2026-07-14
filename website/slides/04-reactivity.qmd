@@ -324,7 +324,7 @@ Species changes → **filtered** cache discarded → everything downstream is st
 :::
 ::::
 
-## The chained code
+## The chained code {footer=false}
 
 ```python
 @reactive.calc
