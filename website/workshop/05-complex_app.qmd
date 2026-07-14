@@ -11,3 +11,32 @@ title: "Your Next Application"
 # Slide Contents
 
 {{< include /slides/05-complex_app.qmd >}}
+
+# Code
+
+:::{.column-page-inset}
+
+`code/demos/app-05-tips.py`
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 550
+
+{{< include /../code/demos/app-05-tips.py >}}
+
+## file: requirements.txt
+ridgeplot
+```
+
+`code/demos/app-05a-tips-layout.py`
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+
+{{< include /../code/demos/app-05a-tips-layout.py >}}
+```
+
+:::

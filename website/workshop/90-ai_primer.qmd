@@ -11,3 +11,27 @@ title: "An AI + LLM Primer"
 # Slide Contents
 
 {{< include /slides/90-ai_primer.qmd >}}
+
+# Code
+
+:::{.column-page-inset}
+
+`code/demos/ai-01-chatlas-github.py`
+
+```{.python}
+{{< include /../code/demos/ai-01-chatlas-github.py >}}
+```
+
+`code/demos/ai-02-dotenv.py`
+
+```{.python}
+{{< include /../code/demos/ai-02-dotenv.py >}}
+```
+
+`code/demos/ai-03-tools.py`
+
+```{.python}
+{{< include /../code/demos/ai-03-tools.py >}}
+```
+
+:::

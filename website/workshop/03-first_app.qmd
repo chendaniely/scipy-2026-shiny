@@ -16,6 +16,8 @@ title: "Your First Application"
 
 :::{.column-page-inset}
 
+`code/demos/app-01-intro.py`
+
 ```{shinylive-python}
 #| standalone: true
 #| components: [editor, viewer]
@@ -24,6 +26,8 @@ title: "Your First Application"
 {{< include /../code/demos/app-01-intro.py >}}
 
 ```
+
+`code/demos/app-02-intro_ui.py`
 
 ```{shinylive-python}
 #| standalone: true

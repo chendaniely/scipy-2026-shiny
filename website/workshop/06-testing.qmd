@@ -11,3 +11,21 @@ title: "Testing"
 # Slide Contents
 
 {{< include /slides/06-testing.qmd >}}
+
+# Code
+
+:::{.column-page-inset}
+
+`code/demos/testing/app.py`
+
+```{.python}
+{{< include /../code/demos/testing/app.py >}}
+```
+
+`code/demos/testing/test_app.py`
+
+```{.python}
+{{< include /../code/demos/testing/test_app.py >}}
+```
+
+:::

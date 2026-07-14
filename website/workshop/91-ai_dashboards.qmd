@@ -11,3 +11,15 @@ title: "AI + LLM Dashboards"
 # Slide Contents
 
 {{< include /slides/91-ai_dashboards.qmd >}}
+
+# Code
+
+:::{.column-page-inset}
+
+`code/demos/app-90-querychat.py`
+
+```{.python}
+{{< include /../code/demos/app-90-querychat.py >}}
+```
+
+:::

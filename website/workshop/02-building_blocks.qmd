@@ -11,3 +11,19 @@ title: "Introduction to Shiny"
 # Slide Contents
 
 {{< include /slides/02-building_blocks.qmd >}}
+
+# Code
+
+:::{.column-page-inset}
+
+`code/demos/app-01-intro.py`
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| viewerHeight: 520
+
+{{< include /../code/demos/app-01-intro.py >}}
+```
+
+:::

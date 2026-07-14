@@ -12,11 +12,11 @@ title: "Shiny Reactivity"
 
 {{< include /slides/04-reactivity.qmd >}}
 
-# Demo: shared `@reactive.calc`
-
-`code/app-03-reactivity.py` — species filter shared between a scatter plot and a count.
+# Code
 
 :::{.column-page-inset}
+
+`code/demos/app-03-reactivity.py`
 
 ```{shinylive-python}
 #| standalone: true
@@ -25,14 +25,7 @@ title: "Shiny Reactivity"
 {{< include /../code/demos/app-03-reactivity.py >}}
 ```
 
-:::
-
-# Demo: chained `@reactive.calc`
-
-`code/app-04-reactivity_chained.py` — `summary()` derives from `filtered()`, feeding a third output.
-Change **Y Axis** and watch the count stay unchanged — `filtered()` is still cached.
-
-:::{.column-page-inset}
+`code/demos/app-04-reactivity_chained.py`
 
 ```{shinylive-python}
 #| standalone: true

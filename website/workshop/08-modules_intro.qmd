@@ -11,3 +11,20 @@ title: "Introduction to Shiny Modules"
 # Slide Contents
 
 {{< include /slides/08-modules_intro.qmd >}}
+
+# Code
+
+:::{.column-page-inset}
+
+`code/demos/app-06-modules_scatter_combos.py`
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 550
+
+{{< include /../code/demos/app-06-modules_scatter_combos.py >}}
+```
+
+:::
